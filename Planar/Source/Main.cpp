@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include <ThirdParty/glad/gl.h>
 #include <ThirdParty/GLFW/glfw3.h>
 
 int main()
@@ -21,6 +22,12 @@ int main()
     }
 
     glfwMakeContextCurrent(window);
+
+    const int version = gladLoadGL(glfwGetProcAddress);
+    if (version == 0)
+    {
+        std::cerr << "OpenGL init failed\n";
+    }
 
     glfwSwapInterval(1);
 
