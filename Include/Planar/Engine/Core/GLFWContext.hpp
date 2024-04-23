@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Planar::Core
+namespace Planar::Engine::Core
 {
     class GLFWContext
     {

@@ -1,4 +1,4 @@
-#include "Planar/Core/GLFWContext.hpp"
+#include "Planar/Engine/Core/GLFWContext.hpp"
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
@@ -10,7 +10,7 @@
 
 int main()
 {
-    Planar::Core::GLFWContext glfw_context;
+    Planar::Engine::Core::GLFWContext glfw_context;
     if (!glfw_context.init())
     {
         std::cerr << "GLFW init failed\n";

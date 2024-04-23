@@ -1,8 +1,8 @@
-#include "Planar/Core/GLFWContext.hpp"
+#include "Planar/Engine/Core/GLFWContext.hpp"
 
 #include "ThirdParty/GLFW/glfw3.h"
 
-namespace Planar::Core
+namespace Planar::Engine::Core
 {
     GLFWContext::GLFWContext() : has_init{}
     {
