@@ -1,4 +1,4 @@
-#include <iostream>
+#include "Planar/Core/GLFWContext.hpp"
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
@@ -6,9 +6,12 @@
 #include "ThirdParty/ImGui/imgui_impl_glfw.h"
 #include "ThirdParty/ImGui/imgui_impl_opengl3.h"
 
+#include <iostream>
+
 int main()
 {
-    if (!glfwInit())
+    Planar::Core::GLFWContext glfw_context;
+    if (!glfw_context.init())
     {
         std::cerr << "GLFW init failed\n";
     }
@@ -81,5 +84,4 @@ int main()
     ImGui::DestroyContext();
 
     glfwDestroyWindow(window);
-    glfwTerminate();
 }
