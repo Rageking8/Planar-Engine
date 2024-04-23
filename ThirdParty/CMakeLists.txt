@@ -1,19 +1,25 @@
 include(FetchContent)
 
+if(POLICY CMP0135)
+    cmake_policy(SET CMP0135 NEW)
+endif()
+
 set(PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR
     "${PLANAR_EXTERNAL_INCLUDE_DIR}/ThirdParty"
 )
 
 FetchContent_Declare(
     glfw
-    GIT_REPOSITORY https://github.com/glfw/glfw.git
-    GIT_HASH 7b6aead9fb88b3623e3b3725ebb42670cbe4c579 # 3.4
+    URL https://github.com/glfw/glfw/archive/refs/tags/3.4.zip
+    URL_HASH
+        SHA256=A133DDC3D3C66143EBA9035621DB8E0BCF34DBA1EE9514A9E23E96AFD39FD57A
 )
 
 FetchContent_Declare(
     imgui
-    GIT_REPOSITORY https://github.com/ocornut/imgui
-    GIT_HASH 231cbee0fc4f59dbe5b8b853a11b08dc84e57c65 # 1.90.5
+    URL https://github.com/ocornut/imgui/archive/refs/tags/v1.90.5.zip
+    URL_HASH
+        SHA256=8860AA37506D7E16CF093BA26FA51C2BBD48ADDCC389D3B315BF690F66D709E4
 )
 
 add_subdirectory(glad)
