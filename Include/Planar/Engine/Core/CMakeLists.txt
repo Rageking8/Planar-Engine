@@ -1,3 +1,3 @@
-target_sources(${PLANAR_CORE_TARGET} PRIVATE
+target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     GLFWContext.hpp
 )

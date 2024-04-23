@@ -17,7 +17,7 @@ set(PLANAR_EXTERNAL_INCLUDE_DIR
     ${CMAKE_BINARY_DIR}/External/Include
 )
 
-set(PLANAR_CORE_TARGET PlanarCore)
+set(PLANAR_ENGINE_TARGET PlanarEngine)
 set(PLANAR_EDITOR_TARGET PlanarEditor)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -31,6 +31,6 @@ add_subdirectory(ThirdParty)
 
 get_all_target_list(PLANAR_ALL_TARGETS)
 set_target_properties(${PLANAR_ALL_TARGETS} PROPERTIES FOLDER ThirdParty)
-set_target_properties(${PLANAR_CORE_TARGET} ${PLANAR_EDITOR_TARGET}
+set_target_properties(${PLANAR_ENGINE_TARGET} ${PLANAR_EDITOR_TARGET}
     PROPERTIES FOLDER Planar
 )
