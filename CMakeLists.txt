@@ -19,6 +19,7 @@ add_subdirectory(ThirdParty)
 target_link_libraries(PlanarEngine PRIVATE
     glfw
     glad
+    imgui
 )
 
 target_include_directories(PlanarEngine PRIVATE
