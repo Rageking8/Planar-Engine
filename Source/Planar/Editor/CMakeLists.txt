@@ -1,0 +1,26 @@
+add_executable(${PLANAR_EDITOR_TARGET})
+
+target_link_libraries(${PLANAR_EDITOR_TARGET} PRIVATE
+    glfw
+    glad
+    imgui
+)
+
+target_include_directories(${PLANAR_EDITOR_TARGET} PRIVATE
+    ${PLANAR_INCLUDE_ROOT_DIR}
+    ${PLANAR_EXTERNAL_INCLUDES_DIR}
+)
+
+add_custom_command(TARGET ${PLANAR_EDITOR_TARGET} POST_BUILD COMMAND
+    ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PLANAR_EDITOR_TARGET}>
+    $<TARGET_RUNTIME_DLLS:${PLANAR_EDITOR_TARGET}>
+    $<TARGET_FILE_DIR:${PLANAR_EDITOR_TARGET}> COMMAND_EXPAND_LISTS
+)
+
+if(MSVC)
+    target_compile_options(${PLANAR_EDITOR_TARGET} PRIVATE /W4)
+endif()
+
+target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
+    Main.cpp
+)
