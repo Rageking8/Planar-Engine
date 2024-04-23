@@ -17,6 +17,10 @@ set(PLANAR_EXTERNAL_INCLUDE_DIR
 set(PLANAR_CORE_TARGET PlanarCore)
 set(PLANAR_EDITOR_TARGET PlanarEditor)
 
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY
+    VS_STARTUP_PROJECT ${PLANAR_EDITOR_TARGET}
+)
+
 add_subdirectory(Source)
 add_subdirectory(Include)
 add_subdirectory(ThirdParty)
