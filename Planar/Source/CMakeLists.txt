@@ -1,1 +1,3 @@
-target_sources(PlanarEngine PRIVATE Main.cpp)
+target_sources(PlanarEngine PRIVATE
+	Main.cpp
+)
