@@ -14,6 +14,7 @@ set(PLANAR_EXTERNAL_INCLUDES_DIR
     "${CMAKE_BINARY_DIR}/External/Includes"
 )
 
+set(PLANAR_CORE_TARGET PlanarCore)
 set(PLANAR_EDITOR_TARGET PlanarEditor)
 
 add_subdirectory(Source)
