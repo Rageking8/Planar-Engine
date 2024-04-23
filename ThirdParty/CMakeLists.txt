@@ -5,7 +5,7 @@ if(POLICY CMP0135)
 endif()
 
 set(PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR
-    "${PLANAR_EXTERNAL_INCLUDE_DIR}/ThirdParty"
+    ${PLANAR_EXTERNAL_INCLUDE_DIR}/ThirdParty
 )
 
 FetchContent_Declare(

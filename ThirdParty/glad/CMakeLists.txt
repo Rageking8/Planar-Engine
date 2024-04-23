@@ -9,5 +9,5 @@ target_include_directories(glad PRIVATE
 )
 
 file(COPY gl.h DESTINATION
-    "${PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR}/glad"
+    ${PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR}/glad
 )
