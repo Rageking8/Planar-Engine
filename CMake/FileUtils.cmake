@@ -1,0 +1,5 @@
+function(copy_to_multi source)
+    foreach(destination ${ARGN})
+        file(COPY ${source} DESTINATION ${destination})
+    endforeach()
+endfunction()
