@@ -1,5 +1,3 @@
-include(FileUtils)
-
 copy_single_source(
     khrplatform.h
     ${PLANAR_EXTERNAL_INCLUDE_DIR}/KHR

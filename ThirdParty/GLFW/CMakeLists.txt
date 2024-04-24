@@ -6,6 +6,7 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(glfw)
 
-file(COPY ${GLFW_SOURCE_DIR}/include/GLFW/ DESTINATION
+copy_single_source(
+    ${GLFW_SOURCE_DIR}/include/GLFW/
     ${PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR}/GLFW
 )
