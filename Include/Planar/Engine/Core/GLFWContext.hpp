@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Planar/Engine/Core/ExportMacros.hpp"
+
 namespace Planar::Engine::Core
 {
-    class GLFWContext
+    class PLANAR_API GLFWContext
     {
     public:
         GLFWContext();
