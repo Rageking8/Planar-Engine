@@ -1,2 +1,4 @@
-add_subdirectory(Editor)
+include(DefineUtils)
+
 add_subdirectory(Engine)
+add_subdirectory(Editor)
