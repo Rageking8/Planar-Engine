@@ -2,9 +2,6 @@ add_executable(${PLANAR_EDITOR_TARGET})
 
 target_link_libraries(${PLANAR_EDITOR_TARGET} PRIVATE
     ${PLANAR_ENGINE_TARGET}
-    glfw
-    glad
-    imgui
 )
 
 target_include_directories(${PLANAR_EDITOR_TARGET} PRIVATE

@@ -12,6 +12,7 @@ namespace Planar::Engine::Core
 
         bool init();
         void terminate();
+        void run();
 
     private:
         bool has_init;
