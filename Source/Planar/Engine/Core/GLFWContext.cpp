@@ -24,7 +24,7 @@ namespace Planar::Engine::Core
     {
         has_init = glfwInit();
 
-            return has_init;
+        return has_init;
     }
 
     void GLFWContext::terminate()
