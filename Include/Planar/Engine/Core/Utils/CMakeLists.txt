@@ -1,6 +1,7 @@
 target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
-    Arithmetic.hpp
-    IsEnumClass.hpp
     EnumClassBase.hpp
     EnumClassBase.tpp
 )
+
+add_subdirectory(Concepts)
+add_subdirectory(TypeTraits)

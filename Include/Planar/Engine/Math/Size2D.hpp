@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Planar/Engine/Core/Utils/Arithmetic.hpp"
+#include "Planar/Engine/Core/Utils/Concepts/Arithmetic.hpp"
 
 namespace Planar::Engine::Math
 {
-    template <Arithmetic T>
+    template <Planar::Engine::Core::Utils::Concepts::Arithmetic T>
     struct Size2D
     {
         T width{};

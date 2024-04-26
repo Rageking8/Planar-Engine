@@ -10,7 +10,8 @@ namespace Planar::Engine::Graphics
         OPENGL_4_6,
     };
 
-    class PLANAR_API SupportedGraphicsAPI : public EnumClassBase<
+    class PLANAR_API SupportedGraphicsAPI :
+        public Planar::Engine::Core::Utils::EnumClassBase<
         SupportedGraphicsAPIBacking>
     {
     public:
