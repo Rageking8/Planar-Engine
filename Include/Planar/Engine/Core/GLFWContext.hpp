@@ -21,7 +21,6 @@ namespace Planar::Engine::Core
         bool init();
         void terminate();
 
-        void run();
         GLFWwindow* get_main_window() const;
         bool create_window(
             Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,

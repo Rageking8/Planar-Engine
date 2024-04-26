@@ -1,10 +1,6 @@
 #include "Planar/Engine/Core/GLFWContext.hpp"
 
-#include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
-#include "ThirdParty/ImGui/imgui.h"
-#include "ThirdParty/ImGui/imgui_impl_glfw.h"
-#include "ThirdParty/ImGui/imgui_impl_opengl3.h"
 
 #include <iostream>
 
@@ -38,47 +34,6 @@ namespace Planar::Engine::Core
         glfwTerminate();
 
         has_init = false;
-    }
-
-    void GLFWContext::run()
-    {
-        const int version = gladLoadGL(glfwGetProcAddress);
-        if (version == 0)
-        {
-            std::cerr << "OpenGL init failed\n";
-        }
-
-        glfwSwapInterval(1);
-        
-        bool hello_window = true;
-
-        while (!glfwWindowShouldClose(main_window))
-        {
-            ImGui_ImplOpenGL3_NewFrame();
-            ImGui_ImplGlfw_NewFrame();
-            ImGui::NewFrame();
-
-            if (hello_window)
-            {
-                bool open = ImGui::Begin("Hello ImGui!", &hello_window);
-                if (open)
-                {
-                    ImGui::Text("I am a window!");
-                }
-                ImGui::End();
-            }
-
-            ImGui::Render();
-            int display_w, display_h;
-            glfwGetFramebufferSize(main_window, &display_w, &display_h);
-            glViewport(0, 0, display_w, display_h);
-            glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-            glfwSwapBuffers(main_window);
-            glfwPollEvents();
-        }
     }
 
     GLFWwindow* GLFWContext::get_main_window() const
