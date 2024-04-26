@@ -1,4 +1,5 @@
 #include "Planar/Engine/Core/GLFWContext.hpp"
+#include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
 
 #include <iostream>
 
@@ -8,6 +9,15 @@ int main()
     if (!glfw_context.init())
     {
         std::cerr << "GLFW init failed\n";
+
+        return -1;
+    }
+
+    if (!glfw_context.create_window(
+        Planar::Engine::Graphics::SupportedGraphicsAPI::OPENGL_4_6,
+        { 1280, 720 }, "Hello Window"))
+    {
+        std::cerr << "window init failed\n";
 
         return -1;
     }

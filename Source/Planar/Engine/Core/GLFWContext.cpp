@@ -10,7 +10,7 @@
 
 namespace Planar::Engine::Core
 {
-    GLFWContext::GLFWContext() : has_init{}
+    GLFWContext::GLFWContext() : has_init{}, main_window{}
     {
 
     }
@@ -34,25 +34,14 @@ namespace Planar::Engine::Core
             return;
         }
 
+        glfwDestroyWindow(main_window);
+
         glfwTerminate();
         has_init = false;
     }
 
     void GLFWContext::run()
     {
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-        GLFWwindow* window = glfwCreateWindow(1280, 720, "Hello Window",
-            nullptr, nullptr);
-        if (!window)
-        {
-            std::cerr << "Window creation failed\n";
-        }
-
-        glfwMakeContextCurrent(window);
-
         const int version = gladLoadGL(glfwGetProcAddress);
         if (version == 0)
         {
@@ -70,12 +59,12 @@ namespace Planar::Engine::Core
 
         ImGui::StyleColorsDark();
 
-        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplGlfw_InitForOpenGL(main_window, true);
         ImGui_ImplOpenGL3_Init("#version 460");
 
         bool hello_window = true;
 
-        while (!glfwWindowShouldClose(window))
+        while (!glfwWindowShouldClose(main_window))
         {
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
@@ -93,20 +82,47 @@ namespace Planar::Engine::Core
 
             ImGui::Render();
             int display_w, display_h;
-            glfwGetFramebufferSize(window, &display_w, &display_h);
+            glfwGetFramebufferSize(main_window, &display_w, &display_h);
             glViewport(0, 0, display_w, display_h);
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-            glfwSwapBuffers(window);
+            glfwSwapBuffers(main_window);
             glfwPollEvents();
         }
 
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
+    }
 
-        glfwDestroyWindow(window);
+    bool GLFWContext::create_window(
+        Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
+        Planar::Engine::Math::Size2Di size,
+        const std::string& name)
+    {
+        if (!has_init || main_window)
+        {
+            return false;
+        }
+
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, graphics_api.
+            get_major_version());
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, graphics_api.
+            get_minor_version());
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+        GLFWwindow* window = glfwCreateWindow(size.width, size.height,
+            name.c_str(), nullptr, nullptr);
+
+        if (window)
+        {
+            main_window = window;
+
+            glfwMakeContextCurrent(window);
+        }
+
+        return window;
     }
 }
