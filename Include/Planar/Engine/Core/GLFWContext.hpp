@@ -12,6 +12,8 @@ namespace Planar::Engine::Core
 {
     class PLANAR_API GLFWContext
     {
+        friend class ImGuiContext;
+
     public:
         GLFWContext();
         ~GLFWContext();
@@ -20,6 +22,7 @@ namespace Planar::Engine::Core
         void terminate();
 
         void run();
+        GLFWwindow* get_main_window() const;
         bool create_window(
             Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
             Planar::Engine::Math::Size2Di size,
@@ -29,5 +32,6 @@ namespace Planar::Engine::Core
         bool has_init;
 
         GLFWwindow* main_window;
+        Planar::Engine::Graphics::SupportedGraphicsAPI window_graphics_api;
     };
 }

@@ -35,8 +35,8 @@ namespace Planar::Engine::Core
         }
 
         glfwDestroyWindow(main_window);
-
         glfwTerminate();
+
         has_init = false;
     }
 
@@ -49,19 +49,7 @@ namespace Planar::Engine::Core
         }
 
         glfwSwapInterval(1);
-
-        IMGUI_CHECKVERSION();
-        ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO();
-        io.IniFilename = nullptr;
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
-
-        ImGui::StyleColorsDark();
-
-        ImGui_ImplGlfw_InitForOpenGL(main_window, true);
-        ImGui_ImplOpenGL3_Init("#version 460");
-
+        
         bool hello_window = true;
 
         while (!glfwWindowShouldClose(main_window))
@@ -91,10 +79,11 @@ namespace Planar::Engine::Core
             glfwSwapBuffers(main_window);
             glfwPollEvents();
         }
+    }
 
-        ImGui_ImplOpenGL3_Shutdown();
-        ImGui_ImplGlfw_Shutdown();
-        ImGui::DestroyContext();
+    GLFWwindow* GLFWContext::get_main_window() const
+    {
+        return main_window;
     }
 
     bool GLFWContext::create_window(
@@ -119,6 +108,7 @@ namespace Planar::Engine::Core
         if (window)
         {
             main_window = window;
+            window_graphics_api = graphics_api;
 
             glfwMakeContextCurrent(window);
         }
