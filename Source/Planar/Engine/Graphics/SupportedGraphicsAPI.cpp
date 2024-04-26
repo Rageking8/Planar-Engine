@@ -23,4 +23,15 @@ namespace Planar::Engine::Graphics
 
         return -1;
     }
+
+    const char* SupportedGraphicsAPI::get_version_string() const
+    {
+        switch (value)
+        {
+        case OPENGL_4_6:
+            return "#version 460";
+        }
+
+        return nullptr;
+    }
 }

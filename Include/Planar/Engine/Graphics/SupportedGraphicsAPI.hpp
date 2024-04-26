@@ -20,5 +20,7 @@ namespace Planar::Engine::Graphics
 
         int get_major_version() const;
         int get_minor_version() const;
+
+        const char* get_version_string() const;
     };
 }
