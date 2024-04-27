@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace Planar::Engine::Core::Utils
+namespace Planar::Engine::Core::Utils::Log
 {
     class PLANAR_API Logger
     {

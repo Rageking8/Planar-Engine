@@ -1,8 +1,8 @@
-#include "Planar/Engine/Core/Utils/Logger.hpp"
+#include "Planar/Engine/Core/Utils/Log/Logger.hpp"
 #include "Planar/Engine/Core/Utils/Time/Time.hpp"
 #include "Planar/Engine/Core/Utils/Terminal/TUI.hpp"
 
-namespace Planar::Engine::Core::Utils
+namespace Planar::Engine::Core::Utils::Log
 {
     Logger::Logger() : log_id{ 1 }, warn_id{ 1 },
         error_id{ 1 }, success_id{ 1 }

@@ -17,7 +17,7 @@ namespace Planar::Engine::Core
     }
 
     bool ImGuiContext::init(const GLFWContext& glfw_context,
-        Utils::Logger* logger)
+        Utils::Log::Logger* logger)
     {
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
