@@ -52,6 +52,8 @@ namespace Planar::Engine::Core
 
             return false;
         }
+
+        return true;
     }
 
     void Application::run()
