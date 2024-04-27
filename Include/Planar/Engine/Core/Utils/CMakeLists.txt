@@ -5,4 +5,5 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
 
 add_subdirectory(Concepts)
 add_subdirectory(TypeTraits)
+add_subdirectory(Time)
 add_subdirectory(Terminal)
