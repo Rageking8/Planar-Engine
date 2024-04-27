@@ -30,7 +30,7 @@ namespace Planar::Engine::Core::Utils::Terminal
     }
 
     void color_print(const std::string& text, Color color,
-        Stream stream)
+        Stream stream, bool reset_color)
     {
         set_console_color(color);
 
@@ -48,5 +48,30 @@ namespace Planar::Engine::Core::Utils::Terminal
             std::clog << text;
             break;
         }
+
+        if (reset_color)
+        {
+            reset_console_color();
+        }
+    }
+
+    void color_println(const std::string& text, Color color,
+        Stream stream, bool reset_color)
+    {
+        color_print(text + "\n", color, stream, reset_color);
+    }
+
+    std::string number_pad_left(unsigned number, unsigned length,
+        char pad)
+    {
+        std::string number_string = std::to_string(number);
+
+        if (number_string.length() >= length)
+        {
+            return number_string;
+        }
+
+        return std::string(length - number_string.length(), pad) +
+            number_string;
     }
 }

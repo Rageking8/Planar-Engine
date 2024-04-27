@@ -29,5 +29,10 @@ namespace Planar::Engine::Core::Utils::Terminal
     PLANAR_API void reset_console_color();
 
     PLANAR_API void color_print(const std::string& text, Color color,
-        Stream stream = Stream::COUT);
+        Stream stream = Stream::COUT, bool reset_color = true);
+    PLANAR_API void color_println(const std::string& text, Color color,
+        Stream stream = Stream::COUT, bool reset_color = true);
+
+    PLANAR_API std::string number_pad_left(unsigned number,
+        unsigned length, char pad);
 }
