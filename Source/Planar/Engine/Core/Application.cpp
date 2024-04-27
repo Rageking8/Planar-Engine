@@ -63,10 +63,8 @@ namespace Planar::Engine::Core
 
         while (!glfwWindowShouldClose(main_window))
         {
-            ImGui_ImplOpenGL3_NewFrame();
-            ImGui_ImplGlfw_NewFrame();
-            ImGui::NewFrame();
-
+            imgui_context.new_frame();
+            
             if (hello_window)
             {
                 bool open = ImGui::Begin("Hello ImGui!", &hello_window);
@@ -77,14 +75,11 @@ namespace Planar::Engine::Core
                 ImGui::End();
             }
 
-            ImGui::Render();
-            int display_w, display_h;
-            glfwGetFramebufferSize(main_window, &display_w, &display_h);
-            glViewport(0, 0, display_w, display_h);
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+            imgui_context.render();
+            
             glfwSwapBuffers(main_window);
             glfwPollEvents();
         }

@@ -50,4 +50,27 @@ namespace Planar::Engine::Core
 
         has_init = false;
     }
+
+    void ImGuiContext::new_frame() const
+    {
+        if (!has_init)
+        {
+            return;
+        }
+
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+    }
+
+    void ImGuiContext::render() const
+    {
+        if (!has_init)
+        {
+            return;
+        }
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    }
 }

@@ -14,6 +14,9 @@ namespace Planar::Engine::Core
         bool init(const GLFWContext& glfw_context);
         void terminate();
 
+        void new_frame() const;
+        void render() const;
+
     private:
         bool has_init;
     };
