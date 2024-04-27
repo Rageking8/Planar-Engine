@@ -1,20 +1,21 @@
 #pragma once
 
 #include "Planar/Engine/Core/ExportMacros.hpp"
+#include "Planar/Engine/Core/Utils/Log/LoggerBase.hpp"
 
 #include <string>
 
 namespace Planar::Engine::Core::Utils::Log
 {
-    class PLANAR_API Logger
+    class PLANAR_API Logger : public LoggerBase
     {
     public:
         Logger();
 
-        void log(const std::string& text);
-        void warn(const std::string& text);
-        void error(const std::string& text);
-        void success(const std::string& text);
+        virtual void log(const std::string& text) override;
+        virtual void warn(const std::string& text) override;
+        virtual void error(const std::string& text) override;
+        virtual void success(const std::string& text) override;
 
     private:
         static constexpr unsigned ID_PAD_LENGTH = 4;
