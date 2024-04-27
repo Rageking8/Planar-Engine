@@ -20,34 +20,32 @@ namespace Planar::Engine::Core
 
     bool Application::init()
     {
-        if (!glfw_context.init())
+        if (!glfw_context.init(&logger))
         {
-            logger.error("GLFW init failed\n");
-
             return false;
         }
 
         if (!glfw_context.create_window(
             Planar::Engine::Graphics::SupportedGraphicsAPI::OPENGL_4_6,
-            { 1280, 720 }, "Hello Window"))
+            { 1280, 720 }, "Hello Window", &logger))
         {
-            logger.error("window init failed\n");
-
             return false;
         }
 
         const int version = gladLoadGL(glfwGetProcAddress);
         if (version == 0)
         {
-            logger.error("OpenGL init failed\n");
+            logger.error("OpenGL init failed");
 
             return false;
         }
-
-        if (!imgui_context.init(glfw_context))
+        else
         {
-            logger.error("ImGui init failed\n");
+            logger.success("OpenGL init successful");
+        }
 
+        if (!imgui_context.init(glfw_context, &logger))
+        {
             return false;
         }
 

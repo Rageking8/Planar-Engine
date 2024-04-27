@@ -16,9 +16,18 @@ namespace Planar::Engine::Core
         terminate();
     }
 
-    bool GLFWContext::init()
+    bool GLFWContext::init(Utils::Logger* logger)
     {
         has_init = glfwInit();
+
+        if (logger && has_init)
+        {
+            logger->success("GLFW init successful");
+        }
+        else if (logger && !has_init)
+        {
+            logger->error("GLFW init failed");
+        }
 
         return has_init;
     }
@@ -44,7 +53,8 @@ namespace Planar::Engine::Core
     bool GLFWContext::create_window(
         Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
         Planar::Engine::Math::Size2Di size,
-        const std::string& name)
+        const std::string& name,
+        Utils::Logger* logger)
     {
         if (!has_init || main_window)
         {
@@ -66,6 +76,15 @@ namespace Planar::Engine::Core
             window_graphics_api = graphics_api;
 
             glfwMakeContextCurrent(window);
+        }
+
+        if (logger && window)
+        {
+            logger->success("Window init successful");
+        }
+        else if (logger && !window)
+        {
+            logger->error("Window init failed");
         }
 
         return window;

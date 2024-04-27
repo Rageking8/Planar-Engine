@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Math/Size2D.hpp"
+#include "Planar/Engine/Core/Utils/Logger.hpp"
 #include "Planar/Engine/Core/ExportMacros.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
 
@@ -18,14 +19,15 @@ namespace Planar::Engine::Core
         GLFWContext();
         ~GLFWContext();
 
-        bool init();
+        bool init(Utils::Logger* logger = nullptr);
         void terminate();
 
         GLFWwindow* get_main_window() const;
         bool create_window(
             Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
             Planar::Engine::Math::Size2Di size,
-            const std::string& name);
+            const std::string& name,
+            Utils::Logger* logger = nullptr);
 
     private:
         bool has_init;
