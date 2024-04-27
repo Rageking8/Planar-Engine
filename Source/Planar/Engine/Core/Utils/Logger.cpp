@@ -50,7 +50,7 @@ namespace Planar::Engine::Core::Utils
 
     std::string Logger::get_id(const std::string& type, unsigned id)
     {
-        return "[" + type + ":" +
+        return "[" + type + " ID:" +
             Terminal::number_pad_left(id, ID_PAD_LENGTH, ' ') + "]";
     }
 
