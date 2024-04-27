@@ -3,3 +3,5 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     GLFWContext.cpp
     ImGuiContext.cpp
 )
+
+add_subdirectory(Utils)
