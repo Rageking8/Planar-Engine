@@ -1,6 +1,7 @@
 target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     EnumClassBase.hpp
     EnumClassBase.tpp
+    Logger.hpp
 )
 
 add_subdirectory(Concepts)

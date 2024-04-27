@@ -6,8 +6,6 @@
 #include "ThirdParty/ImGui/imgui_impl_glfw.h"
 #include "ThirdParty/ImGui/imgui_impl_opengl3.h"
 
-#include <iostream>
-
 namespace Planar::Engine::Core
 {
     Application::Application()
@@ -24,7 +22,7 @@ namespace Planar::Engine::Core
     {
         if (!glfw_context.init())
         {
-            std::cerr << "GLFW init failed\n";
+            logger.error("GLFW init failed\n");
 
             return false;
         }
@@ -33,7 +31,7 @@ namespace Planar::Engine::Core
             Planar::Engine::Graphics::SupportedGraphicsAPI::OPENGL_4_6,
             { 1280, 720 }, "Hello Window"))
         {
-            std::cerr << "window init failed\n";
+            logger.error("window init failed\n");
 
             return false;
         }
@@ -41,14 +39,14 @@ namespace Planar::Engine::Core
         const int version = gladLoadGL(glfwGetProcAddress);
         if (version == 0)
         {
-            std::cerr << "OpenGL init failed\n";
+            logger.error("OpenGL init failed\n");
 
             return false;
         }
 
         if (!imgui_context.init(glfw_context))
         {
-            std::cerr << "ImGui init failed\n";
+            logger.error("ImGui init failed\n");
 
             return false;
         }
