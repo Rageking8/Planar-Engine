@@ -19,3 +19,4 @@ define_if_target_shared(${PLANAR_ENGINE_TARGET} PRIVATE
 add_subdirectory(Core)
 add_subdirectory(Graphics)
 add_subdirectory(Scene)
+add_subdirectory(UI)
