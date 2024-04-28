@@ -5,4 +5,5 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGuiContext.hpp
 )
 
+add_subdirectory(FileSystem)
 add_subdirectory(Utils)
