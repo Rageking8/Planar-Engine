@@ -8,4 +8,11 @@ namespace Planar::Engine::UI::ImGui
     {
         ::ImGui::Text(text.c_str());
     }
+
+    bool button(const std::string& name,
+        Planar::Engine::Math::Size2Df size)
+    {
+        return ::ImGui::Button(name.c_str(),
+            { size.width, size.height });
+    }
 }
