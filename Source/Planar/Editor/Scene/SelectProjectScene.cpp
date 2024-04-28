@@ -1,6 +1,7 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
+#include "Planar/Engine/UI/ImGui/ImGuiWindowFlags.hpp"
 
 namespace Planar::Editor::Scene
 {
