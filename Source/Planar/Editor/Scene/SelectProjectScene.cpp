@@ -6,7 +6,12 @@ namespace Planar::Editor::Scene
 {
     void SelectProjectScene::render()
     {
-        Planar::Engine::UI::ImGui::ImGuiWindow window("Select Project");
+        using namespace Planar::Engine::Core::Utils;
+
+        Planar::Engine::UI::ImGui::ImGuiWindow window(
+            "Select Project",
+            Planar::Engine::UI::ImGui::ImGuiWindowFlags::FIT_TO_WINDOW |
+            Planar::Engine::UI::ImGui::ImGuiWindowFlags::MINIMAL);
         Planar::Engine::UI::ImGui::text("Select Project");
     }
 }
