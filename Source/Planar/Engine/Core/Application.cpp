@@ -2,9 +2,6 @@
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
-#include "ThirdParty/ImGui/imgui.h"
-#include "ThirdParty/ImGui/imgui_impl_glfw.h"
-#include "ThirdParty/ImGui/imgui_impl_opengl3.h"
 
 namespace Planar::Engine::Core
 {
@@ -56,30 +53,35 @@ namespace Planar::Engine::Core
     {
         glfwSwapInterval(1);
         
-        bool hello_window = true;
         GLFWwindow* main_window = glfw_context.get_main_window();
+
+        if (main_scene)
+        {
+            main_scene->start();
+        }
 
         while (!glfwWindowShouldClose(main_window))
         {
             imgui_context.new_frame();
             
-            if (hello_window)
-            {
-                bool open = ImGui::Begin("Hello ImGui!", &hello_window);
-                if (open)
-                {
-                    ImGui::Text("I am a window!");
-                }
-                ImGui::End();
-            }
-
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            if (main_scene)
+            {
+                main_scene->render();
+            }
 
             imgui_context.render();
             
             glfwSwapBuffers(main_window);
             glfwPollEvents();
         }
+    }
+
+    void Application::load_scene(
+        std::unique_ptr<Planar::Engine::Scene::Scene> scene)
+    {
+        main_scene = std::move(scene);
     }
 }

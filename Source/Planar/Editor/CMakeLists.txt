@@ -21,3 +21,4 @@ define_if_check_target_shared(${PLANAR_EDITOR_TARGET}
 )
 
 add_subdirectory(Entry)
+add_subdirectory(Scene)
