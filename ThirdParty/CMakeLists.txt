@@ -22,7 +22,15 @@ FetchContent_Declare(
         SHA256=8860AA37506D7E16CF093BA26FA51C2BBD48ADDCC389D3B315BF690F66D709E4
 )
 
+FetchContent_Declare(
+    yaml-cpp
+    URL https://github.com/jbeder/yaml-cpp/archive/refs/tags/0.8.0.zip
+    URL_HASH
+        SHA256=334E80AB7B52E14C23F94E041C74BAB0742F2281AAD55F66BE2F19F4B7747071
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
 add_subdirectory(KHR)
+add_subdirectory(yaml-cpp)

@@ -4,6 +4,7 @@ target_link_libraries(${PLANAR_ENGINE_TARGET} PRIVATE
     glfw
     glad
     imgui
+    yaml-cpp
 )
 
 target_include_directories(${PLANAR_ENGINE_TARGET} PRIVATE
