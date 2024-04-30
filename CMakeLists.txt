@@ -27,6 +27,7 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY
 
 add_subdirectory(Source)
 add_subdirectory(Include)
+add_subdirectory(Asset)
 add_subdirectory(ThirdParty)
 
 get_all_target_list(PLANAR_ALL_TARGETS)
