@@ -10,15 +10,17 @@ namespace Planar::Editor::Scene
 {
     void SelectProjectScene::render()
     {
+        using namespace Planar::Engine::UI;
         using namespace Planar::Engine::Core::Utils;
 
-        Planar::Engine::UI::ImGui::ImGuiWindow window(
+        ImGui::ImGuiWindow window(
             "Select Project",
-            Planar::Engine::UI::ImGui::ImGuiWindowFlags::FIT_TO_WINDOW |
-            Planar::Engine::UI::ImGui::ImGuiWindowFlags::MINIMAL);
-        Planar::Engine::UI::ImGui::text("Select Project");
+            ImGui::ImGuiWindowFlags::FIT_TO_WINDOW |
+            ImGui::ImGuiWindowFlags::MINIMAL);
 
-        if (Planar::Engine::UI::ImGui::button("Create Project"))
+        ImGui::text("Select Project");
+
+        if (ImGui::button("Create Project"))
         {
             std::wcout <<
                 Planar::Engine::Core::FileSystem::SelectFolderDialog();
