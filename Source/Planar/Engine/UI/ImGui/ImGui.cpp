@@ -15,4 +15,9 @@ namespace Planar::Engine::UI::ImGui
         return ::ImGui::Button(name.c_str(),
             { size.width, size.height });
     }
+
+    void newline()
+    {
+        ::ImGui::NewLine();
+    }
 }

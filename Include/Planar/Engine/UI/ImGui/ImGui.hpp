@@ -11,4 +11,6 @@ namespace Planar::Engine::UI::ImGui
 
     bool PLANAR_API button(const std::string& name,
         Planar::Engine::Math::Size2Df size = {});
+
+    void PLANAR_API newline();
 }
