@@ -1,5 +1,5 @@
-# Convert `source_file` from text to a std::string and place
-# it in a new C++ file, before adding to `target` as source
+# Convert all `ARGN` from text to a `std::string` and place it
+# in a new C++ file each, before adding to `target` as source
 function(pack_text_to_string target)
     file(RELATIVE_PATH namespace ${CMAKE_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
     string(REPLACE "/" "::" namespace ${namespace})
