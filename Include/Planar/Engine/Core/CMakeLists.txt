@@ -7,4 +7,5 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
 )
 
 add_subdirectory(FileSystem)
+add_subdirectory(GUID)
 add_subdirectory(Utils)
