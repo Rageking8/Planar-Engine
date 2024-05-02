@@ -20,6 +20,15 @@ namespace Planar::Editor::Scene
 
         ImGui::text("Select Project");
 
+        ImGui::newline();
+
+        if (ImGui::button("Open Project"))
+        {
+
+        }
+
+        ImGui::newline();
+
         if (ImGui::button("Create Project"))
         {
             std::wcout <<
