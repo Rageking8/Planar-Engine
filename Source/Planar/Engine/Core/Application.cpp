@@ -1,4 +1,5 @@
 #include "Planar/Engine/Core/Application.hpp"
+#include "Planar/Engine/Core/Version.hpp"
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
@@ -7,7 +8,7 @@ namespace Planar::Engine::Core
 {
     Application::Application()
     {
-
+        logger.log("Planar Engine " + VERSION);
     }
 
     Application::~Application()
