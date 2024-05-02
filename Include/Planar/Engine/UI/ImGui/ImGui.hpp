@@ -7,10 +7,10 @@
 
 namespace Planar::Engine::UI::ImGui
 {
-    void PLANAR_API text(const std::string& text);
+    PLANAR_API void text(const std::string& text);
 
-    bool PLANAR_API button(const std::string& name,
+    PLANAR_API bool button(const std::string& name,
         Planar::Engine::Math::Size2Df size = {});
 
-    void PLANAR_API newline();
+    PLANAR_API void newline();
 }
