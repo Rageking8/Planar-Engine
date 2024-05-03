@@ -63,6 +63,11 @@ namespace Planar::Engine::Core
 
         while (!glfwWindowShouldClose(main_window))
         {
+            if (main_scene)
+            {
+                main_scene->update();
+            }
+
             imgui_context.new_frame();
             
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -84,5 +89,6 @@ namespace Planar::Engine::Core
         std::unique_ptr<Planar::Engine::Scene::Scene> scene)
     {
         main_scene = std::move(scene);
+        main_scene->init();
     }
 }
