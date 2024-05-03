@@ -8,6 +8,11 @@
 
 namespace Planar::Editor::Scene
 {
+    void SelectProjectScene::init()
+    {
+        Planar::Engine::UI::ImGui::scale_ui(3);
+    }
+
     void SelectProjectScene::render()
     {
         using namespace Planar::Engine::UI;
