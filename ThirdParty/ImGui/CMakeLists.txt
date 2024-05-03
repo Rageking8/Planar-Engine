@@ -4,6 +4,7 @@ FetchContent_MakeAvailable(imgui)
 
 set(IMGUI_HEADERS_LIST
     imgui.h
+    misc/cpp/imgui_stdlib.h
     backends/imgui_impl_glfw.h
     backends/imgui_impl_opengl3.h
 )
@@ -21,6 +22,7 @@ set(IMGUI_SOURCES_LIST
     imgui_draw.cpp
     imgui_tables.cpp
     imgui_widgets.cpp
+    misc/cpp/imgui_stdlib.cpp
     backends/imgui_impl_glfw.cpp
     backends/imgui_impl_opengl3.cpp
 )
