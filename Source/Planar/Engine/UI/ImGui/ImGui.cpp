@@ -4,6 +4,17 @@
 
 namespace Planar::Engine::UI::ImGui
 {
+    void reset_style()
+    {
+        ::ImGui::GetStyle() = ImGuiStyle();
+    }
+
+    void scale_ui(int factor)
+    {
+        ::ImGui::GetStyle().ScaleAllSizes(
+            static_cast<float>(factor));
+    }
+
     void text(const std::string& text)
     {
         ::ImGui::Text(text.c_str());
