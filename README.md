@@ -5,6 +5,7 @@ A 2D Game Engine.
 ## Contents
 
 1. [Project Structure](#project-structure)
+1. [Dependencies](#dependencies)
 
 ## Project Structure
 
@@ -16,3 +17,17 @@ A 2D Game Engine.
 | [Source](https://github.com/Rageking8/Planar-Engine/tree/main/Source)         | Source for [Engine](https://github.com/Rageking8/Planar-Engine/tree/main/Source/Planar/Engine) and [Editor](https://github.com/Rageking8/Planar-Engine/tree/main/Source/Planar/Editor)                                |
 | [ThirdParty](https://github.com/Rageking8/Planar-Engine/tree/main/ThirdParty) | CMake scripts used to fetch dependencies and contains a few third party source files                                                                                                                                  |
 | [Website](https://github.com/Rageking8/Planar-Engine/tree/main/Website)       | Source for website hosted using [Firebase Hosting](https://firebase.google.com/docs/hosting)                                                                                                                          |
+
+## Dependencies
+
+1. Planar Engine
+    - [glad](https://github.com/Dav1dde/glad) - OpenGL loader
+    - [GLFW](https://github.com/glfw/glfw) - Window, Input, OpenGL context
+    - [Dear ImGui](https://github.com/ocornut/imgui) - Editor UI
+    - [yaml-cpp](https://github.com/jbeder/yaml-cpp) - Assets
+
+1. Planar Editor
+    - Planar Engine - All core routines
+
+1. Website
+    - [zero-md](https://github.com/zerodevx/zero-md) - Display Markdown
