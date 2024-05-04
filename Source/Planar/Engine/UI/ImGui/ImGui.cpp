@@ -1,4 +1,5 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/Core/GUID/GUID.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
@@ -13,6 +14,12 @@ namespace Planar::Engine::UI::ImGui
     {
         ::ImGui::GetStyle().ScaleAllSizes(
             static_cast<float>(factor));
+    }
+
+    std::string generate_unique_label()
+    {
+        return "##" + Planar::Engine::Core::GUID::generate_guid(
+            Planar::Engine::Core::GUID::Representation::DEFAULT_COMPACT);
     }
 
     void text(const std::string& text)
