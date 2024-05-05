@@ -6,7 +6,11 @@
 
 namespace Planar::Engine::Core
 {
-    Application::Application()
+    Application::Application(const std::string& window_name,
+        Planar::Engine::Math::Size2Di window_size,
+        Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api) :
+        window_name{ window_name }, window_size{ window_size },
+        graphics_api{ graphics_api }
     {
         logger.log("Planar Engine " + VERSION);
     }
@@ -16,38 +20,10 @@ namespace Planar::Engine::Core
 
     }
 
-    bool Application::init(const std::string& window_name)
+    bool Application::init()
     {
-        if (!glfw_context.init(&logger))
-        {
-            return false;
-        }
-
-        if (!glfw_context.create_window(
-            Planar::Engine::Graphics::SupportedGraphicsAPI::OPENGL_4_6,
-            { 1280, 720 }, window_name, &logger))
-        {
-            return false;
-        }
-
-        const int version = gladLoadGL(glfwGetProcAddress);
-        if (version == 0)
-        {
-            logger.error("OpenGL init failed");
-
-            return false;
-        }
-        else
-        {
-            logger.success("OpenGL init successful");
-        }
-
-        if (!imgui_context.init(glfw_context, &logger))
-        {
-            return false;
-        }
-
-        return true;
+        return init_glfw() && create_window() &&
+            init_glad() && init_imgui();
     }
 
     void Application::run()
@@ -90,5 +66,36 @@ namespace Planar::Engine::Core
     {
         main_scene = std::move(scene);
         main_scene->init();
+    }
+
+    bool Application::init_glfw()
+    {
+        return glfw_context.init(&logger);
+    }
+
+    bool Application::init_glad()
+    {
+        const int version = gladLoadGL(glfwGetProcAddress);
+        if (version == 0)
+        {
+            logger.error("OpenGL init failed");
+
+            return false;
+        }
+
+        logger.success("OpenGL init successful");
+
+        return true;
+    }
+
+    bool Application::init_imgui()
+    {
+        return imgui_context.init(glfw_context, &logger);
+    }
+
+    bool Application::create_window()
+    {
+        return glfw_context.create_window(graphics_api,
+            window_size, window_name, &logger);
     }
 }
