@@ -3,6 +3,7 @@
 #include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiWindowFlags.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
+#include "Planar/Engine/Asset/Asset.hpp"
 
 #include <iostream>
 
@@ -46,8 +47,34 @@ namespace Planar::Editor::Scene
         
         if (ImGui::button("Create Project"))
         {
-            std::wcout <<
-                Planar::Engine::Core::FileSystem::SelectFolderDialog();
+            create_project();
         }
+    }
+
+    void SelectProjectScene::create_project()
+    {
+        const std::string& project_name = project_name_input.get_text();
+        const std::string& project_description =
+            project_description_input.get_text();
+
+        if (project_name.empty())
+        {
+            std::cout << "Project name cannot be empty\n";
+
+            return;
+        }
+
+        std::wstring directory =
+            Planar::Engine::Core::FileSystem::SelectFolderDialog();
+
+        if (directory.empty())
+        {
+            std::cout << "Invalid directory\n";
+
+            return;
+        }
+
+        Planar::Engine::Asset::create_project_file(project_name,
+            project_description, directory);
     }
 }
