@@ -1,18 +1,13 @@
-#include "Planar/Engine/Core/Application.hpp"
-#include "Planar/Editor/Scene/SelectProjectScene.hpp"
-
-#include <memory>
+#include "Planar/Editor/Core/Editor.hpp"
 
 int main()
 {
-    Planar::Engine::Core::Application application;
+    Planar::Editor::Core::Editor editor;
 
-    if (!application.init("Planar Editor"))
+    if (!editor.init())
     {
         return -1;
     }
 
-    application.load_scene(
-        std::make_unique<Planar::Editor::Scene::SelectProjectScene>());
-    application.run();
+    editor.run();
 }

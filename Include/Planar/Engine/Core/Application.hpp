@@ -20,7 +20,7 @@ namespace Planar::Engine::Core
             Planar::Engine::Math::Size2Di window_size = { 1280, 720 },
             Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api =
             Planar::Engine::Graphics::SupportedGraphicsAPI::OPENGL_4_6);
-        virtual ~Application();
+        virtual ~Application() = 0;
 
         virtual bool init();
         virtual void run();
