@@ -8,6 +8,13 @@
 
 namespace Planar::Editor::Scene
 {
+    SelectProjectScene::SelectProjectScene() :
+        project_name_input("Project Name"),
+        project_description_input("Description")
+    {
+
+    }
+
     void SelectProjectScene::init()
     {
         Planar::Engine::UI::ImGui::scale_ui(3);
@@ -34,6 +41,9 @@ namespace Planar::Editor::Scene
 
         ImGui::newline();
 
+        project_name_input.render();
+        project_description_input.render();
+        
         if (ImGui::button("Create Project"))
         {
             std::wcout <<
