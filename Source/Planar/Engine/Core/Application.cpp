@@ -70,7 +70,7 @@ namespace Planar::Engine::Core
 
             imgui_context.new_frame();
             
-            glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+            glClearColor(0.071f, 0.071f, 0.071f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             if (main_scene)
