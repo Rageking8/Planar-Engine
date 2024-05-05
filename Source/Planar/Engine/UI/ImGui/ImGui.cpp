@@ -2,6 +2,7 @@
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
+#include "ThirdParty/ImGui/imgui_stdlib.h"
 
 namespace Planar::Engine::UI::ImGui
 {
@@ -32,6 +33,18 @@ namespace Planar::Engine::UI::ImGui
     {
         return ::ImGui::Button(name.c_str(),
             { size.width, size.height });
+    }
+
+    void input_text(const std::string& label, std::string& text)
+    {
+        ::ImGui::InputText(label.c_str(), &text);
+    }
+
+    void input_text(const std::string& label,
+        const std::string& placeholder, std::string& text)
+    {
+        ::ImGui::InputTextWithHint(label.c_str(),
+            placeholder.c_str(), &text);
     }
 
     void newline()
