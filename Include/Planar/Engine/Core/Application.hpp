@@ -16,7 +16,7 @@ namespace Planar::Engine::Core
         Application();
         virtual ~Application();
 
-        virtual bool init();
+        virtual bool init(const std::string& window_name);
         virtual void run();
 
         void load_scene(

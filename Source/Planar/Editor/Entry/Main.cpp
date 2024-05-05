@@ -7,7 +7,7 @@ int main()
 {
     Planar::Engine::Core::Application application;
 
-    if (!application.init())
+    if (!application.init("Planar Editor"))
     {
         return -1;
     }

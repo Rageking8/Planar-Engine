@@ -16,7 +16,7 @@ namespace Planar::Engine::Core
 
     }
 
-    bool Application::init()
+    bool Application::init(const std::string& window_name)
     {
         if (!glfw_context.init(&logger))
         {
@@ -25,7 +25,7 @@ namespace Planar::Engine::Core
 
         if (!glfw_context.create_window(
             Planar::Engine::Graphics::SupportedGraphicsAPI::OPENGL_4_6,
-            { 1280, 720 }, "Hello Window", &logger))
+            { 1280, 720 }, window_name, &logger))
         {
             return false;
         }
