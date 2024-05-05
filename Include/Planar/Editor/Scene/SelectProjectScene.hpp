@@ -18,6 +18,7 @@ namespace Planar::Editor::Scene
         Planar::Engine::UI::ImGui::ImGuiInputField project_name_input;
         Planar::Engine::UI::ImGui::ImGuiInputField project_description_input;
 
+        void open_project();
         void create_project();
     };
 }

@@ -6,6 +6,7 @@
 #include "Planar/Engine/Asset/Asset.hpp"
 
 #include <iostream>
+#include <filesystem>
 
 namespace Planar::Editor::Scene
 {
@@ -37,7 +38,7 @@ namespace Planar::Editor::Scene
 
         if (ImGui::button("Open Project"))
         {
-
+            open_project();
         }
 
         ImGui::newline();
@@ -48,6 +49,26 @@ namespace Planar::Editor::Scene
         if (ImGui::button("Create Project"))
         {
             create_project();
+        }
+    }
+
+    void SelectProjectScene::open_project()
+    {
+        std::wstring directory =
+            Planar::Engine::Core::FileSystem::SelectFolderDialog();
+
+        if (directory.empty())
+        {
+            std::cout << "Invalid directory\n";
+
+            return;
+        }
+
+        if (!std::filesystem::exists(directory + L"/Project.planar"))
+        {
+            std::cout << "No project file found\n";
+            
+            return;
         }
     }
 
