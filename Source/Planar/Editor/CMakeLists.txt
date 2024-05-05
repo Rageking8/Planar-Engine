@@ -14,5 +14,6 @@ define_if_check_target_shared(${PLANAR_EDITOR_TARGET}
     PLANAR_ENABLE_EXPORT
 )
 
+add_subdirectory(Core)
 add_subdirectory(Entry)
 add_subdirectory(Scene)
