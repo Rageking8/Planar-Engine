@@ -12,11 +12,15 @@ namespace Planar::Editor::Scene
         SelectProjectScene();
 
         virtual void init() override;
+        virtual void update() override;
         virtual void render() override;
 
     private:
         Planar::Engine::UI::ImGui::ImGuiInputField project_name_input;
         Planar::Engine::UI::ImGui::ImGuiInputField project_description_input;
+
+        bool pending_open_project;
+        bool pending_create_project;
 
         void open_project();
         void create_project();

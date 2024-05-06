@@ -12,7 +12,8 @@ namespace Planar::Editor::Scene
 {
     SelectProjectScene::SelectProjectScene() :
         project_name_input("Project Name"),
-        project_description_input("Description")
+        project_description_input("Description"),
+        pending_open_project{}, pending_create_project{}
     {
 
     }
@@ -20,6 +21,23 @@ namespace Planar::Editor::Scene
     void SelectProjectScene::init()
     {
         Planar::Engine::UI::ImGui::scale_ui(3);
+    }
+
+    void SelectProjectScene::update()
+    {
+        if (pending_open_project)
+        {
+            open_project();
+
+            return;
+        }
+
+        if (pending_create_project)
+        {
+            create_project();
+
+            return;
+        }
     }
 
     void SelectProjectScene::render()
@@ -38,7 +56,7 @@ namespace Planar::Editor::Scene
 
         if (ImGui::button("Open Project"))
         {
-            open_project();
+            pending_open_project = true;
         }
 
         ImGui::newline();
@@ -48,12 +66,14 @@ namespace Planar::Editor::Scene
         
         if (ImGui::button("Create Project"))
         {
-            create_project();
+            pending_create_project = true;
         }
     }
 
     void SelectProjectScene::open_project()
     {
+        pending_open_project = false;
+
         std::wstring directory =
             Planar::Engine::Core::FileSystem::SelectFolderDialog();
 
@@ -74,6 +94,8 @@ namespace Planar::Editor::Scene
 
     void SelectProjectScene::create_project()
     {
+        pending_create_project = false;
+
         const std::string& project_name = project_name_input.get_text();
         const std::string& project_description =
             project_description_input.get_text();
