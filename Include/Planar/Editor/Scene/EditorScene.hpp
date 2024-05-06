@@ -15,6 +15,8 @@ namespace Planar::Editor::Scene
         virtual void render() override;
 
     private:
+        Planar::Engine::UI::ImGui::ImGuiWindow hierarchy_window;
         Planar::Engine::UI::ImGui::ImGuiWindow inspector_window;
+        Planar::Engine::UI::ImGui::ImGuiWindow content_window;
     };
 }
