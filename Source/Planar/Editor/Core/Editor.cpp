@@ -7,7 +7,8 @@
 
 namespace Planar::Editor::Core
 {
-    Editor::Editor() : Application("Planar Editor")
+    Editor::Editor() :
+        Application("Planar Editor", { 1280, 720 }, true)
     {
 
     }

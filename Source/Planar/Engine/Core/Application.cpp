@@ -7,10 +7,10 @@
 namespace Planar::Engine::Core
 {
     Application::Application(const std::string& window_name,
-        Planar::Engine::Math::Size2Di window_size,
+        Planar::Engine::Math::Size2Di window_size, bool maximize,
         Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api) :
         window_name{ window_name }, window_size{ window_size },
-        graphics_api{ graphics_api }
+        maximize{ maximize }, graphics_api{ graphics_api }
     {
         logger.log("Planar Engine " + VERSION);
     }
@@ -68,6 +68,11 @@ namespace Planar::Engine::Core
         main_scene->init();
     }
 
+    void Application::maximize_window() const
+    {
+        glfw_context.maximize_window();
+    }
+
     bool Application::init_glfw()
     {
         return glfw_context.init(&logger);
@@ -96,6 +101,6 @@ namespace Planar::Engine::Core
     bool Application::create_window()
     {
         return glfw_context.create_window(graphics_api,
-            window_size, window_name, &logger);
+            window_size, window_name, maximize, &logger);
     }
 }

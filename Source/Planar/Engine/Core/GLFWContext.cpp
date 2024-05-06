@@ -2,8 +2,6 @@
 
 #include "ThirdParty/GLFW/glfw3.h"
 
-#include <iostream>
-
 namespace Planar::Engine::Core
 {
     GLFWContext::GLFWContext() : has_init{}, main_window{}
@@ -53,7 +51,7 @@ namespace Planar::Engine::Core
     bool GLFWContext::create_window(
         Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
         Planar::Engine::Math::Size2Di size,
-        const std::string& name,
+        const std::string& name, bool maximize,
         Utils::Log::LoggerBase* logger)
     {
         if (!has_init || main_window)
@@ -61,6 +59,7 @@ namespace Planar::Engine::Core
             return false;
         }
 
+        glfwWindowHint(GLFW_MAXIMIZED, maximize);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, graphics_api.
             get_major_version());
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, graphics_api.
@@ -88,5 +87,10 @@ namespace Planar::Engine::Core
         }
 
         return window;
+    }
+
+    void GLFWContext::maximize_window() const
+    {
+        glfwMaximizeWindow(main_window);
     }
 }

@@ -27,7 +27,10 @@ namespace Planar::Engine::Core
             Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
             Planar::Engine::Math::Size2Di size,
             const std::string& name,
+            bool maximize = false,
             Utils::Log::LoggerBase* logger = nullptr);
+
+        void maximize_window() const;
 
     private:
         bool has_init;
