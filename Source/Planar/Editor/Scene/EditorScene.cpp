@@ -1,5 +1,4 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -8,10 +7,20 @@ namespace Planar::Editor::Scene
 
     }
 
+    void EditorScene::init()
+    {
+        using namespace Planar::Engine::UI;
+
+        inspector_window.set_name("Inspector");
+        inspector_window.set_size({ { 300.f, 550.f } });
+    }
+
     void EditorScene::render()
     {
         using namespace Planar::Engine::UI;
 
-        ImGui::ImGuiWindow inspector_window("Inspector");
+        {
+            auto inspector_window_scope = inspector_window.render();
+        }
     }
 }

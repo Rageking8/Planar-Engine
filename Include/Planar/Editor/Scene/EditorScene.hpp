@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Scene/Scene.hpp"
+#include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -10,6 +11,10 @@ namespace Planar::Editor::Scene
     public:
         EditorScene();
 
+        virtual void init() override;
         virtual void render() override;
+
+    private:
+        Planar::Engine::UI::ImGui::ImGuiWindow inspector_window;
     };
 }

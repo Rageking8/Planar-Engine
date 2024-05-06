@@ -1,6 +1,5 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiWindowFlags.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
@@ -20,7 +19,14 @@ namespace Planar::Editor::Scene
 
     void SelectProjectScene::init()
     {
-        Planar::Engine::UI::ImGui::scale_ui(3);
+        using namespace Planar::Engine::UI;
+        using namespace Planar::Engine::Core::Utils;
+
+        ImGui::scale_ui(3);
+
+        main_window.set("Select Project",
+            ImGui::ImGuiWindowFlags::FIT_TO_WINDOW |
+            ImGui::ImGuiWindowFlags::MINIMAL);
     }
 
     void SelectProjectScene::update()
@@ -43,12 +49,8 @@ namespace Planar::Editor::Scene
     void SelectProjectScene::render()
     {
         using namespace Planar::Engine::UI;
-        using namespace Planar::Engine::Core::Utils;
 
-        ImGui::ImGuiWindow window(
-            "Select Project",
-            ImGui::ImGuiWindowFlags::FIT_TO_WINDOW |
-            ImGui::ImGuiWindowFlags::MINIMAL);
+        auto main_window_scope = main_window.render();
 
         ImGui::text("Select Project");
 
