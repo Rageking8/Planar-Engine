@@ -12,6 +12,9 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void set_config_flags(int config_flags);
 
+    PLANAR_API void load_ini_from_string(
+        const std::string& ini_file);
+
     PLANAR_API void reset_style();
 
     PLANAR_API void scale_ui(int factor);
