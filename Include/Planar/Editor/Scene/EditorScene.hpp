@@ -16,7 +16,11 @@ namespace Planar::Editor::Scene
 
     private:
         Planar::Engine::UI::ImGui::ImGuiWindow hierarchy_window;
+        Planar::Engine::UI::ImGui::ImGuiWindow scene_window;
+        Planar::Engine::UI::ImGui::ImGuiWindow game_window;
         Planar::Engine::UI::ImGui::ImGuiWindow inspector_window;
+        Planar::Engine::UI::ImGui::ImGuiWindow settings_window;
         Planar::Engine::UI::ImGui::ImGuiWindow content_window;
+        Planar::Engine::UI::ImGui::ImGuiWindow console_window;
     };
 }
