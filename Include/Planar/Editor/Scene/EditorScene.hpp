@@ -22,5 +22,7 @@ namespace Planar::Editor::Scene
         Planar::Engine::UI::ImGui::ImGuiWindow settings_window;
         Planar::Engine::UI::ImGui::ImGuiWindow content_window;
         Planar::Engine::UI::ImGui::ImGuiWindow console_window;
+
+        void restore_default_layout() const;
     };
 }

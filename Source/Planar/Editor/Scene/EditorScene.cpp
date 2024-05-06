@@ -1,5 +1,8 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/Asset/LoadAssetMacros.hpp"
+
+PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
 
 namespace Planar::Editor::Scene
 {
@@ -19,6 +22,8 @@ namespace Planar::Editor::Scene
         settings_window.set_name("Settings");
         content_window.set_name("Content");
         console_window.set_name("Console");
+
+        restore_default_layout();
     }
 
     void EditorScene::render()
@@ -54,5 +59,11 @@ namespace Planar::Editor::Scene
         {
             auto console_window_scope = console_window.render();
         }
+    }
+
+    void EditorScene::restore_default_layout() const
+    {
+        Planar::Engine::UI::ImGui::load_ini_from_string(
+            Planar::Asset::Editor::DefaultLayout);
     }
 }
