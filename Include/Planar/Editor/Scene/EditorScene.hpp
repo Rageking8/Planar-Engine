@@ -12,6 +12,7 @@ namespace Planar::Editor::Scene
         EditorScene();
 
         virtual void init() override;
+        virtual void update() override;
         virtual void render() override;
 
     private:
@@ -22,6 +23,8 @@ namespace Planar::Editor::Scene
         Planar::Engine::UI::ImGui::ImGuiWindow settings_window;
         Planar::Engine::UI::ImGui::ImGuiWindow content_window;
         Planar::Engine::UI::ImGui::ImGuiWindow console_window;
+
+        bool pending_restore_default_layout;
 
         void restore_default_layout() const;
     };

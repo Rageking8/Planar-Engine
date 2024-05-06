@@ -6,7 +6,8 @@ PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
 
 namespace Planar::Editor::Scene
 {
-    EditorScene::EditorScene()
+    EditorScene::EditorScene() :
+        pending_restore_default_layout{}
     {
 
     }
@@ -24,6 +25,16 @@ namespace Planar::Editor::Scene
         console_window.set_name("Console");
 
         restore_default_layout();
+    }
+
+    void EditorScene::update()
+    {
+        if (pending_restore_default_layout)
+        {
+            restore_default_layout();
+
+            pending_restore_default_layout = false;
+        }
     }
 
     void EditorScene::render()
@@ -50,6 +61,11 @@ namespace Planar::Editor::Scene
 
         {
             auto settings_window_scope = settings_window.render();
+
+            if (ImGui::button("Restore Default Layout"))
+            {
+                pending_restore_default_layout = true;
+            }
         }
 
         {
