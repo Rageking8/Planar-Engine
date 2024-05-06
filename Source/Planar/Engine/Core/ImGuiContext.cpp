@@ -26,7 +26,8 @@ namespace Planar::Engine::Core
         Planar::Engine::UI::ImGui::set_ini_filename();
         Planar::Engine::UI::ImGui::set_config_flags(
             ImGuiConfigFlags_NavEnableKeyboard |
-            ImGuiConfigFlags_NavEnableGamepad);
+            ImGuiConfigFlags_NavEnableGamepad |
+            ImGuiConfigFlags_DockingEnable);
 
         ImGui::StyleColorsDark();
 
