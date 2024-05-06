@@ -17,6 +17,15 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::GetIO().ConfigFlags = config_flags;
     }
 
+    void save_ini()
+    {
+        const char* ini_filename = ::ImGui::GetIO().IniFilename;
+        if (ini_filename)
+        {
+            ::ImGui::SaveIniSettingsToDisk(ini_filename);
+        }
+    }
+
     void load_ini_from_string(const std::string& ini_file)
     {
         ::ImGui::LoadIniSettingsFromMemory(ini_file.c_str());
