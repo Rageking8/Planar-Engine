@@ -10,5 +10,7 @@ namespace Planar::Editor::Core
         Editor();
 
         virtual bool init() override;
+
+        void enter_editor();
     };
 }

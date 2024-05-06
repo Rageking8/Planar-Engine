@@ -70,6 +70,12 @@ namespace Planar::Editor::Scene
         }
     }
 
+    void SelectProjectScene::set_editor_enter_callback(
+        std::function<void()> callback)
+    {
+        editor_enter_callback = callback;
+    }
+
     void SelectProjectScene::open_project()
     {
         pending_open_project = false;
@@ -89,6 +95,11 @@ namespace Planar::Editor::Scene
             std::cout << "No project file found\n";
             
             return;
+        }
+
+        if (editor_enter_callback)
+        {
+            editor_enter_callback();
         }
     }
 
@@ -119,5 +130,10 @@ namespace Planar::Editor::Scene
 
         Planar::Engine::Asset::create_project_file(project_name,
             project_description, directory);
+
+        if (editor_enter_callback)
+        {
+            editor_enter_callback();
+        }
     }
 }
