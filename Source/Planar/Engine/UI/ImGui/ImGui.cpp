@@ -6,6 +6,17 @@
 
 namespace Planar::Engine::UI::ImGui
 {
+    void set_ini_filename(const std::string& ini_filename)
+    {
+        ::ImGui::GetIO().IniFilename =
+            ini_filename.empty() ? nullptr : ini_filename.c_str();
+    }
+
+    void set_config_flags(int config_flags)
+    {
+        ::ImGui::GetIO().ConfigFlags = config_flags;
+    }
+
     void reset_style()
     {
         ::ImGui::GetStyle() = ImGuiStyle();

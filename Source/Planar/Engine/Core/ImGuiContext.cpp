@@ -1,4 +1,5 @@
 #include "Planar/Engine/Core/ImGuiContext.hpp"
+#include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 #include "ThirdParty/ImGui/imgui_impl_glfw.h"
@@ -21,10 +22,11 @@ namespace Planar::Engine::Core
     {
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO();
-        io.IniFilename = nullptr;
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-        io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+
+        Planar::Engine::UI::ImGui::set_ini_filename();
+        Planar::Engine::UI::ImGui::set_config_flags(
+            ImGuiConfigFlags_NavEnableKeyboard |
+            ImGuiConfigFlags_NavEnableGamepad);
 
         ImGui::StyleColorsDark();
 
