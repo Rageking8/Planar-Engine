@@ -94,6 +94,12 @@ namespace Planar::Engine::UI::ImGui
             begin_flags |= ImGuiWindowFlags_NoDecoration |
                 ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground;
         }
+
+        if (Planar::Engine::Core::Utils::has(flags,
+            ImGuiWindowFlags::NO_STORE_INI))
+        {
+            begin_flags |= ImGuiWindowFlags_NoSavedSettings;
+        }
     }
 
     void ImGuiWindow::set_position(

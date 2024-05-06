@@ -26,7 +26,8 @@ namespace Planar::Editor::Scene
 
         main_window.set("Select Project",
             ImGui::ImGuiWindowFlags::FIT_TO_WINDOW |
-            ImGui::ImGuiWindowFlags::MINIMAL);
+            ImGui::ImGuiWindowFlags::MINIMAL |
+            ImGui::ImGuiWindowFlags::NO_STORE_INI);
     }
 
     void SelectProjectScene::update()
