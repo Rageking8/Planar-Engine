@@ -27,5 +27,7 @@ namespace Planar::Editor::Scene
         bool pending_restore_default_layout;
 
         void restore_default_layout() const;
+
+        void render_main_menu_bar() const;
     };
 }

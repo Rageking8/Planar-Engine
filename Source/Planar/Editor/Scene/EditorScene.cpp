@@ -1,5 +1,6 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
@@ -43,6 +44,8 @@ namespace Planar::Editor::Scene
 
         ImGui::dock_space_over_viewport();
 
+        render_main_menu_bar();
+
         {
             auto hierarchy_window_scope = hierarchy_window.render();
         }
@@ -81,5 +84,43 @@ namespace Planar::Editor::Scene
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
             Planar::Asset::Editor::DefaultLayout);
+    }
+
+    void EditorScene::render_main_menu_bar() const
+    {
+        using namespace Planar::Engine::UI;
+
+        ImGui::ImGuiMainMenuBar main_menu_bar;
+        if (main_menu_bar.start())
+        {
+            main_menu_bar.add_menu("File",
+                [&]()
+                {
+                    main_menu_bar.add_menu_item("New Project");
+                    main_menu_bar.add_menu_item("Open Project");
+                    
+                    main_menu_bar.add_menu_separator();
+
+                    main_menu_bar.add_menu_item("Save", "Ctrl + S");
+                    main_menu_bar.add_menu_item("Save As",
+                        "Ctrl + Shift + S");
+
+                    main_menu_bar.add_menu_separator();
+
+                    main_menu_bar.add_menu_item("Exit");
+                });
+
+            main_menu_bar.add_menu("Build",
+                [&]()
+                {
+                    main_menu_bar.add_menu_item("Build Project");
+                });
+
+            main_menu_bar.add_menu("Help",
+                [&]()
+                {
+                    main_menu_bar.add_menu_item("Website");
+                });
+        }
     }
 }
