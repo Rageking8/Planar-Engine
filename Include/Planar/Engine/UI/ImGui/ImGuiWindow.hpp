@@ -10,7 +10,8 @@ namespace Planar::Engine::UI::ImGui
     class PLANAR_API ImGuiWindow
     {
     public:
-        ImGuiWindow(const std::string& name, ImGuiWindowFlags flags);
+        ImGuiWindow(const std::string& name,
+            ImGuiWindowFlags flags = ImGuiWindowFlags::NONE);
         ~ImGuiWindow();
     };
 }

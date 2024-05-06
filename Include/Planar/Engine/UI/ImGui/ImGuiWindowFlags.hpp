@@ -5,6 +5,7 @@
 PLANAR_BEGIN_ENUM_CLASS_FLAG(Planar::Engine::UI::ImGui,
     ImGuiWindowFlags)
 {
+    NONE = 0,
     FIT_TO_WINDOW = 1 << 0,
     MINIMAL = 1 << 1,
 };
