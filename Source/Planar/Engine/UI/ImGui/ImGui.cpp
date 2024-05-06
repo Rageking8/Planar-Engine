@@ -62,4 +62,9 @@ namespace Planar::Engine::UI::ImGui
     {
         ::ImGui::NewLine();
     }
+
+    void dock_space_over_viewport()
+    {
+        ::ImGui::DockSpaceOverViewport(::ImGui::GetMainViewport());
+    }
 }

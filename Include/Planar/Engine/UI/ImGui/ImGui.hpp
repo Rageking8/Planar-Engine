@@ -29,4 +29,6 @@ namespace Planar::Engine::UI::ImGui
         const std::string& placeholder, std::string& text);
 
     PLANAR_API void newline();
+
+    PLANAR_API void dock_space_over_viewport();
 }

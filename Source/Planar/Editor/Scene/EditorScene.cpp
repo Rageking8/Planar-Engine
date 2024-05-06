@@ -1,4 +1,5 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
+#include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -24,6 +25,8 @@ namespace Planar::Editor::Scene
     void EditorScene::render()
     {
         using namespace Planar::Engine::UI;
+
+        ImGui::dock_space_over_viewport();
 
         {
             auto hierarchy_window_scope = hierarchy_window.render();
