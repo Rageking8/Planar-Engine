@@ -29,6 +29,7 @@ add_subdirectory(Source)
 add_subdirectory(Include)
 add_subdirectory(Asset)
 add_subdirectory(ThirdParty)
+add_subdirectory(Script)
 
 get_all_target_list(PLANAR_ALL_TARGETS)
 set_target_properties(${PLANAR_ALL_TARGETS} PROPERTIES FOLDER ThirdParty)
