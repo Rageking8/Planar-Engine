@@ -18,12 +18,12 @@ namespace Planar::Editor::Scene
         using namespace Planar::Engine::UI;
 
         hierarchy_window.set_name("Hierarchy");
-        scene_window.set_name("Scene");
-        game_window.set_name("Game");
         inspector_window.set_name("Inspector");
         settings_window.set_name("Settings");
         content_window.set_name("Content");
         console_window.set_name("Console");
+        game_window.set_name("Game");
+        scene_window.set_name("Scene");
 
         restore_default_layout();
     }
@@ -51,14 +51,6 @@ namespace Planar::Editor::Scene
         }
 
         {
-            auto scene_window_scope = scene_window.render();
-        }
-
-        {
-            auto game_window_scope = game_window.render();
-        }
-
-        {
             auto inspector_window_scope = inspector_window.render();
         }
 
@@ -77,6 +69,14 @@ namespace Planar::Editor::Scene
 
         {
             auto console_window_scope = console_window.render();
+        }
+
+        {
+            auto game_window_scope = game_window.render();
+        }
+
+        {
+            auto scene_window_scope = scene_window.render();
         }
     }
 
