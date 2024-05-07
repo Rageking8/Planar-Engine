@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.15..3.29 FATAL_ERROR)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMake)
 include(GetAllTargetList)
 
-project(Planar VERSION 0.1.0 LANGUAGES C CXX)
+project(Planar VERSION 0.1.0 LANGUAGES C CXX CSharp)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
@@ -19,6 +19,7 @@ set(PLANAR_EXTERNAL_INCLUDE_DIR
 
 set(PLANAR_ENGINE_TARGET PlanarEngine)
 set(PLANAR_EDITOR_TARGET PlanarEditor)
+set(PLANAR_SCRIPT_TARGET PlanarScript)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY
