@@ -48,6 +48,12 @@ namespace Planar::Engine::Core
         return main_window;
     }
 
+    Planar::Engine::Graphics::SupportedGraphicsAPI
+        GLFWContext::get_window_graphics_api() const
+    {
+        return window_graphics_api;
+    }
+
     bool GLFWContext::create_window(
         Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
         Planar::Engine::Math::Size2Di size,

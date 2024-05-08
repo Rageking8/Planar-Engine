@@ -2,7 +2,6 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     Application.hpp
     ExportMacros.hpp
     GLFWContext.hpp
-    ImGuiContext.hpp
     Links.hpp
     Version.hpp
 )
