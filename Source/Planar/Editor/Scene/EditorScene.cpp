@@ -116,6 +116,27 @@ namespace Planar::Editor::Scene
                     main_menu_bar.add_menu_item("Build Project");
                 });
 
+            main_menu_bar.add_menu("Window",
+                [&]()
+                {
+                    main_menu_bar.add_menu_item("Hierarchy");
+
+                    main_menu_bar.add_menu_separator();
+
+                    main_menu_bar.add_menu_item("Scene");
+                    main_menu_bar.add_menu_item("Game");
+
+                    main_menu_bar.add_menu_separator();
+
+                    main_menu_bar.add_menu_item("Inspector");
+                    main_menu_bar.add_menu_item("Settings");
+
+                    main_menu_bar.add_menu_separator();
+
+                    main_menu_bar.add_menu_item("Content");
+                    main_menu_bar.add_menu_item("Console");
+                });
+
             main_menu_bar.add_menu("Help",
                 [&]()
                 {
