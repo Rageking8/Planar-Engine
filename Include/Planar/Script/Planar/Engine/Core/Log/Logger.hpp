@@ -4,8 +4,7 @@
 
 extern "C"
 {
-    PLANAR_API void* Planar_Engine_Core_Log_Logger_construct();
-    PLANAR_API void Planar_Engine_Core_Log_Logger_destruct(void* handle);
+    PLANAR_DECLARE_CONSTRUCT_DESTRUCT(Planar_Engine_Core_Log_Logger)
 
     PLANAR_API void Planar_Engine_Core_Log_Logger_log(void* handle,
         const char* text);

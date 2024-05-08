@@ -9,3 +9,18 @@
 #else
     #define PLANAR_API
 #endif
+
+#define PLANAR_DECLARE_CONSTRUCT_DESTRUCT(namespace_prefix)    \
+    PLANAR_API void* namespace_prefix##_construct();           \
+    PLANAR_API void namespace_prefix##_destruct(void* handle); \
+
+#define PLANAR_DEFINE_CONSTRUCT_DESTRUCT(namespace_prefix, type) \
+    void* namespace_prefix##_construct()                         \
+    {                                                            \
+        return new type;                                         \
+    }                                                            \
+                                                                 \
+    void namespace_prefix##_destruct(void* handle)               \
+    {                                                            \
+        delete handle;                                           \
+    }                                                            \

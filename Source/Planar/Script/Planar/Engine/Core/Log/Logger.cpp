@@ -1,15 +1,8 @@
 #include "Planar/Script/Planar/Engine/Core/Log/Logger.hpp"
 #include "Planar/Engine/Core/Log/Logger.hpp"
 
-void* Planar_Engine_Core_Log_Logger_construct()
-{
-    return new Planar::Engine::Core::Log::Logger;
-}
-
-void Planar_Engine_Core_Log_Logger_destruct(void* handle)
-{
-    delete handle;
-}
+PLANAR_DEFINE_CONSTRUCT_DESTRUCT(Planar_Engine_Core_Log_Logger,
+    Planar::Engine::Core::Log::Logger)
 
 void Planar_Engine_Core_Log_Logger_log(void* handle,
     const char* text)
