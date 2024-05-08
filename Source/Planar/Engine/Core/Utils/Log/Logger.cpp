@@ -10,6 +10,11 @@ namespace Planar::Engine::Core::Log
 
     }
 
+    Logger::~Logger()
+    {
+
+    }
+
     void Logger::log(const std::string& text)
     {
         Planar::Engine::Core::Utils::Terminal::color_println(

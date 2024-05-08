@@ -11,6 +11,7 @@ namespace Planar::Engine::Core::Log
     {
     public:
         Logger();
+        virtual ~Logger();
 
         virtual void log(const std::string& text) override;
         virtual void warn(const std::string& text) override;
