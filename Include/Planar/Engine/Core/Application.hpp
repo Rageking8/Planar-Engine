@@ -21,7 +21,7 @@ namespace Planar::Engine::Core
             bool maximize = false,
             Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api =
             Planar::Engine::Graphics::SupportedGraphicsAPI::OPENGL_4_6);
-        virtual ~Application() = 0;
+        virtual ~Application();
 
         virtual bool init();
         virtual void run();
