@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Planar/Engine/Core/ExportMacros.hpp"
-#include "Planar/Engine/Core/Utils/Log/LoggerBase.hpp"
+#include "Planar/Engine/Core/Log/LoggerBase.hpp"
 
 #include <string>
 
-namespace Planar::Engine::Core::Utils::Log
+namespace Planar::Engine::Core::Log
 {
     class PLANAR_API Logger : public LoggerBase
     {

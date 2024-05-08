@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/Core/ExportMacros.hpp"
 #include "Planar/Engine/Core/GLFWContext.hpp"
-#include "Planar/Engine/Core/Utils/Log/LoggerBase.hpp"
+#include "Planar/Engine/Core/Log/LoggerBase.hpp"
 
 namespace Planar::Engine::Core
 {
@@ -13,7 +13,7 @@ namespace Planar::Engine::Core
         ~ImGuiContext();
 
         bool init(const GLFWContext& glfw_context,
-            Utils::Log::LoggerBase* logger = nullptr);
+            Log::LoggerBase* logger = nullptr);
         void terminate();
 
         void new_frame() const;

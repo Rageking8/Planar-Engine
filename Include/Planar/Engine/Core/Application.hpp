@@ -5,7 +5,7 @@
 #include "Planar/Engine/Core/GLFWContext.hpp"
 #include "Planar/Engine/Core/ImGuiContext.hpp"
 #include "Planar/Engine/Core/ExportMacros.hpp"
-#include "Planar/Engine/Core/Utils/Log/Logger.hpp"
+#include "Planar/Engine/Core/Log/Logger.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
 
 #include <string>
@@ -47,7 +47,7 @@ namespace Planar::Engine::Core
         GLFWContext glfw_context;
         ImGuiContext imgui_context;
 
-        Utils::Log::Logger logger;
+        Log::Logger logger;
 
         std::unique_ptr<Planar::Engine::Scene::Scene> main_scene;
     };

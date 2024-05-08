@@ -14,7 +14,7 @@ namespace Planar::Engine::Core
         terminate();
     }
 
-    bool GLFWContext::init(Utils::Log::LoggerBase* logger)
+    bool GLFWContext::init(Log::LoggerBase* logger)
     {
         has_init = glfwInit();
 
@@ -52,7 +52,7 @@ namespace Planar::Engine::Core
         Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
         Planar::Engine::Math::Size2Di size,
         const std::string& name, bool maximize,
-        Utils::Log::LoggerBase* logger)
+        Log::LoggerBase* logger)
     {
         if (!has_init || main_window)
         {
