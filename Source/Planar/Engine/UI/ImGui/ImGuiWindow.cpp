@@ -3,9 +3,9 @@
 namespace Planar::Engine::UI::ImGui
 {
     ImGuiWindow::Scope::Scope(const char* name,
-        ::ImGuiWindowFlags begin_flags)
+        ::ImGuiWindowFlags begin_flags, bool* open)
     {
-        ::ImGui::Begin(name, nullptr, begin_flags);
+        ::ImGui::Begin(name, open, begin_flags);
     }
 
     ImGuiWindow::Scope::~Scope()
@@ -23,14 +23,20 @@ namespace Planar::Engine::UI::ImGui
     ImGuiWindow::ImGuiWindow(const std::string& name,
         std::optional<Planar::Engine::Math::Pos2Df> position,
         std::optional<Planar::Engine::Math::Size2Df> size,
-        ImGuiWindowFlags flags) : name{ name }, position{ position },
-        size{ size }, begin_flags{}, first_render{ true }
+        ImGuiWindowFlags flags, bool allow_close) : active{ true },
+        name{ name }, position{ position }, size{ size },
+        begin_flags{}, allow_close{ allow_close }, first_render{ true }
     {
         set_flags(flags);
     }
 
     std::unique_ptr<ImGuiWindow::Scope> ImGuiWindow::render()
     {
+        if (!active)
+        {
+            return nullptr;
+        }
+
         if (first_render)
         {
             if (Planar::Engine::Core::Utils::has(
@@ -57,7 +63,8 @@ namespace Planar::Engine::UI::ImGui
         }
 
         return std::make_unique<ImGuiWindow::Scope>(
-            name.c_str(), begin_flags);
+            name.c_str(), begin_flags,
+            allow_close ? &active : nullptr);
     }
 
     void ImGuiWindow::set(const std::string& new_name,
@@ -76,6 +83,11 @@ namespace Planar::Engine::UI::ImGui
         set_position(new_position);
         set_size(new_size);
         set_flags(new_flags);
+    }
+
+    void ImGuiWindow::set_active(bool new_active)
+    {
+        active = new_active;
     }
 
     void ImGuiWindow::set_name(const std::string& new_name)
@@ -112,6 +124,11 @@ namespace Planar::Engine::UI::ImGui
         std::optional<Planar::Engine::Math::Size2Df> new_size)
     {
         size = new_size;
+    }
+
+    void ImGuiWindow::set_allow_close(bool new_allow_close)
+    {
+        allow_close = new_allow_close;
     }
 
     void ImGuiWindow::reset_first_render()
