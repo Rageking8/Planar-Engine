@@ -14,3 +14,5 @@ endif()
 target_sources(${PLANAR_SCRIPT_TARGET} PRIVATE
     Main.cs
 )
+
+add_subdirectory(Planar)
