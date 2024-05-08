@@ -47,44 +47,96 @@ namespace Planar::Editor::Scene
 
         render_main_menu_bar();
 
-        {
-            auto hierarchy_window_scope = hierarchy_window.render();
-        }
-
-        {
-            auto inspector_window_scope = inspector_window.render();
-        }
-
-        {
-            auto settings_window_scope = settings_window.render();
-
-            if (ImGui::button("Restore Default Layout"))
-            {
-                pending_restore_default_layout = true;
-            }
-        }
-
-        {
-            auto content_window_scope = content_window.render();
-        }
-
-        {
-            auto console_window_scope = console_window.render();
-        }
-
-        {
-            auto game_window_scope = game_window.render();
-        }
-
-        {
-            auto scene_window_scope = scene_window.render();
-        }
+        render_hierarchy_window();
+        render_inspector_window();
+        render_settings_window();
+        render_content_window();
+        render_console_window();
+        render_game_window();
+        render_scene_window();
     }
 
     void EditorScene::restore_default_layout() const
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
             Planar::Asset::Editor::DefaultLayout);
+    }
+
+    void EditorScene::render_hierarchy_window()
+    {
+        auto hierarchy_window_scope = hierarchy_window.render();
+
+        if (!hierarchy_window_scope)
+        {
+            return;
+        }
+    }
+
+    void EditorScene::render_inspector_window()
+    {
+        auto inspector_window_scope = inspector_window.render();
+
+        if (!inspector_window_scope)
+        {
+            return;
+        }
+    }
+
+    void EditorScene::render_settings_window()
+    {
+        using namespace Planar::Engine::UI;
+
+        auto settings_window_scope = settings_window.render();
+
+        if (!settings_window_scope)
+        {
+            return;
+        }
+
+        if (ImGui::button("Restore Default Layout"))
+        {
+            pending_restore_default_layout = true;
+        }
+    }
+
+    void EditorScene::render_content_window()
+    {
+        auto content_window_scope = content_window.render();
+
+        if (!content_window_scope)
+        {
+            return;
+        }
+    }
+
+    void EditorScene::render_console_window()
+    {
+        auto console_window_scope = console_window.render();
+
+        if (!console_window_scope)
+        {
+            return;
+        }
+    }
+
+    void EditorScene::render_game_window()
+    {
+        auto game_window_scope = game_window.render();
+
+        if (!game_window_scope)
+        {
+            return;
+        }
+    }
+
+    void EditorScene::render_scene_window()
+    {
+        auto scene_window_scope = scene_window.render();
+
+        if (!scene_window_scope)
+        {
+            return;
+        }
     }
 
     void EditorScene::render_main_menu_bar() const

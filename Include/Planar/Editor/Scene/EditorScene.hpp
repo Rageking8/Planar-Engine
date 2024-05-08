@@ -28,6 +28,14 @@ namespace Planar::Editor::Scene
 
         void restore_default_layout() const;
 
+        void render_hierarchy_window();
+        void render_inspector_window();
+        void render_settings_window();
+        void render_content_window();
+        void render_console_window();
+        void render_game_window();
+        void render_scene_window();
+
         void render_main_menu_bar() const;
     };
 }
