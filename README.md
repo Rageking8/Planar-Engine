@@ -4,8 +4,23 @@ A 2D Game Engine.
 
 ## Contents
 
+1. [Build](#build)
+    - [Requirements](#requirements)
+    - [Support](#support)
 1. [Project Structure](#project-structure)
 1. [Dependencies](#dependencies)
+
+## Build
+
+### Requirements
+
+- C++20
+- .NET 8 (C# 12)
+- Visual Studio 2022 with C++ CMake tools for Windows
+
+### Support
+
+Currently Windows is the only operating system supported.
 
 ## Project Structure
 
