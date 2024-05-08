@@ -2,6 +2,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
+#include "Planar/Engine/Core/Shell/Shell.hpp"
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
 
@@ -140,7 +141,10 @@ namespace Planar::Editor::Scene
             main_menu_bar.add_menu("Help",
                 [&]()
                 {
-                    main_menu_bar.add_menu_item("Website");
+                    if (main_menu_bar.add_menu_item("Website"))
+                    {
+                        Planar::Engine::Core::Shell::open_planar_website();
+                    }
                 });
         }
     }
