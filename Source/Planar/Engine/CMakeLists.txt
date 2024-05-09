@@ -12,6 +12,12 @@ target_include_directories(${PLANAR_ENGINE_TARGET} PRIVATE
     ${PLANAR_EXTERNAL_INCLUDE_DIR}
 )
 
+if(MSVC)
+    target_compile_options(${PLANAR_ENGINE_TARGET} PRIVATE
+        /Zc:preprocessor
+    )
+endif()
+
 define_if_target_shared(${PLANAR_ENGINE_TARGET} PRIVATE
     PLANAR_ENABLE_EXPORT
     PLANAR_EXPORT_SOURCE
