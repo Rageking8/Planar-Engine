@@ -1,5 +1,6 @@
 add_subdirectory(Asset)
 add_subdirectory(Core)
+add_subdirectory(Export)
 add_subdirectory(Graphics)
 add_subdirectory(Math)
 add_subdirectory(Scene)

@@ -33,6 +33,7 @@ add_custom_command(TARGET ${PLANAR_ENGINE_TARGET} POST_BUILD
 
 add_subdirectory(Asset)
 add_subdirectory(Core)
+add_subdirectory(Export)
 add_subdirectory(Graphics)
 add_subdirectory(Scene)
 add_subdirectory(UI)

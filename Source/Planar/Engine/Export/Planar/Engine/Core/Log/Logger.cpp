@@ -1,4 +1,4 @@
-#include "Planar/Script/Planar/Engine/Core/Log/Logger.hpp"
+#include "Planar/Engine/Export/Planar/Engine/Core/Log/Logger.hpp"
 #include "Planar/Engine/Core/Log/Logger.hpp"
 
 PLANAR_EXPORT_DEFINE_CONSTRUCT_DESTRUCT(Planar_Engine_Core_Log_Logger,
