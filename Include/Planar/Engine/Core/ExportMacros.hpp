@@ -19,9 +19,9 @@
     PLANAR_EXPORT_FUNCTION_PROTOTYPE(name, return_type, void* handle    \
         __VA_OPT__(,) __VA_ARGS__)                                      \
 
-#define PLANAR_EXPORT_CONSTRUCT_PROTOTYPE(namespace_prefix)        \
+#define PLANAR_EXPORT_CONSTRUCT_PROTOTYPE(namespace_prefix, ...)   \
     PLANAR_EXPORT_FUNCTION_PROTOTYPE(namespace_prefix##_construct, \
-        void*)                                                     \
+        void* __VA_OPT__(,) __VA_ARGS__)                           \
 
 #define PLANAR_EXPORT_DESTRUCT_PROTOTYPE(namespace_prefix)               \
     PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_destruct, \
@@ -29,15 +29,17 @@
 
 // Export declares
 
-#define PLANAR_EXPORT_DECLARE_FUNCTION(name, return_type, ...)        \
-    PLANAR_EXPORT_FUNCTION_PROTOTYPE(name, return_type, __VA_ARGS__); \
+#define PLANAR_EXPORT_DECLARE_FUNCTION(name, return_type, ...) \
+    PLANAR_EXPORT_FUNCTION_PROTOTYPE(name, return_type         \
+        __VA_OPT__(,) _VA_ARGS__);                             \
 
 #define PLANAR_EXPORT_DECLARE_HANDLE_FUNCTION(name, return_type, ...) \
-    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(name, return_type,        \
-        __VA_ARGS__);                                                 \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(name, return_type         \
+        __VA_OPT__(,) __VA_ARGS__);                                   \
 
-#define PLANAR_EXPORT_DECLARE_CONSTRUCT(namespace_prefix) \
-    PLANAR_EXPORT_CONSTRUCT_PROTOTYPE(namespace_prefix);  \
+#define PLANAR_EXPORT_DECLARE_CONSTRUCT(namespace_prefix, ...) \
+    PLANAR_EXPORT_CONSTRUCT_PROTOTYPE(namespace_prefix         \
+        __VA_OPT__(,) __VA_ARGS__);                            \
 
 #define PLANAR_EXPORT_DECLARE_DESTRUCT(namespace_prefix) \
     PLANAR_EXPORT_DESTRUCT_PROTOTYPE(namespace_prefix);  \
