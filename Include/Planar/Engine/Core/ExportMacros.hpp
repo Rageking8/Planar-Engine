@@ -10,28 +10,64 @@
     #define PLANAR_API
 #endif
 
-#define PLANAR_DECLARE_CONSTRUCT(namespace_prefix)   \
-    PLANAR_API void* namespace_prefix##_construct(); \
+// Export prototypes
 
-#define PLANAR_DECLARE_DESTRUCT(namespace_prefix)              \
-    PLANAR_API void namespace_prefix##_destruct(void* handle); \
+#define PLANAR_EXPORT_FUNCTION_PROTOTYPE(name, return_type, ...) \
+    extern "C" PLANAR_API return_type name(__VA_ARGS__)          \
 
-#define PLANAR_DECLARE_CONSTRUCT_DESTRUCT(namespace_prefix) \
-    PLANAR_DECLARE_CONSTRUCT(namespace_prefix)              \
-    PLANAR_DECLARE_DESTRUCT(namespace_prefix)               \
+#define PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(name, return_type, ...) \
+    PLANAR_EXPORT_FUNCTION_PROTOTYPE(name, return_type, void* handle    \
+        __VA_OPT__(,) __VA_ARGS__)                                      \
 
-#define PLANAR_DEFINE_CONSTRUCT(namespace_prefix, type) \
-    void* namespace_prefix##_construct()                \
+#define PLANAR_EXPORT_CONSTRUCT_PROTOTYPE(namespace_prefix)        \
+    PLANAR_EXPORT_FUNCTION_PROTOTYPE(namespace_prefix##_construct, \
+        void*)                                                     \
+
+#define PLANAR_EXPORT_DESTRUCT_PROTOTYPE(namespace_prefix)               \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_destruct, \
+        void)                                                            \
+
+// Export declares
+
+#define PLANAR_EXPORT_DECLARE_FUNCTION(name, return_type, ...)        \
+    PLANAR_EXPORT_FUNCTION_PROTOTYPE(name, return_type, __VA_ARGS__); \
+
+#define PLANAR_EXPORT_DECLARE_HANDLE_FUNCTION(name, return_type, ...) \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(name, return_type,        \
+        __VA_ARGS__);                                                 \
+
+#define PLANAR_EXPORT_DECLARE_CONSTRUCT(namespace_prefix) \
+    PLANAR_EXPORT_CONSTRUCT_PROTOTYPE(namespace_prefix);  \
+
+#define PLANAR_EXPORT_DECLARE_DESTRUCT(namespace_prefix) \
+    PLANAR_EXPORT_DESTRUCT_PROTOTYPE(namespace_prefix);  \
+
+#define PLANAR_EXPORT_DECLARE_CONSTRUCT_DESTRUCT(namespace_prefix) \
+    PLANAR_EXPORT_DECLARE_CONSTRUCT(namespace_prefix)              \
+    PLANAR_EXPORT_DECLARE_DESTRUCT(namespace_prefix)               \
+
+// Export defines
+
+#define PLANAR_EXPORT_DEFINE_CONSTRUCT(namespace_prefix, type) \
+    PLANAR_EXPORT_CONSTRUCT_PROTOTYPE(namespace_prefix)        \
+    {                                                          \
+        return new type;                                       \
+    }                                                          \
+
+#define PLANAR_EXPORT_DEFINE_DESTRUCT(namespace_prefix) \
+    PLANAR_EXPORT_DESTRUCT_PROTOTYPE(namespace_prefix)  \
     {                                                   \
-        return new type;                                \
+        delete handle;                                  \
     }                                                   \
 
-#define PLANAR_DEFINE_DESTRUCT(namespace_prefix)   \
-    void namespace_prefix##_destruct(void* handle) \
-    {                                              \
-        delete handle;                             \
-    }                                              \
+#define PLANAR_EXPORT_DEFINE_CONSTRUCT_DESTRUCT(namespace_prefix, type) \
+    PLANAR_EXPORT_DEFINE_CONSTRUCT(namespace_prefix, type)              \
+    PLANAR_EXPORT_DEFINE_DESTRUCT(namespace_prefix)                     \
 
-#define PLANAR_DEFINE_CONSTRUCT_DESTRUCT(namespace_prefix, type) \
-    PLANAR_DEFINE_CONSTRUCT(namespace_prefix, type)              \
-    PLANAR_DEFINE_DESTRUCT(namespace_prefix)                     \
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION(namespace_prefix, name,   \
+    return_type, arg_type1, arg1, type)                                \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
+        return_type, arg_type1)                                        \
+    {                                                                  \
+        static_cast<type*>(handle)->name(arg1);                        \
+    }                                                                  \
