@@ -26,12 +26,12 @@
         return new type;                                \
     }                                                   \
 
-#define PLANAR_DEFINE_DESTRUCT(namespace_prefix, type) \
-    void namespace_prefix##_destruct(void* handle)     \
-    {                                                  \
-        delete handle;                                 \
-    }                                                  \
+#define PLANAR_DEFINE_DESTRUCT(namespace_prefix)   \
+    void namespace_prefix##_destruct(void* handle) \
+    {                                              \
+        delete handle;                             \
+    }                                              \
 
 #define PLANAR_DEFINE_CONSTRUCT_DESTRUCT(namespace_prefix, type) \
     PLANAR_DEFINE_CONSTRUCT(namespace_prefix, type)              \
-    PLANAR_DEFINE_DESTRUCT(namespace_prefix, type)               \
+    PLANAR_DEFINE_DESTRUCT(namespace_prefix)                     \
