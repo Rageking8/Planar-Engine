@@ -16,4 +16,3 @@ PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION(Planar_Engine_Core_Application, init,
     bool, Planar::Engine::Core::Application)
 PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION(Planar_Engine_Core_Application, run,
     Planar::Engine::Core::Application)
-
