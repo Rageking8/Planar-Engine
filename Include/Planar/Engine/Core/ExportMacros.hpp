@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Planar/Engine/Core/Utils/Macros/MacroOverload.hpp"
+
 #if defined(_WIN32) && defined(PLANAR_ENABLE_EXPORT)
     #ifdef PLANAR_EXPORT_SOURCE
         #define PLANAR_API __declspec(dllexport)
@@ -66,10 +68,38 @@
     PLANAR_EXPORT_DEFINE_CONSTRUCT(namespace_prefix, type)              \
     PLANAR_EXPORT_DEFINE_DESTRUCT(namespace_prefix)                     \
 
-#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION(namespace_prefix, name,   \
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION(...)                     \
+    PLANAR_DEFINE_MACRO_OVERLOAD(PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION \
+        __VA_OPT__(,) __VA_ARGS__)                                    \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION3(namespace_prefix, name,  \
+    type)                                                              \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
+        void)                                                          \
+    {                                                                  \
+        static_cast<type*>(handle)->name();                            \
+    }                                                                  \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION4(namespace_prefix, name,  \
+    return_type, type)                                                 \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
+        return_type)                                                   \
+    {                                                                  \
+        return static_cast<type*>(handle)->name();                     \
+    }                                                                  \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION5(namespace_prefix, name,  \
+    arg_type1, arg1, type)                                             \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
+        void, arg_type1)                                               \
+    {                                                                  \
+        static_cast<type*>(handle)->name(arg1);                        \
+    }                                                                  \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION6(namespace_prefix, name,  \
     return_type, arg_type1, arg1, type)                                \
     PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
         return_type, arg_type1)                                        \
     {                                                                  \
-        static_cast<type*>(handle)->name(arg1);                        \
+        return static_cast<type*>(handle)->name(arg1);                 \
     }                                                                  \
