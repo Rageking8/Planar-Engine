@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Engine/Core/ExportMacros.hpp"
+#include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 
 #include <string>

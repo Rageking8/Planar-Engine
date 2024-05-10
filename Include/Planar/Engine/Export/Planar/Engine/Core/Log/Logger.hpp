@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Engine/Core/ExportMacros.hpp"
+#include "Planar/Engine/Export/ExportMacros.hpp"
 
 PLANAR_EXPORT_DECLARE_CONSTRUCT_DESTRUCT(Planar_Engine_Core_Log_Logger)
 

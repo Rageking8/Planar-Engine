@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Core/Log/LoggerBase.hpp"
-#include "Planar/Engine/Core/ExportMacros.hpp"
+#include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
 
 #include <string>
