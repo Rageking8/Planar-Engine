@@ -72,6 +72,28 @@ namespace Planar::Engine::Asset
         }
     }
 
+    std::string preprocess_asset_scalar(const std::string& asset,
+        const std::vector<std::pair<std::string, std::string>>& mapping)
+    {
+        YAML::Node root = YAML::Load(asset);
+
+        iterate_node_recursive(root, {}, {},
+            [&](YAML::Node node)
+            {
+                const std::string& value = node.Scalar();
+
+                for (const auto& i : mapping)
+                {
+                    if (value == i.first)
+                    {
+                        node = i.second;
+                    }
+                }
+            }, {}, {});
+
+        return YAML::Dump(root);
+    }
+
     void create_project_file(const std::string& project_name,
         const std::string& project_description,
         const std::filesystem::path& output_path)
@@ -85,34 +107,18 @@ namespace Planar::Engine::Asset
         const std::string& planar_file,
         const std::filesystem::path& output_path)
     {
-        YAML::Node root = YAML::Load(planar_file);
-
-        iterate_node_recursive(root, {}, {},
-            [&](YAML::Node node)
-            {
-                const std::string& value = node.Scalar();
-
-                if (value == "<GUID>")
-                {
-                    node = Planar::Engine::Core::GUID::generate_guid(
-                        Planar::Engine::Core::GUID::Representation::
-                        DEFAULT_COMPACT);
-                }
-                else if (value == "<VERSION>")
-                {
-                    node = Planar::Engine::Core::VERSION;
-                }
-                else if (value == "<NAME>")
-                {
-                    node = project_name;
-                }
-                else if (value == "<DESCRIPTION>")
-                {
-                    node = project_description;
-                }
-            }, {}, {});
-
         std::ofstream output(output_path / "Project.planar");
-        output << root;
+        output << preprocess_asset_scalar(planar_file,
+            {
+                { "<GUID>", Planar::Engine::Core::GUID::generate_guid(
+                    Planar::Engine::Core::GUID::Representation::
+                    DEFAULT_COMPACT) },
+
+                { "<VERSION>", Planar::Engine::Core::VERSION },
+
+                { "<NAME>", project_name },
+
+                { "<DESCRIPTION>", project_description },
+            });
     }
 }

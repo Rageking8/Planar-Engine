@@ -3,6 +3,8 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 
 #include <string>
+#include <vector>
+#include <utility>
 #include <functional>
 #include <filesystem>
 
@@ -20,6 +22,9 @@ namespace Planar::Engine::Asset
         std::function<void(YAML::Node)> scalar_callback = {},
         std::function<void(YAML::Node)> sequence_callback = {},
         std::function<void(YAML::Node)> map_callback = {});
+
+    PLANAR_API std::string preprocess_asset_scalar(const std::string& asset,
+        const std::vector<std::pair<std::string, std::string>>& mapping);
 
     PLANAR_API void create_project_file(
         const std::string& project_name,
