@@ -29,8 +29,16 @@ FetchContent_Declare(
         SHA256=334E80AB7B52E14C23F94E041C74BAB0742F2281AAD55F66BE2F19F4B7747071
 )
 
+FetchContent_Declare(
+    stb
+    URL https://github.com/nothings/stb/archive/ae721c50eaf761660b4f90cc590453cdb0c2acd0.zip
+    URL_HASH
+        SHA256=5D075769721E676746D0C25B698A0F00741F68252F9AB4B7EE245C513AEEC3DE
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
 add_subdirectory(KHR)
+add_subdirectory(stb)
 add_subdirectory(yaml-cpp)
