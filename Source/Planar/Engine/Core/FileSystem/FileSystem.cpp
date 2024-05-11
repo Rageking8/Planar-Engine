@@ -2,6 +2,8 @@
 
 #include "ShObjIdl.h"
 
+#include <fstream>
+
 namespace Planar::Engine::Core::FileSystem
 {
     std::wstring select_folder_dialog()
@@ -38,5 +40,22 @@ namespace Planar::Engine::Core::FileSystem
         }
 
         return fail ? L"" : path;
+    }
+
+    void create_file(const std::filesystem::path& path,
+        const std::string& contents)
+    {
+        if (!path.has_extension())
+        {
+            return;
+        }
+
+        if (path.has_parent_path())
+        {
+            std::filesystem::create_directories(path.parent_path());
+        }
+
+        std::ofstream output(path);
+        output << contents;
     }
 }
