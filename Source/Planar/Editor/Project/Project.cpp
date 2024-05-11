@@ -20,7 +20,7 @@ namespace Planar::Editor::Project
     bool Project::open_project()
     {
         std::wstring directory =
-            Planar::Engine::Core::FileSystem::SelectFolderDialog();
+            Planar::Engine::Core::FileSystem::select_folder_dialog();
 
         if (directory.empty())
         {
@@ -52,7 +52,7 @@ namespace Planar::Editor::Project
         }
 
         std::wstring directory =
-            Planar::Engine::Core::FileSystem::SelectFolderDialog();
+            Planar::Engine::Core::FileSystem::select_folder_dialog();
 
         if (directory.empty())
         {

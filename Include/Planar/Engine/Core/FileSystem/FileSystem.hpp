@@ -6,5 +6,5 @@
 
 namespace Planar::Engine::Core::FileSystem
 {
-    PLANAR_API std::wstring SelectFolderDialog();
+    PLANAR_API std::wstring select_folder_dialog();
 }

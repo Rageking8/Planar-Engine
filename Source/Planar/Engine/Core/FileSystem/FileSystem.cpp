@@ -4,7 +4,7 @@
 
 namespace Planar::Engine::Core::FileSystem
 {
-    std::wstring SelectFolderDialog()
+    std::wstring select_folder_dialog()
     {
         IFileDialog* pfd;
         wchar_t* path;
