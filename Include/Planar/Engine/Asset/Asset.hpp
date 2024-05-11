@@ -25,4 +25,7 @@ namespace Planar::Engine::Asset
     PLANAR_API std::string preprocess_asset_meta(const std::string& asset);
     PLANAR_API std::string preprocess_asset_scalar(const std::string& asset,
         const std::vector<std::pair<std::string, std::string>>& mapping);
+
+    PLANAR_API std::string get_value(const std::string& asset,
+        const std::string& key);
 }

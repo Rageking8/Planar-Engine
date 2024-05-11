@@ -115,4 +115,12 @@ namespace Planar::Engine::Asset
 
         return YAML::Dump(root);
     }
+
+    std::string get_value(const std::string& asset,
+        const std::string& key)
+    {
+        YAML::Node root = YAML::Load(asset);
+
+        return root[key].as<std::string>();
+    }
 }
