@@ -9,6 +9,7 @@
 #include <fstream>
 
 PLANAR_LOAD_STD_STRING_ASSET(Engine, Project)
+PLANAR_LOAD_STD_STRING_ASSET(Engine, BasicPrelude)
 
 namespace Planar::Engine::Asset
 {
@@ -72,6 +73,33 @@ namespace Planar::Engine::Asset
         }
     }
 
+    std::string preprocess_asset_meta(const std::string& asset)
+    {
+        YAML::Node root = YAML::Load(asset);
+        YAML::Node result = YAML::Clone(root);
+
+        if (root.Type() != YAML::NodeType::Map)
+        {
+            return asset;
+        }
+
+        std::string prepend;
+
+        for (auto i : root)
+        {
+            if (i.first.Scalar() == "<PRELUDE>")
+            {
+                if (i.second.Scalar() == "BasicPrelude")
+                {
+                    prepend += Planar::Asset::Engine::BasicPrelude;
+                    result.remove(i.first.Scalar());
+                }
+            }
+        }
+
+        return prepend + YAML::Dump(result);
+    }
+
     std::string preprocess_asset_scalar(const std::string& asset,
         const std::vector<std::pair<std::string, std::string>>& mapping)
     {
@@ -108,7 +136,8 @@ namespace Planar::Engine::Asset
         const std::filesystem::path& output_path)
     {
         std::ofstream output(output_path / "Project.planar");
-        output << preprocess_asset_scalar(planar_file,
+        output << preprocess_asset_scalar(
+            preprocess_asset_meta(planar_file),
             {
                 { "<GUID>", Planar::Engine::Core::GUID::generate_guid(
                     Planar::Engine::Core::GUID::Representation::

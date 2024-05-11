@@ -23,6 +23,7 @@ namespace Planar::Engine::Asset
         std::function<void(YAML::Node)> sequence_callback = {},
         std::function<void(YAML::Node)> map_callback = {});
 
+    PLANAR_API std::string preprocess_asset_meta(const std::string& asset);
     PLANAR_API std::string preprocess_asset_scalar(const std::string& asset,
         const std::vector<std::pair<std::string, std::string>>& mapping);
 
