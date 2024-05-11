@@ -73,6 +73,12 @@ namespace Planar::Engine::Core
         glfw_context.maximize_window();
     }
 
+    void Application::set_window_name(const std::string& new_window_name)
+    {
+        window_name = new_window_name;
+        glfw_context.set_main_window_name(new_window_name);
+    }
+
     bool Application::init_glfw()
     {
         return glfw_context.init(&logger);

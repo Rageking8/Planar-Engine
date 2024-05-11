@@ -30,6 +30,7 @@ namespace Planar::Engine::Core
             std::unique_ptr<Planar::Engine::Scene::Scene> scene);
 
         void maximize_window() const;
+        void set_window_name(const std::string& new_window_name);
 
     protected:
         virtual bool init_glfw();

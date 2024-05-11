@@ -32,6 +32,7 @@ namespace Planar::Engine::Core
             Log::LoggerBase* logger = nullptr);
 
         void maximize_window() const;
+        void set_main_window_name(const std::string& new_main_window_name);
 
     private:
         bool has_init;

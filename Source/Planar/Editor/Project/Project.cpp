@@ -37,6 +37,9 @@ namespace Planar::Editor::Project
         }
 
         root_path = directory;
+        project_name = Planar::Engine::Asset::get_value(
+            Planar::Engine::Core::FileSystem::read_file(
+            directory + L"/Project.planar"), "Name");
 
         return true;
     }
@@ -62,12 +65,18 @@ namespace Planar::Editor::Project
         }
 
         root_path = directory;
+        this->project_name = project_name;
 
         std::string main_scene_guid = create_main_scene();
         create_project_file(project_name, project_description,
             main_scene_guid);
 
         return true;
+    }
+
+    std::string Project::get_project_name() const
+    {
+        return project_name;
     }
 
     void Project::create_project_file(const std::string& project_name,

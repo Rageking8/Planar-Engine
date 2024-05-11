@@ -99,4 +99,10 @@ namespace Planar::Engine::Core
     {
         glfwMaximizeWindow(main_window);
     }
+
+    void GLFWContext::set_main_window_name(
+        const std::string& new_main_window_name)
+    {
+        glfwSetWindowTitle(main_window, new_main_window_name.c_str());
+    }
 }
