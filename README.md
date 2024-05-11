@@ -41,6 +41,7 @@ Currently Windows is the only operating system supported.
     - [GLFW](https://github.com/glfw/glfw) - Window, Input, OpenGL context
     - [Dear ImGui](https://github.com/ocornut/imgui) - Editor UI
     - [yaml-cpp](https://github.com/jbeder/yaml-cpp) - Assets
+    - [stb](https://github.com/nothings/stb) - Image loader
 
 1. Planar Editor
     - Planar Engine - All core routines
