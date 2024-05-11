@@ -1,14 +1,8 @@
 #include "Planar/Engine/Asset/Asset.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
-#include "Planar/Engine/Core/GUID/GUID.hpp"
-#include "Planar/Engine/Core/Version.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
-#include <iostream>
-#include <fstream>
-
-PLANAR_LOAD_STD_STRING_ASSET(Engine, Project)
 PLANAR_LOAD_STD_STRING_ASSET(Engine, BasicPrelude)
 
 namespace Planar::Engine::Asset
@@ -120,34 +114,5 @@ namespace Planar::Engine::Asset
             }, {}, {});
 
         return YAML::Dump(root);
-    }
-
-    void create_project_file(const std::string& project_name,
-        const std::string& project_description,
-        const std::filesystem::path& output_path)
-    {
-        create_project_file(project_name, project_description,
-            Planar::Asset::Engine::Project, output_path);
-    }
-
-    void create_project_file(const std::string& project_name,
-        const std::string& project_description,
-        const std::string& planar_file,
-        const std::filesystem::path& output_path)
-    {
-        std::ofstream output(output_path / "Project.planar");
-        output << preprocess_asset_scalar(
-            preprocess_asset_meta(planar_file),
-            {
-                { "<GUID>", Planar::Engine::Core::GUID::generate_guid(
-                    Planar::Engine::Core::GUID::Representation::
-                    DEFAULT_COMPACT) },
-
-                { "<VERSION>", Planar::Engine::Core::VERSION },
-
-                { "<NAME>", project_name },
-
-                { "<DESCRIPTION>", project_description },
-            });
     }
 }

@@ -6,7 +6,6 @@
 #include <vector>
 #include <utility>
 #include <functional>
-#include <filesystem>
 
 namespace YAML
 {
@@ -26,14 +25,4 @@ namespace Planar::Engine::Asset
     PLANAR_API std::string preprocess_asset_meta(const std::string& asset);
     PLANAR_API std::string preprocess_asset_scalar(const std::string& asset,
         const std::vector<std::pair<std::string, std::string>>& mapping);
-
-    PLANAR_API void create_project_file(
-        const std::string& project_name,
-        const std::string& project_description,
-        const std::filesystem::path& output_path);
-    PLANAR_API void create_project_file(
-        const std::string& project_name,
-        const std::string& project_description,
-        const std::string& planar_file,
-        const std::filesystem::path& output_path);
 }
