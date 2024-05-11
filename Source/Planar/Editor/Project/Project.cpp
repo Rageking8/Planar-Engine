@@ -6,9 +6,9 @@
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
 #include <iostream>
-#include <fstream>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor, Project)
+PLANAR_LOAD_STD_STRING_ASSET(Editor, Scene)
 
 namespace Planar::Editor::Project
 {
@@ -63,29 +63,54 @@ namespace Planar::Editor::Project
 
         root_path = directory;
 
-        create_project_file(project_name, project_description);
+        std::string main_scene_guid = create_main_scene();
+        create_project_file(project_name, project_description,
+            main_scene_guid);
 
         return true;
     }
 
     void Project::create_project_file(const std::string& project_name,
-        const std::string& project_description)
+        const std::string& project_description,
+        const std::string& main_scene_guid)
     {
-        std::ofstream output(root_path / "Project.planar");
-
-        output << Planar::Engine::Asset::preprocess_asset_scalar(
+        Planar::Engine::Core::FileSystem::create_file(
+            root_path / "Project.planar",
+            Planar::Engine::Asset::preprocess_asset_scalar(
             Planar::Engine::Asset::preprocess_asset_meta(
             Planar::Asset::Editor::Project),
             {
+                { "<VERSION>", Planar::Engine::Core::VERSION },
+
                 { "<GUID>", Planar::Engine::Core::GUID::generate_guid(
                     Planar::Engine::Core::GUID::Representation::
                     DEFAULT_COMPACT) },
 
-                { "<VERSION>", Planar::Engine::Core::VERSION },
-
                 { "<NAME>", project_name },
 
                 { "<DESCRIPTION>", project_description },
-            });
+
+                { "<MAIN_SCENE_GUID>", main_scene_guid },
+            }));
+    }
+
+    std::string Project::create_main_scene()
+    {
+        std::string main_scene_guid =
+            Planar::Engine::Core::GUID::generate_guid(
+            Planar::Engine::Core::GUID::Representation::DEFAULT_COMPACT);
+
+        Planar::Engine::Core::FileSystem::create_file(
+            root_path / "Scenes/MainScene.planarscene",
+            Planar::Engine::Asset::preprocess_asset_scalar(
+            Planar::Engine::Asset::preprocess_asset_meta(
+            Planar::Asset::Editor::Scene),
+            {
+                { "<VERSION>", Planar::Engine::Core::VERSION },
+
+                { "<GUID>", main_scene_guid },
+            }));
+
+        return main_scene_guid;
     }
 }

@@ -1,3 +1,5 @@
 <PRELUDE>: BasicPrelude
 Name: <NAME>
 Description: <DESCRIPTION>
+BuildSceneList:
+    - <MAIN_SCENE_GUID>
