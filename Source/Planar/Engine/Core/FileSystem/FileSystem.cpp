@@ -58,4 +58,13 @@ namespace Planar::Engine::Core::FileSystem
         std::ofstream output(path);
         output << contents;
     }
+
+    std::string read_file(const std::filesystem::path& path)
+    {
+        std::ifstream file(path);
+        std::ostringstream buffer;
+        buffer << file.rdbuf();
+
+        return buffer.str();
+    }
 }
