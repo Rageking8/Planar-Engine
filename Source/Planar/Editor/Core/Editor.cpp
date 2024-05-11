@@ -24,6 +24,7 @@ namespace Planar::Editor::Core
             std::make_unique<Planar::Editor::Scene::SelectProjectScene>();
         scene->set_editor_enter_callback(
             std::bind(&Editor::enter_editor, this));
+        scene->set_project(&project);
 
         load_scene(std::move(scene));
 

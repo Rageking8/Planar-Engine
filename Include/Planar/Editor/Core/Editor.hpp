@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Core/Application.hpp"
+#include "Planar/Editor/Project/Project.hpp"
 
 namespace Planar::Editor::Core
 {
@@ -12,5 +13,8 @@ namespace Planar::Editor::Core
         virtual bool init() override;
 
         void enter_editor();
+
+    private:
+        Planar::Editor::Project::Project project;
     };
 }

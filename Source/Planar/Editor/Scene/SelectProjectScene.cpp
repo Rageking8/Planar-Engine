@@ -1,11 +1,6 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiWindowFlags.hpp"
-#include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
-#include "Planar/Engine/Asset/Asset.hpp"
-
-#include <iostream>
-#include <filesystem>
 
 namespace Planar::Editor::Scene
 {
@@ -66,7 +61,7 @@ namespace Planar::Editor::Scene
 
         project_name_input.render();
         project_description_input.render();
-        
+
         if (ImGui::button("Create Project"))
         {
             pending_create_project = true;
@@ -79,28 +74,18 @@ namespace Planar::Editor::Scene
         editor_enter_callback = callback;
     }
 
+    void SelectProjectScene::set_project(Planar::Editor::Project::Project*
+        new_project)
+    {
+        project = new_project;
+    }
+
     void SelectProjectScene::open_project()
     {
         pending_open_project = false;
 
-        std::wstring directory =
-            Planar::Engine::Core::FileSystem::SelectFolderDialog();
-
-        if (directory.empty())
-        {
-            std::cout << "Invalid directory\n";
-
-            return;
-        }
-
-        if (!std::filesystem::exists(directory + L"/Project.planar"))
-        {
-            std::cout << "No project file found\n";
-            
-            return;
-        }
-
-        if (editor_enter_callback)
+        if (project && project->open_project() &&
+            editor_enter_callback)
         {
             editor_enter_callback();
         }
@@ -114,27 +99,8 @@ namespace Planar::Editor::Scene
         const std::string& project_description =
             project_description_input.get_text();
 
-        if (project_name.empty())
-        {
-            std::cout << "Project name cannot be empty\n";
-
-            return;
-        }
-
-        std::wstring directory =
-            Planar::Engine::Core::FileSystem::SelectFolderDialog();
-
-        if (directory.empty())
-        {
-            std::cout << "Invalid directory\n";
-
-            return;
-        }
-
-        Planar::Engine::Asset::create_project_file(project_name,
-            project_description, directory);
-
-        if (editor_enter_callback)
+        if (project && project->create_project(project_name,
+            project_description) && editor_enter_callback)
         {
             editor_enter_callback();
         }
