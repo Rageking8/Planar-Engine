@@ -3,6 +3,8 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 
+#include "ThirdParty/glad/gl.h"
+
 #include <string>
 
 namespace Planar::Engine::UI::ImGui
@@ -27,13 +29,20 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API bool button(const std::string& name,
         Planar::Engine::Math::Size2Df size = {});
+    PLANAR_API bool button(const std::string& name, GLuint texture,
+        Planar::Engine::Math::Size2Df size);
 
     PLANAR_API void input_text(const std::string& label,
         std::string& text);
     PLANAR_API void input_text(const std::string& label,
         const std::string& placeholder, std::string& text);
 
+    PLANAR_API void image(GLuint texture,
+        Planar::Engine::Math::Size2Df size);
+
     PLANAR_API void newline();
+
+    PLANAR_API void same_line();
 
     PLANAR_API void dock_space_over_viewport();
 }

@@ -60,6 +60,21 @@ namespace Planar::Engine::UI::ImGui
             { size.width, size.height });
     }
 
+    bool button(const std::string& name, GLuint texture,
+        Planar::Engine::Math::Size2Df size)
+    {
+        ::ImGui::BeginGroup();
+        bool result = ::ImGui::ImageButton(name.c_str(), (void*)texture,
+            { size.width, size.height });
+        ::ImGui::SetCursorPosX(::ImGui::GetCursorPosX() +
+            (size.width * 0.5f) + ::ImGui::GetStyle().FramePadding.x -
+            (::ImGui::CalcTextSize(name.c_str()).x * 0.5f));
+        text(name);
+        ::ImGui::EndGroup();
+
+        return result;
+    }
+
     void input_text(const std::string& label, std::string& text)
     {
         ::ImGui::InputText(label.c_str(), &text);
@@ -72,9 +87,19 @@ namespace Planar::Engine::UI::ImGui
             placeholder.c_str(), &text);
     }
 
+    void image(GLuint texture, Planar::Engine::Math::Size2Df size)
+    {
+        ::ImGui::Image((void*)texture, { size.width, size.height });
+    }
+
     void newline()
     {
         ::ImGui::NewLine();
+    }
+
+    void same_line()
+    {
+        ::ImGui::SameLine();
     }
 
     void dock_space_over_viewport()
