@@ -139,7 +139,7 @@ namespace Planar::Editor::Scene
         }
     }
 
-    void EditorScene::render_main_menu_bar() const
+    void EditorScene::render_main_menu_bar()
     {
         using namespace Planar::Engine::UI;
 
@@ -169,25 +169,41 @@ namespace Planar::Editor::Scene
                     main_menu_bar.add_menu_item("Build Project");
                 });
 
+            auto make_active_on_menu_item = [&](const std::string& name,
+                ImGui::ImGuiWindow& window)
+                {
+                    if (main_menu_bar.add_menu_item(name))
+                    {
+                        window.set_active(true);
+                    }
+                };
+
             main_menu_bar.add_menu("Window",
                 [&]()
                 {
-                    main_menu_bar.add_menu_item("Hierarchy");
+                    make_active_on_menu_item("hierarchy",
+                        hierarchy_window);
 
                     main_menu_bar.add_menu_separator();
 
-                    main_menu_bar.add_menu_item("Scene");
-                    main_menu_bar.add_menu_item("Game");
+                    make_active_on_menu_item("Scene",
+                        scene_window);
+                    make_active_on_menu_item("Game",
+                        game_window);
 
                     main_menu_bar.add_menu_separator();
 
-                    main_menu_bar.add_menu_item("Inspector");
-                    main_menu_bar.add_menu_item("Settings");
+                    make_active_on_menu_item("Inspector",
+                        inspector_window);
+                    make_active_on_menu_item("Settings",
+                        settings_window);
 
                     main_menu_bar.add_menu_separator();
 
-                    main_menu_bar.add_menu_item("Content");
-                    main_menu_bar.add_menu_item("Console");
+                    make_active_on_menu_item("Content",
+                        content_window);
+                    make_active_on_menu_item("Console",
+                        console_window);
                 });
 
             main_menu_bar.add_menu("Help",

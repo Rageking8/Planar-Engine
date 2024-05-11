@@ -36,6 +36,6 @@ namespace Planar::Editor::Scene
         void render_game_window();
         void render_scene_window();
 
-        void render_main_menu_bar() const;
+        void render_main_menu_bar();
     };
 }
