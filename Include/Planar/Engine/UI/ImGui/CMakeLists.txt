@@ -4,6 +4,7 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGuiElement.hpp
     ImGuiInputField.hpp
     ImGuiMainMenuBar.hpp
+    ImGuiStyleColor.hpp
     ImGuiWindow.hpp
     ImGuiWindowFlags.hpp
 )
