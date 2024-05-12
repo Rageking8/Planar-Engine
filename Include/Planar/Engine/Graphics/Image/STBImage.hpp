@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
 
 #include <filesystem>
 
@@ -11,6 +12,8 @@ namespace Planar::Engine::Graphics::Image
     public:
         STBImage();
         ~STBImage();
+
+        PLANAR_DELETE_COPY_FUNCTIONS(STBImage)
 
         bool load(const std::filesystem::path& image_path);
         void free();
