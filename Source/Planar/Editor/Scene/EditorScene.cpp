@@ -1,8 +1,13 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
+#include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
+#include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
+
+#include <vector>
+#include <filesystem>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
 
@@ -21,12 +26,18 @@ namespace Planar::Editor::Scene
         hierarchy_window.set_name("Hierarchy");
         inspector_window.set_name("Inspector");
         settings_window.set_name("Settings");
-        content_window.set_name("Content");
+
+        content_window.set("Content",
+            ImGui::ImGuiWindowFlags::ALWAYS_VERTICAL_SCROLLBAR);
+
         console_window.set_name("Console");
         game_window.set_name("Game");
         scene_window.set_name("Scene");
 
         restore_default_layout();
+
+        folder_texture.load("folder.png");
+        file_texture.load("file.png");
     }
 
     void EditorScene::update()
@@ -101,11 +112,50 @@ namespace Planar::Editor::Scene
 
     void EditorScene::render_content_window()
     {
+        using namespace Planar::Engine::UI;
+
         auto content_window_scope = content_window.render();
 
         if (!content_window_scope)
         {
             return;
+        }
+
+        float window_max = ImGui::get_window_position().x +
+            ImGui::get_window_content_region_max().width - 18.f;
+        const float button_size = 100.f;
+
+        ImGui::ImGuiStyleColor style_color;
+        style_color.set_button_background_color({});
+        style_color.set_button_hover_background_color(
+            { 0.161f, 0.161f, 0.161f, 1.f });
+        style_color.set_button_active_background_color(
+            { 0.2f, 0.2f, 0.2f, 1.f });
+
+        std::vector<std::filesystem::path> listing =
+            Planar::Engine::Core::FileSystem::get_listing();
+
+        for (const auto& i : listing)
+        {
+            if (std::filesystem::is_directory(i))
+            {
+                ImGui::button(i.filename().string(),
+                    folder_texture.get_texture(), button_size);
+            }
+            else if (std::filesystem::is_regular_file(i))
+            {
+                ImGui::button(i.filename().string(),
+                    file_texture.get_texture(), button_size);
+            }
+
+            float last_btn = ImGui::get_item_rect_max().x;
+            float next_btn = last_btn + ImGui::get_item_spacing().width +
+                button_size;
+
+            if (next_btn < window_max)
+            {
+                ImGui::same_line();
+            }
         }
     }
 
