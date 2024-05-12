@@ -23,9 +23,11 @@ namespace Planar::Engine::UI::ImGui
     ImGuiWindow::ImGuiWindow(const std::string& name,
         std::optional<Planar::Engine::Math::Pos2Df> position,
         std::optional<Planar::Engine::Math::Size2Df> size,
-        ImGuiWindowFlags flags, bool allow_close) : active{ true },
+        ImGuiWindowFlags flags, Planar::Engine::Graphics::Color
+        background_color, bool allow_close) : active{ true },
         name{ name }, position{ position }, size{ size },
-        begin_flags{}, allow_close{ allow_close }, first_render{ true }
+        begin_flags{}, background_color{ background_color },
+        allow_close{ allow_close }, first_render{ true }
     {
         set_flags(flags);
     }
@@ -61,6 +63,10 @@ namespace Planar::Engine::UI::ImGui
 
             first_render = false;
         }
+
+        ::ImGui::GetStyle().Colors[ImGuiCol_WindowBg] =
+            { background_color.r, background_color.g, background_color.b,
+            background_color.a };
 
         return std::make_unique<ImGuiWindow::Scope>(
             name.c_str(), begin_flags,
@@ -130,6 +136,12 @@ namespace Planar::Engine::UI::ImGui
         std::optional<Planar::Engine::Math::Size2Df> new_size)
     {
         size = new_size;
+    }
+
+    void ImGuiWindow::set_background_color(
+        Planar::Engine::Graphics::Color new_background_color)
+    {
+        background_color = new_background_color;
     }
 
     void ImGuiWindow::set_allow_close(bool new_allow_close)

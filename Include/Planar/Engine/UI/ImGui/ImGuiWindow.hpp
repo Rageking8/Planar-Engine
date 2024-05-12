@@ -4,6 +4,7 @@
 #include "Planar/Engine/UI/ImGui/ImGuiWindowFlags.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
+#include "Planar/Engine/Graphics/Color.hpp"
 
 #include <string>
 #include <optional>
@@ -29,7 +30,8 @@ namespace Planar::Engine::UI::ImGui
             std::optional<Planar::Engine::Math::Pos2Df> position,
             std::optional<Planar::Engine::Math::Size2Df> size,
             ImGuiWindowFlags flags = ImGuiWindowFlags::NONE,
-            bool allow_close = true);
+            Planar::Engine::Graphics::Color background_color =
+            { 0.06f, 0.06f, 0.06f, 1.f }, bool allow_close = true);
 
         [[nodiscard("The destructor for this object ends the window")]]
         std::unique_ptr<Scope> render();
@@ -48,6 +50,8 @@ namespace Planar::Engine::UI::ImGui
             std::optional<Planar::Engine::Math::Pos2Df> new_position);
         void set_size(
             std::optional<Planar::Engine::Math::Size2Df> new_size);
+        void set_background_color(Planar::Engine::Graphics::Color
+            new_background_color);
         void set_allow_close(bool new_allow_close);
 
         void reset_first_render();
@@ -59,6 +63,7 @@ namespace Planar::Engine::UI::ImGui
         std::optional<Planar::Engine::Math::Size2Df> size;
         ImGuiWindowFlags flags;
         ::ImGuiWindowFlags begin_flags;
+        Planar::Engine::Graphics::Color background_color;
         bool allow_close;
         bool first_render;
     };
