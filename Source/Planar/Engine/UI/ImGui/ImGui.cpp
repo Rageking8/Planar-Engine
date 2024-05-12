@@ -42,6 +42,11 @@ namespace Planar::Engine::UI::ImGui
             static_cast<float>(factor));
     }
 
+    void set_scrollbar_size(float new_scrollbar_size)
+    {
+        ::ImGui::GetStyle().ScrollbarSize = new_scrollbar_size;
+    }
+
     std::string generate_unique_label()
     {
         return "##" + Planar::Engine::Core::GUID::generate_guid(

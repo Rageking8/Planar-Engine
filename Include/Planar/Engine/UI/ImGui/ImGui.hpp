@@ -23,6 +23,8 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void scale_ui(int factor);
 
+    PLANAR_API void set_scrollbar_size(float new_scrollbar_size);
+
     PLANAR_API std::string generate_unique_label();
 
     PLANAR_API void text(const std::string& text);
