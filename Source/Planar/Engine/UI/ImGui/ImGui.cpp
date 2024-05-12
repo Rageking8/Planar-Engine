@@ -47,6 +47,36 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::GetStyle().ScrollbarSize = new_scrollbar_size;
     }
 
+    Planar::Engine::Math::Pos2Df get_window_position()
+    {
+        ImVec2 window_position = ::ImGui::GetWindowPos();
+
+        return { window_position.x, window_position.y };
+    }
+
+    Planar::Engine::Math::Size2Df get_window_content_region_max()
+    {
+        ImVec2 window_content_region_max =
+            ::ImGui::GetWindowContentRegionMax();
+
+        return { window_content_region_max.x,
+            window_content_region_max.y };
+    }
+
+    Planar::Engine::Math::Size2Df get_item_spacing()
+    {
+        ImVec2 item_spacing = ::ImGui::GetStyle().ItemSpacing;
+
+        return { item_spacing.x, item_spacing.y };
+    }
+
+    Planar::Engine::Math::Pos2Df get_item_rect_max()
+    {
+        ImVec2 item_rect_max = ::ImGui::GetItemRectMax();
+
+        return { item_rect_max.x, item_rect_max.y };
+    }
+
     std::string generate_unique_label()
     {
         return "##" + Planar::Engine::Core::GUID::generate_guid(

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Math/Pos2D.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 
 #include "ThirdParty/glad/gl.h"
@@ -24,6 +25,15 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API void scale_ui(int factor);
 
     PLANAR_API void set_scrollbar_size(float new_scrollbar_size);
+
+    PLANAR_API Planar::Engine::Math::Pos2Df get_window_position();
+
+    PLANAR_API Planar::Engine::Math::Size2Df
+        get_window_content_region_max();
+
+    PLANAR_API Planar::Engine::Math::Size2Df get_item_spacing();
+
+    PLANAR_API Planar::Engine::Math::Pos2Df get_item_rect_max();
 
     PLANAR_API std::string generate_unique_label();
 
