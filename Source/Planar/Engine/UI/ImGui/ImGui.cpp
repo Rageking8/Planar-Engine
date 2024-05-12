@@ -104,6 +104,7 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::SetCursorPosX(::ImGui::GetCursorPosX() +
             (size.width * 0.5f) + ::ImGui::GetStyle().FramePadding.x -
             (::ImGui::CalcTextSize(name.c_str()).x * 0.5f));
+        move_cursor_y(-5.f);
         text(name);
         ::ImGui::EndGroup();
 
@@ -140,5 +141,21 @@ namespace Planar::Engine::UI::ImGui
     void dock_space_over_viewport()
     {
         ::ImGui::DockSpaceOverViewport(::ImGui::GetMainViewport());
+    }
+
+    void move_cursor(Planar::Engine::Math::Size2Df delta)
+    {
+        move_cursor_x(delta.width);
+        move_cursor_y(delta.height);
+    }
+
+    void move_cursor_x(float delta)
+    {
+        ::ImGui::SetCursorPosX(::ImGui::GetCursorPosX() + delta);
+    }
+
+    void move_cursor_y(float delta)
+    {
+        ::ImGui::SetCursorPosY(::ImGui::GetCursorPosY() + delta);
     }
 }

@@ -57,4 +57,10 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API void same_line();
 
     PLANAR_API void dock_space_over_viewport();
+
+    PLANAR_API void move_cursor(Planar::Engine::Math::Size2Df delta);
+
+    PLANAR_API void move_cursor_x(float delta);
+
+    PLANAR_API void move_cursor_y(float delta);
 }
