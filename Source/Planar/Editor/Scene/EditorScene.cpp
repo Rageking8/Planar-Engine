@@ -1,14 +1,8 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
-#include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
-
-#include <vector>
-#include <filesystem>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
 
@@ -28,8 +22,8 @@ namespace Planar::Editor::Scene
         inspector_window.set_name("Inspector");
         settings_window.set_name("Settings");
 
-        content_window.set("Content",
-            ImGui::ImGuiWindowFlags::ALWAYS_VERTICAL_SCROLLBAR);
+        content_window.set_folder_texture(folder_texture);
+        content_window.set_file_texture(file_texture);
 
         console_window.set_name("Console");
         game_window.set_name("Game");
@@ -62,7 +56,9 @@ namespace Planar::Editor::Scene
         render_hierarchy_window();
         render_inspector_window();
         render_settings_window();
-        render_content_window();
+
+        content_window.render_window();
+
         render_console_window();
         render_game_window();
         render_scene_window();
@@ -108,57 +104,6 @@ namespace Planar::Editor::Scene
         if (ImGui::button("Restore Default Layout"))
         {
             pending_restore_default_layout = true;
-        }
-    }
-
-    void EditorScene::render_content_window()
-    {
-        using namespace Planar::Engine::UI;
-
-        auto content_window_scope = content_window.render();
-
-        if (!content_window_scope)
-        {
-            return;
-        }
-
-        float window_max = ImGui::get_window_position().x +
-            ImGui::get_window_content_region_max().width - 18.f;
-        const float button_size = 100.f;
-
-        ImGui::ImGuiStyleColor style_color;
-        style_color.set_button_background_color({});
-        style_color.set_button_hover_background_color(
-            { 0.161f, 0.161f, 0.161f, 1.f });
-        style_color.set_button_active_background_color(
-            { 0.2f, 0.2f, 0.2f, 1.f });
-
-        std::vector<std::filesystem::path> listing =
-            Planar::Engine::Core::FileSystem::get_listing();
-
-        for (const auto& i : listing)
-        {
-            {
-                ImGui::Wrapper::Group group;
-
-                std::string name = i.filename().string();
-
-                ImGui::button(name, std::filesystem::is_directory(i) ?
-                    folder_texture.get_texture() : file_texture.
-                    get_texture(), button_size);
-
-                text_renderer.render_center_truncate(name, button_size,
-                    -7.5f, 2);
-            }
-
-            float last_btn = ImGui::get_item_rect_max().x;
-            float next_btn = last_btn + ImGui::get_item_spacing().width +
-                button_size;
-
-            if (next_btn < window_max)
-            {
-                ImGui::same_line();
-            }
         }
     }
 
