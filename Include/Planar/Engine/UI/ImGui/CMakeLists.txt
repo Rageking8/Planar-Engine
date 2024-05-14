@@ -11,3 +11,4 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
 )
 
 add_subdirectory(Macros)
+add_subdirectory(Wrapper)

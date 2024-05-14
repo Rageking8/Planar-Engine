@@ -8,3 +8,5 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGuiStyleColor.cpp
     ImGuiWindow.cpp
 )
+
+add_subdirectory(Wrapper)
