@@ -32,6 +32,11 @@ namespace Planar::Engine::UI::ImGui
         set_flags(flags);
     }
 
+    ImGuiWindow::~ImGuiWindow()
+    {
+
+    }
+
     std::unique_ptr<ImGuiWindow::Scope> ImGuiWindow::render()
     {
         if (!active)

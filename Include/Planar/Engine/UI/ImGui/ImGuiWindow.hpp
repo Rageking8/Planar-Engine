@@ -32,6 +32,7 @@ namespace Planar::Engine::UI::ImGui
             ImGuiWindowFlags flags = ImGuiWindowFlags::NONE,
             Planar::Engine::Graphics::Color background_color =
             { 0.06f, 0.06f, 0.06f, 1.f }, bool allow_close = true);
+        virtual ~ImGuiWindow();
 
         [[nodiscard("The destructor for this object ends the window")]]
         std::unique_ptr<Scope> render();
