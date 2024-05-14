@@ -1,7 +1,7 @@
-#include "Planar/Engine/UI/ImGui/ImGuiInputField.hpp"
+#include "Planar/Engine/UI/ImGui/Element/ImGuiInputField.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Element
 {
     ImGuiInputField::ImGuiInputField(const std::string& placeholder) :
         label{ generate_unique_label() }, placeholder{ placeholder }

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiElement.hpp"
+#include "Planar/Engine/UI/ImGui/Element/ImGuiElement.hpp"
 
 #include <string>
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Element
 {
     class PLANAR_API ImGuiInputField : public ImGuiElement
     {

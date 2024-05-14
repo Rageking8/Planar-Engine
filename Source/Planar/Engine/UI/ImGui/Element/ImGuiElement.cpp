@@ -1,6 +1,6 @@
-#include "Planar/Engine/UI/ImGui/ImGuiElement.hpp"
+#include "Planar/Engine/UI/ImGui/Element/ImGuiElement.hpp"
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Element
 {
     ImGuiElement::ImGuiElement()
     {
