@@ -88,6 +88,23 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::Text(text.c_str());
     }
 
+    void text_wrapped(const std::string& text, float wrap_width)
+    {
+        bool custom_wrap_width = wrap_width != -1.f;
+
+        if (custom_wrap_width)
+        {
+            ::ImGui::PushTextWrapPos(get_cursor_x() + wrap_width);
+        }
+
+        ::ImGui::TextWrapped(text.c_str());
+
+        if (custom_wrap_width)
+        {
+            ::ImGui::PopTextWrapPos();
+        }
+    }
+
     bool button(const std::string& name,
         Planar::Engine::Math::Size2Df size)
     {
@@ -101,9 +118,9 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::BeginGroup();
         bool result = ::ImGui::ImageButton(name.c_str(), (void*)texture,
             { size.width, size.height });
-        ::ImGui::SetCursorPosX(::ImGui::GetCursorPosX() +
-            (size.width * 0.5f) + ::ImGui::GetStyle().FramePadding.x -
-            (::ImGui::CalcTextSize(name.c_str()).x * 0.5f));
+        move_cursor_x((size.width * 0.5f) + ::ImGui::GetStyle().
+            FramePadding.x - (::ImGui::CalcTextSize(name.c_str()).x *
+            0.5f));
         move_cursor_y(-5.f);
         text(name);
         ::ImGui::EndGroup();
@@ -143,6 +160,16 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::DockSpaceOverViewport(::ImGui::GetMainViewport());
     }
 
+    float get_cursor_x()
+    {
+        return ::ImGui::GetCursorPosX();
+    }
+
+    float get_cursor_y()
+    {
+        return ::ImGui::GetCursorPosY();
+    }
+
     void move_cursor(Planar::Engine::Math::Size2Df delta)
     {
         move_cursor_x(delta.width);
@@ -151,11 +178,11 @@ namespace Planar::Engine::UI::ImGui
 
     void move_cursor_x(float delta)
     {
-        ::ImGui::SetCursorPosX(::ImGui::GetCursorPosX() + delta);
+        ::ImGui::SetCursorPosX(get_cursor_x() + delta);
     }
 
     void move_cursor_y(float delta)
     {
-        ::ImGui::SetCursorPosY(::ImGui::GetCursorPosY() + delta);
+        ::ImGui::SetCursorPosY(get_cursor_y() + delta);
     }
 }

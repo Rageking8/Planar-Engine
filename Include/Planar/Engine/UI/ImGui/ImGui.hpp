@@ -39,6 +39,9 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void text(const std::string& text);
 
+    PLANAR_API void text_wrapped(const std::string& text,
+        float wrap_width = -1.f);
+
     PLANAR_API bool button(const std::string& name,
         Planar::Engine::Math::Size2Df size = {});
     PLANAR_API bool button(const std::string& name, GLuint texture,
@@ -57,6 +60,10 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API void same_line();
 
     PLANAR_API void dock_space_over_viewport();
+
+    PLANAR_API float get_cursor_x();
+
+    PLANAR_API float get_cursor_y();
 
     PLANAR_API void move_cursor(Planar::Engine::Math::Size2Df delta);
 
