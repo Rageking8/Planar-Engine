@@ -3,6 +3,7 @@
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
+#include "Planar/Editor/UI/HierarchyWindow.hpp"
 #include "Planar/Editor/UI/ContentWindow.hpp"
 
 namespace Planar::Editor::Scene
@@ -18,7 +19,7 @@ namespace Planar::Editor::Scene
         virtual void render() override;
 
     private:
-        Planar::Engine::UI::ImGui::ImGuiWindow hierarchy_window;
+        Planar::Editor::UI::HierarchyWindow hierarchy_window;
         Planar::Engine::UI::ImGui::ImGuiWindow inspector_window;
         Planar::Engine::UI::ImGui::ImGuiWindow settings_window;
         Planar::Editor::UI::ContentWindow content_window;
@@ -33,7 +34,6 @@ namespace Planar::Editor::Scene
 
         void restore_default_layout() const;
 
-        void render_hierarchy_window();
         void render_inspector_window();
         void render_settings_window();
         void render_console_window();

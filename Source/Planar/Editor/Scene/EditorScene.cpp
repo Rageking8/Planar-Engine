@@ -18,7 +18,6 @@ namespace Planar::Editor::Scene
     {
         using namespace Planar::Engine::UI;
 
-        hierarchy_window.set_name("Hierarchy");
         inspector_window.set_name("Inspector");
         settings_window.set_name("Settings");
 
@@ -53,7 +52,8 @@ namespace Planar::Editor::Scene
 
         render_main_menu_bar();
 
-        render_hierarchy_window();
+        hierarchy_window.render_window();
+
         render_inspector_window();
         render_settings_window();
 
@@ -68,16 +68,6 @@ namespace Planar::Editor::Scene
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
             Planar::Asset::Editor::DefaultLayout);
-    }
-
-    void EditorScene::render_hierarchy_window()
-    {
-        auto hierarchy_window_scope = hierarchy_window.render();
-
-        if (!hierarchy_window_scope)
-        {
-            return;
-        }
     }
 
     void EditorScene::render_inspector_window()
