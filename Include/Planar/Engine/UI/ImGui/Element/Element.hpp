@@ -4,11 +4,11 @@
 
 namespace Planar::Engine::UI::ImGui::Element
 {
-    class PLANAR_API ImGuiElement
+    class PLANAR_API Element
     {
     public:
-        ImGuiElement();
-        virtual ~ImGuiElement() = 0;
+        Element();
+        virtual ~Element() = 0;
 
         virtual void render();
     };

@@ -1,4 +1,4 @@
 target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
-    ImGuiElement.cpp
-    ImGuiInputField.cpp
+    Element.cpp
+    InputField.cpp
 )

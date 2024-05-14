@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
-#include "Planar/Engine/UI/ImGui/Element/ImGuiInputField.hpp"
+#include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 
 #include <functional>
@@ -24,9 +24,9 @@ namespace Planar::Editor::Scene
         void set_project(Planar::Editor::Project::Project* new_project);
 
     private:
-        Planar::Engine::UI::ImGui::Element::ImGuiInputField
+        Planar::Engine::UI::ImGui::Element::InputField
             project_name_input;
-        Planar::Engine::UI::ImGui::Element::ImGuiInputField
+        Planar::Engine::UI::ImGui::Element::InputField
             project_description_input;
 
         bool pending_open_project;

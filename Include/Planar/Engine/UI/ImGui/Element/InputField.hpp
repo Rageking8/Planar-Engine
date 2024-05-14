@@ -1,16 +1,16 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/UI/ImGui/Element/ImGuiElement.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Element.hpp"
 
 #include <string>
 
 namespace Planar::Engine::UI::ImGui::Element
 {
-    class PLANAR_API ImGuiInputField : public ImGuiElement
+    class PLANAR_API InputField : public Element
     {
     public:
-        ImGuiInputField(const std::string& placeholder = "");
+        InputField(const std::string& placeholder = "");
 
         virtual void render() override;
 
