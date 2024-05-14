@@ -10,5 +10,6 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGuiWindowFlags.hpp
 )
 
+add_subdirectory(Element)
 add_subdirectory(Macros)
 add_subdirectory(Wrapper)

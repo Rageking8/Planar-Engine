@@ -9,4 +9,5 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGuiWindow.cpp
 )
 
+add_subdirectory(Element)
 add_subdirectory(Wrapper)
