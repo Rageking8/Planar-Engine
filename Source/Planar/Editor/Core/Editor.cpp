@@ -15,7 +15,7 @@ namespace Planar::Editor::Core
 
     bool Editor::init()
     {
-        if (!Application::init())
+        if (!Base::init())
         {
             return false;
         }

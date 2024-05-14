@@ -4,6 +4,7 @@
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Core/GLFWContext.hpp"
 #include "Planar/Engine/Core/Log/Logger.hpp"
+#include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
@@ -43,6 +44,8 @@ namespace Planar::Engine::Core
         Planar::Engine::Math::Size2Di window_size;
         bool maximize;
         Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api;
+
+        PLANAR_ADD_BASE_USING(Application)
 
     private:
         GLFWContext glfw_context;
