@@ -1,5 +1,6 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
@@ -137,15 +138,17 @@ namespace Planar::Editor::Scene
 
         for (const auto& i : listing)
         {
-            if (std::filesystem::is_directory(i))
             {
-                ImGui::button(i.filename().string(),
-                    folder_texture.get_texture(), button_size);
-            }
-            else if (std::filesystem::is_regular_file(i))
-            {
-                ImGui::button(i.filename().string(),
-                    file_texture.get_texture(), button_size);
+                ImGui::Wrapper::Group group;
+
+                std::string name = i.filename().string();
+
+                ImGui::button(name, std::filesystem::is_directory(i) ?
+                    folder_texture.get_texture() : file_texture.
+                    get_texture(), button_size);
+
+                text_renderer.render_center_truncate(name, button_size,
+                    -7.5f, 2);
             }
 
             float last_btn = ImGui::get_item_rect_max().x;

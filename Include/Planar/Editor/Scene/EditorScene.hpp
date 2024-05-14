@@ -2,6 +2,7 @@
 
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
+#include "Planar/Engine/UI/ImGui/ImGuiTextRenderer.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 
 namespace Planar::Editor::Scene
@@ -29,6 +30,8 @@ namespace Planar::Editor::Scene
 
         Planar::Engine::Graphics::Texture::Texture folder_texture;
         Planar::Engine::Graphics::Texture::Texture file_texture;
+
+        Planar::Engine::UI::ImGui::ImGuiTextRenderer text_renderer;
 
         void restore_default_layout() const;
 
