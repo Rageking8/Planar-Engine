@@ -115,17 +115,8 @@ namespace Planar::Engine::UI::ImGui
     bool button(const std::string& name, GLuint texture,
         Planar::Engine::Math::Size2Df size)
     {
-        ::ImGui::BeginGroup();
-        bool result = ::ImGui::ImageButton(name.c_str(), (void*)texture,
+        return ::ImGui::ImageButton(name.c_str(), (void*)texture,
             { size.width, size.height });
-        move_cursor_x((size.width * 0.5f) + ::ImGui::GetStyle().
-            FramePadding.x - (::ImGui::CalcTextSize(name.c_str()).x *
-            0.5f));
-        move_cursor_y(-5.f);
-        text(name);
-        ::ImGui::EndGroup();
-
-        return result;
     }
 
     void input_text(const std::string& label, std::string& text)
