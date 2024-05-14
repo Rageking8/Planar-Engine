@@ -5,6 +5,7 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGuiInputField.cpp
     ImGuiMainMenuBar.cpp
     ImGuiStyleColor.cpp
+    ImGuiTextRenderer.cpp
     ImGuiWindow.cpp
 )
 
