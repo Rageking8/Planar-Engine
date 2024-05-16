@@ -20,8 +20,6 @@ namespace Planar::Editor::Scene
         content_window.set_folder_texture(folder_texture);
         content_window.set_file_texture(file_texture);
 
-        scene_window.set_name("Scene");
-
         restore_default_layout();
 
         folder_texture.load("folder.png");
@@ -50,24 +48,13 @@ namespace Planar::Editor::Scene
         content_window.render_window();
         console_window.render_window();
         game_window.render_window();
-
-        render_scene_window();
+        scene_window.render_window();
     }
 
     void EditorScene::restore_default_layout() const
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
             Planar::Asset::Editor::DefaultLayout);
-    }
-
-    void EditorScene::render_scene_window()
-    {
-        auto scene_window_scope = scene_window.render();
-
-        if (!scene_window_scope)
-        {
-            return;
-        }
     }
 
     void EditorScene::render_main_menu_bar()

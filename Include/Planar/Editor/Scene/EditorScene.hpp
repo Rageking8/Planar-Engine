@@ -9,6 +9,7 @@
 #include "Planar/Editor/UI/ContentWindow.hpp"
 #include "Planar/Editor/UI/ConsoleWindow.hpp"
 #include "Planar/Editor/UI/GameWindow.hpp"
+#include "Planar/Editor/UI/SceneWindow.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -29,14 +30,12 @@ namespace Planar::Editor::Scene
         Planar::Editor::UI::ContentWindow content_window;
         Planar::Editor::UI::ConsoleWindow console_window;
         Planar::Editor::UI::GameWindow game_window;
-        Planar::Engine::UI::ImGui::ImGuiWindow scene_window;
+        Planar::Editor::UI::SceneWindow scene_window;
 
         Planar::Engine::Graphics::Texture::Texture folder_texture;
         Planar::Engine::Graphics::Texture::Texture file_texture;
 
         void restore_default_layout() const;
-
-        void render_scene_window();
 
         void render_main_menu_bar();
     };
