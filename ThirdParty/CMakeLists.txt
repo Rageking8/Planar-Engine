@@ -36,9 +36,17 @@ FetchContent_Declare(
         SHA256=5D075769721E676746D0C25B698A0F00741F68252F9AB4B7EE245C513AEEC3DE
 )
 
+FetchContent_Declare(
+    dotnet-sdk
+    URL https://download.visualstudio.microsoft.com/download/pr/6dd60d95-f5ae-414e-8259-b2a115e51714/c56f08471133d789dee9ffa52ddf5c1e/dotnet-sdk-8.0.300-win-x64.zip
+    URL_HASH
+        SHA256=A3B8874666A66B425396E144B78514E8BB0BD2E3DC9B715F6A81623CB395DFF2
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
 add_subdirectory(KHR)
 add_subdirectory(stb)
 add_subdirectory(yaml-cpp)
+add_subdirectory(dotnet-sdk)
