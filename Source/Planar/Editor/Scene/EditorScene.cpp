@@ -18,7 +18,6 @@ namespace Planar::Editor::Scene
     {
         using namespace Planar::Engine::UI;
 
-        inspector_window.set_name("Inspector");
         settings_window.set_name("Settings");
 
         content_window.set_folder_texture(folder_texture);
@@ -53,8 +52,8 @@ namespace Planar::Editor::Scene
         render_main_menu_bar();
 
         hierarchy_window.render_window();
+        inspector_window.render_window();
 
-        render_inspector_window();
         render_settings_window();
 
         content_window.render_window();
@@ -68,16 +67,6 @@ namespace Planar::Editor::Scene
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
             Planar::Asset::Editor::DefaultLayout);
-    }
-
-    void EditorScene::render_inspector_window()
-    {
-        auto inspector_window_scope = inspector_window.render();
-
-        if (!inspector_window_scope)
-        {
-            return;
-        }
     }
 
     void EditorScene::render_settings_window()

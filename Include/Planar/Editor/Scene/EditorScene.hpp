@@ -4,6 +4,7 @@
 #include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 #include "Planar/Editor/UI/HierarchyWindow.hpp"
+#include "Planar/Editor/UI/InspectorWindow.hpp"
 #include "Planar/Editor/UI/ContentWindow.hpp"
 
 namespace Planar::Editor::Scene
@@ -20,7 +21,7 @@ namespace Planar::Editor::Scene
 
     private:
         Planar::Editor::UI::HierarchyWindow hierarchy_window;
-        Planar::Engine::UI::ImGui::ImGuiWindow inspector_window;
+        Planar::Editor::UI::InspectorWindow inspector_window;
         Planar::Engine::UI::ImGui::ImGuiWindow settings_window;
         Planar::Editor::UI::ContentWindow content_window;
         Planar::Engine::UI::ImGui::ImGuiWindow console_window;
@@ -34,7 +35,6 @@ namespace Planar::Editor::Scene
 
         void restore_default_layout() const;
 
-        void render_inspector_window();
         void render_settings_window();
         void render_console_window();
         void render_game_window();
