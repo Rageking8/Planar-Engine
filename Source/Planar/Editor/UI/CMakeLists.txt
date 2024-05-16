@@ -2,4 +2,5 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     ContentWindow.cpp
     HierarchyWindow.cpp
     InspectorWindow.cpp
+    SettingsWindow.cpp
 )

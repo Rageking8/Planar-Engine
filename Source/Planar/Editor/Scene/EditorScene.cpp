@@ -8,8 +8,7 @@ PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
 
 namespace Planar::Editor::Scene
 {
-    EditorScene::EditorScene() :
-        pending_restore_default_layout{}
+    EditorScene::EditorScene()
     {
 
     }
@@ -17,8 +16,6 @@ namespace Planar::Editor::Scene
     void EditorScene::init()
     {
         using namespace Planar::Engine::UI;
-
-        settings_window.set_name("Settings");
 
         content_window.set_folder_texture(folder_texture);
         content_window.set_file_texture(file_texture);
@@ -35,11 +32,9 @@ namespace Planar::Editor::Scene
 
     void EditorScene::update()
     {
-        if (pending_restore_default_layout)
+        if (settings_window.get_pending_restore_default_layout())
         {
             restore_default_layout();
-
-            pending_restore_default_layout = false;
         }
     }
 
@@ -53,9 +48,7 @@ namespace Planar::Editor::Scene
 
         hierarchy_window.render_window();
         inspector_window.render_window();
-
-        render_settings_window();
-
+        settings_window.render_window();
         content_window.render_window();
 
         render_console_window();
@@ -67,23 +60,6 @@ namespace Planar::Editor::Scene
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
             Planar::Asset::Editor::DefaultLayout);
-    }
-
-    void EditorScene::render_settings_window()
-    {
-        using namespace Planar::Engine::UI;
-
-        auto settings_window_scope = settings_window.render();
-
-        if (!settings_window_scope)
-        {
-            return;
-        }
-
-        if (ImGui::button("Restore Default Layout"))
-        {
-            pending_restore_default_layout = true;
-        }
     }
 
     void EditorScene::render_console_window()
