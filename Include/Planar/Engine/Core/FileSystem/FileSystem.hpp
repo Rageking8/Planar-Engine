@@ -23,4 +23,6 @@ namespace Planar::Engine::Core::FileSystem
         const std::filesystem::path& path = ".",
         ListingSortType sort_type = ListingSortType::
         FOLDER_THEN_FILE_ALPHABETICAL);
+
+    PLANAR_API void clear_file(const std::filesystem::path& path);
 }

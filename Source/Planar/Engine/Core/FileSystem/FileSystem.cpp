@@ -129,4 +129,9 @@ namespace Planar::Engine::Core::FileSystem
 
         return listing;
     }
+
+    void clear_file(const std::filesystem::path& path)
+    {
+        std::ofstream file(path);
+    }
 }
