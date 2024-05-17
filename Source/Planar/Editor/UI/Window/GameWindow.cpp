@@ -2,10 +2,9 @@
 
 namespace Planar::Editor::UI::Window
 {
-    GameWindow::GameWindow() :
-        ImGuiWindow("Game")
+    GameWindow::GameWindow()
     {
-
+        set("Game");
     }
 
     void GameWindow::render_window()

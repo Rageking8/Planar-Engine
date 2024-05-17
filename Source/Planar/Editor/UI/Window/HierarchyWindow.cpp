@@ -2,10 +2,9 @@
 
 namespace Planar::Editor::UI::Window
 {
-    HierarchyWindow::HierarchyWindow() :
-        ImGuiWindow("Hierarchy")
+    HierarchyWindow::HierarchyWindow()
     {
-
+        set("Hierarchy");
     }
 
     void HierarchyWindow::render_window()

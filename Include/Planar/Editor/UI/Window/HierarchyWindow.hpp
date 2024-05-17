@@ -1,15 +1,14 @@
 #pragma once
 
-#include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
+#include "Planar/Editor/UI/Window/EditorWindow.hpp"
 
 namespace Planar::Editor::UI::Window
 {
-    class HierarchyWindow :
-        public Planar::Engine::UI::ImGui::Window::ImGuiWindow
+    class HierarchyWindow : public EditorWindow
     {
     public:
         HierarchyWindow();
 
-        void render_window();
+        virtual void render_window() override;
     };
 }

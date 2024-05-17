@@ -2,10 +2,9 @@
 
 namespace Planar::Editor::UI::Window
 {
-    ConsoleWindow::ConsoleWindow() :
-        ImGuiWindow("Console")
+    ConsoleWindow::ConsoleWindow()
     {
-
+        set_name("Console");
     }
 
     void ConsoleWindow::render_window()

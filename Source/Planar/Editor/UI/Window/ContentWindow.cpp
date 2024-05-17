@@ -10,11 +10,12 @@
 
 namespace Planar::Editor::UI::Window
 {
-    ContentWindow::ContentWindow() : ImGuiWindow("Content",
-        Planar::Engine::UI::ImGui::Window::ImGuiWindowFlags::
-        ALWAYS_VERTICAL_SCROLLBAR), folder_texture{}, file_texture{}
+    ContentWindow::ContentWindow() : folder_texture{},
+        file_texture{}
     {
-
+        set("Content",
+            Planar::Engine::UI::ImGui::Window::ImGuiWindowFlags::
+            ALWAYS_VERTICAL_SCROLLBAR);
     }
 
     void ContentWindow::render_window()

@@ -2,10 +2,9 @@
 
 namespace Planar::Editor::UI::Window
 {
-    InspectorWindow::InspectorWindow() :
-        ImGuiWindow("Inspector")
+    InspectorWindow::InspectorWindow()
     {
-
+        set("Inspector");
     }
 
     void InspectorWindow::render_window()

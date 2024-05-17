@@ -4,9 +4,9 @@
 namespace Planar::Editor::UI::Window
 {
     SettingsWindow::SettingsWindow() :
-        ImGuiWindow("Settings"), pending_restore_default_layout{}
+        pending_restore_default_layout{}
     {
-
+        set("Settings");
     }
 
     void SettingsWindow::render_window()

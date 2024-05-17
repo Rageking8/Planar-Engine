@@ -1,18 +1,17 @@
 #pragma once
 
-#include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
+#include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiTextRenderer.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 
 namespace Planar::Editor::UI::Window
 {
-    class ContentWindow :
-        public Planar::Engine::UI::ImGui::Window::ImGuiWindow
+    class ContentWindow : public EditorWindow
     {
     public:
         ContentWindow();
 
-        void render_window();
+        virtual void render_window() override;
 
         void set_folder_texture(
             Planar::Engine::Graphics::Texture::Texture&
