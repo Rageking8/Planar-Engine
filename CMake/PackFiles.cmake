@@ -51,9 +51,9 @@ endfunction()
 # `pack_binary_to_unsigned_char_array` breaks current directory
 # values
 macro(pack_binary_to_unsigned_char_array_macro)
-    file(RELATIVE_PATH namespace ${CMAKE_SOURCE_DIR}
+    file(RELATIVE_PATH relative ${CMAKE_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR})
-    string(REPLACE "/" "::" namespace ${namespace})
+    string(REPLACE "/" "::" namespace ${relative})
 
     foreach (binary_file ${ARGN})
         get_filename_component(binary_name ${binary_file} NAME_WLE)
@@ -110,5 +110,12 @@ macro(pack_binary_to_unsigned_char_array_macro)
 
             target_sources(${target} PRIVATE ${current_output_file})
         endwhile()
+
+        if(${chunk_size} GREATER 0)
+            file(WRITE
+                ${PLANAR_ASSET_INCLUDE_DIR}/${relative}/${binary_name}.h
+                "#define PLANAR_ASSET_INCLUDE_${binary_name} ${chunk_id}"
+            )
+        endif()
     endforeach()
 endmacro()
