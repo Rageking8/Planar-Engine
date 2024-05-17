@@ -45,6 +45,7 @@ Currently Windows is the only operating system supported.
 
 1. Planar Editor
     - Planar Engine - All core routines
+    - [.NET SDK](https://dotnet.microsoft.com/en-us/download) - Build and publish C# projects
 
 1. Website
     - [zero-md](https://github.com/zerodevx/zero-md) - Display Markdown
