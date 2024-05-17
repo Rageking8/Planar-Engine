@@ -10,6 +10,10 @@ target_include_directories(${PLANAR_EDITOR_TARGET} PRIVATE
 )
 
 if(MSVC)
+    target_compile_options(${PLANAR_EDITOR_TARGET} PRIVATE
+        /Zc:preprocessor
+    )
+
     set_target_properties(${PLANAR_EDITOR_TARGET} PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY
         ${CMAKE_BINARY_DIR}/Source/Planar/Editor/$<0:>
