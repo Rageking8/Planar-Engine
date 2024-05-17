@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
+#include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiTextRenderer.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 
 namespace Planar::Editor::UI
 {
     class ContentWindow :
-        public Planar::Engine::UI::ImGui::ImGuiWindow
+        public Planar::Engine::UI::ImGui::Window::ImGuiWindow
     {
     public:
         ContentWindow();

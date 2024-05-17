@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiWindowFlags.hpp"
+#include "Planar/Engine/UI/ImGui/Window/ImGuiWindowFlags.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Graphics/Color.hpp"
@@ -12,7 +12,7 @@
 
 #include "ThirdParty/ImGui/imgui.h"
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Window
 {
     class PLANAR_API ImGuiWindow
     {

@@ -1,5 +1,6 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
@@ -88,7 +89,7 @@ namespace Planar::Editor::Scene
                 });
 
             auto make_active_on_menu_item = [&](const std::string& name,
-                ImGui::ImGuiWindow& window)
+                ImGui::Window::ImGuiWindow& window)
                 {
                     if (main_menu_bar.add_menu_item(name))
                     {

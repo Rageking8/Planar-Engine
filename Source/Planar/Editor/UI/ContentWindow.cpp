@@ -1,6 +1,6 @@
 #include "Planar/Editor/UI/ContentWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiWindowFlags.hpp"
+#include "Planar/Engine/UI/ImGui/Window/ImGuiWindowFlags.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
@@ -11,7 +11,7 @@
 namespace Planar::Editor::UI
 {
     ContentWindow::ContentWindow() : ImGuiWindow("Content",
-        Planar::Engine::UI::ImGui::ImGuiWindowFlags::
+        Planar::Engine::UI::ImGui::Window::ImGuiWindowFlags::
         ALWAYS_VERTICAL_SCROLLBAR), folder_texture{}, file_texture{}
     {
 

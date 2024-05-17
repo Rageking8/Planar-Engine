@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/Core/Utils/EnumClassFlags.hpp"
 
-PLANAR_BEGIN_ENUM_CLASS_FLAG(Planar::Engine::UI::ImGui,
+PLANAR_BEGIN_ENUM_CLASS_FLAG(Planar::Engine::UI::ImGui::Window,
     ImGuiWindowFlags)
 {
     NONE = 0,

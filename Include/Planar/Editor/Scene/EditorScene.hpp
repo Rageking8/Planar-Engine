@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Planar/Engine/Scene/Scene.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 #include "Planar/Editor/UI/HierarchyWindow.hpp"
 #include "Planar/Editor/UI/InspectorWindow.hpp"

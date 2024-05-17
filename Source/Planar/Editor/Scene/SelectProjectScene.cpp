@@ -1,6 +1,6 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiWindowFlags.hpp"
+#include "Planar/Engine/UI/ImGui/Window/ImGuiWindowFlags.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -21,9 +21,9 @@ namespace Planar::Editor::Scene
         ImGui::set_scrollbar_size(15.f);
 
         main_window.set("Select Project",
-            ImGui::ImGuiWindowFlags::FIT_TO_WINDOW |
-            ImGui::ImGuiWindowFlags::MINIMAL |
-            ImGui::ImGuiWindowFlags::NO_STORE_INI);
+            ImGui::Window::ImGuiWindowFlags::FIT_TO_WINDOW |
+            ImGui::Window::ImGuiWindowFlags::MINIMAL |
+            ImGui::Window::ImGuiWindowFlags::NO_STORE_INI);
     }
 
     void SelectProjectScene::update()

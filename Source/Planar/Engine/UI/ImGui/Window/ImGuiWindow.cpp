@@ -1,6 +1,6 @@
-#include "Planar/Engine/UI/ImGui/ImGuiWindow.hpp"
+#include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Window
 {
     ImGuiWindow::Scope::Scope(const char* name,
         ::ImGuiWindowFlags begin_flags, bool* open)
