@@ -9,6 +9,10 @@ function(pack_text_to_string target)
         get_filename_component(source_name ${source_file} NAME_WLE)
         set(output_file ${CMAKE_CURRENT_BINARY_DIR}/${source_name}.cpp)
 
+        if(${PLANAR_CMAKE_FUNCTION_LOG})
+            message(STATUS "Packing ${source_name}")
+        endif()
+
         file(READ ${source_file} file_data)
         string(REPLACE "\n" "\\n" file_data ${file_data})
         string(REPLACE "\"" "\\\"" file_data ${file_data})
@@ -55,6 +59,10 @@ macro(pack_binary_to_unsigned_char_array_macro)
         get_filename_component(binary_name ${binary_file} NAME_WLE)
         set(output_file ${CMAKE_CURRENT_BINARY_DIR}/${binary_name})
 
+        if(${PLANAR_CMAKE_FUNCTION_LOG})
+            message(STATUS "Packing ${binary_name}")
+        endif()
+
         file(READ ${binary_file} file_data HEX)
         string(REGEX REPLACE "([0-9a-f][0-9a-f])" "0x\\1,"
             file_data ${file_data}
@@ -68,6 +76,18 @@ macro(pack_binary_to_unsigned_char_array_macro)
             math(EXPR chunk_id "${chunk_id} + 1")
             math(EXPR length_left "${file_length} - ${file_index}")
 
+            if(${chunk_size} LESS_EQUAL 0)
+                set(current_output_file ${output_file}.cpp)
+                set(current_array_name ${binary_name})
+            else()
+                set(current_output_file ${output_file}${chunk_id}.cpp)
+                set(current_array_name ${binary_name}${chunk_id})
+            endif()
+
+            if(${PLANAR_CMAKE_FUNCTION_LOG} AND ${chunk_size} GREATER 0)
+                message(STATUS "    Chunking ${current_array_name}")
+            endif()
+
             if(${length_left} LESS ${chunk_size} OR
                 ${chunk_size} LESS_EQUAL 0)
                 string(SUBSTRING ${file_data} ${file_index} -1 chunk_data)
@@ -77,14 +97,6 @@ macro(pack_binary_to_unsigned_char_array_macro)
                     ${chunk_size} chunk_data
                 )
                 math(EXPR file_index "${file_index} + ${chunk_size}")
-            endif()
-
-            if(${chunk_size} LESS_EQUAL 0)
-                set(current_output_file ${output_file}.cpp)
-                set(current_array_name ${binary_name})
-            else()
-                set(current_output_file ${output_file}${chunk_id}.cpp)
-                set(current_array_name ${binary_name}${chunk_id})
             endif()
 
             file(WRITE ${current_output_file}
