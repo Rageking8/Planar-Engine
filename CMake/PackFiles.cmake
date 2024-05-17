@@ -100,10 +100,14 @@ macro(pack_binary_to_unsigned_char_array_macro)
             endif()
 
             file(WRITE ${current_output_file}
-"namespace Planar::${namespace}
+"#include <cstddef>
+
+namespace Planar::${namespace}
 {
     extern const unsigned char ${current_array_name}[] =
         {${chunk_data}};
+    extern const std::size_t ${current_array_name}_length =
+        sizeof(${current_array_name}) / sizeof(unsigned char);
 }
 "
             )
