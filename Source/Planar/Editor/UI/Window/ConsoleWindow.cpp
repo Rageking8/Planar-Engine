@@ -1,14 +1,14 @@
-#include "Planar/Editor/UI/GameWindow.hpp"
+#include "Planar/Editor/UI/Window/ConsoleWindow.hpp"
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
-    GameWindow::GameWindow() :
-        ImGuiWindow("Game")
+    ConsoleWindow::ConsoleWindow() :
+        ImGuiWindow("Console")
     {
 
     }
 
-    void GameWindow::render_window()
+    void ConsoleWindow::render_window()
     {
         using namespace Planar::Engine::UI;
 

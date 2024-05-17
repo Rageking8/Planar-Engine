@@ -2,13 +2,13 @@
 
 #include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
-    class GameWindow :
+    class SceneWindow :
         public Planar::Engine::UI::ImGui::Window::ImGuiWindow
     {
     public:
-        GameWindow();
+        SceneWindow();
 
         void render_window();
     };

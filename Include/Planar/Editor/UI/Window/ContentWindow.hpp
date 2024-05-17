@@ -4,7 +4,7 @@
 #include "Planar/Engine/UI/ImGui/ImGuiTextRenderer.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
     class ContentWindow :
         public Planar::Engine::UI::ImGui::Window::ImGuiWindow

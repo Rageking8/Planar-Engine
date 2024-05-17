@@ -1,6 +1,6 @@
-#include "Planar/Editor/UI/HierarchyWindow.hpp"
+#include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
     HierarchyWindow::HierarchyWindow() :
         ImGuiWindow("Hierarchy")

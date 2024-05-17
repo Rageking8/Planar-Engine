@@ -2,13 +2,13 @@
 
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
-#include "Planar/Editor/UI/HierarchyWindow.hpp"
-#include "Planar/Editor/UI/InspectorWindow.hpp"
-#include "Planar/Editor/UI/SettingsWindow.hpp"
-#include "Planar/Editor/UI/ContentWindow.hpp"
-#include "Planar/Editor/UI/ConsoleWindow.hpp"
-#include "Planar/Editor/UI/GameWindow.hpp"
-#include "Planar/Editor/UI/SceneWindow.hpp"
+#include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
+#include "Planar/Editor/UI/Window/InspectorWindow.hpp"
+#include "Planar/Editor/UI/Window/SettingsWindow.hpp"
+#include "Planar/Editor/UI/Window/ContentWindow.hpp"
+#include "Planar/Editor/UI/Window/ConsoleWindow.hpp"
+#include "Planar/Editor/UI/Window/GameWindow.hpp"
+#include "Planar/Editor/UI/Window/SceneWindow.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -23,13 +23,13 @@ namespace Planar::Editor::Scene
         virtual void render() override;
 
     private:
-        Planar::Editor::UI::HierarchyWindow hierarchy_window;
-        Planar::Editor::UI::InspectorWindow inspector_window;
-        Planar::Editor::UI::SettingsWindow settings_window;
-        Planar::Editor::UI::ContentWindow content_window;
-        Planar::Editor::UI::ConsoleWindow console_window;
-        Planar::Editor::UI::GameWindow game_window;
-        Planar::Editor::UI::SceneWindow scene_window;
+        Planar::Editor::UI::Window::HierarchyWindow hierarchy_window;
+        Planar::Editor::UI::Window::InspectorWindow inspector_window;
+        Planar::Editor::UI::Window::SettingsWindow settings_window;
+        Planar::Editor::UI::Window::ContentWindow content_window;
+        Planar::Editor::UI::Window::ConsoleWindow console_window;
+        Planar::Editor::UI::Window::GameWindow game_window;
+        Planar::Editor::UI::Window::SceneWindow scene_window;
 
         Planar::Engine::Graphics::Texture::Texture folder_texture;
         Planar::Engine::Graphics::Texture::Texture file_texture;

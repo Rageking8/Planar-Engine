@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
     class SettingsWindow :
         public Planar::Engine::UI::ImGui::Window::ImGuiWindow

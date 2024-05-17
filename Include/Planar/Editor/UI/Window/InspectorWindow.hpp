@@ -2,13 +2,13 @@
 
 #include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
-    class HierarchyWindow :
+    class InspectorWindow :
         public Planar::Engine::UI::ImGui::Window::ImGuiWindow
     {
     public:
-        HierarchyWindow();
+        InspectorWindow();
 
         void render_window();
     };

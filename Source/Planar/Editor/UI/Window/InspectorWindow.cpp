@@ -1,6 +1,6 @@
-#include "Planar/Editor/UI/InspectorWindow.hpp"
+#include "Planar/Editor/UI/Window/InspectorWindow.hpp"
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
     InspectorWindow::InspectorWindow() :
         ImGuiWindow("Inspector")

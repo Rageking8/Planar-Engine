@@ -1,4 +1,4 @@
-#include "Planar/Editor/UI/ContentWindow.hpp"
+#include "Planar/Editor/UI/Window/ContentWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/ImGuiWindowFlags.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
@@ -8,7 +8,7 @@
 #include <vector>
 #include <filesystem>
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
     ContentWindow::ContentWindow() : ImGuiWindow("Content",
         Planar::Engine::UI::ImGui::Window::ImGuiWindowFlags::

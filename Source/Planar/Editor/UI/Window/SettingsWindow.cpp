@@ -1,7 +1,7 @@
-#include "Planar/Editor/UI/SettingsWindow.hpp"
+#include "Planar/Editor/UI/Window/SettingsWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
-namespace Planar::Editor::UI
+namespace Planar::Editor::UI::Window
 {
     SettingsWindow::SettingsWindow() :
         ImGuiWindow("Settings"), pending_restore_default_layout{}
