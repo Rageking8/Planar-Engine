@@ -10,8 +10,8 @@ namespace Planar::Engine::Core::FileSystem
 {
     std::wstring select_folder_dialog()
     {
-        IFileDialog* pfd;
-        wchar_t* path;
+        IFileDialog* pfd{};
+        wchar_t* path{};
         bool fail = true;
 
         if (SUCCEEDED(CoCreateInstance(CLSID_FileOpenDialog, NULL,
