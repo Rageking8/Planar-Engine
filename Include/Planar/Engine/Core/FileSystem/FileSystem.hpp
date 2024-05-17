@@ -5,6 +5,7 @@
 
 #include <string>
 #include <vector>
+#include <cstddef>
 #include <filesystem>
 
 namespace Planar::Engine::Core::FileSystem
@@ -25,4 +26,14 @@ namespace Planar::Engine::Core::FileSystem
         FOLDER_THEN_FILE_ALPHABETICAL);
 
     PLANAR_API void clear_file(const std::filesystem::path& path);
+
+    template <typename T, std::size_t N>
+    void append_array_to_file(const std::filesystem::path& path,
+        T(&array)[N]);
+
+    template <typename T>
+    void append_array_to_file(const std::filesystem::path& path,
+        T* array, std::size_t size);
 }
+
+#include "Planar/Engine/Core/FileSystem/FileSystem.tpp"
