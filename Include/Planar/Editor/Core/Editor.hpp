@@ -14,6 +14,8 @@ namespace Planar::Editor::Core
 
         void enter_editor();
 
+        void load_scripting();
+
     private:
         Planar::Editor::Project::Project project;
     };
