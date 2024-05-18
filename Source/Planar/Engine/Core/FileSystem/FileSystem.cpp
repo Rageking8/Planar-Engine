@@ -132,6 +132,6 @@ namespace Planar::Engine::Core::FileSystem
 
     void clear_file(const std::filesystem::path& path)
     {
-        std::ofstream file(path);
+        create_file(path, "");
     }
 }
