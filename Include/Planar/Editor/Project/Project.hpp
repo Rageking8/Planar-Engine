@@ -12,7 +12,8 @@ namespace Planar::Editor::Project
 
         bool open_project();
         bool create_project(const std::string& project_name,
-            const std::string& project_description);
+            const std::string& project_description,
+            bool create_gitignore);
 
         std::filesystem::path get_root_path() const;
         std::string get_project_name() const;

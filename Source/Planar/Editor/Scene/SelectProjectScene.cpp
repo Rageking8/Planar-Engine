@@ -7,7 +7,9 @@ namespace Planar::Editor::Scene
     SelectProjectScene::SelectProjectScene() :
         project_name_input("Project Name"),
         project_description_input("Description"),
-        pending_open_project{}, pending_create_project{}
+        project_gitignore_checkbox("Create .gitignore"),
+        pending_open_project{}, pending_create_project{},
+        project{}
     {
 
     }
@@ -58,10 +60,11 @@ namespace Planar::Editor::Scene
             pending_open_project = true;
         }
 
-        ImGui::newline();
+        ImGui::newline(2);
 
         project_name_input.render();
         project_description_input.render();
+        project_gitignore_checkbox.render();
 
         if (ImGui::button("Create Project"))
         {
@@ -99,9 +102,12 @@ namespace Planar::Editor::Scene
         const std::string& project_name = project_name_input.get_text();
         const std::string& project_description =
             project_description_input.get_text();
+        const bool create_gitignore = project_gitignore_checkbox.
+            get_value();
 
         if (project && project->create_project(project_name,
-            project_description) && editor_enter_callback)
+            project_description, create_gitignore) &&
+            editor_enter_callback)
         {
             editor_enter_callback();
         }

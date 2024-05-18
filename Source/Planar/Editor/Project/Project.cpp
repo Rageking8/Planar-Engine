@@ -7,6 +7,7 @@
 
 #include <iostream>
 
+PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Project)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Scene)
 
@@ -45,7 +46,7 @@ namespace Planar::Editor::Project
     }
 
     bool Project::create_project(const std::string& project_name,
-        const std::string& project_description)
+        const std::string& project_description, bool create_gitignore)
     {
         if (project_name.empty())
         {
@@ -70,6 +71,13 @@ namespace Planar::Editor::Project
         std::string main_scene_guid = create_main_scene();
         create_project_file(project_name, project_description,
             main_scene_guid);
+
+        if (create_gitignore)
+        {
+            Planar::Engine::Core::FileSystem::create_file(
+                root_path / ".gitignore",
+                Planar::Asset::Editor::Project::Ignore);
+        }
 
         return true;
     }

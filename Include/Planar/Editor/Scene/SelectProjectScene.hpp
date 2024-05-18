@@ -3,6 +3,7 @@
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 
 #include <functional>
@@ -28,6 +29,8 @@ namespace Planar::Editor::Scene
             project_name_input;
         Planar::Engine::UI::ImGui::Element::InputField
             project_description_input;
+        Planar::Engine::UI::ImGui::Element::Checkbox
+            project_gitignore_checkbox;
 
         bool pending_open_project;
         bool pending_create_project;
