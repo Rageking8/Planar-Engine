@@ -47,11 +47,6 @@ namespace Planar::Engine::Core::FileSystem
     void create_file(const std::filesystem::path& path,
         const std::string& contents)
     {
-        if (!path.has_extension())
-        {
-            return;
-        }
-
         if (path.has_parent_path())
         {
             std::filesystem::create_directories(path.parent_path());
