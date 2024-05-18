@@ -15,7 +15,7 @@
     namespace Planar::Asset::ns                         \
     {                                                   \
         extern const unsigned char name[];              \
-        extern const std::size_t name_length;           \
+        extern const std::size_t name##_length;         \
     }                                                   \
 
 #define PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_SINGLE_CHUNK( \
