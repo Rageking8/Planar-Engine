@@ -1,7 +1,5 @@
 pack_text_to_string(${PLANAR_EDITOR_TARGET}
     DefaultLayout.planarlayout
-    Project.planar
-    Scene.planarscene
 )
 
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/Asset/Editor/dotnet_sdk1.cpp)
@@ -20,3 +18,4 @@ else()
 endif()
 
 add_subdirectory(Icons)
+add_subdirectory(Project)

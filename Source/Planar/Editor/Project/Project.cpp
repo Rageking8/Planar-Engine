@@ -7,8 +7,8 @@
 
 #include <iostream>
 
-PLANAR_LOAD_STD_STRING_ASSET(Editor, Project)
-PLANAR_LOAD_STD_STRING_ASSET(Editor, Scene)
+PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Project)
+PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Scene)
 
 namespace Planar::Editor::Project
 {
@@ -87,7 +87,7 @@ namespace Planar::Editor::Project
             root_path / "Project.planar",
             Planar::Engine::Asset::preprocess_asset_scalar(
             Planar::Engine::Asset::preprocess_asset_meta(
-            Planar::Asset::Editor::Project),
+            Planar::Asset::Editor::Project::Project),
             {
                 { "<VERSION>", Planar::Engine::Core::VERSION },
 
@@ -113,7 +113,7 @@ namespace Planar::Editor::Project
             root_path / "Scenes/MainScene.planarscene",
             Planar::Engine::Asset::preprocess_asset_scalar(
             Planar::Engine::Asset::preprocess_asset_meta(
-            Planar::Asset::Editor::Scene),
+            Planar::Asset::Editor::Project::Scene),
             {
                 { "<VERSION>", Planar::Engine::Core::VERSION },
 
