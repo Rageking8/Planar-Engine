@@ -1,4 +1,5 @@
 add_subdirectory(Core)
 add_subdirectory(Project)
 add_subdirectory(Scene)
+add_subdirectory(Script)
 add_subdirectory(UI)
