@@ -4,6 +4,7 @@
 #include "Planar/Editor/Script/Init/Init.hpp"
 
 #include <memory>
+#include <filesystem>
 #include <functional>
 
 namespace Planar::Editor::Core
@@ -42,7 +43,10 @@ namespace Planar::Editor::Core
 
     void Editor::load_scripting()
     {
-        Planar::Editor::Script::Init::write_dotnet_sdk_zip(
-            "Cache/dotnet_sdk.zip");
+        if (!std::filesystem::exists("Cache/dotnet_sdk.zip"))
+        {
+            Planar::Editor::Script::Init::write_dotnet_sdk_zip(
+                "Cache/dotnet_sdk.zip");
+        }
     }
 }
