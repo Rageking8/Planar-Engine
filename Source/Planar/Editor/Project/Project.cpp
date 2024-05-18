@@ -74,6 +74,11 @@ namespace Planar::Editor::Project
         return true;
     }
 
+    std::filesystem::path Project::get_root_path() const
+    {
+        return root_path;
+    }
+
     std::string Project::get_project_name() const
     {
         return project_name;

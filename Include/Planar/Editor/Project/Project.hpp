@@ -14,6 +14,7 @@ namespace Planar::Editor::Project
         bool create_project(const std::string& project_name,
             const std::string& project_description);
 
+        std::filesystem::path get_root_path() const;
         std::string get_project_name() const;
 
     private:
