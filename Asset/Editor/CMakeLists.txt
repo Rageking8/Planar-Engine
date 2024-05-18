@@ -18,3 +18,5 @@ else()
         math(EXPR chunk_id "${chunk_id} + 1")
     endwhile()
 endif()
+
+add_subdirectory(Icons)

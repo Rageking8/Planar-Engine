@@ -31,8 +31,8 @@ namespace Planar::Editor::Scene
         Planar::Editor::UI::Window::GameWindow game_window;
         Planar::Editor::UI::Window::SceneWindow scene_window;
 
-        Planar::Engine::Graphics::Texture::Texture folder_texture;
         Planar::Engine::Graphics::Texture::Texture file_texture;
+        Planar::Engine::Graphics::Texture::Texture folder_texture;
 
         void restore_default_layout() const;
 

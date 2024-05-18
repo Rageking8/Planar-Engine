@@ -6,6 +6,8 @@
 #include "Planar/Engine/Core/Shell/Shell.hpp"
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
+PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Icons, FileIcon)
+PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Icons, FolderIcon)
 
 namespace Planar::Editor::Scene
 {
@@ -18,13 +20,15 @@ namespace Planar::Editor::Scene
     {
         using namespace Planar::Engine::UI;
 
-        content_window.set_folder_texture(folder_texture);
         content_window.set_file_texture(file_texture);
+        content_window.set_folder_texture(folder_texture);
 
         restore_default_layout();
 
-        folder_texture.load("folder.png");
-        file_texture.load("file.png");
+        file_texture.load(Planar::Asset::Editor::Icons::FileIcon,
+            Planar::Asset::Editor::Icons::FileIcon_length);
+        folder_texture.load(Planar::Asset::Editor::Icons::FolderIcon,
+            Planar::Asset::Editor::Icons::FolderIcon_length);
     }
 
     void EditorScene::update()
