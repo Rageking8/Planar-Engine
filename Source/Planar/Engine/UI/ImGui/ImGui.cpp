@@ -136,9 +136,12 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::Image((void*)texture, { size.width, size.height });
     }
 
-    void newline()
+    void newline(unsigned count)
     {
-        ::ImGui::NewLine();
+        for (unsigned i = 0; i < count; ++i)
+        {
+            ::ImGui::NewLine();
+        }
     }
 
     void same_line()

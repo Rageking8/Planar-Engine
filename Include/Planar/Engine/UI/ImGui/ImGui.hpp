@@ -55,7 +55,7 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API void image(GLuint texture,
         Planar::Engine::Math::Size2Df size);
 
-    PLANAR_API void newline();
+    PLANAR_API void newline(unsigned count = 1);
 
     PLANAR_API void same_line();
 
