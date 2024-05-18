@@ -116,10 +116,14 @@ namespace Planar::${namespace}
         endwhile()
 
         if(${chunk_size} GREATER 0)
-            file(WRITE
+            set(asset_include_name
                 ${PLANAR_ASSET_INCLUDE_DIR}/${relative}/${binary_name}.h
+            )
+            file(WRITE ${asset_include_name}
                 "#define PLANAR_ASSET_INCLUDE_${binary_name} ${chunk_id}"
             )
+
+            target_sources(${target} PRIVATE ${asset_include_name})
         endif()
     endforeach()
 endmacro()
