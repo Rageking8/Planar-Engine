@@ -27,6 +27,14 @@ namespace Planar::Engine::Graphics::Texture
             texture_path);
     }
 
+    void Texture::load(const unsigned char* buffer, std::size_t length)
+    {
+        free();
+
+        texture = Planar::Engine::Graphics::Load::load_image(
+            buffer, length);
+    }
+
     void Texture::free()
     {
         glDeleteTextures(1, &texture);

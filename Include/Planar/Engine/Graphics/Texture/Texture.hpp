@@ -5,6 +5,7 @@
 
 #include "ThirdParty/glad/gl.h"
 
+#include <cstddef>
 #include <filesystem>
 
 namespace Planar::Engine::Graphics::Texture
@@ -19,6 +20,7 @@ namespace Planar::Engine::Graphics::Texture
         PLANAR_DELETE_COPY_FUNCTIONS(Texture)
 
         void load(const std::filesystem::path& texture_path);
+        void load(const unsigned char* buffer, std::size_t length);
         void free();
 
         GLuint get_texture() const;

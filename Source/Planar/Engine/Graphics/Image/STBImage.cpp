@@ -22,6 +22,14 @@ namespace Planar::Engine::Graphics::Image
         return data;
     }
 
+    bool STBImage::load(const unsigned char* buffer, std::size_t length)
+    {
+        data = stbi_load_from_memory(buffer, length, &width,
+            &height, nullptr, 4);
+
+        return data;
+    }
+
     void STBImage::free()
     {
         stbi_image_free(data);

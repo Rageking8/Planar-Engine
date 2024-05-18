@@ -3,6 +3,7 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
 
+#include <cstddef>
 #include <filesystem>
 
 namespace Planar::Engine::Graphics::Image
@@ -16,6 +17,7 @@ namespace Planar::Engine::Graphics::Image
         PLANAR_DELETE_COPY_FUNCTIONS(STBImage)
 
         bool load(const std::filesystem::path& image_path);
+        bool load(const unsigned char* buffer, std::size_t length);
         void free();
 
         unsigned char* get_data() const;

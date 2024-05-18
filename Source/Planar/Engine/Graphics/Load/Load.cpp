@@ -19,4 +19,20 @@ namespace Planar::Engine::Graphics::Load
 
         return texture;
     }
+
+    GLuint load_image(const unsigned char* buffer, std::size_t length)
+    {
+        GLuint texture = 0;
+
+        Planar::Engine::Graphics::Image::STBImage stb_image;
+        if (!stb_image.load(buffer, length))
+        {
+            return texture;
+        }
+
+        Planar::Engine::Graphics::Create::create_texture(
+            &texture, stb_image);
+
+        return texture;
+    }
 }
