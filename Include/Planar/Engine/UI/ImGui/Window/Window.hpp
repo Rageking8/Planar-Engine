@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/UI/ImGui/Window/ImGuiWindowFlags.hpp"
+#include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Graphics/Color.hpp"
@@ -14,7 +14,7 @@
 
 namespace Planar::Engine::UI::ImGui::Window
 {
-    class PLANAR_API ImGuiWindow
+    class PLANAR_API Window
     {
     public:
         struct PLANAR_API Scope
@@ -24,29 +24,29 @@ namespace Planar::Engine::UI::ImGui::Window
             ~Scope();
         };
 
-        ImGuiWindow(const std::string& name = "",
-            ImGuiWindowFlags flags = ImGuiWindowFlags::NONE);
-        ImGuiWindow(const std::string& name,
+        Window(const std::string& name = "",
+            WindowFlags flags = WindowFlags::NONE);
+        Window(const std::string& name,
             std::optional<Planar::Engine::Math::Pos2Df> position,
             std::optional<Planar::Engine::Math::Size2Df> size,
-            ImGuiWindowFlags flags = ImGuiWindowFlags::NONE,
+            WindowFlags flags = WindowFlags::NONE,
             Planar::Engine::Graphics::Color background_color =
             { 0.06f, 0.06f, 0.06f, 1.f }, bool allow_close = true);
-        virtual ~ImGuiWindow();
+        virtual ~Window();
 
         [[nodiscard("The destructor for this object ends the window")]]
         std::unique_ptr<Scope> render();
 
         void set(const std::string& new_name = "",
-            ImGuiWindowFlags new_flags = ImGuiWindowFlags::NONE);
+            WindowFlags new_flags = WindowFlags::NONE);
         void set(const std::string& new_name,
             std::optional<Planar::Engine::Math::Pos2Df> new_position,
             std::optional<Planar::Engine::Math::Size2Df> new_size,
-            ImGuiWindowFlags new_flags = ImGuiWindowFlags::NONE);
+            WindowFlags new_flags = WindowFlags::NONE);
 
         void set_active(bool new_active);
         void set_name(const std::string& new_name);
-        void set_flags(ImGuiWindowFlags new_flags);
+        void set_flags(WindowFlags new_flags);
         void set_position(
             std::optional<Planar::Engine::Math::Pos2Df> new_position);
         void set_size(
@@ -62,7 +62,7 @@ namespace Planar::Engine::UI::ImGui::Window
         std::string name;
         std::optional<Planar::Engine::Math::Pos2Df> position;
         std::optional<Planar::Engine::Math::Size2Df> size;
-        ImGuiWindowFlags flags;
+        WindowFlags flags;
         ::ImGuiWindowFlags begin_flags;
         Planar::Engine::Graphics::Color background_color;
         bool allow_close;

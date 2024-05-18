@@ -1,29 +1,29 @@
-#include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
+#include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 
 namespace Planar::Engine::UI::ImGui::Window
 {
-    ImGuiWindow::Scope::Scope(const char* name,
+    Window::Scope::Scope(const char* name,
         ::ImGuiWindowFlags begin_flags, bool* open)
     {
         ::ImGui::Begin(name, open, begin_flags);
     }
 
-    ImGuiWindow::Scope::~Scope()
+    Window::Scope::~Scope()
     {
         ::ImGui::End();
     }
 
-    ImGuiWindow::ImGuiWindow(const std::string& name,
-        ImGuiWindowFlags flags) :
-        ImGuiWindow(name, std::nullopt, std::nullopt, flags)
+    Window::Window(const std::string& name,
+        WindowFlags flags) : Window(name, std::nullopt,
+        std::nullopt, flags)
     {
 
     }
 
-    ImGuiWindow::ImGuiWindow(const std::string& name,
+    Window::Window(const std::string& name,
         std::optional<Planar::Engine::Math::Pos2Df> position,
         std::optional<Planar::Engine::Math::Size2Df> size,
-        ImGuiWindowFlags flags, Planar::Engine::Graphics::Color
+        WindowFlags flags, Planar::Engine::Graphics::Color
         background_color, bool allow_close) : active{ true },
         name{ name }, position{ position }, size{ size },
         begin_flags{}, background_color{ background_color },
@@ -32,12 +32,12 @@ namespace Planar::Engine::UI::ImGui::Window
         set_flags(flags);
     }
 
-    ImGuiWindow::~ImGuiWindow()
+    Window::~Window()
     {
 
     }
 
-    std::unique_ptr<ImGuiWindow::Scope> ImGuiWindow::render()
+    std::unique_ptr<Window::Scope> Window::render()
     {
         if (!active)
         {
@@ -47,7 +47,7 @@ namespace Planar::Engine::UI::ImGui::Window
         if (first_render)
         {
             if (Planar::Engine::Core::Utils::has(
-                flags, ImGuiWindowFlags::FIT_TO_WINDOW))
+                flags, WindowFlags::FIT_TO_WINDOW))
             {
                 ImGuiViewport* viewport = ::ImGui::GetMainViewport();
                 ::ImGui::SetNextWindowPos(viewport->Pos);
@@ -73,22 +73,22 @@ namespace Planar::Engine::UI::ImGui::Window
             { background_color.r, background_color.g, background_color.b,
             background_color.a };
 
-        return std::make_unique<ImGuiWindow::Scope>(
+        return std::make_unique<Window::Scope>(
             name.c_str(), begin_flags,
             allow_close ? &active : nullptr);
     }
 
-    void ImGuiWindow::set(const std::string& new_name,
-        ImGuiWindowFlags new_flags)
+    void Window::set(const std::string& new_name,
+        WindowFlags new_flags)
     {
         set_name(new_name);
         set_flags(new_flags);
     }
 
-    void ImGuiWindow::set(const std::string& new_name,
+    void Window::set(const std::string& new_name,
         std::optional<Planar::Engine::Math::Pos2Df> new_position,
         std::optional<Planar::Engine::Math::Size2Df> new_size,
-        ImGuiWindowFlags new_flags)
+        WindowFlags new_flags)
     {
         set_name(new_name);
         set_position(new_position);
@@ -96,65 +96,65 @@ namespace Planar::Engine::UI::ImGui::Window
         set_flags(new_flags);
     }
 
-    void ImGuiWindow::set_active(bool new_active)
+    void Window::set_active(bool new_active)
     {
         active = new_active;
     }
 
-    void ImGuiWindow::set_name(const std::string& new_name)
+    void Window::set_name(const std::string& new_name)
     {
         name = new_name;
     }
 
-    void ImGuiWindow::set_flags(ImGuiWindowFlags new_flags)
+    void Window::set_flags(WindowFlags new_flags)
     {
         begin_flags = ImGuiWindowFlags_None;
         flags = new_flags;
 
         if (Planar::Engine::Core::Utils::has(
-            flags, ImGuiWindowFlags::MINIMAL))
+            flags, WindowFlags::MINIMAL))
         {
             begin_flags |= ImGuiWindowFlags_NoDecoration |
                 ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground;
         }
 
         if (Planar::Engine::Core::Utils::has(flags,
-            ImGuiWindowFlags::NO_STORE_INI))
+            WindowFlags::NO_STORE_INI))
         {
             begin_flags |= ImGuiWindowFlags_NoSavedSettings;
         }
 
         if (Planar::Engine::Core::Utils::has(flags,
-            ImGuiWindowFlags::ALWAYS_VERTICAL_SCROLLBAR))
+            WindowFlags::ALWAYS_VERTICAL_SCROLLBAR))
         {
             begin_flags |= ImGuiWindowFlags_AlwaysVerticalScrollbar;
         }
     }
 
-    void ImGuiWindow::set_position(
+    void Window::set_position(
         std::optional<Planar::Engine::Math::Pos2Df> new_position)
     {
         position = new_position;
     }
 
-    void ImGuiWindow::set_size(
+    void Window::set_size(
         std::optional<Planar::Engine::Math::Size2Df> new_size)
     {
         size = new_size;
     }
 
-    void ImGuiWindow::set_background_color(
+    void Window::set_background_color(
         Planar::Engine::Graphics::Color new_background_color)
     {
         background_color = new_background_color;
     }
 
-    void ImGuiWindow::set_allow_close(bool new_allow_close)
+    void Window::set_allow_close(bool new_allow_close)
     {
         allow_close = new_allow_close;
     }
 
-    void ImGuiWindow::reset_first_render()
+    void Window::reset_first_render()
     {
         first_render = true;
     }

@@ -13,7 +13,7 @@ namespace Planar::Editor::UI::Window
     {
         using namespace Planar::Engine::UI;
 
-        std::unique_ptr<ImGuiWindow::Scope> result = render();
+        std::unique_ptr<Window::Scope> result = render();
 
         if (!result)
         {

@@ -1,6 +1,6 @@
 #include "Planar/Editor/UI/Window/ContentWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/UI/ImGui/Window/ImGuiWindowFlags.hpp"
+#include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
@@ -14,7 +14,7 @@ namespace Planar::Editor::UI::Window
         file_texture{}
     {
         set("Content",
-            Planar::Engine::UI::ImGui::Window::ImGuiWindowFlags::
+            Planar::Engine::UI::ImGui::Window::WindowFlags::
             ALWAYS_VERTICAL_SCROLLBAR);
     }
 
@@ -22,7 +22,7 @@ namespace Planar::Editor::UI::Window
     {
         using namespace Planar::Engine::UI;
 
-        std::unique_ptr<ImGuiWindow::Scope> result = render();
+        std::unique_ptr<Window::Scope> result = render();
 
         if (!result)
         {

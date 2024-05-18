@@ -3,7 +3,7 @@
 #include "Planar/Engine/Core/Utils/EnumClassFlags.hpp"
 
 PLANAR_BEGIN_ENUM_CLASS_FLAG(Planar::Engine::UI::ImGui::Window,
-    ImGuiWindowFlags)
+    WindowFlags)
 {
     NONE = 0,
     FIT_TO_WINDOW = 1 << 0,

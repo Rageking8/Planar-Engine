@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Scene/Scene.hpp"
-#include "Planar/Engine/UI/ImGui/Window/ImGuiWindow.hpp"
+#include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 
@@ -32,7 +32,7 @@ namespace Planar::Editor::Scene
         bool pending_open_project;
         bool pending_create_project;
 
-        Planar::Engine::UI::ImGui::Window::ImGuiWindow main_window;
+        Planar::Engine::UI::ImGui::Window::Window main_window;
 
         std::function<void()> editor_enter_callback;
 
