@@ -42,6 +42,7 @@ Currently Windows is the only operating system supported.
     - [Dear ImGui](https://github.com/ocornut/imgui) - Editor UI
     - [yaml-cpp](https://github.com/jbeder/yaml-cpp) - Assets
     - [stb](https://github.com/nothings/stb) - Image loader
+    - [libzip](https://github.com/nih-at/libzip) - Extract zip archives
 
 1. Planar Editor
     - Planar Engine - All core routines
