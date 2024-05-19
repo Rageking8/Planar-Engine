@@ -5,7 +5,7 @@
 #include <string>
 #include <functional>
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Menu
 {
     class PLANAR_API ImGuiMainMenuBar
     {

@@ -1,8 +1,8 @@
-#include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
+#include "Planar/Engine/UI/ImGui/Menu/ImGuiMainMenuBar.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Menu
 {
     ImGuiMainMenuBar::ImGuiMainMenuBar() : started{}
     {

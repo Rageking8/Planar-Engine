@@ -2,7 +2,7 @@
 #include "Planar/Editor/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
+#include "Planar/Engine/UI/ImGui/Menu/ImGuiMainMenuBar.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
 
@@ -67,7 +67,7 @@ namespace Planar::Editor::Scene
     {
         using namespace Planar::Engine::UI;
 
-        ImGui::ImGuiMainMenuBar main_menu_bar;
+        ImGui::Menu::ImGuiMainMenuBar main_menu_bar;
         if (main_menu_bar.start())
         {
             main_menu_bar.add_menu("File",

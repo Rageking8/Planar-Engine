@@ -1,7 +1,6 @@
 target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGui.hpp
     ImGuiContext.hpp
-    ImGuiMainMenuBar.hpp
     ImGuiStyleColor.hpp
 )
 
