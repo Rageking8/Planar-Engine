@@ -5,6 +5,7 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     Version.hpp
 )
 
+add_subdirectory(Archive)
 add_subdirectory(FileSystem)
 add_subdirectory(GUID)
 add_subdirectory(Log)
