@@ -10,5 +10,6 @@ PLANAR_BEGIN_ENUM_CLASS_FLAG(Planar::Engine::UI::ImGui::Window,
     MINIMAL = 1 << 1,
     NO_STORE_INI = 1 << 2,
     ALWAYS_VERTICAL_SCROLLBAR = 1 << 3,
+    MENU_BAR = 1 << 4,
 };
 PLANAR_END_ENUM_CLASS_FLAG

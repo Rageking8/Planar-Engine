@@ -129,6 +129,12 @@ namespace Planar::Engine::UI::ImGui::Window
         {
             begin_flags |= ImGuiWindowFlags_AlwaysVerticalScrollbar;
         }
+
+        if (Planar::Engine::Core::Utils::has(flags,
+            WindowFlags::MENU_BAR))
+        {
+            begin_flags |= ImGuiWindowFlags_MenuBar;
+        }
     }
 
     void Window::set_position(
