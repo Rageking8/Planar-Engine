@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
-#include "Planar/Engine/UI/ImGui/Renderer/ImGuiTextRenderer.hpp"
+#include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 
 namespace Planar::Editor::UI::Window
@@ -24,7 +24,6 @@ namespace Planar::Editor::UI::Window
         Planar::Engine::Graphics::Texture::Texture* folder_texture;
         Planar::Engine::Graphics::Texture::Texture* file_texture;
 
-        Planar::Engine::UI::ImGui::Renderer::ImGuiTextRenderer
-            text_renderer;
+        Planar::Engine::UI::ImGui::Renderer::TextRenderer text_renderer;
     };
 }

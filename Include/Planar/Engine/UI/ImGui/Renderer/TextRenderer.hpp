@@ -8,10 +8,10 @@
 
 namespace Planar::Engine::UI::ImGui::Renderer
 {
-    class PLANAR_API ImGuiTextRenderer
+    class PLANAR_API TextRenderer
     {
     public:
-        ImGuiTextRenderer();
+        TextRenderer();
 
         void render_center_truncate(const std::string& text,
             float width, float line_delta, unsigned lines,

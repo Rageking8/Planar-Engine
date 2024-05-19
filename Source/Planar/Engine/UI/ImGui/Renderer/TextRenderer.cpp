@@ -1,16 +1,16 @@
-#include "Planar/Engine/UI/ImGui/Renderer/ImGuiTextRenderer.hpp"
+#include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
 namespace Planar::Engine::UI::ImGui::Renderer
 {
-    ImGuiTextRenderer::ImGuiTextRenderer()
+    TextRenderer::TextRenderer()
     {
 
     }
 
-    void ImGuiTextRenderer::render_center_truncate(const std::string& text,
+    void TextRenderer::render_center_truncate(const std::string& text,
         float width, float line_delta, unsigned lines,
         const std::string& truncate_text)
     {
@@ -51,7 +51,7 @@ namespace Planar::Engine::UI::ImGui::Renderer
     }
 
     std::pair<std::vector<std::pair<std::string, float>>, bool>
-        ImGuiTextRenderer::split_text(const std::string& text,
+        TextRenderer::split_text(const std::string& text,
         float width, unsigned lines)
     {
         std::pair<std::vector<std::pair<std::string, float>>, bool>
