@@ -33,6 +33,7 @@ namespace Planar::Editor::Scene
 
         Planar::Engine::Graphics::Texture::Texture file_texture;
         Planar::Engine::Graphics::Texture::Texture folder_texture;
+        Planar::Engine::Graphics::Texture::Texture left_arrow_texture;
 
         void restore_default_layout() const;
 

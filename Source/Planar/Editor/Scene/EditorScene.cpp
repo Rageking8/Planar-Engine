@@ -9,6 +9,7 @@
 PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
 PLANAR_LOAD_EDITOR_ICON(FolderIcon)
+PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
 
 namespace Planar::Editor::Scene
 {
@@ -28,6 +29,7 @@ namespace Planar::Editor::Scene
 
         PLANAR_LOAD_EDITOR_ICON_TEXTURE(file_texture, FileIcon)
         PLANAR_LOAD_EDITOR_ICON_TEXTURE(folder_texture, FolderIcon)
+        PLANAR_LOAD_EDITOR_ICON_TEXTURE(left_arrow_texture, LeftArrowIcon)
     }
 
     void EditorScene::update()
