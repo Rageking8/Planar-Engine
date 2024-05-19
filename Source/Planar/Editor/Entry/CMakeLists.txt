@@ -1,3 +1,3 @@
 target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
-	Main.cpp
+    Main.cpp
 )
