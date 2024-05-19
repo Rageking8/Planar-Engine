@@ -19,11 +19,17 @@ namespace Planar::Editor::UI::Window
         void set_file_texture(
             Planar::Engine::Graphics::Texture::Texture&
             new_file_texture);
+        void set_left_arrow_texture(
+            Planar::Engine::Graphics::Texture::Texture&
+            new_left_arrow_texture);
 
     private:
         Planar::Engine::Graphics::Texture::Texture* folder_texture;
         Planar::Engine::Graphics::Texture::Texture* file_texture;
+        Planar::Engine::Graphics::Texture::Texture* left_arrow_texture;
 
         Planar::Engine::UI::ImGui::Renderer::TextRenderer text_renderer;
+
+        void render_menu_bar();
     };
 }

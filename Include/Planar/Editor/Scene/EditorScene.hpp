@@ -37,6 +37,8 @@ namespace Planar::Editor::Scene
 
         void restore_default_layout() const;
 
+        void load_icons();
+
         void render_main_menu_bar();
     };
 }

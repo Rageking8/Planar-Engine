@@ -3,6 +3,7 @@
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
+#include "Planar/Engine/UI/ImGui/Menu/WindowMenuBar.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
 #include <vector>
@@ -11,11 +12,15 @@
 namespace Planar::Editor::UI::Window
 {
     ContentWindow::ContentWindow() : folder_texture{},
-        file_texture{}
+        file_texture{}, left_arrow_texture{}
     {
+        using namespace Planar::Engine::Core::Utils;
+
         set("Content",
             Planar::Engine::UI::ImGui::Window::WindowFlags::
-            ALWAYS_VERTICAL_SCROLLBAR);
+            ALWAYS_VERTICAL_SCROLLBAR |
+            Planar::Engine::UI::ImGui::Window::WindowFlags::
+            MENU_BAR);
     }
 
     void ContentWindow::render_window()
@@ -28,6 +33,8 @@ namespace Planar::Editor::UI::Window
         {
             return;
         }
+
+        render_menu_bar();
 
         float window_max = ImGui::get_window_position().x +
             ImGui::get_window_content_region_max().width - 18.f;
@@ -77,14 +84,38 @@ namespace Planar::Editor::UI::Window
     }
 
     void ContentWindow::set_folder_texture(
-        Planar::Engine::Graphics::Texture::Texture& new_folder_texture)
+        Planar::Engine::Graphics::Texture::Texture&
+        new_folder_texture)
     {
         folder_texture = &new_folder_texture;
     }
 
     void ContentWindow::set_file_texture(
-        Planar::Engine::Graphics::Texture::Texture& new_file_texture)
+        Planar::Engine::Graphics::Texture::Texture&
+        new_file_texture)
     {
         file_texture = &new_file_texture;
+    }
+
+    void ContentWindow::set_left_arrow_texture(
+        Planar::Engine::Graphics::Texture::Texture&
+        new_left_arrow_texture)
+    {
+        left_arrow_texture = &new_left_arrow_texture;
+    }
+
+    void ContentWindow::render_menu_bar()
+    {
+        using namespace Planar::Engine::UI;
+
+        ImGui::Menu::WindowMenuBar menu_bar;
+        if (menu_bar.start())
+        {
+            if (ImGui::button("Back", left_arrow_texture->get_texture(),
+                15.f))
+            {
+
+            }
+        }
     }
 }

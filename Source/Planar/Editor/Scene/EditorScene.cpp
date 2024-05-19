@@ -20,16 +20,13 @@ namespace Planar::Editor::Scene
 
     void EditorScene::init()
     {
-        using namespace Planar::Engine::UI;
+        load_icons();
 
         content_window.set_file_texture(file_texture);
         content_window.set_folder_texture(folder_texture);
+        content_window.set_left_arrow_texture(left_arrow_texture);
 
         restore_default_layout();
-
-        PLANAR_LOAD_EDITOR_ICON_TEXTURE(file_texture, FileIcon)
-        PLANAR_LOAD_EDITOR_ICON_TEXTURE(folder_texture, FolderIcon)
-        PLANAR_LOAD_EDITOR_ICON_TEXTURE(left_arrow_texture, LeftArrowIcon)
     }
 
     void EditorScene::update()
@@ -61,6 +58,14 @@ namespace Planar::Editor::Scene
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
             Planar::Asset::Editor::DefaultLayout);
+    }
+
+    void Planar::Editor::Scene::EditorScene::load_icons()
+    {
+        PLANAR_LOAD_EDITOR_ICON_TEXTURE(file_texture, FileIcon)
+        PLANAR_LOAD_EDITOR_ICON_TEXTURE(folder_texture, FolderIcon)
+        PLANAR_LOAD_EDITOR_ICON_TEXTURE(left_arrow_texture,
+            LeftArrowIcon)
     }
 
     void EditorScene::render_main_menu_bar()
