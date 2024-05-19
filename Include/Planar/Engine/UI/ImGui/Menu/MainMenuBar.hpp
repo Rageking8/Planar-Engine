@@ -7,11 +7,11 @@
 
 namespace Planar::Engine::UI::ImGui::Menu
 {
-    class PLANAR_API ImGuiMainMenuBar
+    class PLANAR_API MainMenuBar
     {
     public:
-        ImGuiMainMenuBar();
-        ~ImGuiMainMenuBar();
+        MainMenuBar();
+        ~MainMenuBar();
 
         bool start();
 
