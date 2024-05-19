@@ -26,10 +26,8 @@ namespace Planar::Editor::Scene
 
         restore_default_layout();
 
-        file_texture.load(Planar::Asset::Editor::Icons::FileIcon,
-            Planar::Asset::Editor::Icons::FileIcon_length);
-        folder_texture.load(Planar::Asset::Editor::Icons::FolderIcon,
-            Planar::Asset::Editor::Icons::FolderIcon_length);
+        PLANAR_LOAD_EDITOR_ICON_TEXTURE(file_texture, FileIcon)
+        PLANAR_LOAD_EDITOR_ICON_TEXTURE(folder_texture, FolderIcon)
     }
 
     void EditorScene::update()
