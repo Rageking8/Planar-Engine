@@ -3,9 +3,9 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGuiContext.cpp
     ImGuiMainMenuBar.cpp
     ImGuiStyleColor.cpp
-    ImGuiTextRenderer.cpp
 )
 
 add_subdirectory(Element)
+add_subdirectory(Renderer)
 add_subdirectory(Window)
 add_subdirectory(Wrapper)

@@ -6,7 +6,7 @@
 #include <vector>
 #include <utility>
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Renderer
 {
     class PLANAR_API ImGuiTextRenderer
     {

@@ -1,9 +1,9 @@
-#include "Planar/Engine/UI/ImGui/ImGuiTextRenderer.hpp"
+#include "Planar/Engine/UI/ImGui/Renderer/ImGuiTextRenderer.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Renderer
 {
     ImGuiTextRenderer::ImGuiTextRenderer()
     {
