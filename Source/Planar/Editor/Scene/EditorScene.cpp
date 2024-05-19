@@ -1,4 +1,5 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
+#include "Planar/Editor/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiMainMenuBar.hpp"
@@ -6,8 +7,8 @@
 #include "Planar/Engine/Core/Shell/Shell.hpp"
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
-PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Icons, FileIcon)
-PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Icons, FolderIcon)
+PLANAR_LOAD_EDITOR_ICON(FileIcon)
+PLANAR_LOAD_EDITOR_ICON(FolderIcon)
 
 namespace Planar::Editor::Scene
 {
