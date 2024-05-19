@@ -43,6 +43,21 @@ FetchContent_Declare(
         SHA256=A3B8874666A66B425396E144B78514E8BB0BD2E3DC9B715F6A81623CB395DFF2
 )
 
+FetchContent_Declare(
+    zlib
+    URL https://github.com/madler/zlib/archive/refs/tags/v1.3.1.zip
+    URL_HASH
+        SHA256=50B24B47BF19E1F35D2A21FF36D2A366638CDF958219A66F30CE0861201760E6
+    OVERRIDE_FIND_PACKAGE
+)
+
+FetchContent_Declare(
+    libzip
+    URL https://github.com/nih-at/libzip/archive/refs/tags/v1.10.1.zip
+    URL_HASH
+        SHA256=FFDF7427E848DF6F9CDDB6B4EED4FBD652D5B74B21102C515F37BE298F1A8426
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
@@ -50,3 +65,5 @@ add_subdirectory(KHR)
 add_subdirectory(stb)
 add_subdirectory(yaml-cpp)
 add_subdirectory(dotnet-sdk)
+add_subdirectory(zlib)
+add_subdirectory(libzip)
