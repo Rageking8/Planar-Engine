@@ -43,11 +43,19 @@ namespace Planar::Editor::Core
 
     void Editor::load_scripting()
     {
-        if (!std::filesystem::exists(project.get_root_path() /
-            "Cache/dotnet_sdk.zip"))
+        std::filesystem::path project_cache_path =
+            project.get_root_path() / "Cache";
+
+        if (!std::filesystem::exists(
+            project_cache_path / "DotnetSDK"))
         {
+            std::filesystem::path dotnet_sdk_zip_path =
+                project_cache_path / "dotnet_sdk.zip";
+
             Planar::Editor::Script::Init::write_dotnet_sdk_zip(
-                project.get_root_path() / "Cache/dotnet_sdk.zip");
+                dotnet_sdk_zip_path);
+            Planar::Editor::Script::Init::extract_dotnet_sdk_zip(
+                dotnet_sdk_zip_path);
         }
     }
 }
