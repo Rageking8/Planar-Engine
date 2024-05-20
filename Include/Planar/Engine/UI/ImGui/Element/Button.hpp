@@ -14,10 +14,12 @@ namespace Planar::Engine::UI::ImGui::Element
     {
     public:
         Button(const std::string& label = "",
-            Planar::Engine::Math::Size2Df size = {}, GLuint texture = 0);
+            Planar::Engine::Math::Size2Df size = {},
+            GLuint texture = 0);
 
         void set(const std::string& new_label,
-            Planar::Engine::Math::Size2Df new_size, GLuint new_texture = 0);
+            Planar::Engine::Math::Size2Df new_size = {},
+            GLuint new_texture = 0);
 
         virtual void render() override;
 

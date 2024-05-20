@@ -23,6 +23,11 @@ namespace Planar::Editor::UI::Window
             MENU_BAR);
     }
 
+    void ContentWindow::init()
+    {
+        back_button.set("Back", 15.f, left_arrow_texture->get_texture());
+    }
+
     void ContentWindow::render_window()
     {
         using namespace Planar::Engine::UI;
@@ -138,8 +143,8 @@ namespace Planar::Editor::UI::Window
         ImGui::Menu::WindowMenuBar menu_bar;
         if (menu_bar.start())
         {
-            if (ImGui::button("Back", left_arrow_texture->get_texture(),
-                15.f))
+            back_button.render();
+            if (back_button.is_clicked())
             {
                 if (current_path.has_parent_path() &&
                     !std::filesystem::equivalent(current_path, root_path))

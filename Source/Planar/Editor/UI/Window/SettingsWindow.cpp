@@ -4,7 +4,8 @@
 namespace Planar::Editor::UI::Window
 {
     SettingsWindow::SettingsWindow() :
-        pending_restore_default_layout{}
+        pending_restore_default_layout{},
+        restore_default_layout_button("Restore Default Layout")
     {
         set("Settings");
     }
@@ -20,7 +21,8 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        if (ImGui::button("Restore Default Layout"))
+        restore_default_layout_button.render();
+        if (restore_default_layout_button.is_clicked())
         {
             pending_restore_default_layout = true;
         }

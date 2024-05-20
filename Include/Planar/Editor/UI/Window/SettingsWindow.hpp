@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button.hpp"
 
 namespace Planar::Editor::UI::Window
 {
@@ -15,5 +16,8 @@ namespace Planar::Editor::UI::Window
 
     private:
         bool pending_restore_default_layout;
+
+        Planar::Engine::UI::ImGui::Element::Button
+            restore_default_layout_button;
     };
 }

@@ -2,6 +2,7 @@
 
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 
 #include <filesystem>
@@ -12,6 +13,8 @@ namespace Planar::Editor::UI::Window
     {
     public:
         ContentWindow();
+
+        void init();
 
         virtual void render_window() override;
 
@@ -37,6 +40,8 @@ namespace Planar::Editor::UI::Window
         Planar::Engine::Graphics::Texture::Texture* left_arrow_texture;
 
         Planar::Engine::UI::ImGui::Renderer::TextRenderer text_renderer;
+
+        Planar::Engine::UI::ImGui::Element::Button back_button;
 
         void render_menu_bar();
     };
