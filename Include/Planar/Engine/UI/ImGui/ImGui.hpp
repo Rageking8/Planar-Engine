@@ -70,4 +70,8 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API void move_cursor_x(float delta);
 
     PLANAR_API void move_cursor_y(float delta);
+
+    PLANAR_API bool is_item_hovered();
+
+    PLANAR_API bool is_left_mouse_double_clicked();
 }

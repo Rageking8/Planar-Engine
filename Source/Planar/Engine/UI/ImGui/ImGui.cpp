@@ -179,4 +179,14 @@ namespace Planar::Engine::UI::ImGui
     {
         ::ImGui::SetCursorPosY(get_cursor_y() + delta);
     }
+
+    bool is_item_hovered()
+    {
+        return ::ImGui::IsItemHovered();
+    }
+
+    bool is_left_mouse_double_clicked()
+    {
+        return ::ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left);
+    }
 }
