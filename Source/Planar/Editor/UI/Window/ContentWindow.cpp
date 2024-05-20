@@ -4,10 +4,10 @@
 #include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/WindowMenuBar.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
 #include <vector>
-#include <filesystem>
 
 namespace Planar::Editor::UI::Window
 {
@@ -48,7 +48,8 @@ namespace Planar::Editor::UI::Window
             { 0.2f, 0.2f, 0.2f, 1.f });
 
         std::vector<std::filesystem::path> listing =
-            Planar::Engine::Core::FileSystem::get_listing();
+            Planar::Engine::Core::FileSystem::get_listing(
+            current_path);
 
         for (const auto& i : listing)
         {
@@ -56,16 +57,30 @@ namespace Planar::Editor::UI::Window
                 ImGui::Wrapper::Group group;
 
                 std::string name = i.filename().string();
+                bool is_directory = std::filesystem::is_directory(i);
+                bool is_regular_file =
+                    std::filesystem::is_regular_file(i);
 
-                if (std::filesystem::is_directory(i))
+                ImGui::Element::Button button;
+
+                if (is_directory)
                 {
-                    ImGui::button(name, folder_texture ?
-                        folder_texture->get_texture() : 0, button_size);
+                    button.set(name, button_size, folder_texture ?
+                        folder_texture->get_texture() : 0);
                 }
-                else if (std::filesystem::is_regular_file(i))
+                else if (is_regular_file)
                 {
-                    ImGui::button(name, file_texture ?
-                        file_texture->get_texture() : 0, button_size);
+                    button.set(name, button_size, file_texture ?
+                        file_texture->get_texture() : 0);
+                }
+
+                button.render();
+                if (button.is_left_double_clicked())
+                {
+                    if (is_directory)
+                    {
+                        current_path = i;
+                    }
                 }
 
                 text_renderer.render_center_truncate(name, button_size,
@@ -80,6 +95,18 @@ namespace Planar::Editor::UI::Window
             {
                 ImGui::same_line();
             }
+        }
+    }
+
+    void ContentWindow::set_root_path(
+        const std::filesystem::path& new_root_path,
+        bool reset_current_path)
+    {
+        root_path = new_root_path;
+
+        if (reset_current_path)
+        {
+            current_path = root_path;
         }
     }
 
@@ -114,7 +141,11 @@ namespace Planar::Editor::UI::Window
             if (ImGui::button("Back", left_arrow_texture->get_texture(),
                 15.f))
             {
-
+                if (current_path.has_parent_path() &&
+                    !std::filesystem::equivalent(current_path, root_path))
+                {
+                    current_path = current_path.parent_path();
+                }
             }
         }
     }

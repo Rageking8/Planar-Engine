@@ -9,6 +9,7 @@
 #include "Planar/Editor/UI/Window/ConsoleWindow.hpp"
 #include "Planar/Editor/UI/Window/GameWindow.hpp"
 #include "Planar/Editor/UI/Window/SceneWindow.hpp"
+#include "Planar/Editor/Project/Project.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -22,6 +23,8 @@ namespace Planar::Editor::Scene
         virtual void update() override;
         virtual void render() override;
 
+        void set_project(Planar::Editor::Project::Project* new_project);
+
     private:
         Planar::Editor::UI::Window::HierarchyWindow hierarchy_window;
         Planar::Editor::UI::Window::InspectorWindow inspector_window;
@@ -34,6 +37,8 @@ namespace Planar::Editor::Scene
         Planar::Engine::Graphics::Texture::Texture file_texture;
         Planar::Engine::Graphics::Texture::Texture folder_texture;
         Planar::Engine::Graphics::Texture::Texture left_arrow_texture;
+
+        Planar::Editor::Project::Project* project;
 
         void restore_default_layout() const;
 

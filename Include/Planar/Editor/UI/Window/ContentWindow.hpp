@@ -4,6 +4,8 @@
 #include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
 
+#include <filesystem>
+
 namespace Planar::Editor::UI::Window
 {
     class ContentWindow : public EditorWindow
@@ -12,6 +14,9 @@ namespace Planar::Editor::UI::Window
         ContentWindow();
 
         virtual void render_window() override;
+
+        void set_root_path(const std::filesystem::path& new_root_path,
+            bool reset_current_path = true);
 
         void set_folder_texture(
             Planar::Engine::Graphics::Texture::Texture&
@@ -24,6 +29,9 @@ namespace Planar::Editor::UI::Window
             new_left_arrow_texture);
 
     private:
+        std::filesystem::path root_path;
+        std::filesystem::path current_path;
+
         Planar::Engine::Graphics::Texture::Texture* folder_texture;
         Planar::Engine::Graphics::Texture::Texture* file_texture;
         Planar::Engine::Graphics::Texture::Texture* left_arrow_texture;

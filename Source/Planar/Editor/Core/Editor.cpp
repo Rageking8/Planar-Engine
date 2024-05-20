@@ -35,7 +35,11 @@ namespace Planar::Editor::Core
 
     void Editor::enter_editor()
     {
-        load_scene(std::make_unique<Planar::Editor::Scene::EditorScene>());
+        std::unique_ptr<Planar::Editor::Scene::EditorScene> scene =
+            std::make_unique<Planar::Editor::Scene::EditorScene>();
+        scene->set_project(&project);
+        load_scene(std::move(scene));
+
         set_window_name("Planar Editor - " + project.get_project_name());
 
         load_scripting();

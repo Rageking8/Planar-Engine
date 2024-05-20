@@ -13,7 +13,7 @@ PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
 
 namespace Planar::Editor::Scene
 {
-    EditorScene::EditorScene()
+    EditorScene::EditorScene() : project{}
     {
 
     }
@@ -21,6 +21,11 @@ namespace Planar::Editor::Scene
     void EditorScene::init()
     {
         load_icons();
+
+        if (project)
+        {
+            content_window.set_root_path(project->get_root_path());
+        }
 
         content_window.set_file_texture(file_texture);
         content_window.set_folder_texture(folder_texture);
@@ -54,13 +59,18 @@ namespace Planar::Editor::Scene
         scene_window.render_window();
     }
 
+    void EditorScene::set_project(Planar::Editor::Project::Project* new_project)
+    {
+        project = new_project;
+    }
+
     void EditorScene::restore_default_layout() const
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
             Planar::Asset::Editor::DefaultLayout);
     }
 
-    void Planar::Editor::Scene::EditorScene::load_icons()
+    void EditorScene::load_icons()
     {
         PLANAR_LOAD_EDITOR_ICON_TEXTURE(file_texture, FileIcon)
         PLANAR_LOAD_EDITOR_ICON_TEXTURE(folder_texture, FolderIcon)
