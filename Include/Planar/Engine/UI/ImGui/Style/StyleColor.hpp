@@ -6,10 +6,10 @@
 
 namespace Planar::Engine::UI::ImGui::Style
 {
-    class PLANAR_API ImGuiStyleColor : public Wrapper::PushPopWrapper
+    class PLANAR_API StyleColor : public Wrapper::PushPopWrapper
     {
     public:
-        ~ImGuiStyleColor();
+        ~StyleColor();
 
         void set_button_background_color(
             Planar::Engine::Graphics::Color color);

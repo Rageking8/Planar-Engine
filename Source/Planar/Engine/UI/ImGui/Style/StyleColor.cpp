@@ -1,15 +1,15 @@
-#include "Planar/Engine/UI/ImGui/Style/ImGuiStyleColor.hpp"
+#include "Planar/Engine/UI/ImGui/Style/StyleColor.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
 namespace Planar::Engine::UI::ImGui::Style
 {
-    ImGuiStyleColor::~ImGuiStyleColor()
+    StyleColor::~StyleColor()
     {
         pop();
     }
 
-    void ImGuiStyleColor::set_button_background_color(
+    void StyleColor::set_button_background_color(
         Planar::Engine::Graphics::Color color)
     {
         ::ImGui::PushStyleColor(ImGuiCol_Button,
@@ -17,7 +17,7 @@ namespace Planar::Engine::UI::ImGui::Style
         push_count++;
     }
 
-    void ImGuiStyleColor::set_button_hover_background_color(
+    void StyleColor::set_button_hover_background_color(
         Planar::Engine::Graphics::Color color)
     {
         ::ImGui::PushStyleColor(ImGuiCol_ButtonHovered,
@@ -25,7 +25,7 @@ namespace Planar::Engine::UI::ImGui::Style
         push_count++;
     }
 
-    void ImGuiStyleColor::set_button_active_background_color(
+    void StyleColor::set_button_active_background_color(
         Planar::Engine::Graphics::Color color)
     {
         ::ImGui::PushStyleColor(ImGuiCol_ButtonActive,
@@ -33,7 +33,7 @@ namespace Planar::Engine::UI::ImGui::Style
         push_count++;
     }
 
-    void ImGuiStyleColor::pop()
+    void StyleColor::pop()
     {
         ::ImGui::PopStyleColor(push_count);
         push_count = 0;
