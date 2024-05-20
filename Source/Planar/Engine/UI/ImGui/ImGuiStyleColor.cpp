@@ -4,11 +4,6 @@
 
 namespace Planar::Engine::UI::ImGui
 {
-    ImGuiStyleColor::ImGuiStyleColor() : push_count{}
-    {
-
-    }
-
     ImGuiStyleColor::~ImGuiStyleColor()
     {
         pop();
