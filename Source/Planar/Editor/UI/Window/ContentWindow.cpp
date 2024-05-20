@@ -1,7 +1,7 @@
 #include "Planar/Editor/UI/Window/ContentWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
-#include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
+#include "Planar/Engine/UI/ImGui/Style/ImGuiStyleColor.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/WindowMenuBar.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
@@ -45,7 +45,7 @@ namespace Planar::Editor::UI::Window
             ImGui::get_window_content_region_max().width - 18.f;
         const float button_size = 100.f;
 
-        ImGui::ImGuiStyleColor style_color;
+        ImGui::Style::ImGuiStyleColor style_color;
         style_color.set_button_background_color({});
         style_color.set_button_hover_background_color(
             { 0.161f, 0.161f, 0.161f, 1.f });

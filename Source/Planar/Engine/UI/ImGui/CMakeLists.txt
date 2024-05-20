@@ -1,7 +1,6 @@
 target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     ImGui.cpp
     ImGuiContext.cpp
-    ImGuiStyleColor.cpp
 )
 
 add_subdirectory(Element)

@@ -4,7 +4,7 @@
 #include "Planar/Engine/Graphics/Color.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/PushPopWrapper.hpp"
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Style
 {
     class PLANAR_API ImGuiStyleColor : public Wrapper::PushPopWrapper
     {

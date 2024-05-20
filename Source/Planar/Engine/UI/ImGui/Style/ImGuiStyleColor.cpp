@@ -1,8 +1,8 @@
-#include "Planar/Engine/UI/ImGui/ImGuiStyleColor.hpp"
+#include "Planar/Engine/UI/ImGui/Style/ImGuiStyleColor.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
-namespace Planar::Engine::UI::ImGui
+namespace Planar::Engine::UI::ImGui::Style
 {
     ImGuiStyleColor::~ImGuiStyleColor()
     {
