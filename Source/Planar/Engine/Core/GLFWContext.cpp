@@ -111,4 +111,19 @@ namespace Planar::Engine::Core
     {
         glfwSetFramebufferSizeCallback(main_window, callback);
     }
+
+    bool GLFWContext::main_window_should_close() const
+    {
+        return glfwWindowShouldClose(main_window);
+    }
+
+    void GLFWContext::main_window_swap_buffers() const
+    {
+        glfwSwapBuffers(main_window);
+    }
+
+    void GLFWContext::poll_events() const
+    {
+        glfwPollEvents();
+    }
 }

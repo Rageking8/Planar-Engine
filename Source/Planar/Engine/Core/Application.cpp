@@ -41,14 +41,12 @@ namespace Planar::Engine::Core
     {
         glfwSwapInterval(1);
         
-        GLFWwindow* main_window = glfw_context.get_main_window();
-
         if (main_scene)
         {
             main_scene->start();
         }
 
-        while (!glfwWindowShouldClose(main_window))
+        while (!glfw_context.main_window_should_close())
         {
             if (main_scene)
             {
@@ -66,9 +64,9 @@ namespace Planar::Engine::Core
             }
 
             imgui_context.render();
-            
-            glfwSwapBuffers(main_window);
-            glfwPollEvents();
+
+            glfw_context.main_window_swap_buffers();
+            glfw_context.poll_events();
         }
     }
 

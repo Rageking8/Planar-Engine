@@ -36,6 +36,11 @@ namespace Planar::Engine::Core
         void set_main_window_framebuffer_size_callback(
             void(*callback)(GLFWwindow*, int, int));
 
+        bool main_window_should_close() const;
+        void main_window_swap_buffers() const;
+
+        void poll_events() const;
+
     private:
         bool has_init;
 
