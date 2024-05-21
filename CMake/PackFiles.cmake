@@ -14,8 +14,8 @@ function(pack_text_to_string target)
         endif()
 
         file(READ ${source_file} file_data)
-        string(REPLACE "\n" "\\n" file_data ${file_data})
-        string(REPLACE "\"" "\\\"" file_data ${file_data})
+        string(REPLACE "\n" "\\n" file_data "${file_data}")
+        string(REPLACE "\"" "\\\"" file_data "${file_data}")
 
         file(WRITE ${output_file}
 "#include <string>
