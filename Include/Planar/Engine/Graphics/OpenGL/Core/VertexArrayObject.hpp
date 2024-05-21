@@ -6,7 +6,7 @@
 
 #include "ThirdParty/glad/gl.h"
 
-namespace Planar::Engine::Graphics::OpenGL
+namespace Planar::Engine::Graphics::OpenGL::Core
 {
     class VertexArrayObject
     {
@@ -27,4 +27,4 @@ namespace Planar::Engine::Graphics::OpenGL
     };
 }
 
-#include "Planar/Engine/Graphics/OpenGL/VertexArrayObject.tpp"
+#include "Planar/Engine/Graphics/OpenGL/Core/VertexArrayObject.tpp"

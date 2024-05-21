@@ -1,9 +1,9 @@
-#include "Planar/Engine/Graphics/OpenGL/VertexArrayObject.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Core/VertexArrayObject.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Vector3.hpp"
 
 #include <type_traits>
 
-namespace Planar::Engine::Graphics::OpenGL
+namespace Planar::Engine::Graphics::OpenGL::Core
 {
     template <typename T, Buffer::BufferType bufferT>
     inline void VertexArrayObject::create(

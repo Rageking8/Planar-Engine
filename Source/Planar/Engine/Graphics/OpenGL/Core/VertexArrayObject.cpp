@@ -1,6 +1,6 @@
-#include "Planar/Engine/Graphics/OpenGL/VertexArrayObject.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Core/VertexArrayObject.hpp"
 
-namespace Planar::Engine::Graphics::OpenGL
+namespace Planar::Engine::Graphics::OpenGL::Core
 {
     VertexArrayObject::VertexArrayObject() : id{}
     {
