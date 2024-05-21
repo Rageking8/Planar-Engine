@@ -15,8 +15,8 @@ namespace Planar::Engine::Graphics::OpenGL::Buffer
     }
 
     template <typename T, BufferType BufferT>
-    void Buffer<T, BufferT>::create(const std::vector<T>& buffer,
-        BufferUsage usage)
+    inline void Buffer<T, BufferT>::create(
+        const std::vector<T>& buffer, BufferUsage usage)
     {
         free();
 
@@ -27,13 +27,13 @@ namespace Planar::Engine::Graphics::OpenGL::Buffer
     }
 
     template <typename T, BufferType BufferT>
-    void Buffer<T, BufferT>::bind() const
+    inline void Buffer<T, BufferT>::bind() const
     {
         glBindBuffer((GLenum)BufferT, id);
     }
 
     template <typename T, BufferType BufferT>
-    void Buffer<T, BufferT>::free_impl(GLuint id)
+    inline void Buffer<T, BufferT>::free_impl(GLuint id)
     {
         glDeleteBuffers(1, &id);
     }

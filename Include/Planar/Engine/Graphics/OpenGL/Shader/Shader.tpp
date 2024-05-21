@@ -15,7 +15,7 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
     }
 
     template <ShaderType ShaderT>
-    void Shader<ShaderT>::create(const std::string& source)
+    inline void Shader<ShaderT>::create(const std::string& source)
     {
         free();
 
@@ -28,7 +28,7 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
     }
 
     template <ShaderType ShaderT>
-    void Shader<ShaderT>::free_impl(GLuint id)
+    inline void Shader<ShaderT>::free_impl(GLuint id)
     {
         glDeleteShader(id);
     }
