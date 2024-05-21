@@ -3,4 +3,5 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
 )
 
 add_subdirectory(Create)
+add_subdirectory(Load)
 add_subdirectory(Shader)

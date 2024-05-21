@@ -1,8 +1,8 @@
-#include "Planar/Engine/Graphics/Load/Load.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Load/Load.hpp"
 #include "Planar/Engine/Graphics/Image/STBImage.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Create/Create.hpp"
 
-namespace Planar::Engine::Graphics::Load
+namespace Planar::Engine::Graphics::OpenGL::Load
 {
     GLuint load_image(const std::filesystem::path& image_path)
     {

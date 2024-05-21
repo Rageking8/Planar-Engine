@@ -7,7 +7,7 @@
 #include <cstddef>
 #include <filesystem>
 
-namespace Planar::Engine::Graphics::Load
+namespace Planar::Engine::Graphics::OpenGL::Load
 {
     PLANAR_API GLuint load_image(
         const std::filesystem::path& image_path);

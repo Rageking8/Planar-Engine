@@ -1,5 +1,5 @@
 #include "Planar/Engine/Graphics/Texture/Texture.hpp"
-#include "Planar/Engine/Graphics/Load/Load.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Load/Load.hpp"
 
 namespace Planar::Engine::Graphics::Texture
 {
@@ -23,7 +23,8 @@ namespace Planar::Engine::Graphics::Texture
     {
         free();
 
-        texture = Planar::Engine::Graphics::Load::load_image(
+        texture =
+            Planar::Engine::Graphics::OpenGL::Load::load_image(
             texture_path);
     }
 
@@ -31,7 +32,8 @@ namespace Planar::Engine::Graphics::Texture
     {
         free();
 
-        texture = Planar::Engine::Graphics::Load::load_image(
+        texture =
+            Planar::Engine::Graphics::OpenGL::Load::load_image(
             buffer, length);
     }
 
