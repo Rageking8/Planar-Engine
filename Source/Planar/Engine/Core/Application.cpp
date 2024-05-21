@@ -22,8 +22,19 @@ namespace Planar::Engine::Core
 
     bool Application::init()
     {
-        return init_glfw() && create_window() &&
+        bool result = init_glfw() && create_window() &&
             init_glad() && init_imgui();
+
+        if (result)
+        {
+            glfw_context.set_main_window_framebuffer_size_callback(
+                [](GLFWwindow* window, int width, int height)
+                {
+
+                });
+        }
+
+        return result;
     }
 
     void Application::run()

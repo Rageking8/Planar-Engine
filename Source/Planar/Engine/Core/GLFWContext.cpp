@@ -105,4 +105,10 @@ namespace Planar::Engine::Core
     {
         glfwSetWindowTitle(main_window, new_main_window_name.c_str());
     }
+
+    void GLFWContext::set_main_window_framebuffer_size_callback(
+        void(*callback)(GLFWwindow*, int, int))
+    {
+        glfwSetFramebufferSizeCallback(main_window, callback);
+    }
 }

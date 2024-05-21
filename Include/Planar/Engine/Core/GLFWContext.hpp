@@ -33,6 +33,8 @@ namespace Planar::Engine::Core
 
         void maximize_window() const;
         void set_main_window_name(const std::string& new_main_window_name);
+        void set_main_window_framebuffer_size_callback(
+            void(*callback)(GLFWwindow*, int, int));
 
     private:
         bool has_init;
