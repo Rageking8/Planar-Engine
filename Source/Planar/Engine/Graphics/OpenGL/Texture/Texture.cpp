@@ -3,27 +3,27 @@
 
 namespace Planar::Engine::Graphics::OpenGL::Texture
 {
-    Texture::Texture() : texture{}
+    Texture::Texture() : Resource(free_impl)
     {
 
     }
 
     Texture::Texture(const std::filesystem::path& texture_path) :
-        texture{}
+        Texture()
     {
         load(texture_path);
     }
 
     Texture::~Texture()
     {
-        free();
+
     }
 
     void Texture::load(const std::filesystem::path& texture_path)
     {
         free();
 
-        texture =
+        id =
             Planar::Engine::Graphics::OpenGL::Load::load_image(
             texture_path);
     }
@@ -32,19 +32,13 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
     {
         free();
 
-        texture =
+        id =
             Planar::Engine::Graphics::OpenGL::Load::load_image(
             buffer, length);
     }
 
-    void Texture::free()
+    void Texture::Texture::free_impl(GLuint id)
     {
-        glDeleteTextures(1, &texture);
-        texture = 0;
-    }
-
-    GLuint Texture::get_texture() const
-    {
-        return texture;
+        glDeleteTextures(1, &id);
     }
 }

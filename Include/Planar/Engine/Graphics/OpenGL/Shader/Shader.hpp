@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Core/Resource.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Shader/ShaderType.hpp"
 
 #include "ThirdParty/glad/gl.h"
@@ -10,21 +10,16 @@
 namespace Planar::Engine::Graphics::OpenGL::Shader
 {
     template <ShaderType ShaderT>
-    class Shader
+    class Shader : public Core::Resource
     {
     public:
         Shader();
         ~Shader();
 
-        PLANAR_DELETE_COPY_FUNCTIONS(Shader)
-
         void create(const std::string& source);
-        void free();
-
-        GLuint get_id() const;
 
     private:
-        GLuint id;
+        static void free_impl(GLuint id);
     };
 
     using VertexShader = Shader<ShaderType::VERTEX>;

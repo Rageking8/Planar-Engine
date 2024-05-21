@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Core/Resource.hpp"
 
 #include "ThirdParty/glad/gl.h"
 
@@ -10,22 +10,17 @@
 
 namespace Planar::Engine::Graphics::OpenGL::Texture
 {
-    class PLANAR_API Texture
+    class PLANAR_API Texture : public Core::Resource
     {
     public:
         Texture();
         Texture(const std::filesystem::path& texture_path);
         ~Texture();
 
-        PLANAR_DELETE_COPY_FUNCTIONS(Texture)
-
         void load(const std::filesystem::path& texture_path);
         void load(const unsigned char* buffer, std::size_t length);
-        void free();
-
-        GLuint get_texture() const;
 
     private:
-        GLuint texture;
+        static void free_impl(GLuint id);
     };
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Core/Resource.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Buffer/Buffer.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Buffer/BufferType.hpp"
 
@@ -8,22 +8,19 @@
 
 namespace Planar::Engine::Graphics::OpenGL::Core
 {
-    class VertexArrayObject
+    class VertexArrayObject : public Resource
     {
     public:
         VertexArrayObject();
         ~VertexArrayObject();
 
-        PLANAR_DELETE_COPY_FUNCTIONS(VertexArrayObject)
-
         template <typename T, Buffer::BufferType bufferT>
         void create(const Buffer::Buffer<T, bufferT>& vertex_buffer);
-        void free();
 
         void bind() const;
 
     private:
-        GLuint id;
+        static void free_impl(GLuint id);
     };
 }
 

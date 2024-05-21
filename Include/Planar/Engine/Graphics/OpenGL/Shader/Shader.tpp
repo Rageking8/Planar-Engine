@@ -3,7 +3,7 @@
 namespace Planar::Engine::Graphics::OpenGL::Shader
 {
     template <ShaderType ShaderT>
-    inline Shader<ShaderT>::Shader() : id{}
+    inline Shader<ShaderT>::Shader() : Resource(free_impl)
     {
 
     }
@@ -11,7 +11,7 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
     template <ShaderType ShaderT>
     inline Shader<ShaderT>::~Shader()
     {
-        free();
+
     }
 
     template <ShaderType ShaderT>
@@ -28,15 +28,8 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
     }
 
     template <ShaderType ShaderT>
-    void Shader<ShaderT>::free()
+    void Shader<ShaderT>::free_impl(GLuint id)
     {
         glDeleteShader(id);
-        id = 0;
-    }
-
-    template <ShaderType ShaderT>
-    GLuint Shader<ShaderT>::get_id() const
-    {
-        return id;
     }
 }

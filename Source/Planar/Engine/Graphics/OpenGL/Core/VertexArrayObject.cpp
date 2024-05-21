@@ -2,24 +2,23 @@
 
 namespace Planar::Engine::Graphics::OpenGL::Core
 {
-    VertexArrayObject::VertexArrayObject() : id{}
+    VertexArrayObject::VertexArrayObject() : Resource(free_impl)
     {
 
     }
 
     VertexArrayObject::~VertexArrayObject()
     {
-        free();
-    }
 
-    void VertexArrayObject::free()
-    {
-        glDeleteVertexArrays(1, &id);
-        id = 0;
     }
 
     void VertexArrayObject::bind() const
     {
         glBindVertexArray(id);
+    }
+
+    void VertexArrayObject::free_impl(GLuint id)
+    {
+        glDeleteVertexArrays(1, &id);
     }
 }

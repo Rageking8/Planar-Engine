@@ -25,7 +25,7 @@ namespace Planar::Editor::UI::Window
 
     void ContentWindow::init()
     {
-        back_button.set("Back", 15.f, left_arrow_texture->get_texture());
+        back_button.set("Back", 15.f, left_arrow_texture->get_id());
     }
 
     void ContentWindow::render_window()
@@ -71,12 +71,12 @@ namespace Planar::Editor::UI::Window
                 if (is_directory)
                 {
                     button.set(name, button_size, folder_texture ?
-                        folder_texture->get_texture() : 0);
+                        folder_texture->get_id() : 0);
                 }
                 else if (is_regular_file)
                 {
                     button.set(name, button_size, file_texture ?
-                        file_texture->get_texture() : 0);
+                        file_texture->get_id() : 0);
                 }
 
                 button.render();
