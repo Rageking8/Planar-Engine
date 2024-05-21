@@ -1,6 +1,6 @@
-#include "Planar/Engine/Graphics/Create/Create.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Create/Create.hpp"
 
-namespace Planar::Engine::Graphics::Create
+namespace Planar::Engine::Graphics::OpenGL::Create
 {
     void create_texture(GLuint* texture,
         Planar::Engine::Graphics::Image::STBImage& stb_image)

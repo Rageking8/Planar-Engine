@@ -1,6 +1,6 @@
 #include "Planar/Engine/Graphics/Load/Load.hpp"
 #include "Planar/Engine/Graphics/Image/STBImage.hpp"
-#include "Planar/Engine/Graphics/Create/Create.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Create/Create.hpp"
 
 namespace Planar::Engine::Graphics::Load
 {
@@ -14,7 +14,7 @@ namespace Planar::Engine::Graphics::Load
             return texture;
         }
 
-        Planar::Engine::Graphics::Create::create_texture(
+        Planar::Engine::Graphics::OpenGL::Create::create_texture(
             &texture, stb_image);
 
         return texture;
@@ -30,7 +30,7 @@ namespace Planar::Engine::Graphics::Load
             return texture;
         }
 
-        Planar::Engine::Graphics::Create::create_texture(
+        Planar::Engine::Graphics::OpenGL::Create::create_texture(
             &texture, stb_image);
 
         return texture;
