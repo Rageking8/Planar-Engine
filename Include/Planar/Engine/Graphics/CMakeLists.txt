@@ -5,4 +5,3 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
 
 add_subdirectory(Image)
 add_subdirectory(OpenGL)
-add_subdirectory(Texture)

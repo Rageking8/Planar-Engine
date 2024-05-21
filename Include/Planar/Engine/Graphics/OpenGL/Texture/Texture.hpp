@@ -8,7 +8,7 @@
 #include <cstddef>
 #include <filesystem>
 
-namespace Planar::Engine::Graphics::Texture
+namespace Planar::Engine::Graphics::OpenGL::Texture
 {
     class PLANAR_API Texture
     {

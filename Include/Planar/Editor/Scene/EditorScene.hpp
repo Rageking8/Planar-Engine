@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Scene/Scene.hpp"
-#include "Planar/Engine/Graphics/Texture/Texture.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Texture/Texture.hpp"
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 #include "Planar/Editor/UI/Window/InspectorWindow.hpp"
 #include "Planar/Editor/UI/Window/SettingsWindow.hpp"
@@ -34,9 +34,12 @@ namespace Planar::Editor::Scene
         Planar::Editor::UI::Window::GameWindow game_window;
         Planar::Editor::UI::Window::SceneWindow scene_window;
 
-        Planar::Engine::Graphics::Texture::Texture file_texture;
-        Planar::Engine::Graphics::Texture::Texture folder_texture;
-        Planar::Engine::Graphics::Texture::Texture left_arrow_texture;
+        Planar::Engine::Graphics::OpenGL::Texture::Texture
+            file_texture;
+        Planar::Engine::Graphics::OpenGL::Texture::Texture
+            folder_texture;
+        Planar::Engine::Graphics::OpenGL::Texture::Texture
+            left_arrow_texture;
 
         Planar::Editor::Project::Project* project;
 

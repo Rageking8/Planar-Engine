@@ -1,7 +1,7 @@
-#include "Planar/Engine/Graphics/Texture/Texture.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Texture/Texture.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Load/Load.hpp"
 
-namespace Planar::Engine::Graphics::Texture
+namespace Planar::Engine::Graphics::OpenGL::Texture
 {
     Texture::Texture() : texture{}
     {
