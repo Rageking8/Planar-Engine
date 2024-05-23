@@ -5,14 +5,12 @@
 
 #include "ThirdParty/glad/gl.h"
 
-#include <functional>
-
 namespace Planar::Engine::Graphics::OpenGL::Core
 {
     class PLANAR_API Resource
     {
     public:
-        using FreeFunction = std::function<void(GLuint)>;
+        using FreeFunction = void(*)(GLuint);
 
         Resource(FreeFunction free_function);
         virtual ~Resource() = 0;
