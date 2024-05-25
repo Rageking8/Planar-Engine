@@ -143,7 +143,11 @@ PREPEND_LISTS(${dotnet-sdk_SOURCE_DIR}/sdk/8.0.300/
     ARCHIVE_CONTENTS_SDK_80300
 )
 
-if(NOT EXISTS ${CMAKE_BINARY_DIR}/Asset/dotnet_sdk.zip)
+set(ARCHIVE_DESTINATION
+    ${CMAKE_BINARY_DIR}/Asset/dotnet_sdk.zip
+)
+
+if(NOT EXISTS ${ARCHIVE_DESTINATION})
     file(COPY ${ARCHIVE_CONTENTS_HOST} DESTINATION
         ${ARCHIVE_WORKING_DIRECTORY}
     )
@@ -154,8 +158,9 @@ if(NOT EXISTS ${CMAKE_BINARY_DIR}/Asset/dotnet_sdk.zip)
         ${ARCHIVE_WORKING_DIRECTORY}/sdk/8.0.300
     )
 
+    file(WRITE ${ARCHIVE_DESTINATION} "")
     file(ARCHIVE_CREATE OUTPUT
-        ${CMAKE_BINARY_DIR}/Asset/dotnet_sdk.zip PATHS
+        ${ARCHIVE_DESTINATION} PATHS
         ${ARCHIVE_WORKING_DIRECTORY} FORMAT zip
     )
 endif()
