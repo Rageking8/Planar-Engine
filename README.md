@@ -43,6 +43,7 @@ Currently Windows is the only operating system supported.
     - [yaml-cpp](https://github.com/jbeder/yaml-cpp) - Assets
     - [stb](https://github.com/nothings/stb) - Image loader
     - [libzip](https://github.com/nih-at/libzip) - Extract zip archives
+    - [glm](https://github.com/g-truc/glm) - Computer graphics types and routines
 
 1. Planar Editor
     - Planar Engine - All core routines
