@@ -58,6 +58,13 @@ FetchContent_Declare(
         SHA256=FFDF7427E848DF6F9CDDB6B4EED4FBD652D5B74B21102C515F37BE298F1A8426
 )
 
+FetchContent_Declare(
+    glm
+    URL https://github.com/g-truc/glm/archive/refs/tags/1.0.1.zip
+    URL_HASH
+        SHA256=09C5716296787E1F7FCB87B1CBDBF26814EC1288ED6259CCD30D5D9795809FA5
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
@@ -67,3 +74,4 @@ add_subdirectory(yaml-cpp)
 add_subdirectory(dotnet-sdk)
 add_subdirectory(zlib)
 add_subdirectory(libzip)
+add_subdirectory(glm)
