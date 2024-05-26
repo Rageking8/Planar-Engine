@@ -33,7 +33,7 @@
 
 #define PLANAR_EXPORT_DECLARE_FUNCTION(name, return_type, ...) \
     PLANAR_EXPORT_FUNCTION_PROTOTYPE(name, return_type         \
-        __VA_OPT__(,) _VA_ARGS__);                             \
+        __VA_OPT__(,) __VA_ARGS__);                            \
 
 #define PLANAR_EXPORT_DECLARE_HANDLE_FUNCTION(name, return_type, ...) \
     PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(name, return_type         \
