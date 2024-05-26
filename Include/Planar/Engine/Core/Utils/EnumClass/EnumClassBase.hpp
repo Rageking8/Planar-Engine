@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/Core/Utils/Concepts/EnumClass.hpp"
 
-namespace Planar::Engine::Core::Utils
+namespace Planar::Engine::Core::Utils::EnumClass
 {
     // Use this as a base class to add
     // member functions to an enum class
@@ -20,4 +20,4 @@ namespace Planar::Engine::Core::Utils
     };
 }
 
-#include "Planar/Engine/Core/Utils/EnumClassBase.tpp"
+#include "Planar/Engine/Core/Utils/EnumClass/EnumClassBase.tpp"

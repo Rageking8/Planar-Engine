@@ -19,7 +19,7 @@ namespace Planar::Editor::Scene
     void SelectProjectScene::init()
     {
         using namespace Planar::Engine::UI;
-        using namespace Planar::Engine::Core::Utils;
+        using namespace Planar::Engine::Core::Utils::EnumClass;
 
         ImGui::scale_ui(3);
         ImGui::set_scrollbar_size(15.f);

@@ -1,4 +1,6 @@
-namespace Planar::Engine::Core::Utils
+#include "Planar/Engine/Core/Utils/EnumClass/EnumClassBase.hpp"
+
+namespace Planar::Engine::Core::Utils::EnumClass
 {
     template <Concepts::EnumClass T>
     inline constexpr EnumClassBase<T>::EnumClassBase(T init_value) :

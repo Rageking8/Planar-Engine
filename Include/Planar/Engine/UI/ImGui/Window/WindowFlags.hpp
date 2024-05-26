@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Engine/Core/Utils/EnumClassFlags.hpp"
+#include "Planar/Engine/Core/Utils/EnumClass/EnumClassFlags.hpp"
 
 PLANAR_BEGIN_ENUM_CLASS_FLAG(Planar::Engine::UI::ImGui::Window,
     WindowFlags)

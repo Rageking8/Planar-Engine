@@ -46,7 +46,7 @@ namespace Planar::Engine::UI::ImGui::Window
 
         if (first_render)
         {
-            if (Planar::Engine::Core::Utils::has(
+            if (Planar::Engine::Core::Utils::EnumClass::has(
                 flags, WindowFlags::FIT_TO_WINDOW))
             {
                 ImGuiViewport* viewport = ::ImGui::GetMainViewport();
@@ -111,26 +111,26 @@ namespace Planar::Engine::UI::ImGui::Window
         begin_flags = ImGuiWindowFlags_None;
         flags = new_flags;
 
-        if (Planar::Engine::Core::Utils::has(
+        if (Planar::Engine::Core::Utils::EnumClass::has(
             flags, WindowFlags::MINIMAL))
         {
             begin_flags |= ImGuiWindowFlags_NoDecoration |
                 ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground;
         }
 
-        if (Planar::Engine::Core::Utils::has(flags,
+        if (Planar::Engine::Core::Utils::EnumClass::has(flags,
             WindowFlags::NO_STORE_INI))
         {
             begin_flags |= ImGuiWindowFlags_NoSavedSettings;
         }
 
-        if (Planar::Engine::Core::Utils::has(flags,
+        if (Planar::Engine::Core::Utils::EnumClass::has(flags,
             WindowFlags::ALWAYS_VERTICAL_SCROLLBAR))
         {
             begin_flags |= ImGuiWindowFlags_AlwaysVerticalScrollbar;
         }
 
-        if (Planar::Engine::Core::Utils::has(flags,
+        if (Planar::Engine::Core::Utils::EnumClass::has(flags,
             WindowFlags::MENU_BAR))
         {
             begin_flags |= ImGuiWindowFlags_MenuBar;

@@ -1,4 +1,6 @@
-namespace Planar::Engine::Core::Utils
+#include "Planar/Engine/Core/Utils/EnumClass/EnumClassFlags.hpp"
+
+namespace Planar::Engine::Core::Utils::EnumClass
 {
     template <Concepts::EnumClass T>
     constexpr std::underlying_type_t<T> to_underlying(T e)

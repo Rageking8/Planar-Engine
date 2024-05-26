@@ -14,7 +14,7 @@ namespace Planar::Editor::UI::Window
     ContentWindow::ContentWindow() : folder_texture{},
         file_texture{}, left_arrow_texture{}
     {
-        using namespace Planar::Engine::Core::Utils;
+        using namespace Planar::Engine::Core::Utils::EnumClass;
 
         set("Content",
             Planar::Engine::UI::ImGui::Window::WindowFlags::

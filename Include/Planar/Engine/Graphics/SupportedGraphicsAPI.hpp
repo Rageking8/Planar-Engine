@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/Core/Utils/EnumClassBase.hpp"
+#include "Planar/Engine/Core/Utils/EnumClass/EnumClassBase.hpp"
 
 namespace Planar::Engine::Graphics
 {
@@ -11,7 +11,7 @@ namespace Planar::Engine::Graphics
     };
 
     class PLANAR_API SupportedGraphicsAPI :
-        public Planar::Engine::Core::Utils::EnumClassBase<
+        public Core::Utils::EnumClass::EnumClassBase<
         SupportedGraphicsAPIBacking>
     {
     public:
