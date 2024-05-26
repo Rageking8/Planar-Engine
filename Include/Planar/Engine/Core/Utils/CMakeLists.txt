@@ -1,4 +1,4 @@
-add_subdirectory(Assert)
+add_subdirectory(Checks)
 add_subdirectory(Concepts)
 add_subdirectory(EnumClass)
 add_subdirectory(Macros)
