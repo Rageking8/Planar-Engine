@@ -10,15 +10,14 @@ public class Entry
 {
     public static void Main()
     {
-        Logger logger = new();
-        logger.Log("Planar Script (" +
+        TerminalLogger.Log("Script", "Planar Script (" +
             RuntimeInformation.FrameworkDescription + ")");
 
         Application application = new();
 
         if (!application.Init())
         {
-            logger.Error("Application init failed");
+            TerminalLogger.Error("Script", "Application init failed");
             Console.ReadLine();
 
             return;

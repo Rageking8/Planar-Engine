@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Planar/Engine/Math/Size2D.hpp"
-#include "Planar/Engine/Core/Log/LoggerBase.hpp"
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
 
@@ -17,7 +16,7 @@ namespace Planar::Engine::Core
         GLFWContext();
         ~GLFWContext();
 
-        bool init(Log::LoggerBase* logger = nullptr);
+        bool init();
         void terminate();
 
         GLFWwindow* get_main_window() const;
@@ -28,8 +27,7 @@ namespace Planar::Engine::Core
             Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
             Planar::Engine::Math::Size2Di size,
             const std::string& name,
-            bool maximize = false,
-            Log::LoggerBase* logger = nullptr);
+            bool maximize = false);
 
         void maximize_window() const;
         void set_main_window_name(const std::string& new_main_window_name);

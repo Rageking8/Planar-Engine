@@ -1,5 +1,6 @@
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Engine/Core/Version.hpp"
+#include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
@@ -12,7 +13,8 @@ namespace Planar::Engine::Core
         window_name{ window_name }, window_size{ window_size },
         maximize{ maximize }, graphics_api{ graphics_api }
     {
-        logger.log("Planar Engine " + VERSION);
+        Log::TerminalLogger::get("Engine")->log(
+            "Planar Engine " + VERSION);
     }
 
     Application::~Application()
@@ -90,7 +92,7 @@ namespace Planar::Engine::Core
 
     bool Application::init_glfw()
     {
-        return glfw_context.init(&logger);
+        return glfw_context.init();
     }
 
     bool Application::init_glad()
@@ -98,24 +100,26 @@ namespace Planar::Engine::Core
         const int version = gladLoadGL(glfwGetProcAddress);
         if (version == 0)
         {
-            logger.error("OpenGL init failed");
+            Log::TerminalLogger::get("Engine")->error(
+                "OpenGL init failed");
 
             return false;
         }
 
-        logger.success("OpenGL init successful");
+        Log::TerminalLogger::get("Engine")->success(
+            "OpenGL init successful");
 
         return true;
     }
 
     bool Application::init_imgui()
     {
-        return imgui_context.init(glfw_context, &logger);
+        return imgui_context.init(glfw_context);
     }
 
     bool Application::create_window()
     {
         return glfw_context.create_window(graphics_api,
-            window_size, window_name, maximize, &logger);
+            window_size, window_name, maximize);
     }
 }

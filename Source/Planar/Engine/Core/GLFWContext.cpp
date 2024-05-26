@@ -1,4 +1,5 @@
 #include "Planar/Engine/Core/GLFWContext.hpp"
+#include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 
 #include "ThirdParty/GLFW/glfw3.h"
 
@@ -14,17 +15,19 @@ namespace Planar::Engine::Core
         terminate();
     }
 
-    bool GLFWContext::init(Log::LoggerBase* logger)
+    bool GLFWContext::init()
     {
         has_init = glfwInit();
 
-        if (logger && has_init)
+        if (has_init)
         {
-            logger->success("GLFW init successful");
+            Log::TerminalLogger::get("Engine")->success(
+                "GLFW init successful");
         }
-        else if (logger && !has_init)
+        else
         {
-            logger->error("GLFW init failed");
+            Log::TerminalLogger::get("Engine")->error(
+                "GLFW init failed");
         }
 
         return has_init;
@@ -57,8 +60,7 @@ namespace Planar::Engine::Core
     bool GLFWContext::create_window(
         Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
         Planar::Engine::Math::Size2Di size,
-        const std::string& name, bool maximize,
-        Log::LoggerBase* logger)
+        const std::string& name, bool maximize)
     {
         if (!has_init || main_window)
         {
@@ -81,15 +83,14 @@ namespace Planar::Engine::Core
             window_graphics_api = graphics_api;
 
             glfwMakeContextCurrent(window);
-        }
 
-        if (logger && window)
-        {
-            logger->success("Window init successful");
+            Log::TerminalLogger::get("Engine")->success(
+                "Window init successful");
         }
-        else if (logger && !window)
+        else
         {
-            logger->error("Window init failed");
+            Log::TerminalLogger::get("Engine")->error(
+                "Window init failed");
         }
 
         return window;

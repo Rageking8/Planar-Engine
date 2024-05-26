@@ -1,5 +1,6 @@
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 #include "ThirdParty/ImGui/imgui_impl_glfw.h"
@@ -18,8 +19,7 @@ namespace Planar::Engine::UI::ImGui
     }
 
     bool ImGuiContext::init(
-        const Planar::Engine::Core::GLFWContext& glfw_context,
-        Planar::Engine::Core::Log::LoggerBase* logger)
+        const Planar::Engine::Core::GLFWContext& glfw_context)
     {
         ::IMGUI_CHECKVERSION();
         ::ImGui::CreateContext();
@@ -39,10 +39,8 @@ namespace Planar::Engine::UI::ImGui
 
         has_init = true;
 
-        if (logger)
-        {
-            logger->success("ImGui init successful");
-        }
+        Core::Log::TerminalLogger::get("Engine")->success(
+            "ImGui init successful");
 
         return true;
     }

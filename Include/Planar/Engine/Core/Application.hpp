@@ -3,7 +3,6 @@
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Core/GLFWContext.hpp"
-#include "Planar/Engine/Core/Log/Logger.hpp"
 #include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
@@ -50,8 +49,6 @@ namespace Planar::Engine::Core
     private:
         GLFWContext glfw_context;
         Planar::Engine::UI::ImGui::ImGuiContext imgui_context;
-
-        Log::Logger logger;
 
         std::unique_ptr<Planar::Engine::Scene::Scene> main_scene;
     };
