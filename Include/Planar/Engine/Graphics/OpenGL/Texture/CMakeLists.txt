@@ -1,6 +1,6 @@
 target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     Texture.hpp
-    TextureMaxFilter.hpp
+    TextureMagFilter.hpp
     TextureMinFilter.hpp
     TextureWrap.hpp
 )
