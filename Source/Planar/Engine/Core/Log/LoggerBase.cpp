@@ -1,5 +1,6 @@
 #include "Planar/Engine/Core/Log/LoggerBase.hpp"
 #include "Planar/Engine/Core/Utils/Terminal/TUI.hpp"
+#include "Planar/Engine/Core/Utils/Time/Time.hpp"
 
 namespace Planar::Engine::Core::Log
 {
