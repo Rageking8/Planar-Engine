@@ -17,53 +17,47 @@ namespace Planar::Engine::Core::Log
 
     void Logger::log(const std::string& text)
     {
-        Planar::Engine::Core::Utils::Terminal::color_println(
-            get_prefix("LOG ", log_id) + text,
-            Planar::Engine::Core::Utils::Terminal::Color::WHITE);
+        Utils::Terminal::color_println(get_prefix("LOG ", log_id) +
+            text, Utils::Terminal::Color::WHITE);
 
         log_id++;
     }
 
     void Logger::warn(const std::string& text)
     {
-        Planar::Engine::Core::Utils::Terminal::color_println(
-            get_prefix("WARN", warn_id) + text,
-            Planar::Engine::Core::Utils::Terminal::Color::YELLOW,
-            Planar::Engine::Core::Utils::Terminal::Stream::CLOG);
+        Utils::Terminal::color_println(get_prefix("WARN", warn_id) +
+            text, Utils::Terminal::Color::YELLOW,
+            Utils::Terminal::Stream::CLOG);
 
         warn_id++;
     }
 
     void Logger::error(const std::string& text)
     {
-        Planar::Engine::Core::Utils::Terminal::color_println(
-            get_prefix("ERR ", error_id) + text,
-            Planar::Engine::Core::Utils::Terminal::Color::RED,
-            Planar::Engine::Core::Utils::Terminal::Stream::CERR);
+        Utils::Terminal::color_println(get_prefix("ERR ", error_id) +
+            text, Utils::Terminal::Color::RED,
+            Utils::Terminal::Stream::CERR);
 
         error_id++;
     }
 
     void Logger::success(const std::string& text)
     {
-        Planar::Engine::Core::Utils::Terminal::color_println(
-            get_prefix("SUCC", success_id) + text,
-            Planar::Engine::Core::Utils::Terminal::Color::GREEN);
+        Utils::Terminal::color_println(get_prefix("SUCC", success_id) +
+            text, Utils::Terminal::Color::GREEN);
 
         success_id++;
     }
 
     std::string Logger::get_timestamp() const
     {
-        return "[" + Planar::Engine::Core::Utils::Time::get_time_string(
-            Planar::Engine::Core::Utils::Time::Format::DDMMYYYYHHMMSS) +
-            "]";
+        return "[" + Utils::Time::get_time_string(
+            Utils::Time::Format::DDMMYYYYHHMMSS) + "]";
     }
 
     std::string Logger::get_id(const std::string& type, unsigned id)
     {
-        return "[" + type + " ID:" +
-            Planar::Engine::Core::Utils::Terminal::number_pad_left(id,
+        return "[" + type + " ID:" + Utils::Terminal::number_pad_left(id,
             ID_PAD_LENGTH, ' ') + "]";
     }
 
