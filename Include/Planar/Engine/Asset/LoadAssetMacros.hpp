@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Core/Utils/Macros/RepeatMacros.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
@@ -9,7 +10,13 @@
     namespace Planar::Asset::ns                \
     {                                          \
         extern const std::string name;         \
-    }
+    }                                          \
+
+#define PLANAR_LOAD_STD_STRING_ASSET_USING_IMPORT(ns, name) \
+    namespace Planar::Asset::ns                             \
+    {                                                       \
+        PLANAR_API extern const std::string name;           \
+    }                                                       \
 
 #define PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(ns, name) \
     namespace Planar::Asset::ns                         \

@@ -1,4 +1,15 @@
 # Convert all `ARGN` from text to a `std::string` and place it
+# in a new C++ file each with dll export, before adding to
+# `target` as source
+function(pack_text_to_string_with_export target)
+    set(include_prepend
+        "#include \"Planar/Engine/Export/ExportMacros.hpp\"\n\n"
+    )
+    set(export_prepend "PLANAR_API ")
+    pack_text_to_string(${target} ${ARGN})
+endfunction()
+
+# Convert all `ARGN` from text to a `std::string` and place it
 # in a new C++ file each, before adding to `target` as source
 function(pack_text_to_string target)
     file(RELATIVE_PATH namespace ${CMAKE_SOURCE_DIR}
@@ -18,11 +29,12 @@ function(pack_text_to_string target)
         string(REPLACE "\"" "\\\"" file_data "${file_data}")
 
         file(WRITE ${output_file}
-"#include <string>
+"${include_prepend}#include <string>
 
 namespace Planar::${namespace}
 {
-    extern const std::string ${source_name} = \"${file_data}\";
+    ${export_prepend}extern const std::string ${source_name} =
+        \"${file_data}\";
 }
 "
         )
