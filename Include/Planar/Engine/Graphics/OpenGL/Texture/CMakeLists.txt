@@ -3,4 +3,5 @@ target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
     TextureMagFilter.hpp
     TextureMinFilter.hpp
     TextureWrap.hpp
+    Texture2D.hpp
 )

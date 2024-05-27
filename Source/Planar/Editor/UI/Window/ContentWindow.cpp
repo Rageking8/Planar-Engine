@@ -116,21 +116,21 @@ namespace Planar::Editor::UI::Window
     }
 
     void ContentWindow::set_folder_texture(
-        Planar::Engine::Graphics::OpenGL::Texture::Texture&
+        Planar::Engine::Graphics::OpenGL::Texture::Texture2D&
         new_folder_texture)
     {
         folder_texture = &new_folder_texture;
     }
 
     void ContentWindow::set_file_texture(
-        Planar::Engine::Graphics::OpenGL::Texture::Texture&
+        Planar::Engine::Graphics::OpenGL::Texture::Texture2D&
         new_file_texture)
     {
         file_texture = &new_file_texture;
     }
 
     void ContentWindow::set_left_arrow_texture(
-        Planar::Engine::Graphics::OpenGL::Texture::Texture&
+        Planar::Engine::Graphics::OpenGL::Texture::Texture2D&
         new_left_arrow_texture)
     {
         left_arrow_texture = &new_left_arrow_texture;

@@ -1,16 +1,19 @@
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 
 namespace Planar::Engine::Graphics::OpenGL::Texture
 {
-    Texture::Texture() : Resource(free_impl)
+    Texture::Texture() : Resource(free_impl),
+        min_filter{ TextureMinFilter::NEAREST_MIPMAP_LINEAR },
+        mag_filter{ TextureMagFilter::LINEAR }
     {
 
     }
 
-    Texture::Texture(const std::filesystem::path& texture_path) :
-        Texture()
+    Texture::Texture(const std::filesystem::path& texture_path,
+        Core::ObjectHandlingMode object_handling_mode) : Texture()
     {
-        load(texture_path);
+        load(texture_path, object_handling_mode);
     }
 
     Texture::~Texture()
@@ -18,7 +21,8 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
 
     }
 
-    bool Texture::load(const std::filesystem::path& texture_path)
+    bool Texture::load(const std::filesystem::path& texture_path,
+        Core::ObjectHandlingMode object_handling_mode)
     {
         free();
 
@@ -28,12 +32,13 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
             return false;
         }
 
-        id = create(stb_image);
+        create(stb_image, object_handling_mode);
 
         return true;
     }
 
-    bool Texture::load(const unsigned char* buffer, std::size_t length)
+    bool Texture::load(const unsigned char* buffer, std::size_t length,
+        Core::ObjectHandlingMode object_handling_mode)
     {
         free();
 
@@ -43,33 +48,37 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
             return false;
         }
 
-        id = create(stb_image);
+        create(stb_image, object_handling_mode);
 
         return true;
     }
 
-    GLuint Texture::create(Image::STBImage& stb_image)
+    TextureMinFilter Texture::get_min_filter() const
     {
-        GLuint texture = 0;
+        return min_filter;
+    }
 
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
+    TextureMagFilter Texture::get_mag_filter() const
+    {
+        return mag_filter;
+    }
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
-            GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
-            GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-            GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
-            GL_LINEAR);
+    void Texture::set_wrap_s(TextureWrap new_wrap_s,
+        Core::ObjectHandlingMode object_handling_mode)
+    {
+        PLANAR_FATAL("Invalid operation");
+    }
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, stb_image.get_width(),
-            stb_image.get_height(), 0, GL_RGBA, GL_UNSIGNED_BYTE,
-            stb_image.get_data());
-        glGenerateMipmap(GL_TEXTURE_2D);
+    void Texture::set_wrap_t(TextureWrap new_wrap_t,
+        Core::ObjectHandlingMode object_handling_mode)
+    {
+        PLANAR_FATAL("Invalid operation");
+    }
 
-        return texture;
+    void Texture::set_wrap_r(TextureWrap new_wrap_r,
+        Core::ObjectHandlingMode object_handling_mode)
+    {
+        PLANAR_FATAL("Invalid operation");
     }
 
     void Texture::Texture::free_impl(GLuint id)
