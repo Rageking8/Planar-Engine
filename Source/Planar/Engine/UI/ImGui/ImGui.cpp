@@ -131,9 +131,12 @@ namespace Planar::Engine::UI::ImGui
             placeholder.c_str(), &text);
     }
 
-    void image(GLuint texture, Planar::Engine::Math::Size2Df size)
+    void image(GLuint texture, Planar::Engine::Math::Size2Df size,
+        bool flip_y)
     {
-        ::ImGui::Image((void*)texture, { size.width, size.height });
+        ::ImGui::Image((void*)texture, { size.width, size.height },
+            flip_y ? ::ImVec2(0.f, 1.f) : ::ImVec2(0.f, 0.f),
+            flip_y ? ::ImVec2(1.f, 0.f) : ::ImVec2(1.f, 1.f));
     }
 
     void newline(unsigned count)

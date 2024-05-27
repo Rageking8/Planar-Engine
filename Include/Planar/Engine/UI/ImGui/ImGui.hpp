@@ -53,7 +53,7 @@ namespace Planar::Engine::UI::ImGui
         const std::string& placeholder, std::string& text);
 
     PLANAR_API void image(GLuint texture,
-        Planar::Engine::Math::Size2Df size);
+        Planar::Engine::Math::Size2Df size, bool flip_y = false);
 
     PLANAR_API void newline(unsigned count = 1);
 
