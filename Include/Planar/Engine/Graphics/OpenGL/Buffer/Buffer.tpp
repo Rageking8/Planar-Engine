@@ -1,4 +1,5 @@
 #include "Planar/Engine/Graphics/OpenGL/Buffer/Buffer.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Function/Buffer/Buffer.hpp"
 
 namespace Planar::Engine::Graphics::OpenGL::Buffer
 {
@@ -20,21 +21,21 @@ namespace Planar::Engine::Graphics::OpenGL::Buffer
     {
         free();
 
-        glGenBuffers(1, &id);
+        id = Function::Buffer::gen_buffer();
         bind();
-        glBufferData((GLenum)BufferT, (buffer.size() * sizeof(T)),
-            buffer.data(), (GLenum)usage);
+        Function::Buffer::buffer_data(BufferT,
+            (buffer.size() * sizeof(T)), buffer.data(), usage);
     }
 
     template <typename T, BufferType BufferT>
     inline void Buffer<T, BufferT>::bind() const
     {
-        glBindBuffer((GLenum)BufferT, id);
+        Function::Buffer::bind_buffer(BufferT, id);
     }
 
     template <typename T, BufferType BufferT>
     inline void Buffer<T, BufferT>::free_impl(GLuint id)
     {
-        glDeleteBuffers(1, &id);
+        Function::Buffer::delete_buffer(id);
     }
 }
