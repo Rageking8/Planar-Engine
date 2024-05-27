@@ -11,7 +11,7 @@
 #define PLANAR_ASSERT_TERMINAL(condition, message)                     \
     do                                                                 \
     {                                                                  \
-        if (!condition)                                                \
+        if (!(condition))                                              \
         {                                                              \
             Planar::Engine::Core::Log::TerminalLogger::get("Engine")-> \
                 error("Assertion failed at \"" #condition "\"\n"       \
