@@ -1,5 +1,5 @@
 add_subdirectory(Core)
 add_subdirectory(Framebuffer)
+add_subdirectory(Function)
 add_subdirectory(Shader)
 add_subdirectory(Texture)
-add_subdirectory(Wrapper)

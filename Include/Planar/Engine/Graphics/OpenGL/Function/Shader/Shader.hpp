@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace Planar::Engine::Graphics::OpenGL::Wrapper::Shader
+namespace Planar::Engine::Graphics::OpenGL::Function::Shader
 {
     PLANAR_API GLuint create_shader(
         OpenGL::Shader::ShaderType shader_type);

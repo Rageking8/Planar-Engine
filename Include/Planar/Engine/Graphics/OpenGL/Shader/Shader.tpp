@@ -1,5 +1,5 @@
 #include "Planar/Engine/Graphics/OpenGL/Shader/Shader.hpp"
-#include "Planar/Engine/Graphics/OpenGL/Wrapper/Shader/Shader.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Function/Shader/Shader.hpp"
 
 namespace Planar::Engine::Graphics::OpenGL::Shader
 {
@@ -20,14 +20,14 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
     {
         free();
 
-        id = Wrapper::Shader::create_shader(ShaderT);
-        Wrapper::Shader::shader_source(id, source);
-        Wrapper::Shader::compile_shader(id);
+        id = Function::Shader::create_shader(ShaderT);
+        Function::Shader::shader_source(id, source);
+        Function::Shader::compile_shader(id);
     }
 
     template <ShaderType ShaderT>
     inline void Shader<ShaderT>::free_impl(GLuint id)
     {
-        Wrapper::Shader::delete_shader(id);
+        Function::Shader::delete_shader(id);
     }
 }

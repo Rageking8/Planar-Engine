@@ -1,6 +1,6 @@
-#include "Planar/Engine/Graphics/OpenGL/Wrapper/Shader/Shader.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Function/Shader/Shader.hpp"
 
-namespace Planar::Engine::Graphics::OpenGL::Wrapper::Shader
+namespace Planar::Engine::Graphics::OpenGL::Function::Shader
 {
     GLuint create_shader(OpenGL::Shader::ShaderType shader_type)
     {
