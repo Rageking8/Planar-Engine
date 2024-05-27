@@ -1,5 +1,5 @@
 target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
-    ObjectModifyMode.hpp
+    ObjectHandlingMode.hpp
     Resource.hpp
     VertexArrayObject.hpp
     VertexArrayObject.tpp
