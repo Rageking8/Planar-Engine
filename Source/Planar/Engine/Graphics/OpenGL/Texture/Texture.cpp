@@ -24,8 +24,6 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
     bool Texture::load(const std::filesystem::path& texture_path,
         Core::ObjectHandlingMode object_handling_mode)
     {
-        free();
-
         Image::STBImage stb_image;
         if (!stb_image.load(texture_path))
         {
@@ -40,8 +38,6 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
     bool Texture::load(const unsigned char* buffer, std::size_t length,
         Core::ObjectHandlingMode object_handling_mode)
     {
-        free();
-
         Image::STBImage stb_image;
         if (!stb_image.load(buffer, length))
         {

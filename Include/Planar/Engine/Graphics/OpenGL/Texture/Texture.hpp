@@ -34,6 +34,9 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
         virtual void create(Image::STBImage& stb_image,
             Core::ObjectHandlingMode object_handling_mode =
             Core::ObjectHandlingMode::DSA) = 0;
+        virtual void create_raw(GLsizei width, GLsizei height,
+            Core::ObjectHandlingMode object_handling_mode =
+            Core::ObjectHandlingMode::DSA) = 0;
 
         TextureMinFilter get_min_filter() const;
         virtual void set_min_filter(TextureMinFilter new_min_filter,
@@ -54,6 +57,8 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
         virtual void set_wrap_r(TextureWrap new_wrap_r,
             Core::ObjectHandlingMode object_handling_mode =
             Core::ObjectHandlingMode::DSA);
+
+        virtual void bind() const = 0;
 
     protected:
         TextureMinFilter min_filter;
