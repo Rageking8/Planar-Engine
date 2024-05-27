@@ -1,4 +1,4 @@
-#include "Planar/Engine/Graphics/OpenGL/Function/Shader/Shader.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Function/Shader/ShaderFunction.hpp"
 
 namespace Planar::Engine::Graphics::OpenGL::Function::Shader
 {

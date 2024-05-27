@@ -1,3 +1,3 @@
 target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
-    Buffer.cpp
+    BufferFunction.cpp
 )

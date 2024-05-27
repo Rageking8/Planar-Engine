@@ -1,5 +1,5 @@
 #include "Planar/Engine/Graphics/OpenGL/Buffer/Buffer.hpp"
-#include "Planar/Engine/Graphics/OpenGL/Function/Buffer/Buffer.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Function/Buffer/BufferFunction.hpp"
 
 namespace Planar::Engine::Graphics::OpenGL::Buffer
 {
