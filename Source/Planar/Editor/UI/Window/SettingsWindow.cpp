@@ -3,11 +3,11 @@
 
 namespace Planar::Editor::UI::Window
 {
-    SettingsWindow::SettingsWindow() :
+    SettingsWindow::SettingsWindow() : EditorWindow("Settings"),
         pending_restore_default_layout{},
         restore_default_layout_button("Restore Default Layout")
     {
-        set("Settings");
+
     }
 
     void SettingsWindow::render_window()

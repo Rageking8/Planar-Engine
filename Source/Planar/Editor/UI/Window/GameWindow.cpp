@@ -16,9 +16,9 @@ PLANAR_LOAD_STD_STRING_ASSET_USING_IMPORT(
 
 namespace Planar::Editor::UI::Window
 {
-    GameWindow::GameWindow()
+    GameWindow::GameWindow() : EditorWindow("Game")
     {
-        set("Game");
+
     }
 
     void GameWindow::init()

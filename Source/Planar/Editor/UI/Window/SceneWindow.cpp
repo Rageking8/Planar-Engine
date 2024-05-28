@@ -2,9 +2,9 @@
 
 namespace Planar::Editor::UI::Window
 {
-    SceneWindow::SceneWindow()
+    SceneWindow::SceneWindow() : EditorWindow("Scene")
     {
-        set("Scene");
+
     }
 
     void SceneWindow::render_window()

@@ -11,15 +11,14 @@
 
 namespace Planar::Editor::UI::Window
 {
-    ContentWindow::ContentWindow() : folder_texture{},
-        file_texture{}, left_arrow_texture{}
+    ContentWindow::ContentWindow() : EditorWindow("Content"),
+        folder_texture{}, file_texture{}, left_arrow_texture{}
     {
         using namespace Planar::Engine::Core::Utils::EnumClass;
 
-        set("Content",
-            Planar::Engine::UI::ImGui::Window::WindowFlags::
+        set_flags(Engine::UI::ImGui::Window::WindowFlags::
             ALWAYS_VERTICAL_SCROLLBAR |
-            Planar::Engine::UI::ImGui::Window::WindowFlags::
+            Engine::UI::ImGui::Window::WindowFlags::
             MENU_BAR);
     }
 
