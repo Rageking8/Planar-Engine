@@ -19,8 +19,8 @@ namespace Planar::Engine::UI::ImGui::Window
     }
 
     Window::Window(const std::string& name,
-        WindowFlags flags) : Window(name, std::nullopt,
-        std::nullopt, flags)
+        WindowFlags flags, bool active) : Window(name, std::nullopt,
+        std::nullopt, flags, active)
     {
 
     }
@@ -28,9 +28,9 @@ namespace Planar::Engine::UI::ImGui::Window
     Window::Window(const std::string& name,
         std::optional<Math::Pos2Df> position,
         std::optional<Math::Size2Df> size,
-        WindowFlags flags, Graphics::Color background_color,
+        WindowFlags flags, bool active, Graphics::Color background_color,
         Math::Size2Df window_padding, bool allow_close) :
-        active{ true }, name{ name }, position{ position },
+        active{ active }, name{ name }, position{ position },
         size{ size }, begin_flags{}, background_color{ background_color },
         window_padding{ window_padding }, allow_close{ allow_close },
         first_render{ true }

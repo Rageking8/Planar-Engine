@@ -25,12 +25,12 @@ namespace Planar::Engine::UI::ImGui::Window
         };
 
         Window(const std::string& name = "",
-            WindowFlags flags = WindowFlags::NONE);
+            WindowFlags flags = WindowFlags::NONE, bool active = true);
         Window(const std::string& name,
             std::optional<Math::Pos2Df> position,
             std::optional<Math::Size2Df> size,
             WindowFlags flags = WindowFlags::NONE,
-            Graphics::Color background_color =
+            bool active = true, Graphics::Color background_color =
             { 0.06f, 0.06f, 0.06f, 1.f }, Math::Size2Df
             window_padding = { 24.f, 24.f }, bool allow_close = true);
         virtual ~Window();
