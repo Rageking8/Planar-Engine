@@ -11,6 +11,8 @@ namespace Planar::Engine::Math
         Pos2D(T value);
         Pos2D(T x, T y);
 
+        bool operator==(const Pos2D&) const = default;
+
         T x;
         T y;
     };

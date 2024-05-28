@@ -11,6 +11,8 @@ namespace Planar::Engine::Math
         Size2D(T size);
         Size2D(T width, T height);
 
+        bool operator==(const Size2D&) const = default;
+
         T width;
         T height;
     };
