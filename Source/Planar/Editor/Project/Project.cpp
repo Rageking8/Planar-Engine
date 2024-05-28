@@ -6,6 +6,7 @@
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
 #include <iostream>
+#include <filesystem>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Project)
@@ -71,6 +72,8 @@ namespace Planar::Editor::Project
         std::string main_scene_guid = create_main_scene();
         create_project_file(project_name, project_description,
             main_scene_guid);
+
+        std::filesystem::create_directories(root_path / "Build");
 
         if (create_gitignore)
         {
