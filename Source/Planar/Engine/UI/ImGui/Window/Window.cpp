@@ -1,10 +1,15 @@
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
+#include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 
 namespace Planar::Engine::UI::ImGui::Window
 {
     Window::Scope::Scope(const char* name,
-        ::ImGuiWindowFlags begin_flags, bool* open)
+        ::ImGuiWindowFlags begin_flags, bool* open,
+        Math::Size2Df window_padding)
     {
+        Style::StyleVar style;
+        style.set_window_padding(window_padding);
+
         ::ImGui::Begin(name, open, begin_flags);
     }
 
@@ -21,13 +26,14 @@ namespace Planar::Engine::UI::ImGui::Window
     }
 
     Window::Window(const std::string& name,
-        std::optional<Planar::Engine::Math::Pos2Df> position,
-        std::optional<Planar::Engine::Math::Size2Df> size,
-        WindowFlags flags, Planar::Engine::Graphics::Color
-        background_color, bool allow_close) : active{ true },
-        name{ name }, position{ position }, size{ size },
-        begin_flags{}, background_color{ background_color },
-        allow_close{ allow_close }, first_render{ true }
+        std::optional<Math::Pos2Df> position,
+        std::optional<Math::Size2Df> size,
+        WindowFlags flags, Graphics::Color background_color,
+        Math::Size2Df window_padding, bool allow_close) :
+        active{ true }, name{ name }, position{ position },
+        size{ size }, begin_flags{}, background_color{ background_color },
+        window_padding{ window_padding }, allow_close{ allow_close },
+        first_render{ true }
     {
         set_flags(flags);
     }
@@ -46,7 +52,7 @@ namespace Planar::Engine::UI::ImGui::Window
 
         if (first_render)
         {
-            if (Planar::Engine::Core::Utils::EnumClass::has(
+            if (Core::Utils::EnumClass::has(
                 flags, WindowFlags::FIT_TO_WINDOW))
             {
                 ImGuiViewport* viewport = ::ImGui::GetMainViewport();
@@ -75,7 +81,7 @@ namespace Planar::Engine::UI::ImGui::Window
 
         return std::make_unique<Window::Scope>(
             name.c_str(), begin_flags,
-            allow_close ? &active : nullptr);
+            allow_close ? &active : nullptr, window_padding);
     }
 
     void Window::set(const std::string& new_name,
@@ -86,8 +92,8 @@ namespace Planar::Engine::UI::ImGui::Window
     }
 
     void Window::set(const std::string& new_name,
-        std::optional<Planar::Engine::Math::Pos2Df> new_position,
-        std::optional<Planar::Engine::Math::Size2Df> new_size,
+        std::optional<Math::Pos2Df> new_position,
+        std::optional<Math::Size2Df> new_size,
         WindowFlags new_flags)
     {
         set_name(new_name);
@@ -111,26 +117,26 @@ namespace Planar::Engine::UI::ImGui::Window
         begin_flags = ImGuiWindowFlags_None;
         flags = new_flags;
 
-        if (Planar::Engine::Core::Utils::EnumClass::has(
+        if (Core::Utils::EnumClass::has(
             flags, WindowFlags::MINIMAL))
         {
             begin_flags |= ImGuiWindowFlags_NoDecoration |
                 ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground;
         }
 
-        if (Planar::Engine::Core::Utils::EnumClass::has(flags,
+        if (Core::Utils::EnumClass::has(flags,
             WindowFlags::NO_STORE_INI))
         {
             begin_flags |= ImGuiWindowFlags_NoSavedSettings;
         }
 
-        if (Planar::Engine::Core::Utils::EnumClass::has(flags,
+        if (Core::Utils::EnumClass::has(flags,
             WindowFlags::ALWAYS_VERTICAL_SCROLLBAR))
         {
             begin_flags |= ImGuiWindowFlags_AlwaysVerticalScrollbar;
         }
 
-        if (Planar::Engine::Core::Utils::EnumClass::has(flags,
+        if (Core::Utils::EnumClass::has(flags,
             WindowFlags::MENU_BAR))
         {
             begin_flags |= ImGuiWindowFlags_MenuBar;
@@ -138,21 +144,26 @@ namespace Planar::Engine::UI::ImGui::Window
     }
 
     void Window::set_position(
-        std::optional<Planar::Engine::Math::Pos2Df> new_position)
+        std::optional<Math::Pos2Df> new_position)
     {
         position = new_position;
     }
 
     void Window::set_size(
-        std::optional<Planar::Engine::Math::Size2Df> new_size)
+        std::optional<Math::Size2Df> new_size)
     {
         size = new_size;
     }
 
     void Window::set_background_color(
-        Planar::Engine::Graphics::Color new_background_color)
+        Graphics::Color new_background_color)
     {
         background_color = new_background_color;
+    }
+
+    void Window::set_window_padding(Math::Size2Df new_window_padding)
+    {
+        window_padding = new_window_padding;
     }
 
     void Window::set_allow_close(bool new_allow_close)
