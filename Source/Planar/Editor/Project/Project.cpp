@@ -1,11 +1,11 @@
 #include "Planar/Editor/Project/Project.hpp"
+#include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Version.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
-#include <iostream>
 #include <filesystem>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
@@ -26,14 +26,16 @@ namespace Planar::Editor::Project
 
         if (directory.empty())
         {
-            std::cout << "Invalid directory\n";
+            Engine::Core::Log::TerminalLogger::get("Editor")->
+                error("Invalid directory");
 
             return false;
         }
 
         if (!std::filesystem::exists(directory + L"/Project.planar"))
         {
-            std::cout << "No project file found\n";
+            Engine::Core::Log::TerminalLogger::get("Editor")->
+                error("No project file found");
             
             return false;
         }
@@ -51,7 +53,8 @@ namespace Planar::Editor::Project
     {
         if (project_name.empty())
         {
-            std::cout << "Project name cannot be empty\n";
+            Engine::Core::Log::TerminalLogger::get("Editor")->
+                error("Project name cannot be empty");
 
             return false;
         }
@@ -61,7 +64,8 @@ namespace Planar::Editor::Project
 
         if (directory.empty())
         {
-            std::cout << "Invalid directory\n";
+            Engine::Core::Log::TerminalLogger::get("Editor")->
+                error("Invalid directory");
 
             return false;
         }
