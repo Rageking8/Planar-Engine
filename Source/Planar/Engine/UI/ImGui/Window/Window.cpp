@@ -141,6 +141,12 @@ namespace Planar::Engine::UI::ImGui::Window
         {
             begin_flags |= ImGuiWindowFlags_MenuBar;
         }
+
+        if (Core::Utils::EnumClass::has(flags,
+            WindowFlags::HORIZONTAL_SCROLLBAR))
+        {
+            begin_flags |= ImGuiWindowFlags_HorizontalScrollbar;
+        }
     }
 
     void Window::set_position(
