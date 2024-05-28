@@ -50,6 +50,8 @@ namespace Planar::Editor::Scene
         {
             restore_default_layout();
         }
+
+        build_window.update();
     }
 
     void EditorScene::render()

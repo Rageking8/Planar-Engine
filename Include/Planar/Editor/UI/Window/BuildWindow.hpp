@@ -14,6 +14,7 @@ namespace Planar::Editor::UI::Window
         BuildWindow();
 
         void init();
+        void update();
 
         virtual void render_window() override;
 
@@ -25,5 +26,9 @@ namespace Planar::Editor::UI::Window
         Engine::UI::ImGui::Element::InputField build_directory_input;
         Engine::UI::ImGui::Element::Button browse_button;
         Engine::UI::ImGui::Element::Button build_button;
+
+        bool pending_browse;
+
+        void browse();
     };
 }
