@@ -65,6 +65,8 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void dock_space_over_viewport();
 
+    PLANAR_API void cursor_y_bottom_window();
+
     PLANAR_API float get_cursor_x();
 
     PLANAR_API float get_cursor_y();
