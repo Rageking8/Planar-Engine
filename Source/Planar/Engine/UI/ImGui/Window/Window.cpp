@@ -5,9 +5,15 @@ namespace Planar::Engine::UI::ImGui::Window
 {
     Window::Scope::Scope(const char* name,
         ::ImGuiWindowFlags begin_flags, bool* open,
+        std::optional<Math::Size2Df> min_size,
         std::optional<Math::Size2Df> padding)
     {
         Style::StyleVar style;
+
+        if (min_size)
+        {
+            style.set_min_window_size(*min_size);
+        }
 
         if (padding)
         {
@@ -24,7 +30,7 @@ namespace Planar::Engine::UI::ImGui::Window
 
     Window::Window(const std::string& name,
         WindowFlags flags, bool active) : Window(name, std::nullopt,
-        std::nullopt, std::nullopt, flags, active)
+        std::nullopt, std::nullopt, std::nullopt, flags, active)
     {
 
     }
@@ -32,13 +38,14 @@ namespace Planar::Engine::UI::ImGui::Window
     Window::Window(const std::string& name,
         std::optional<Math::Pos2Df> position,
         std::optional<Math::Size2Df> size,
+        std::optional<Math::Size2Df> min_size,
         std::optional<Math::Size2Df> padding,
-        WindowFlags flags, bool active, Graphics::Color background_color,
-        bool allow_close) :
+        WindowFlags flags, bool active, Graphics::Color
+        background_color, bool allow_close) :
         active{ active }, name{ name }, position{ position },
-        size{ size }, padding{ padding }, begin_flags{},
-        background_color{ background_color }, allow_close{ allow_close },
-        first_render{ true }
+        size{ size }, min_size{ min_size }, padding{ padding },
+        begin_flags{}, background_color{ background_color },
+        allow_close{ allow_close }, first_render{ true }
     {
         set_flags(flags);
     }
@@ -95,7 +102,7 @@ namespace Planar::Engine::UI::ImGui::Window
 
         return std::make_unique<Window::Scope>(
             name.c_str(), begin_flags,
-            allow_close ? &active : nullptr, padding);
+            allow_close ? &active : nullptr, min_size, padding);
     }
 
     void Window::set(const std::string& new_name,
@@ -173,6 +180,11 @@ namespace Planar::Engine::UI::ImGui::Window
         std::optional<Math::Size2Df> new_size)
     {
         size = new_size;
+    }
+
+    void Window::set_min_size(std::optional<Math::Size2Df> new_min_size)
+    {
+        min_size = new_min_size;
     }
 
     void Window::set_background_color(

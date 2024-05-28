@@ -20,7 +20,8 @@ namespace Planar::Engine::UI::ImGui::Window
         struct PLANAR_API Scope
         {
             Scope(const char* name, ::ImGuiWindowFlags begin_flags,
-                bool* open, std::optional<Math::Size2Df> padding);
+                bool* open, std::optional<Math::Size2Df> min_size,
+                std::optional<Math::Size2Df> padding);
             ~Scope();
         };
 
@@ -29,6 +30,7 @@ namespace Planar::Engine::UI::ImGui::Window
         Window(const std::string& name,
             std::optional<Math::Pos2Df> position,
             std::optional<Math::Size2Df> size,
+            std::optional<Math::Size2Df> min_size,
             std::optional<Math::Size2Df> padding,
             WindowFlags flags = WindowFlags::NONE,
             bool active = true, Graphics::Color background_color =
@@ -48,10 +50,9 @@ namespace Planar::Engine::UI::ImGui::Window
         void set_active(bool new_active);
         void set_name(const std::string& new_name);
         void set_flags(WindowFlags new_flags);
-        void set_position(
-            std::optional<Math::Pos2Df> new_position);
-        void set_size(
-            std::optional<Math::Size2Df> new_size);
+        void set_position(std::optional<Math::Pos2Df> new_position);
+        void set_size(std::optional<Math::Size2Df> new_size);
+        void set_min_size(std::optional<Math::Size2Df> new_min_size);
         void set_background_color(Graphics::Color
             new_background_color);
         void set_padding(std::optional<Math::Size2Df> new_padding);
@@ -64,6 +65,7 @@ namespace Planar::Engine::UI::ImGui::Window
         std::string name;
         std::optional<Math::Pos2Df> position;
         std::optional<Math::Size2Df> size;
+        std::optional<Math::Size2Df> min_size;
         std::optional<Math::Size2Df> padding;
         WindowFlags flags;
         ::ImGuiWindowFlags begin_flags;

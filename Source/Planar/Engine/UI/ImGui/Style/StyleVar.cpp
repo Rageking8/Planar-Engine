@@ -23,6 +23,13 @@ namespace Planar::Engine::UI::ImGui::Style
         push_count++;
     }
 
+    void StyleVar::set_min_window_size(Math::Size2Df min_window_size)
+    {
+        ::ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize,
+            { min_window_size.width, min_window_size.height });
+        push_count++;
+    }
+
     void StyleVar::pop()
     {
         ::ImGui::PopStyleVar(push_count);
