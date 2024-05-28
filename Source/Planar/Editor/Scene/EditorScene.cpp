@@ -32,6 +32,8 @@ namespace Planar::Editor::Scene
         content_window.set_left_arrow_texture(left_arrow_texture);
         content_window.init();
 
+        game_window.init();
+
         restore_default_layout();
     }
 
