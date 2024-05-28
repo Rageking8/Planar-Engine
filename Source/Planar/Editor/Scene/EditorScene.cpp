@@ -6,6 +6,8 @@
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
 
+#include <filesystem>
+
 PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
 PLANAR_LOAD_EDITOR_ICON(FolderIcon)
@@ -24,7 +26,10 @@ namespace Planar::Editor::Scene
 
         if (project)
         {
-            content_window.set_root_path(project->get_root_path());
+            std::filesystem::path project_root_path =
+                project->get_root_path();
+            content_window.set_root_path(project_root_path);
+            build_window.set_root_path(project_root_path);
         }
 
         content_window.set_file_texture(file_texture);
@@ -33,6 +38,8 @@ namespace Planar::Editor::Scene
         content_window.init();
 
         game_window.init();
+
+        build_window.init();
 
         restore_default_layout();
     }
@@ -60,6 +67,7 @@ namespace Planar::Editor::Scene
         console_window.render_window();
         game_window.render_window();
         scene_window.render_window();
+        build_window.render_window();
     }
 
     void EditorScene::set_project(Planar::Editor::Project::Project* new_project)
@@ -88,6 +96,21 @@ namespace Planar::Editor::Scene
         ImGui::Menu::MainMenuBar main_menu_bar;
         if (main_menu_bar.start())
         {
+            auto make_active_on_menu_item = [&](const std::string& name,
+                ImGui::Window::Window& window,
+                bool reset_first_render = false)
+                {
+                    if (main_menu_bar.add_menu_item(name))
+                    {
+                        window.set_active(true);
+
+                        if (reset_first_render)
+                        {
+                            window.reset_first_render();
+                        }
+                    }
+                };
+
             main_menu_bar.add_menu("File",
                 [&]()
                 {
@@ -108,17 +131,9 @@ namespace Planar::Editor::Scene
             main_menu_bar.add_menu("Build",
                 [&]()
                 {
-                    main_menu_bar.add_menu_item("Build Project");
+                    make_active_on_menu_item("Build Project",
+                       build_window, true);
                 });
-
-            auto make_active_on_menu_item = [&](const std::string& name,
-                ImGui::Window::Window& window)
-                {
-                    if (main_menu_bar.add_menu_item(name))
-                    {
-                        window.set_active(true);
-                    }
-                };
 
             main_menu_bar.add_menu("Window",
                 [&]()

@@ -1,4 +1,5 @@
 target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
+    BuildWindow.cpp
     ConsoleWindow.cpp
     ContentWindow.cpp
     EditorWindow.cpp

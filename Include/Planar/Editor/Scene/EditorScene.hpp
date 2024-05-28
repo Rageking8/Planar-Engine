@@ -9,6 +9,7 @@
 #include "Planar/Editor/UI/Window/ConsoleWindow.hpp"
 #include "Planar/Editor/UI/Window/GameWindow.hpp"
 #include "Planar/Editor/UI/Window/SceneWindow.hpp"
+#include "Planar/Editor/UI/Window/BuildWindow.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 
 namespace Planar::Editor::Scene
@@ -33,6 +34,7 @@ namespace Planar::Editor::Scene
         Planar::Editor::UI::Window::ConsoleWindow console_window;
         Planar::Editor::UI::Window::GameWindow game_window;
         Planar::Editor::UI::Window::SceneWindow scene_window;
+        Planar::Editor::UI::Window::BuildWindow build_window;
 
         Planar::Engine::Graphics::OpenGL::Texture::Texture2D
             file_texture;
