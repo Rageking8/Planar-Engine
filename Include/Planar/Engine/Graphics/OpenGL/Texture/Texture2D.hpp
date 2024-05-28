@@ -37,6 +37,7 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
             Core::ObjectHandlingMode::DSA) override;
 
         virtual void bind() const override;
+        virtual void unbind() const override;
 
     private:
         void create_texture(Core::ObjectHandlingMode

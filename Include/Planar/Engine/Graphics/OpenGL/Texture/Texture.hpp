@@ -59,6 +59,7 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
             Core::ObjectHandlingMode::DSA);
 
         virtual void bind() const = 0;
+        virtual void unbind() const = 0;
 
     protected:
         TextureMinFilter min_filter;

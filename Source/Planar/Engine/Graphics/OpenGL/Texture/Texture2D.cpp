@@ -147,6 +147,11 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
         glBindTexture(GL_TEXTURE_2D, id);
     }
 
+    void Texture2D::unbind() const
+    {
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+
     void Texture2D::create_texture(Core::ObjectHandlingMode
         object_handling_mode)
     {
