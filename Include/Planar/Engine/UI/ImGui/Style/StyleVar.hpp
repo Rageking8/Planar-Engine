@@ -11,7 +11,8 @@ namespace Planar::Engine::UI::ImGui::Style
     public:
         ~StyleVar();
 
-        void set_frame_padding(Planar::Engine::Math::Size2Df padding);
+        void set_frame_padding(Math::Size2Df padding);
+        void set_window_padding(Math::Size2Df padding);
 
         virtual void pop() override;
     };
