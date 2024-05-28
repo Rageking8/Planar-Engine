@@ -26,6 +26,8 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void set_scrollbar_size(float new_scrollbar_size);
 
+    PLANAR_API Planar::Engine::Math::Size2Df get_window_size();
+
     PLANAR_API Planar::Engine::Math::Pos2Df get_window_position();
 
     PLANAR_API Planar::Engine::Math::Size2Df

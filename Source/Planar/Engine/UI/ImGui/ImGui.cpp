@@ -47,6 +47,13 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::GetStyle().ScrollbarSize = new_scrollbar_size;
     }
 
+    Planar::Engine::Math::Size2Df get_window_size()
+    {
+        ImVec2 window_size = ::ImGui::GetWindowSize();
+
+        return { window_size.x, window_size.y };
+    }
+
     Planar::Engine::Math::Pos2Df get_window_position()
     {
         ImVec2 window_position = ::ImGui::GetWindowPos();
