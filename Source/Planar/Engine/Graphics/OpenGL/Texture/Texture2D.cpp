@@ -46,7 +46,7 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
             break;
         }
 
-        glBindTexture(GL_TEXTURE_2D, 0);
+        unbind();
     }
 
     void Texture2D::create_raw(GLsizei width, GLsizei height,
@@ -67,7 +67,7 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0,
             GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
-        glBindTexture(GL_TEXTURE_2D, 0);
+        unbind();
     }
 
     void Texture2D::set_min_filter(TextureMinFilter new_min_filter,
@@ -140,6 +140,16 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
                 (GLint)new_wrap_t);
             break;
         }
+    }
+
+    void Texture2D::resize(GLsizei width, GLsizei height)
+    {
+        bind();
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0,
+            GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+
+        unbind();
     }
 
     void Texture2D::bind() const

@@ -36,6 +36,8 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
             Core::ObjectHandlingMode object_handling_mode =
             Core::ObjectHandlingMode::DSA) override;
 
+        void resize(GLsizei width, GLsizei height);
+
         virtual void bind() const override;
         virtual void unbind() const override;
 
