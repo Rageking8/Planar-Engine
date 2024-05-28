@@ -132,7 +132,7 @@ namespace Planar::Editor::Scene
                 [&]()
                 {
                     make_active_on_menu_item("Build Project",
-                       build_window, true);
+                        build_window, true);
                 });
 
             main_menu_bar.add_menu("Window",
