@@ -18,4 +18,9 @@ namespace Planar::Engine::UI::ImGui::Element
     {
         return text;
     }
+
+    void InputField::set_text(const std::string& new_text)
+    {
+        text = new_text;
+    }
 }
