@@ -70,6 +70,13 @@ namespace Planar::Engine::UI::ImGui
             window_content_region_max.y };
     }
 
+    Planar::Engine::Math::Size2Df get_content_region_avail()
+    {
+        ImVec2 content_region_avail = ::ImGui::GetContentRegionAvail();
+
+        return { content_region_avail.x, content_region_avail.y };
+    }
+
     Planar::Engine::Math::Size2Df get_item_spacing()
     {
         ImVec2 item_spacing = ::ImGui::GetStyle().ItemSpacing;

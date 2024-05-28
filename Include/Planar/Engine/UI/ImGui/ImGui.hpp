@@ -33,6 +33,8 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API Planar::Engine::Math::Size2Df
         get_window_content_region_max();
 
+    PLANAR_API Planar::Engine::Math::Size2Df get_content_region_avail();
+
     PLANAR_API Planar::Engine::Math::Size2Df get_item_spacing();
 
     PLANAR_API Planar::Engine::Math::Pos2Df get_item_rect_max();
