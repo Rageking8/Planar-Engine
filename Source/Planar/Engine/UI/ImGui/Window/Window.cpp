@@ -5,10 +5,14 @@ namespace Planar::Engine::UI::ImGui::Window
 {
     Window::Scope::Scope(const char* name,
         ::ImGuiWindowFlags begin_flags, bool* open,
-        Math::Size2Df window_padding)
+        std::optional<Math::Size2Df> padding)
     {
         Style::StyleVar style;
-        style.set_window_padding(window_padding);
+
+        if (padding)
+        {
+            style.set_window_padding(*padding);
+        }
 
         ::ImGui::Begin(name, open, begin_flags);
     }
@@ -20,7 +24,7 @@ namespace Planar::Engine::UI::ImGui::Window
 
     Window::Window(const std::string& name,
         WindowFlags flags, bool active) : Window(name, std::nullopt,
-        std::nullopt, flags, active)
+        std::nullopt, std::nullopt, flags, active)
     {
 
     }
@@ -28,11 +32,12 @@ namespace Planar::Engine::UI::ImGui::Window
     Window::Window(const std::string& name,
         std::optional<Math::Pos2Df> position,
         std::optional<Math::Size2Df> size,
+        std::optional<Math::Size2Df> padding,
         WindowFlags flags, bool active, Graphics::Color background_color,
-        Math::Size2Df window_padding, bool allow_close) :
+        bool allow_close) :
         active{ active }, name{ name }, position{ position },
-        size{ size }, begin_flags{}, background_color{ background_color },
-        window_padding{ window_padding }, allow_close{ allow_close },
+        size{ size }, padding{ padding }, begin_flags{},
+        background_color{ background_color }, allow_close{ allow_close },
         first_render{ true }
     {
         set_flags(flags);
@@ -90,7 +95,7 @@ namespace Planar::Engine::UI::ImGui::Window
 
         return std::make_unique<Window::Scope>(
             name.c_str(), begin_flags,
-            allow_close ? &active : nullptr, window_padding);
+            allow_close ? &active : nullptr, padding);
     }
 
     void Window::set(const std::string& new_name,
@@ -176,9 +181,9 @@ namespace Planar::Engine::UI::ImGui::Window
         background_color = new_background_color;
     }
 
-    void Window::set_window_padding(Math::Size2Df new_window_padding)
+    void Window::set_padding(std::optional<Math::Size2Df> new_padding)
     {
-        window_padding = new_window_padding;
+        padding = new_padding;
     }
 
     void Window::set_allow_close(bool new_allow_close)

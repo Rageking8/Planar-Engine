@@ -20,7 +20,7 @@ namespace Planar::Engine::UI::ImGui::Window
         struct PLANAR_API Scope
         {
             Scope(const char* name, ::ImGuiWindowFlags begin_flags,
-                bool* open, Math::Size2Df window_padding);
+                bool* open, std::optional<Math::Size2Df> padding);
             ~Scope();
         };
 
@@ -29,10 +29,10 @@ namespace Planar::Engine::UI::ImGui::Window
         Window(const std::string& name,
             std::optional<Math::Pos2Df> position,
             std::optional<Math::Size2Df> size,
+            std::optional<Math::Size2Df> padding,
             WindowFlags flags = WindowFlags::NONE,
             bool active = true, Graphics::Color background_color =
-            { 0.06f, 0.06f, 0.06f, 1.f }, Math::Size2Df
-            window_padding = { 24.f, 24.f }, bool allow_close = true);
+            { 0.06f, 0.06f, 0.06f, 1.f }, bool allow_close = true);
         virtual ~Window();
 
         [[nodiscard("The destructor for this object ends the window")]]
@@ -54,7 +54,7 @@ namespace Planar::Engine::UI::ImGui::Window
             std::optional<Math::Size2Df> new_size);
         void set_background_color(Graphics::Color
             new_background_color);
-        void set_window_padding(Math::Size2Df new_window_padding);
+        void set_padding(std::optional<Math::Size2Df> new_padding);
         void set_allow_close(bool new_allow_close);
 
         void reset_first_render();
@@ -64,10 +64,10 @@ namespace Planar::Engine::UI::ImGui::Window
         std::string name;
         std::optional<Math::Pos2Df> position;
         std::optional<Math::Size2Df> size;
+        std::optional<Math::Size2Df> padding;
         WindowFlags flags;
         ::ImGuiWindowFlags begin_flags;
         Graphics::Color background_color;
-        Math::Size2Df window_padding;
         bool allow_close;
         bool first_render;
     };

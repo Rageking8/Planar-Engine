@@ -25,7 +25,7 @@ namespace Planar::Editor::UI::Window
     {
         using namespace Planar::Engine::Graphics::OpenGL;
 
-        set_window_padding({});
+        set_padding({ {} });
 
         vbo.create({ { -0.5f, -0.5f, 0.f }, { 0.5f, -0.5f, 0.f },
             { 0.f, 0.5f, 0.f } }, Buffer::BufferUsage::STATIC_DRAW);
