@@ -60,6 +60,15 @@ namespace Planar::Engine::UI::ImGui::Window
                 ::ImGui::SetNextWindowSize(viewport->Size);
             }
 
+            if (Core::Utils::EnumClass::has(
+                flags, WindowFlags::VIEWPORT_CENTER))
+            {
+                ::ImVec2 viewport_center =
+                    ::ImGui::GetMainViewport()->GetCenter();
+                ::ImGui::SetNextWindowPos(viewport_center, 0,
+                    { 0.5f, 0.5f });
+            }
+
             if (position)
             {
                 ::ImGui::SetNextWindowPos(
