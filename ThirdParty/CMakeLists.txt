@@ -65,6 +65,13 @@ FetchContent_Declare(
         SHA256=09C5716296787E1F7FCB87B1CBDBF26814EC1288ED6259CCD30D5D9795809FA5
 )
 
+FetchContent_Declare(
+    reproc
+    URL https://github.com/DaanDeMeyer/reproc/archive/refs/tags/v14.2.5.zip
+    URL_HASH
+        SHA256=21B168C38ADB22F4B48391D8193DBC3927F1F2E678C2058D6944A29B64ACC6C9
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
@@ -75,3 +82,4 @@ add_subdirectory(dotnet-sdk)
 add_subdirectory(zlib)
 add_subdirectory(libzip)
 add_subdirectory(glm)
+add_subdirectory(reproc)
