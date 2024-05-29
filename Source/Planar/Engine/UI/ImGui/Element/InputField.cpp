@@ -14,7 +14,7 @@ namespace Planar::Engine::UI::ImGui::Element
         input_text(label, placeholder, text);
     }
 
-    constexpr const std::string& InputField::get_text() const
+    const std::string& InputField::get_text() const
     {
         return text;
     }

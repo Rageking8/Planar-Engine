@@ -14,7 +14,7 @@ namespace Planar::Engine::UI::ImGui::Element
 
         virtual void render() override;
 
-        constexpr const std::string& get_text() const;
+        const std::string& get_text() const;
         void set_text(const std::string& new_text);
 
     private:
