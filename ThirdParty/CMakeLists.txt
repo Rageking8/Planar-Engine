@@ -72,6 +72,13 @@ FetchContent_Declare(
         SHA256=21B168C38ADB22F4B48391D8193DBC3927F1F2E678C2058D6944A29B64ACC6C9
 )
 
+FetchContent_Declare(
+    lzma-sdk
+    URL https://7-zip.org/a/lzma2406.7z
+    URL_HASH
+        SHA256=F32FD1C4012E25F961F6E18A31C279D517C14490F1B0E08B05B70E8463ECF937
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
@@ -83,3 +90,4 @@ add_subdirectory(zlib)
 add_subdirectory(libzip)
 add_subdirectory(glm)
 add_subdirectory(reproc)
+add_subdirectory(lzma-sdk)
