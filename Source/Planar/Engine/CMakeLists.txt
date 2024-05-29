@@ -6,7 +6,6 @@ target_link_libraries(${PLANAR_ENGINE_TARGET} PRIVATE
     imgui
     yaml-cpp
     stb
-    libzip::zip
     reproc++
 )
 

@@ -44,21 +44,6 @@ FetchContent_Declare(
 )
 
 FetchContent_Declare(
-    zlib
-    URL https://github.com/madler/zlib/archive/refs/tags/v1.3.1.zip
-    URL_HASH
-        SHA256=50B24B47BF19E1F35D2A21FF36D2A366638CDF958219A66F30CE0861201760E6
-    OVERRIDE_FIND_PACKAGE
-)
-
-FetchContent_Declare(
-    libzip
-    URL https://github.com/nih-at/libzip/archive/refs/tags/v1.10.1.zip
-    URL_HASH
-        SHA256=FFDF7427E848DF6F9CDDB6B4EED4FBD652D5B74B21102C515F37BE298F1A8426
-)
-
-FetchContent_Declare(
     glm
     URL https://github.com/g-truc/glm/archive/refs/tags/1.0.1.zip
     URL_HASH
@@ -86,8 +71,6 @@ add_subdirectory(KHR)
 add_subdirectory(stb)
 add_subdirectory(yaml-cpp)
 add_subdirectory(dotnet-sdk)
-add_subdirectory(zlib)
-add_subdirectory(libzip)
 add_subdirectory(glm)
 add_subdirectory(reproc)
 add_subdirectory(lzma-sdk)
