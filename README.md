@@ -44,6 +44,7 @@ Currently Windows is the only operating system supported.
     - [stb](https://github.com/nothings/stb) - Image loader
     - [libzip](https://github.com/nih-at/libzip) - Extract zip archives
     - [glm](https://github.com/g-truc/glm) - Computer graphics types and routines
+    - [reproc](https://github.com/DaanDeMeyer/reproc) - Create and manage processes
 
 1. Planar Editor
     - Planar Engine - All core routines
