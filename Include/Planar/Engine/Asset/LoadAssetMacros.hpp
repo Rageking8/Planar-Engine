@@ -40,6 +40,11 @@
         PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_SINGLE_CHUNK, \
         ns, name)                                           \
 
+#define PLANAR_APPEND_ARRAY_TO_FILE(path, ns, name)         \
+    Planar::Engine::Core::FileSystem::append_array_to_file( \
+        path, Planar::Asset::ns::name,                      \
+        Planar::Asset::ns::name##_length);                  \
+
 #define PLANAR_APPEND_SINGLE_CHUNK_TO_FILE(path, ns, name,  \
     chunk_id)                                               \
     Planar::Engine::Core::FileSystem::append_array_to_file( \
