@@ -7,6 +7,7 @@ target_link_libraries(${PLANAR_ENGINE_TARGET} PRIVATE
     yaml-cpp
     stb
     libzip::zip
+    reproc++
 )
 
 target_include_directories(${PLANAR_ENGINE_TARGET} PRIVATE
