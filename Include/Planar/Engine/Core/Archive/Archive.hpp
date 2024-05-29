@@ -6,8 +6,7 @@
 
 namespace Planar::Engine::Core::Archive
 {
-    PLANAR_API bool extract_zip(
-        const std::filesystem::path& input_zip,
-        const std::filesystem::path& output_path,
-        unsigned buffer_size = 1024);
+    PLANAR_API void extract_7z(
+        std::filesystem::path program_path,
+        const std::filesystem::path& input_path);
 }

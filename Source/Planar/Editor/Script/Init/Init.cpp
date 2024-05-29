@@ -10,17 +10,17 @@ PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_ALL_CHUNKS(Editor, dotnet_sdk)
 
 namespace Planar::Editor::Script::Init
 {
-    void write_dotnet_sdk_zip(const std::filesystem::path& path)
+    void write_dotnet_sdk_7z(const std::filesystem::path& path)
     {
         Planar::Engine::Core::FileSystem::clear_file(path);
         PLANAR_APPEND_ALL_CHUNKS_TO_FILE(path, Editor, dotnet_sdk)
     }
 
-    void extract_dotnet_sdk_zip(const std::filesystem::path& path,
+    void extract_dotnet_sdk_7z(const std::filesystem::path& path,
         bool delete_zip)
     {
-        Planar::Engine::Core::Archive::extract_zip(path,
-            path.parent_path());
+        Planar::Engine::Core::Archive::extract_7z(path.parent_path(),
+            path);
 
         if (delete_zip)
         {

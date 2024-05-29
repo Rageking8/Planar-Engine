@@ -3,6 +3,8 @@
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 
+#include <filesystem>
+
 namespace Planar::Editor::Core
 {
     class Editor : public Planar::Engine::Core::Application
@@ -18,5 +20,7 @@ namespace Planar::Editor::Core
 
     private:
         Planar::Editor::Project::Project project;
+
+        std::filesystem::path get_project_cache_path() const;
     };
 }

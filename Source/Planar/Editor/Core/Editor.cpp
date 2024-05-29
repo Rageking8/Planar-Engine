@@ -4,7 +4,6 @@
 #include "Planar/Editor/Script/Init/Init.hpp"
 
 #include <memory>
-#include <filesystem>
 #include <functional>
 
 namespace Planar::Editor::Core
@@ -48,18 +47,23 @@ namespace Planar::Editor::Core
     void Editor::load_scripting()
     {
         std::filesystem::path project_cache_path =
-            project.get_root_path() / "Cache";
+            get_project_cache_path();
 
         if (!std::filesystem::exists(
             project_cache_path / "DotnetSDK"))
         {
             std::filesystem::path dotnet_sdk_zip_path =
-                project_cache_path / "dotnet_sdk.zip";
+                project_cache_path / "dotnet_sdk.7z";
 
-            Planar::Editor::Script::Init::write_dotnet_sdk_zip(
+            Planar::Editor::Script::Init::write_dotnet_sdk_7z(
                 dotnet_sdk_zip_path);
-            Planar::Editor::Script::Init::extract_dotnet_sdk_zip(
+            Planar::Editor::Script::Init::extract_dotnet_sdk_7z(
                 dotnet_sdk_zip_path);
         }
+    }
+
+    std::filesystem::path Editor::get_project_cache_path() const
+    {
+        return project.get_root_path() / "Cache";
     }
 }
