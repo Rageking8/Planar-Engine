@@ -15,6 +15,16 @@ else()
     endwhile()
 endif()
 
+if(EXISTS ${PLANAR_ROOT_ASSET_DIR}/PlanarEngine.dll)
+    pack_binary_to_unsigned_char_array_chunk(${PLANAR_EDITOR_TARGET}
+        10000000 ${PLANAR_ROOT_ASSET_DIR}/PlanarEngine.dll
+    )
+else()
+    message(WARNING "Asset/PlanarEngine.dll not found, "
+        "build PlanarEditor and reconfigure CMake"
+    )
+endif()
+
 add_subdirectory(Icons)
 add_subdirectory(Layout)
 add_subdirectory(Project)
