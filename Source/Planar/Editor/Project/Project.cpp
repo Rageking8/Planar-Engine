@@ -79,6 +79,9 @@ namespace Planar::Editor::Project
 
         std::filesystem::create_directories(root_path / "Build");
 
+        create_engine_files();
+        create_script_files();
+
         if (create_gitignore)
         {
             Planar::Engine::Core::FileSystem::create_file(
@@ -141,5 +144,15 @@ namespace Planar::Editor::Project
             }));
 
         return main_scene_guid;
+    }
+
+    void Project::create_engine_files()
+    {
+        std::filesystem::create_directories(root_path / "Engine");
+    }
+
+    void Project::create_script_files()
+    {
+        std::filesystem::create_directories(root_path / "Scripts");
     }
 }
