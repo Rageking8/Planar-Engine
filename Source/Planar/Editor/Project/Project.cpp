@@ -1,4 +1,5 @@
 #include "Planar/Editor/Project/Project.hpp"
+#include "Asset/Editor/PlanarEngine.h"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
@@ -11,6 +12,10 @@
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Project)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Scene)
+PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Script,
+    PlanarScript)
+PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_ALL_CHUNKS(
+    Editor, PlanarEngine)
 
 namespace Planar::Editor::Project
 {
@@ -148,11 +153,25 @@ namespace Planar::Editor::Project
 
     void Project::create_engine_files()
     {
-        std::filesystem::create_directories(root_path / "Engine");
+        std::filesystem::path engine_path = root_path / "Engine";
+        std::filesystem::create_directories(engine_path);
+
+        std::filesystem::path planar_engine_dll_path =
+            engine_path / "PlanarEngine.dll";
+        Engine::Core::FileSystem::clear_file(planar_engine_dll_path);
+        PLANAR_APPEND_ALL_CHUNKS_TO_FILE(planar_engine_dll_path,
+            Editor, PlanarEngine)
+
+        std::filesystem::path planar_script_dll_path =
+            engine_path / "PlanarScript.dll";
+        Engine::Core::FileSystem::clear_file(planar_script_dll_path);
+        PLANAR_APPEND_ARRAY_TO_FILE(planar_script_dll_path,
+            Editor::Script, PlanarScript)
     }
 
     void Project::create_script_files()
     {
-        std::filesystem::create_directories(root_path / "Scripts");
+        std::filesystem::path scripts_path = root_path / "Scripts";
+        std::filesystem::create_directories(scripts_path);
     }
 }
