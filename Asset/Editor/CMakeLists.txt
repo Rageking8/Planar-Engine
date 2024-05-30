@@ -1,7 +1,3 @@
-pack_text_to_string(${PLANAR_EDITOR_TARGET}
-    DefaultLayout.planarlayout
-)
-
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/Asset/Editor/dotnet_sdk1.cpp)
     pack_binary_to_unsigned_char_array_chunk(${PLANAR_EDITOR_TARGET}
         10000000 ${CMAKE_BINARY_DIR}/Asset/dotnet_sdk.7z
@@ -18,4 +14,5 @@ else()
 endif()
 
 add_subdirectory(Icons)
+add_subdirectory(Layout)
 add_subdirectory(Project)

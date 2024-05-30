@@ -8,7 +8,7 @@
 
 #include <filesystem>
 
-PLANAR_LOAD_STD_STRING_ASSET(Editor, DefaultLayout)
+PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
 PLANAR_LOAD_EDITOR_ICON(FolderIcon)
 PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
@@ -80,7 +80,7 @@ namespace Planar::Editor::Scene
     void EditorScene::restore_default_layout() const
     {
         Planar::Engine::UI::ImGui::load_ini_from_string(
-            Planar::Asset::Editor::DefaultLayout);
+            Planar::Asset::Editor::Layout::DefaultLayout);
     }
 
     void EditorScene::load_icons()
