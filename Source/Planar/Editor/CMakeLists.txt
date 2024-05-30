@@ -6,6 +6,7 @@ target_link_libraries(${PLANAR_EDITOR_TARGET} PRIVATE
 
 add_dependencies(${PLANAR_EDITOR_TARGET}
     ${PLANAR_ENGINE_SHARED_TARGET}
+    ${PLANAR_SCRIPT_TARGET}
 )
 
 target_include_directories(${PLANAR_EDITOR_TARGET} PRIVATE
@@ -30,6 +31,12 @@ if(${PLANAR_EDITOR_LINK_ENGINE} STREQUAL SHARED)
         PLANAR_ENABLE_EXPORT
     )
 endif()
+
+add_custom_command(TARGET ${PLANAR_EDITOR_TARGET} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+    ${CMAKE_BINARY_DIR}/Script/PlanarScript.dll
+    ${CMAKE_BINARY_DIR}/Asset
+)
 
 add_subdirectory(Core)
 add_subdirectory(Entry)

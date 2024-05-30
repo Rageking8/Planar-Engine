@@ -39,11 +39,11 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY
     VS_STARTUP_PROJECT ${PLANAR_EDITOR_TARGET}
 )
 
+add_subdirectory(Script)
 add_subdirectory(Source)
 add_subdirectory(Include)
 add_subdirectory(ThirdParty)
 add_subdirectory(Asset)
-add_subdirectory(Script)
 
 get_all_target_list(PLANAR_ALL_TARGETS)
 set_target_properties(${PLANAR_ALL_TARGETS} PROPERTIES
