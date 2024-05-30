@@ -20,11 +20,16 @@ set(PLANAR_ASSET_INCLUDE_DIR
     ${CMAKE_BINARY_DIR}/Asset/Include
 )
 
-set(PLANAR_ENGINE_TARGET PlanarEngine)
+set(PLANAR_ENGINE_OBJECT_TARGET PlanarEngine)
+set(PLANAR_ENGINE_STATIC_TARGET PlanarEngineStatic)
+set(PLANAR_ENGINE_SHARED_TARGET PlanarEngineShared)
+
 set(PLANAR_EDITOR_TARGET PlanarEditor)
 set(PLANAR_SCRIPT_TARGET PlanarScript)
 
 set(PLANAR_CMAKE_FUNCTION_LOG ON)
+
+set(PLANAR_EDITOR_LINK_ENGINE STATIC)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY
@@ -38,7 +43,9 @@ add_subdirectory(Asset)
 add_subdirectory(Script)
 
 get_all_target_list(PLANAR_ALL_TARGETS)
-set_target_properties(${PLANAR_ALL_TARGETS} PROPERTIES FOLDER ThirdParty)
-set_target_properties(${PLANAR_ENGINE_TARGET} ${PLANAR_EDITOR_TARGET}
-    PROPERTIES FOLDER Planar
+set_target_properties(${PLANAR_ALL_TARGETS} PROPERTIES
+    FOLDER ThirdParty
+)
+set_target_properties(${PLANAR_ENGINE_OBJECT_TARGET}
+    ${PLANAR_EDITOR_TARGET} PROPERTIES FOLDER Planar
 )

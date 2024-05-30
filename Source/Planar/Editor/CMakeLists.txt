@@ -1,7 +1,11 @@
 add_executable(${PLANAR_EDITOR_TARGET})
 
 target_link_libraries(${PLANAR_EDITOR_TARGET} PRIVATE
-    ${PLANAR_ENGINE_TARGET}
+    ${PLANAR_ENGINE_${PLANAR_EDITOR_LINK_ENGINE}_TARGET}
+)
+
+add_dependencies(${PLANAR_EDITOR_TARGET}
+    ${PLANAR_ENGINE_SHARED_TARGET}
 )
 
 target_include_directories(${PLANAR_EDITOR_TARGET} PRIVATE
@@ -21,10 +25,11 @@ if(MSVC)
     )
 endif()
 
-define_if_check_target_shared(${PLANAR_EDITOR_TARGET}
-    ${PLANAR_ENGINE_TARGET} PRIVATE
-    PLANAR_ENABLE_EXPORT
-)
+if(${PLANAR_EDITOR_LINK_ENGINE} STREQUAL SHARED)
+    target_compile_definitions(${PLANAR_EDITOR_TARGET} PRIVATE
+        PLANAR_ENABLE_EXPORT
+    )
+endif()
 
 add_subdirectory(Core)
 add_subdirectory(Entry)

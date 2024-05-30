@@ -8,9 +8,17 @@ set(CMAKE_WARN_DEPRECATED ON CACHE BOOL "" FORCE)
 
 copy_single_source(
     ${yaml-cpp_SOURCE_DIR}/include/yaml-cpp/
+    ${PLANAR_EXTERNAL_INCLUDE_DIR}/yaml-cpp
+)
+copy_single_source(
+    ${yaml-cpp_SOURCE_DIR}/include/yaml-cpp/
     ${PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR}/yaml-cpp
 )
 
-target_link_options(${PLANAR_ENGINE_TARGET} PRIVATE
+target_link_options(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     /NATVIS:${yaml-cpp_SOURCE_DIR}/src/contrib/yaml-cpp.natvis
+)
+
+target_compile_definitions(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
+    YAML_CPP_STATIC_DEFINE
 )

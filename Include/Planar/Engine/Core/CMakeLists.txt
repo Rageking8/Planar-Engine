@@ -1,4 +1,4 @@
-target_sources(${PLANAR_ENGINE_TARGET} PRIVATE
+target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     Application.hpp
     GLFWContext.hpp
     Links.hpp
