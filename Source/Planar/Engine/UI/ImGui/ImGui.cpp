@@ -183,10 +183,10 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::DockSpaceOverViewport(::ImGui::GetMainViewport());
     }
 
-    void cursor_y_bottom_window()
+    void cursor_y_bottom_window(float y_offset)
     {
         ::ImGui::SetCursorPosY(::ImGui::GetWindowContentRegionMax().y -
-            ::ImGui::GetItemRectSize().y);
+            ::ImGui::GetItemRectSize().y + y_offset);
     }
 
     float get_cursor_x()
