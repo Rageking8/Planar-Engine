@@ -3,6 +3,7 @@
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
+#include "Planar/Engine/UI/ImGui/Element/DropDown.hpp"
 
 #include <filesystem>
 
@@ -25,6 +26,7 @@ namespace Planar::Editor::UI::Window
 
         Engine::UI::ImGui::Element::InputField build_directory_input;
         Engine::UI::ImGui::Element::Button browse_button;
+        Engine::UI::ImGui::Element::DropDown target_drop_down;
         Engine::UI::ImGui::Element::Button build_button;
 
         bool pending_browse;

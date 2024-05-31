@@ -11,11 +11,12 @@ namespace Planar::Editor::UI::Window
 {
     BuildWindow::BuildWindow() : EditorWindow("Build", false),
         build_directory_input("Build directory"),
-        browse_button("Browse"), build_button("Build"),
-        pending_browse{}, pending_build{}
+        browse_button("Browse"), target_drop_down({ "Windows 64-bit" },
+        "Target:", 200.f), build_button("Build"), pending_browse{},
+        pending_build{}
     {
         set_size({ { 1280.f, 720.f } });
-        set_min_size({ { 500.f, 200.f } });
+        set_min_size({ { 500.f, 300.f } });
         set_flags(Engine::UI::ImGui::Window::WindowFlags::
             VIEWPORT_CENTER);
     }
@@ -58,7 +59,16 @@ namespace Planar::Editor::UI::Window
             pending_browse = true;
         }
 
-        ImGui::cursor_y_bottom_window();
+        const float separator_extra_height = 12.f;
+
+        ImGui::separator(separator_extra_height);
+
+        target_drop_down.render();
+
+        ImGui::separator(separator_extra_height);
+
+        ImGui::cursor_y_bottom_window(
+            -separator_extra_height * 2.f - 6.f);
         build_button.render();
         if (build_button.is_clicked())
         {
