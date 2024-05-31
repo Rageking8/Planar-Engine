@@ -8,7 +8,7 @@ namespace Planar::Editor::Scene
         open_project_button("Open Project"),
         project_name_input("Project Name"),
         project_description_input("Description"),
-        project_gitignore_checkbox("Create .gitignore"),
+        project_gitignore_checkbox("Create .gitignore", true),
         create_project_button("Create Project"),
         pending_open_project{}, pending_create_project{},
         project{}
