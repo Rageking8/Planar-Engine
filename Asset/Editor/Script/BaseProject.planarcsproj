@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <PublishAot>true</PublishAot>
+        <TargetFramework>net8.0</TargetFramework>
+        <SelfContained>true</SelfContained>
+        <PublishTrimmed>true</PublishTrimmed>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    </PropertyGroup>
+
+    <ItemGroup Label="Engine Resources">
+        <EmbeddedResource Include="Engine/PlanarEngine.dll" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="PlanarScript">
+            <HintPath>Engine/PlanarScript.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+</Project>
