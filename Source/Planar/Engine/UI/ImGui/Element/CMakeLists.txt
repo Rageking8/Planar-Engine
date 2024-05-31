@@ -4,4 +4,5 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     DropDown.cpp
     Element.cpp
     InputField.cpp
+    IntSlider.cpp
 )
