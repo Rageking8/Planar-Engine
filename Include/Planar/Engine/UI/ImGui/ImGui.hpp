@@ -41,7 +41,8 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API std::string generate_unique_label();
 
-    PLANAR_API void text(const std::string& text);
+    PLANAR_API void text(const std::string& text,
+        bool align_text_to_frame_padding = false);
 
     PLANAR_API void text_wrapped(const std::string& text,
         float wrap_width = -1.f);
@@ -62,6 +63,8 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API void newline(unsigned count = 1);
 
     PLANAR_API void same_line();
+
+    PLANAR_API void separator(float extra_height = 0.f);
 
     PLANAR_API void dock_space_over_viewport();
 

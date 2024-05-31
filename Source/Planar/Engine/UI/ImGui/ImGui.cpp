@@ -97,8 +97,13 @@ namespace Planar::Engine::UI::ImGui
             Planar::Engine::Core::GUID::Representation::DEFAULT_COMPACT);
     }
 
-    void text(const std::string& text)
+    void text(const std::string& text, bool align_text_to_frame_padding)
     {
+        if (align_text_to_frame_padding)
+        {
+            ::ImGui::AlignTextToFramePadding();
+        }
+
         ::ImGui::Text(text.c_str());
     }
 
@@ -164,6 +169,13 @@ namespace Planar::Engine::UI::ImGui
     void same_line()
     {
         ::ImGui::SameLine();
+    }
+
+    void separator(float extra_height)
+    {
+        move_cursor_y(extra_height);
+        ::ImGui::Separator();
+        move_cursor_y(extra_height);
     }
 
     void dock_space_over_viewport()
