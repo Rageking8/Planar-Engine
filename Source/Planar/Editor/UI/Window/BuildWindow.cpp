@@ -12,11 +12,12 @@ namespace Planar::Editor::UI::Window
     BuildWindow::BuildWindow() : EditorWindow("Build", false),
         build_directory_input("Build directory"),
         browse_button("Browse"), target_drop_down({ "Windows 64-bit" },
-        "Target:", 200.f), build_button("Build"), pending_browse{},
-        pending_build{}
+        "Target:", 200.f), use_compression_checkbox("Use UPX compression",
+        true), compression_level_slider(7, 1, 10, "Compression Level:",
+        200.f), build_button("Build"), pending_browse{}, pending_build{}
     {
         set_size({ { 1280.f, 720.f } });
-        set_min_size({ { 500.f, 300.f } });
+        set_min_size({ { 500.f, 400.f } });
         set_flags(Engine::UI::ImGui::Window::WindowFlags::
             VIEWPORT_CENTER);
     }
@@ -64,6 +65,14 @@ namespace Planar::Editor::UI::Window
         ImGui::separator(separator_extra_height);
 
         target_drop_down.render();
+
+        ImGui::separator(separator_extra_height);
+
+        use_compression_checkbox.render();
+        if (use_compression_checkbox.get_value())
+        {
+            compression_level_slider.render();
+        }
 
         ImGui::separator(separator_extra_height);
 
