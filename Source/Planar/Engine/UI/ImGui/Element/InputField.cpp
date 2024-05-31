@@ -3,14 +3,16 @@
 
 namespace Planar::Engine::UI::ImGui::Element
 {
-    InputField::InputField(const std::string& placeholder) :
-        label{ generate_unique_label() }, placeholder{ placeholder }
+    InputField::InputField(const std::string& placeholder,
+        Size::Width width) : label{ generate_unique_label() },
+        placeholder{ placeholder }, width{ width }
     {
 
     }
 
     void InputField::render()
     {
+        width.set();
         input_text(label, placeholder, text);
     }
 
