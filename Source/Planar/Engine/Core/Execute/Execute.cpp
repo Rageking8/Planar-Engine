@@ -4,7 +4,7 @@
 
 namespace Planar::Engine::Core::Execute
 {
-    void run(std::filesystem::path working_directory,
+    int run_program(std::filesystem::path working_directory,
         std::filesystem::path program_path,
         std::vector<std::string> arguments)
     {
@@ -22,6 +22,6 @@ namespace Planar::Engine::Core::Execute
         reproc::process process;
         process.start(arguments, options);
 
-        process.wait(reproc::infinite);
+        return process.wait(reproc::infinite).first;
     }
 }

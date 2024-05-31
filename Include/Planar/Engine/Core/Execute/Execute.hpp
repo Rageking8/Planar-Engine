@@ -8,7 +8,7 @@
 
 namespace Planar::Engine::Core::Execute
 {
-    PLANAR_API void run(
+    PLANAR_API int run_program(
         std::filesystem::path working_directory,
         std::filesystem::path program_path,
         std::vector<std::string> arguments);

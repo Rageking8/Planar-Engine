@@ -20,7 +20,7 @@ namespace Planar::Engine::Core::Archive
                 Engine, _7zr);
         }
 
-        Execute::run(program_path.parent_path(), program_path,
+        Execute::run_program(program_path.parent_path(), program_path,
             { "x", std::filesystem::absolute(input_path).string() });
     }
 }

@@ -19,7 +19,7 @@ namespace Planar::Editor::Build
 
         std::string build_path_string = build_path.string();
 
-        Engine::Core::Execute::run(project_root, dotnet_exe_path,
+        Engine::Core::Execute::run_program(project_root, dotnet_exe_path,
             { "publish", project_root.string(), "--artifacts-path",
             build_path_string, "-r", "win-x64", "-o",
             build_path_string });
