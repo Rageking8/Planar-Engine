@@ -1,5 +1,6 @@
 target_sources(${PLANAR_SCRIPT_TARGET} PRIVATE
     Application.cs
+    Entry.cs
     ImportConstants.cs
 )
 

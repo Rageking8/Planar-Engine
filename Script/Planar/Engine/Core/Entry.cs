@@ -1,10 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
 
-using Planar.Engine.Core;
 using Planar.Engine.Core.Log;
 
-namespace Planar.Script.Core;
+namespace Planar.Engine.Core;
 
 public class Entry
 {
