@@ -25,6 +25,8 @@ namespace Planar::Editor::Project
         void create_project_file(const std::string& project_name,
             const std::string& project_description,
             const std::string& main_scene_guid);
+        void create_cs_project_file();
+
         std::string create_main_scene();
         void create_engine_files();
         void create_script_files();

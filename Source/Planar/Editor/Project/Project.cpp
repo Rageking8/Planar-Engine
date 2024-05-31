@@ -12,6 +12,7 @@
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Project)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Scene)
+PLANAR_LOAD_STD_STRING_ASSET(Editor::Script, BaseProject)
 PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Script,
     PlanarScript)
 PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_ALL_CHUNKS(
@@ -81,6 +82,7 @@ namespace Planar::Editor::Project
         std::string main_scene_guid = create_main_scene();
         create_project_file(project_name, project_description,
             main_scene_guid);
+        create_cs_project_file();
 
         std::filesystem::create_directories(root_path / "Build");
 
@@ -129,6 +131,13 @@ namespace Planar::Editor::Project
 
                 { "<MAIN_SCENE_GUID>", main_scene_guid },
             }));
+    }
+
+    void Project::create_cs_project_file()
+    {
+        Engine::Core::FileSystem::create_file(
+            root_path / (project_name + ".csproj"),
+            Asset::Editor::Script::BaseProject);
     }
 
     std::string Project::create_main_scene()
