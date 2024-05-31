@@ -13,6 +13,7 @@ PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Project)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Scene)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Script, BaseProject)
+PLANAR_LOAD_STD_STRING_ASSET(Editor::Script, GeneratedEntry)
 PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Script,
     PlanarScript)
 PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_ALL_CHUNKS(
@@ -176,6 +177,10 @@ namespace Planar::Editor::Project
         Engine::Core::FileSystem::clear_file(planar_script_dll_path);
         PLANAR_APPEND_ARRAY_TO_FILE(planar_script_dll_path,
             Editor::Script, PlanarScript)
+
+        Engine::Core::FileSystem::create_file(
+            engine_path / "GeneratedEntry.cs",
+            Asset::Editor::Script::GeneratedEntry);
     }
 
     void Project::create_script_files()
