@@ -22,3 +22,9 @@
             std::terminate();                                          \
         }                                                              \
     } while (false)                                                    \
+
+#define PLANAR_ASSERT_EMPTY(variable)                         \
+    PLANAR_ASSERT(variable.empty(), `variable` must be empty) \
+
+#define PLANAR_ASSERT_NOT_EMPTY(variable)                          \
+    PLANAR_ASSERT(!variable.empty(), `variable` must not be empty) \
