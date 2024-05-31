@@ -5,4 +5,5 @@ target_sources(${PLANAR_SCRIPT_TARGET} PRIVATE
 )
 
 add_subdirectory(Log)
+add_subdirectory(Native)
 add_subdirectory(Utils)
