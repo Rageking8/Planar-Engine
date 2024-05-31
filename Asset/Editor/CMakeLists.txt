@@ -25,6 +25,7 @@ else()
     )
 endif()
 
+add_subdirectory(Build)
 add_subdirectory(Icons)
 add_subdirectory(Layout)
 add_subdirectory(Project)
