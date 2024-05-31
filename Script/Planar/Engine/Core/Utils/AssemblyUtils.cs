@@ -4,9 +4,14 @@ namespace Planar.Engine.Core.Utils;
 
 public static class AssemblyUtils
 {
+    static public string GetAssemblyName()
+    {
+        return Assembly.GetEntryAssembly().GetName().Name;
+    }
+
     static public string GetAssemblyVersion()
     {
-        return Assembly.GetExecutingAssembly().GetName().
+        return Assembly.GetEntryAssembly().GetName().
             Version.ToString();
     }
 }
