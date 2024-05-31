@@ -86,6 +86,10 @@ namespace Planar::Editor::UI::Window
                         current_path = i;
                     }
                 }
+                else if (button.is_clicked() && select_callback)
+                {
+                    select_callback(name);
+                }
 
                 text_renderer.render_center_truncate(name, button_size,
                     -7.5f, 2);
@@ -133,6 +137,13 @@ namespace Planar::Editor::UI::Window
         new_left_arrow_texture)
     {
         left_arrow_texture = &new_left_arrow_texture;
+    }
+
+    void ContentWindow::set_select_callback(
+        const std::function<void(const std::string&)>&
+        new_select_callback)
+    {
+        select_callback = new_select_callback;
     }
 
     void ContentWindow::render_menu_bar()

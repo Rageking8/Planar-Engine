@@ -7,6 +7,7 @@
 #include "Planar/Engine/Core/Shell/Shell.hpp"
 
 #include <filesystem>
+#include <functional>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
@@ -35,6 +36,9 @@ namespace Planar::Editor::Scene
         content_window.set_file_texture(file_texture);
         content_window.set_folder_texture(folder_texture);
         content_window.set_left_arrow_texture(left_arrow_texture);
+        content_window.set_select_callback(std::bind(
+            &UI::Window::InspectorWindow::select_callback,
+            &inspector_window, std::placeholders::_1));
         content_window.init();
 
         game_window.init();
@@ -72,7 +76,8 @@ namespace Planar::Editor::Scene
         build_window.render_window();
     }
 
-    void EditorScene::set_project(Planar::Editor::Project::Project* new_project)
+    void EditorScene::set_project(
+        Planar::Editor::Project::Project* new_project)
     {
         project = new_project;
     }

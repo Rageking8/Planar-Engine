@@ -22,4 +22,9 @@ namespace Planar::Editor::UI::Window
 
         name_input.render();
     }
+
+    void InspectorWindow::select_callback(const std::string& name)
+    {
+        name_input.set_text(name);
+    }
 }
