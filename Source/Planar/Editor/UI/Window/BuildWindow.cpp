@@ -1,4 +1,5 @@
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
+#include "Planar/Editor/Build/Build.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
@@ -11,7 +12,7 @@ namespace Planar::Editor::UI::Window
     BuildWindow::BuildWindow() : EditorWindow("Build", false),
         build_directory_input("Build directory"),
         browse_button("Browse"), build_button("Build"),
-        pending_browse{}
+        pending_browse{}, pending_build{}
     {
         set_size({ { 1280.f, 720.f } });
         set_min_size({ { 500.f, 200.f } });
@@ -30,6 +31,11 @@ namespace Planar::Editor::UI::Window
         if (pending_browse)
         {
             browse();
+        }
+
+        if (pending_build)
+        {
+            build();
         }
     }
 
@@ -54,6 +60,10 @@ namespace Planar::Editor::UI::Window
 
         ImGui::cursor_y_bottom_window();
         build_button.render();
+        if (build_button.is_clicked())
+        {
+            pending_build = true;
+        }
     }
 
     void BuildWindow::set_root_path(
@@ -79,5 +89,13 @@ namespace Planar::Editor::UI::Window
             Engine::Core::Log::TerminalLogger::get("Editor")->
                 error("Invalid directory");
         }
+    }
+
+    void BuildWindow::build()
+    {
+        pending_build = false;
+
+        Build::build(root_path, root_path / "Cache" / "DotnetSDK",
+            build_directory_input.get_text());
     }
 }

@@ -28,7 +28,9 @@ namespace Planar::Editor::UI::Window
         Engine::UI::ImGui::Element::Button build_button;
 
         bool pending_browse;
+        bool pending_build;
 
         void browse();
+        void build();
     };
 }
