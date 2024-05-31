@@ -64,6 +64,13 @@ FetchContent_Declare(
         SHA256=F32FD1C4012E25F961F6E18A31C279D517C14490F1B0E08B05B70E8463ECF937
 )
 
+FetchContent_Declare(
+    upx
+    URL https://github.com/upx/upx/releases/download/v4.2.4/upx-4.2.4-win64.zip
+    URL_HASH
+        SHA256=22E9EF20E4C72AAD85E32C71CBC9C086436C179456382AA75C0C24868456A671
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
@@ -74,3 +81,4 @@ add_subdirectory(dotnet-sdk)
 add_subdirectory(glm)
 add_subdirectory(reproc)
 add_subdirectory(lzma-sdk)
+add_subdirectory(UPX)
