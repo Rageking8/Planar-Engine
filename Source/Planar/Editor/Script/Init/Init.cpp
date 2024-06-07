@@ -4,7 +4,6 @@
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Core/Archive/Archive.hpp"
 
-PLANAR_LOAD_STD_STRING_ASSET(Editor::Script, BaseProject)
 PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_ALL_CHUNKS(Editor, dotnet_sdk)
 
 namespace Planar::Editor::Script::Init
@@ -25,13 +24,5 @@ namespace Planar::Editor::Script::Init
         {
             std::filesystem::remove(path);
         }
-    }
-
-    void create_cs_project_file(const std::filesystem::path& path,
-        const std::string& project_name)
-    {
-        Engine::Core::FileSystem::create_file(path /
-            (project_name + ".csproj"),
-            Asset::Editor::Script::BaseProject);
     }
 }

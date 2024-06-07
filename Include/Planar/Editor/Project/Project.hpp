@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Planar/Editor/Script/CSProject.hpp"
+
 #include <string>
 #include <filesystem>
 
@@ -21,6 +23,7 @@ namespace Planar::Editor::Project
     private:
         std::filesystem::path root_path;
         std::string project_name;
+        Script::CSProject cs_project;
 
         void create_project_file(const std::string& project_name,
             const std::string& project_description,

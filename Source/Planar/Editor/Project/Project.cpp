@@ -83,7 +83,7 @@ namespace Planar::Editor::Project
         std::string main_scene_guid = create_main_scene();
         create_project_file(project_name, project_description,
             main_scene_guid);
-        Script::Init::create_cs_project_file(root_path, project_name);
+        cs_project.create(root_path, project_name);
 
         std::filesystem::create_directories(root_path / "Build");
 
