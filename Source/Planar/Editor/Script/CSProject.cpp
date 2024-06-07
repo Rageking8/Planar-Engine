@@ -30,4 +30,9 @@ namespace Planar::Editor::Script
     {
         return path;
     }
+
+    std::filesystem::path CSProject::get_full_path() const
+    {
+        return path / (name + ".csproj");
+    }
 }
