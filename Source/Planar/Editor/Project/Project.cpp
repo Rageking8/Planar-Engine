@@ -80,6 +80,8 @@ namespace Planar::Editor::Project
         root_path = directory;
         this->project_name = project_name;
 
+        Script::Init::verify_dotnet_sdk(root_path / "Cache");
+
         std::string main_scene_guid = create_main_scene();
         create_project_file(project_name, project_description,
             main_scene_guid);

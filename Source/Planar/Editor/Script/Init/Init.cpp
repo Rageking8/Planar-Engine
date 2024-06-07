@@ -8,6 +8,18 @@ PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_ALL_CHUNKS(Editor, dotnet_sdk)
 
 namespace Planar::Editor::Script::Init
 {
+    void verify_dotnet_sdk(const std::filesystem::path& path)
+    {
+        if (!std::filesystem::exists(path / "DotnetSDK"))
+        {
+            std::filesystem::path dotnet_sdk_zip_path =
+                path / "dotnet_sdk.7z";
+
+            write_dotnet_sdk_7z(dotnet_sdk_zip_path);
+            extract_dotnet_sdk_7z(dotnet_sdk_zip_path);
+        }
+    }
+
     void write_dotnet_sdk_7z(const std::filesystem::path& path)
     {
         Engine::Core::FileSystem::clear_file(path);

@@ -1,7 +1,6 @@
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Editor/Scene/EditorScene.hpp"
-#include "Planar/Editor/Script/Init/Init.hpp"
 
 #include <memory>
 #include <functional>
@@ -40,30 +39,5 @@ namespace Planar::Editor::Core
         load_scene(std::move(scene));
 
         set_window_name("Planar Editor - " + project.get_project_name());
-
-        load_scripting();
-    }
-
-    void Editor::load_scripting()
-    {
-        std::filesystem::path project_cache_path =
-            get_project_cache_path();
-
-        if (!std::filesystem::exists(
-            project_cache_path / "DotnetSDK"))
-        {
-            std::filesystem::path dotnet_sdk_zip_path =
-                project_cache_path / "dotnet_sdk.7z";
-
-            Planar::Editor::Script::Init::write_dotnet_sdk_7z(
-                dotnet_sdk_zip_path);
-            Planar::Editor::Script::Init::extract_dotnet_sdk_7z(
-                dotnet_sdk_zip_path);
-        }
-    }
-
-    std::filesystem::path Editor::get_project_cache_path() const
-    {
-        return project.get_root_path() / "Cache";
     }
 }
