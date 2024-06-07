@@ -14,7 +14,10 @@ set(ARCHIVE_CONTENTS_HOST
 set(ARCHIVE_CONTENTS_SHARED
     shared/Microsoft.NETCore.App
 )
-set(ARCHIVE_CONTENTS_SDK_80300
+set(ARCHIVE_CONTENTS_TEMPLATES_8_0_5
+    microsoft.dotnet.common.itemtemplates.8.0.300.nupkg
+)
+set(ARCHIVE_CONTENTS_SDK_8_0_300
     cs
     Current
     de
@@ -58,12 +61,25 @@ set(ARCHIVE_CONTENTS_SDK_80300
     Microsoft.CSharp.CurrentVersion.targets
     Microsoft.CSharp.targets
     Microsoft.Deployment.DotNet.Releases.dll
+    Microsoft.DotNet.Cli.Sln.Internal.dll
     Microsoft.DotNet.Cli.Utils.dll
     Microsoft.DotNet.Configurer.dll
     Microsoft.DotNet.InternalAbstractions.dll
+    Microsoft.DotNet.SdkResolver.dll
     Microsoft.DotNet.TemplateLocator.dll
+    Microsoft.Extensions.Configuration.Abstractions.dll
+    Microsoft.Extensions.Configuration.Binder.dll
+    Microsoft.Extensions.Configuration.dll
+    Microsoft.Extensions.DependencyInjection.Abstractions.dll
+    Microsoft.Extensions.DependencyInjection.dll
     Microsoft.Extensions.DependencyModel.dll
     Microsoft.Extensions.Logging.Abstractions.dll
+    Microsoft.Extensions.Logging.Configuration.dll
+    Microsoft.Extensions.Logging.Console.dll
+    Microsoft.Extensions.Logging.dll
+    Microsoft.Extensions.Options.ConfigurationExtensions.dll
+    Microsoft.Extensions.Options.dll
+    Microsoft.Extensions.Primitives.dll
     Microsoft.Managed.After.targets
     Microsoft.Managed.Before.targets
     Microsoft.NET.HostModel.dll
@@ -74,7 +90,11 @@ set(ARCHIVE_CONTENTS_SDK_80300
     Microsoft.NETCoreSdk.BundledVersions.props
     Microsoft.TemplateEngine.Abstractions.dll
     Microsoft.TemplateEngine.Cli.dll
+    Microsoft.TemplateEngine.Core.Contracts.dll
+    Microsoft.TemplateEngine.Core.dll
     Microsoft.TemplateEngine.Edge.dll
+    Microsoft.TemplateEngine.Orchestrator.RunnableProjects.dll
+    Microsoft.TemplateEngine.Utils.dll
     Microsoft.TemplateSearch.Common.dll
     minimumMSBuildVersion
     MSBuild.deps.json
@@ -139,8 +159,11 @@ set(ARCHIVE_CONTENTS_SDK_80300
 prepend_lists(${dotnet-sdk_SOURCE_DIR}/
     ARCHIVE_CONTENTS_HOST ARCHIVE_CONTENTS_SHARED
 )
-PREPEND_LISTS(${dotnet-sdk_SOURCE_DIR}/sdk/8.0.300/
-    ARCHIVE_CONTENTS_SDK_80300
+prepend_lists(${dotnet-sdk_SOURCE_DIR}/templates/8.0.5/
+    ARCHIVE_CONTENTS_TEMPLATES_8_0_5
+)
+prepend_lists(${dotnet-sdk_SOURCE_DIR}/sdk/8.0.300/
+    ARCHIVE_CONTENTS_SDK_8_0_300
 )
 
 set(ARCHIVE_DESTINATION
@@ -154,7 +177,10 @@ if(NOT EXISTS ${ARCHIVE_DESTINATION})
     file(COPY ${ARCHIVE_CONTENTS_SHARED} DESTINATION
         ${ARCHIVE_WORKING_DIRECTORY}/shared
     )
-    file(COPY ${ARCHIVE_CONTENTS_SDK_80300} DESTINATION
+    file(COPY ${ARCHIVE_CONTENTS_TEMPLATES_8_0_5} DESTINATION
+        ${ARCHIVE_WORKING_DIRECTORY}/templates/8.0.5
+    )
+    file(COPY ${ARCHIVE_CONTENTS_SDK_8_0_300} DESTINATION
         ${ARCHIVE_WORKING_DIRECTORY}/sdk/8.0.300
     )
 
