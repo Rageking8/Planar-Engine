@@ -1,6 +1,7 @@
 #include "Planar/Editor/Project/Project.hpp"
 #include "Asset/Editor/PlanarEngine.h"
 #include "Planar/Editor/Script/Init/Init.hpp"
+#include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
@@ -86,6 +87,8 @@ namespace Planar::Editor::Project
         create_project_file(project_name, project_description,
             main_scene_guid);
         cs_project.create(root_path, project_name);
+        Core::VisualStudio::create_solution_file(root_path,
+            root_path / "Cache" / "DotnetSDK" / "dotnet.exe", cs_project);
 
         std::filesystem::create_directories(root_path / "Build");
 
