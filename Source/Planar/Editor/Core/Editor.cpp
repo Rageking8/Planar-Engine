@@ -1,6 +1,7 @@
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Editor/Scene/EditorScene.hpp"
+#include "Planar/Editor/UI/Init/Init.hpp"
 
 #include <memory>
 #include <functional>
@@ -19,6 +20,8 @@ namespace Planar::Editor::Core
         {
             return false;
         }
+
+        UI::Init::load_default_font();
 
         std::unique_ptr<Planar::Editor::Scene::SelectProjectScene> scene =
             std::make_unique<Planar::Editor::Scene::SelectProjectScene>();
