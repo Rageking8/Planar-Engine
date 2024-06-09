@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.15..3.29 FATAL_ERROR)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMake)
+
+include(FetchContent)
 include(GetAllTargetList)
 
 project(Planar VERSION 0.1.0 LANGUAGES C CXX CSharp)
