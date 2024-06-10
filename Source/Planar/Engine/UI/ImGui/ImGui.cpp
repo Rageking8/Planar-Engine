@@ -52,21 +52,28 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::GetStyle().ScrollbarSize = new_scrollbar_size;
     }
 
-    Planar::Engine::Math::Size2Df get_window_size()
+    Math::Size2Df get_main_viewport_size()
+    {
+        ImVec2 main_viewport_size = ::ImGui::GetMainViewport()->Size;
+
+        return { main_viewport_size.x, main_viewport_size.y };
+    }
+
+    Math::Size2Df get_window_size()
     {
         ImVec2 window_size = ::ImGui::GetWindowSize();
 
         return { window_size.x, window_size.y };
     }
 
-    Planar::Engine::Math::Pos2Df get_window_position()
+    Math::Pos2Df get_window_position()
     {
         ImVec2 window_position = ::ImGui::GetWindowPos();
 
         return { window_position.x, window_position.y };
     }
 
-    Planar::Engine::Math::Size2Df get_window_content_region_max()
+    Math::Size2Df get_window_content_region_max()
     {
         ImVec2 window_content_region_max =
             ::ImGui::GetWindowContentRegionMax();
@@ -75,21 +82,21 @@ namespace Planar::Engine::UI::ImGui
             window_content_region_max.y };
     }
 
-    Planar::Engine::Math::Size2Df get_content_region_avail()
+    Math::Size2Df get_content_region_avail()
     {
         ImVec2 content_region_avail = ::ImGui::GetContentRegionAvail();
 
         return { content_region_avail.x, content_region_avail.y };
     }
 
-    Planar::Engine::Math::Size2Df get_item_spacing()
+    Math::Size2Df get_item_spacing()
     {
         ImVec2 item_spacing = ::ImGui::GetStyle().ItemSpacing;
 
         return { item_spacing.x, item_spacing.y };
     }
 
-    Planar::Engine::Math::Pos2Df get_item_rect_max()
+    Math::Pos2Df get_item_rect_max()
     {
         ImVec2 item_rect_max = ::ImGui::GetItemRectMax();
 
@@ -98,8 +105,8 @@ namespace Planar::Engine::UI::ImGui
 
     std::string generate_unique_label()
     {
-        return "##" + Planar::Engine::Core::GUID::generate_guid(
-            Planar::Engine::Core::GUID::Representation::DEFAULT_COMPACT);
+        return "##" + Core::GUID::generate_guid(
+            Core::GUID::Representation::DEFAULT_COMPACT);
     }
 
     void text(const std::string& text, bool align_text_to_frame_padding)
@@ -129,15 +136,14 @@ namespace Planar::Engine::UI::ImGui
         }
     }
 
-    bool button(const std::string& name,
-        Planar::Engine::Math::Size2Df size)
+    bool button(const std::string& name, Math::Size2Df size)
     {
         return ::ImGui::Button(name.c_str(),
             { size.width, size.height });
     }
 
     bool button(const std::string& name, GLuint texture,
-        Planar::Engine::Math::Size2Df size)
+        Math::Size2Df size)
     {
         return ::ImGui::ImageButton(name.c_str(), (void*)texture,
             { size.width, size.height });
@@ -155,8 +161,7 @@ namespace Planar::Engine::UI::ImGui
             placeholder.c_str(), &text);
     }
 
-    void image(GLuint texture, Planar::Engine::Math::Size2Df size,
-        bool flip_y)
+    void image(GLuint texture, Math::Size2Df size, bool flip_y)
     {
         ::ImGui::Image((void*)texture, { size.width, size.height },
             flip_y ? ::ImVec2(0.f, 1.f) : ::ImVec2(0.f, 0.f),
@@ -220,7 +225,7 @@ namespace Planar::Engine::UI::ImGui
         return ::ImGui::GetCursorPosY();
     }
 
-    void move_cursor(Planar::Engine::Math::Size2Df delta)
+    void move_cursor(Math::Size2Df delta)
     {
         move_cursor_x(delta.width);
         move_cursor_y(delta.height);

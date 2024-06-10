@@ -28,18 +28,19 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void set_scrollbar_size(float new_scrollbar_size);
 
-    PLANAR_API Planar::Engine::Math::Size2Df get_window_size();
+    PLANAR_API Math::Size2Df get_main_viewport_size();
 
-    PLANAR_API Planar::Engine::Math::Pos2Df get_window_position();
+    PLANAR_API Math::Size2Df get_window_size();
 
-    PLANAR_API Planar::Engine::Math::Size2Df
-        get_window_content_region_max();
+    PLANAR_API Math::Pos2Df get_window_position();
 
-    PLANAR_API Planar::Engine::Math::Size2Df get_content_region_avail();
+    PLANAR_API Math::Size2Df get_window_content_region_max();
 
-    PLANAR_API Planar::Engine::Math::Size2Df get_item_spacing();
+    PLANAR_API Math::Size2Df get_content_region_avail();
 
-    PLANAR_API Planar::Engine::Math::Pos2Df get_item_rect_max();
+    PLANAR_API Math::Size2Df get_item_spacing();
+
+    PLANAR_API Math::Pos2Df get_item_rect_max();
 
     PLANAR_API std::string generate_unique_label();
 
@@ -50,17 +51,17 @@ namespace Planar::Engine::UI::ImGui
         float wrap_width = -1.f);
 
     PLANAR_API bool button(const std::string& name,
-        Planar::Engine::Math::Size2Df size = {});
+        Math::Size2Df size = {});
     PLANAR_API bool button(const std::string& name, GLuint texture,
-        Planar::Engine::Math::Size2Df size);
+        Math::Size2Df size);
 
     PLANAR_API void input_text(const std::string& label,
         std::string& text);
     PLANAR_API void input_text(const std::string& label,
         const std::string& placeholder, std::string& text);
 
-    PLANAR_API void image(GLuint texture,
-        Planar::Engine::Math::Size2Df size, bool flip_y = false);
+    PLANAR_API void image(GLuint texture, Math::Size2Df size,
+        bool flip_y = false);
 
     PLANAR_API void newline(unsigned count = 1);
 
@@ -82,7 +83,7 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API float get_cursor_y();
 
-    PLANAR_API void move_cursor(Planar::Engine::Math::Size2Df delta);
+    PLANAR_API void move_cursor(Math::Size2Df delta);
 
     PLANAR_API void move_cursor_x(float delta);
 
