@@ -5,4 +5,5 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     Element.hpp
     InputField.hpp
     IntSlider.hpp
+    ProgressBar.hpp
 )
