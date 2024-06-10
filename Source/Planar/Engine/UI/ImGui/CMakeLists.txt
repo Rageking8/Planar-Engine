@@ -3,6 +3,7 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     ImGuiContext.cpp
 )
 
+add_subdirectory(Core)
 add_subdirectory(Element)
 add_subdirectory(Font)
 add_subdirectory(Menu)
