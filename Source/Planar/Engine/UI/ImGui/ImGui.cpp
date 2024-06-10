@@ -190,11 +190,6 @@ namespace Planar::Engine::UI::ImGui
         Core::Cursor::move_y(extra_height);
     }
 
-    void dock_space_over_viewport()
-    {
-        ::ImGui::DockSpaceOverViewport(::ImGui::GetMainViewport());
-    }
-
     bool is_item_hovered()
     {
         return ::ImGui::IsItemHovered();

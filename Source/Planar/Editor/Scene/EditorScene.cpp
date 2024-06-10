@@ -3,6 +3,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/MainMenuBar.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Docking/Docking.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
 
@@ -62,7 +63,7 @@ namespace Planar::Editor::Scene
     {
         using namespace Planar::Engine::UI;
 
-        ImGui::dock_space_over_viewport();
+        ImGui::Core::Docking::dock_space_over_viewport();
 
         render_main_menu_bar();
 
