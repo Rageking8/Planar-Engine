@@ -1,6 +1,7 @@
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
 #include "Planar/Editor/Build/Build.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
@@ -76,7 +77,7 @@ namespace Planar::Editor::UI::Window
 
         ImGui::separator(separator_extra_height);
 
-        ImGui::cursor_y_bottom_window(
+        ImGui::Core::Cursor::set_y_bottom_window(
             -separator_extra_height * 2.f - 6.f);
         build_button.render();
         if (build_button.is_clicked())

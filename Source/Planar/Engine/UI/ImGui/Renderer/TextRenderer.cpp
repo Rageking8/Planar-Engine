@@ -1,4 +1,5 @@
 #include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
@@ -15,7 +16,7 @@ namespace Planar::Engine::UI::ImGui::Renderer
         float main_viewport_width = get_main_viewport_size().width;
         float text_width = ::ImGui::CalcTextSize(text.c_str()).x;
 
-        set_cursor_x((main_viewport_width - text_width) * 0.5f);
+        Core::Cursor::set_x((main_viewport_width - text_width) * 0.5f);
         ::ImGui::Text(text.c_str());
     }
 
@@ -52,9 +53,9 @@ namespace Planar::Engine::UI::ImGui::Renderer
 
         for (unsigned i = 0; i < split_result.first.size(); ++i)
         {
-            ImGui::move_cursor_x((width * 0.5f) + frame_padding_x -
+            Core::Cursor::move_x((width * 0.5f) + frame_padding_x -
                 (split_result.first[i].second * 0.5f));
-            ImGui::move_cursor_y(i * line_delta);
+            Core::Cursor::move_y(i * line_delta);
             ImGui::text(split_result.first[i].first);
         }
     }

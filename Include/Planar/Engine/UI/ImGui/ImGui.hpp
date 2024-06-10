@@ -71,24 +71,6 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void dock_space_over_viewport();
 
-    PLANAR_API void cursor_y_bottom_window(float y_offset = 0.f);
-
-    PLANAR_API void cursor_y_bottom_viewport(float y_offset = 0.f);
-
-    PLANAR_API void set_cursor_x(float new_cursor_x);
-
-    PLANAR_API void set_cursor_y(float new_cursor_y);
-
-    PLANAR_API float get_cursor_x();
-
-    PLANAR_API float get_cursor_y();
-
-    PLANAR_API void move_cursor(Math::Size2Df delta);
-
-    PLANAR_API void move_cursor_x(float delta);
-
-    PLANAR_API void move_cursor_y(float delta);
-
     PLANAR_API bool is_item_hovered();
 
     PLANAR_API bool is_left_mouse_double_clicked();

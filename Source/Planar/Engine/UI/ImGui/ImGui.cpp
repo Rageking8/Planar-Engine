@@ -1,4 +1,5 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
@@ -105,8 +106,8 @@ namespace Planar::Engine::UI::ImGui
 
     std::string generate_unique_label()
     {
-        return "##" + Core::GUID::generate_guid(
-            Core::GUID::Representation::DEFAULT_COMPACT);
+        return "##" + Engine::Core::GUID::generate_guid(
+            Engine::Core::GUID::Representation::DEFAULT_COMPACT);
     }
 
     void text(const std::string& text, bool align_text_to_frame_padding)
@@ -125,7 +126,8 @@ namespace Planar::Engine::UI::ImGui
 
         if (custom_wrap_width)
         {
-            ::ImGui::PushTextWrapPos(get_cursor_x() + wrap_width);
+            ::ImGui::PushTextWrapPos(Core::Cursor::get_x() +
+                wrap_width);
         }
 
         ::ImGui::TextWrapped(text.c_str());
@@ -183,62 +185,14 @@ namespace Planar::Engine::UI::ImGui
 
     void separator(float extra_height)
     {
-        move_cursor_y(extra_height);
+        Core::Cursor::move_y(extra_height);
         ::ImGui::Separator();
-        move_cursor_y(extra_height);
+        Core::Cursor::move_y(extra_height);
     }
 
     void dock_space_over_viewport()
     {
         ::ImGui::DockSpaceOverViewport(::ImGui::GetMainViewport());
-    }
-
-    void cursor_y_bottom_window(float y_offset)
-    {
-        ::ImGui::SetCursorPosY(::ImGui::GetWindowContentRegionMax().y -
-            ::ImGui::GetItemRectSize().y + y_offset);
-    }
-
-    void cursor_y_bottom_viewport(float y_offset)
-    {
-        set_cursor_y(::ImGui::GetMainViewport()->Size.y +
-            y_offset);
-    }
-
-    void set_cursor_x(float new_cursor_x)
-    {
-        ::ImGui::SetCursorPosX(new_cursor_x);
-    }
-
-    void set_cursor_y(float new_cursor_y)
-    {
-        ::ImGui::SetCursorPosY(new_cursor_y);
-    }
-
-    float get_cursor_x()
-    {
-        return ::ImGui::GetCursorPosX();
-    }
-
-    float get_cursor_y()
-    {
-        return ::ImGui::GetCursorPosY();
-    }
-
-    void move_cursor(Math::Size2Df delta)
-    {
-        move_cursor_x(delta.width);
-        move_cursor_y(delta.height);
-    }
-
-    void move_cursor_x(float delta)
-    {
-        set_cursor_x(get_cursor_x() + delta);
-    }
-
-    void move_cursor_y(float delta)
-    {
-        set_cursor_y(get_cursor_y() + delta);
     }
 
     bool is_item_hovered()
