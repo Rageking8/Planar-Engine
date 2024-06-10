@@ -21,9 +21,6 @@ namespace Planar::Editor::Scene
         using namespace Planar::Engine::UI;
         using namespace Planar::Engine::Core::Utils::EnumClass;
 
-        ImGui::scale_ui(3);
-        ImGui::set_scrollbar_size(15.f);
-
         main_window.set("Select Project",
             ImGui::Window::WindowFlags::FIT_TO_WINDOW |
             ImGui::Window::WindowFlags::MINIMAL |

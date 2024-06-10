@@ -22,6 +22,7 @@ namespace Planar::Editor::Core
         }
 
         UI::Init::load_default_font();
+        UI::Init::set_scale();
 
         std::unique_ptr<Planar::Editor::Scene::SelectProjectScene> scene =
             std::make_unique<Planar::Editor::Scene::SelectProjectScene>();
