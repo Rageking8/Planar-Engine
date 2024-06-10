@@ -42,6 +42,11 @@ namespace Planar::Engine::UI::ImGui
             static_cast<float>(factor));
     }
 
+    float get_font_size()
+    {
+        return ::ImGui::GetFontSize();
+    }
+
     void set_scrollbar_size(float new_scrollbar_size)
     {
         ::ImGui::GetStyle().ScrollbarSize = new_scrollbar_size;
@@ -189,6 +194,22 @@ namespace Planar::Engine::UI::ImGui
             ::ImGui::GetItemRectSize().y + y_offset);
     }
 
+    void cursor_y_bottom_viewport(float y_offset)
+    {
+        set_cursor_y(::ImGui::GetMainViewport()->Size.y +
+            y_offset);
+    }
+
+    void set_cursor_x(float new_cursor_x)
+    {
+        ::ImGui::SetCursorPosX(new_cursor_x);
+    }
+
+    void set_cursor_y(float new_cursor_y)
+    {
+        ::ImGui::SetCursorPosY(new_cursor_y);
+    }
+
     float get_cursor_x()
     {
         return ::ImGui::GetCursorPosX();
@@ -207,12 +228,12 @@ namespace Planar::Engine::UI::ImGui
 
     void move_cursor_x(float delta)
     {
-        ::ImGui::SetCursorPosX(get_cursor_x() + delta);
+        set_cursor_x(get_cursor_x() + delta);
     }
 
     void move_cursor_y(float delta)
     {
-        ::ImGui::SetCursorPosY(get_cursor_y() + delta);
+        set_cursor_y(get_cursor_y() + delta);
     }
 
     bool is_item_hovered()

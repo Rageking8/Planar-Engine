@@ -24,6 +24,8 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void scale_ui(int factor);
 
+    PLANAR_API float get_font_size();
+
     PLANAR_API void set_scrollbar_size(float new_scrollbar_size);
 
     PLANAR_API Planar::Engine::Math::Size2Df get_window_size();
@@ -69,6 +71,12 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API void dock_space_over_viewport();
 
     PLANAR_API void cursor_y_bottom_window(float y_offset = 0.f);
+
+    PLANAR_API void cursor_y_bottom_viewport(float y_offset = 0.f);
+
+    PLANAR_API void set_cursor_x(float new_cursor_x);
+
+    PLANAR_API void set_cursor_y(float new_cursor_y);
 
     PLANAR_API float get_cursor_x();
 
