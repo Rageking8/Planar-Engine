@@ -11,13 +11,17 @@ namespace Planar::Engine::UI::ImGui::Style
     public:
         ~StyleColor();
 
-        void set_button_background_color(
-            Planar::Engine::Graphics::Color color);
+        void set_frame_bg_color(Graphics::Color color);
+        void set_plot_histogram_color(Graphics::Color color);
+        void set_button_background_color(Graphics::Color color);
         void set_button_hover_background_color(
-            Planar::Engine::Graphics::Color color);
+            Graphics::Color color);
         void set_button_active_background_color(
-            Planar::Engine::Graphics::Color color);
+            Graphics::Color color);
 
         virtual void pop() override;
+
+    private:
+        void push_style_color(int type, Graphics::Color color);
     };
 }
