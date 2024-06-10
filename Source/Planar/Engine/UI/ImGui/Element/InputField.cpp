@@ -4,7 +4,7 @@
 namespace Planar::Engine::UI::ImGui::Element
 {
     InputField::InputField(const std::string& placeholder,
-        Size::Width width) : label{ generate_unique_label() },
+        Core::Size::Width width) : label{ generate_unique_label() },
         placeholder{ placeholder }, width{ width }
     {
 

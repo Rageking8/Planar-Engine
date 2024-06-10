@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 
-namespace Planar::Engine::UI::ImGui::Size
+namespace Planar::Engine::UI::ImGui::Core::Size
 {
     class PLANAR_API Width
     {

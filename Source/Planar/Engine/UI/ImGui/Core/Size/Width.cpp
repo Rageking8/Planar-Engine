@@ -1,9 +1,9 @@
-#include "Planar/Engine/UI/ImGui/Size/Width.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
-namespace Planar::Engine::UI::ImGui::Size
+namespace Planar::Engine::UI::ImGui::Core::Size
 {
     Width::Width(WidthMode mode, float width) :
         mode{ mode }, width{ width }
