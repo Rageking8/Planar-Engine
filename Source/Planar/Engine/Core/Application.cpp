@@ -8,8 +8,8 @@
 namespace Planar::Engine::Core
 {
     Application::Application(const std::string& window_name,
-        Planar::Engine::Math::Size2Di window_size, bool maximize,
-        Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api) :
+        Math::Size2Di window_size, bool maximize,
+        Graphics::SupportedGraphicsAPI graphics_api) :
         window_name{ window_name }, window_size{ window_size },
         maximize{ maximize }, graphics_api{ graphics_api }
     {
@@ -72,8 +72,7 @@ namespace Planar::Engine::Core
         }
     }
 
-    void Application::load_scene(
-        std::unique_ptr<Planar::Engine::Scene::Scene> scene)
+    void Application::load_scene(std::unique_ptr<Scene::Scene> scene)
     {
         main_scene = std::move(scene);
         main_scene->init();

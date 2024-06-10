@@ -5,7 +5,7 @@
 
 namespace Planar::Editor::Core
 {
-    class Editor : public Planar::Engine::Core::Application
+    class Editor : public Engine::Core::Application
     {
     public:
         Editor();
@@ -15,6 +15,6 @@ namespace Planar::Editor::Core
         void enter_editor();
 
     private:
-        Planar::Editor::Project::Project project;
+        Project::Project project;
     };
 }

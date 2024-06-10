@@ -24,8 +24,8 @@ namespace Planar::Editor::Core
         UI::Init::load_default_font();
         UI::Init::set_scale();
 
-        std::unique_ptr<Planar::Editor::Scene::SelectProjectScene> scene =
-            std::make_unique<Planar::Editor::Scene::SelectProjectScene>();
+        std::unique_ptr<Scene::SelectProjectScene> scene =
+            std::make_unique<Scene::SelectProjectScene>();
         scene->set_editor_enter_callback(
             std::bind(&Editor::enter_editor, this));
         scene->set_project(&project);
@@ -37,8 +37,8 @@ namespace Planar::Editor::Core
 
     void Editor::enter_editor()
     {
-        std::unique_ptr<Planar::Editor::Scene::EditorScene> scene =
-            std::make_unique<Planar::Editor::Scene::EditorScene>();
+        std::unique_ptr<Scene::EditorScene> scene =
+            std::make_unique<Scene::EditorScene>();
         scene->set_project(&project);
         load_scene(std::move(scene));
 

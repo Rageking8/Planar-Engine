@@ -17,17 +17,16 @@ namespace Planar::Engine::Core
     {
     public:
         Application(const std::string& window_name = "Application",
-            Planar::Engine::Math::Size2Di window_size = { 1280, 720 },
+            Math::Size2Di window_size = { 1280, 720 },
             bool maximize = false,
-            Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api =
-            Planar::Engine::Graphics::SupportedGraphicsAPI::OPENGL_4_6);
+            Graphics::SupportedGraphicsAPI graphics_api =
+            Graphics::SupportedGraphicsAPI::OPENGL_4_6);
         virtual ~Application();
 
         virtual bool init();
         virtual void run();
 
-        void load_scene(
-            std::unique_ptr<Planar::Engine::Scene::Scene> scene);
+        void load_scene(std::unique_ptr<Scene::Scene> scene);
 
         void maximize_window() const;
         void set_window_name(const std::string& new_window_name);
@@ -40,16 +39,16 @@ namespace Planar::Engine::Core
         virtual bool create_window();
 
         std::string window_name;
-        Planar::Engine::Math::Size2Di window_size;
+        Math::Size2Di window_size;
         bool maximize;
-        Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api;
+        Graphics::SupportedGraphicsAPI graphics_api;
 
         PLANAR_ADD_BASE_USING(Application)
 
     private:
         GLFWContext glfw_context;
-        Planar::Engine::UI::ImGui::ImGuiContext imgui_context;
+        UI::ImGui::ImGuiContext imgui_context;
 
-        std::unique_ptr<Planar::Engine::Scene::Scene> main_scene;
+        std::unique_ptr<Scene::Scene> main_scene;
     };
 }
