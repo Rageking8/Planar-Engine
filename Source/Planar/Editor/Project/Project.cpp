@@ -30,7 +30,7 @@ namespace Planar::Editor::Project
     bool Project::open_project()
     {
         std::wstring directory =
-            Planar::Engine::Core::FileSystem::select_folder_dialog();
+            Engine::Core::FileSystem::select_folder_dialog();
 
         if (directory.empty())
         {
@@ -49,8 +49,8 @@ namespace Planar::Editor::Project
         }
 
         root_path = directory;
-        project_name = Planar::Engine::Asset::get_value(
-            Planar::Engine::Core::FileSystem::read_file(
+        project_name = Engine::Asset::get_value(
+            Engine::Core::FileSystem::read_file(
             directory + L"/Project.planar"), "Name");
 
         return true;
@@ -68,7 +68,7 @@ namespace Planar::Editor::Project
         }
 
         std::wstring directory =
-            Planar::Engine::Core::FileSystem::select_folder_dialog();
+            Engine::Core::FileSystem::select_folder_dialog();
 
         if (directory.empty())
         {
@@ -97,9 +97,9 @@ namespace Planar::Editor::Project
 
         if (create_gitignore)
         {
-            Planar::Engine::Core::FileSystem::create_file(
+            Engine::Core::FileSystem::create_file(
                 root_path / ".gitignore",
-                Planar::Asset::Editor::Project::Ignore);
+                Asset::Editor::Project::Ignore);
         }
 
         return true;
@@ -119,16 +119,16 @@ namespace Planar::Editor::Project
         const std::string& project_description,
         const std::string& main_scene_guid)
     {
-        Planar::Engine::Core::FileSystem::create_file(
+        Engine::Core::FileSystem::create_file(
             root_path / "Project.planar",
-            Planar::Engine::Asset::preprocess_asset_scalar(
-            Planar::Engine::Asset::preprocess_asset_meta(
-            Planar::Asset::Editor::Project::Project),
+            Engine::Asset::preprocess_asset_scalar(
+            Engine::Asset::preprocess_asset_meta(
+            Asset::Editor::Project::Project),
             {
-                { "<VERSION>", Planar::Engine::Core::VERSION },
+                { "<VERSION>", Engine::Core::VERSION },
 
-                { "<GUID>", Planar::Engine::Core::GUID::generate_guid(
-                    Planar::Engine::Core::GUID::Representation::
+                { "<GUID>", Engine::Core::GUID::generate_guid(
+                    Engine::Core::GUID::Representation::
                     DEFAULT_COMPACT) },
 
                 { "<NAME>", project_name },
@@ -142,16 +142,16 @@ namespace Planar::Editor::Project
     std::string Project::create_main_scene()
     {
         std::string main_scene_guid =
-            Planar::Engine::Core::GUID::generate_guid(
-            Planar::Engine::Core::GUID::Representation::DEFAULT_COMPACT);
+            Engine::Core::GUID::generate_guid(
+            Engine::Core::GUID::Representation::DEFAULT_COMPACT);
 
-        Planar::Engine::Core::FileSystem::create_file(
+        Engine::Core::FileSystem::create_file(
             root_path / "Scenes/MainScene.planarscene",
-            Planar::Engine::Asset::preprocess_asset_scalar(
-            Planar::Engine::Asset::preprocess_asset_meta(
-            Planar::Asset::Editor::Project::Scene),
+            Engine::Asset::preprocess_asset_scalar(
+            Engine::Asset::preprocess_asset_meta(
+            Asset::Editor::Project::Scene),
             {
-                { "<VERSION>", Planar::Engine::Core::VERSION },
+                { "<VERSION>", Engine::Core::VERSION },
 
                 { "<GUID>", main_scene_guid },
             }));
