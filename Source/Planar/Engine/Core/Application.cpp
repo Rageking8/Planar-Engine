@@ -55,21 +55,31 @@ namespace Planar::Engine::Core
                 main_scene->update();
             }
 
-            imgui_context.new_frame();
+            render_single_frame([&]
+                {
+                    if (main_scene)
+                    {
+                        main_scene->render();
+                    }
+                });
             
-            glClearColor(0.071f, 0.071f, 0.071f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-            if (main_scene)
-            {
-                main_scene->render();
-            }
-
-            imgui_context.render();
-
-            glfw_context.main_window_swap_buffers();
             glfw_context.poll_events();
         }
+    }
+
+    void Application::render_single_frame(
+        const std::function<void()>& render)
+    {
+        imgui_context.new_frame();
+
+        glClearColor(0.071f, 0.071f, 0.071f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        render();
+
+        imgui_context.render();
+
+        glfw_context.main_window_swap_buffers();
     }
 
     void Application::load_scene(std::unique_ptr<Scene::Scene> scene)

@@ -10,6 +10,7 @@
 
 #include <string>
 #include <memory>
+#include <functional>
 
 namespace Planar::Engine::Core
 {
@@ -25,6 +26,8 @@ namespace Planar::Engine::Core
 
         virtual bool init();
         virtual void run();
+
+        void render_single_frame(const std::function<void()>& render);
 
         void load_scene(std::unique_ptr<Scene::Scene> scene);
 
