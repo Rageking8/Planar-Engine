@@ -5,14 +5,14 @@
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
+#include "Planar/Engine/UI/ImGui/Element/ProgressBar.hpp"
+#include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Project/Project.hpp"
-
-#include <functional>
 
 namespace Planar::Editor::Scene
 {
-    class SelectProjectScene :
-        public Planar::Engine::Scene::Scene
+    class SelectProjectScene : public Engine::Scene::Scene
     {
     public:
         SelectProjectScene();
@@ -21,32 +21,35 @@ namespace Planar::Editor::Scene
         virtual void update() override;
         virtual void render() override;
 
-        void set_editor_enter_callback(std::function<void()> callback);
-
-        void set_project(Planar::Editor::Project::Project* new_project);
+        void set_editor(Core::Editor* new_editor);
+        void set_project(Project::Project* new_project);
 
     private:
-        Planar::Engine::UI::ImGui::Element::Button
-            open_project_button;
-        Planar::Engine::UI::ImGui::Element::InputField
-            project_name_input;
-        Planar::Engine::UI::ImGui::Element::InputField
-            project_description_input;
-        Planar::Engine::UI::ImGui::Element::Checkbox
-            project_gitignore_checkbox;
-        Planar::Engine::UI::ImGui::Element::Button
-            create_project_button;
+        Engine::UI::ImGui::Element::Button open_project_button;
+        Engine::UI::ImGui::Element::InputField project_name_input;
+        Engine::UI::ImGui::Element::InputField project_description_input;
+        Engine::UI::ImGui::Element::Checkbox project_gitignore_checkbox;
+        Engine::UI::ImGui::Element::Button create_project_button;
+        Engine::UI::ImGui::Element::ProgressBar progress_bar;
+
+        Engine::UI::ImGui::Renderer::TextRenderer text_renderer;
 
         bool pending_open_project;
         bool pending_create_project;
 
-        Planar::Engine::UI::ImGui::Window::Window main_window;
+        bool loading_mode;
+        std::string loading_text;
 
-        std::function<void()> editor_enter_callback;
+        Engine::UI::ImGui::Window::Window main_window;
 
-        Planar::Editor::Project::Project* project;
+        Core::Editor* editor;
+        Project::Project* project;
 
         void open_project();
         void create_project();
+
+        void enter_loading_mode(unsigned max);
+        void load_progress_callback(unsigned amount,
+            const std::string& text);
     };
 }

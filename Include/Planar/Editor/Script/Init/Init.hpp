@@ -1,10 +1,13 @@
 #pragma once
 
+#include "Planar/Editor/Core/Progress/Progress.hpp"
+
 #include <filesystem>
 
 namespace Planar::Editor::Script::Init
 {
-    void verify_dotnet_sdk(const std::filesystem::path& path);
+    void verify_dotnet_sdk(const std::filesystem::path& path,
+        const Core::Progress::ProgressHandler& progress_handler);
 
     void write_dotnet_sdk_7z(const std::filesystem::path& path);
 

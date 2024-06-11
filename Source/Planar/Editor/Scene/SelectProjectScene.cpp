@@ -1,6 +1,9 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
+
+#include <functional>
 
 namespace Planar::Editor::Scene
 {
@@ -11,7 +14,7 @@ namespace Planar::Editor::Scene
         project_gitignore_checkbox("Create .gitignore", true),
         create_project_button("Create Project"),
         pending_open_project{}, pending_create_project{},
-        project{}
+        loading_mode{}, project{}
     {
 
     }
@@ -25,6 +28,7 @@ namespace Planar::Editor::Scene
             ImGui::Window::WindowFlags::FIT_TO_WINDOW |
             ImGui::Window::WindowFlags::MINIMAL |
             ImGui::Window::WindowFlags::NO_STORE_INI);
+        main_window.set_padding({ { 24.f, 0.f } });
     }
 
     void SelectProjectScene::update()
@@ -50,12 +54,13 @@ namespace Planar::Editor::Scene
 
         auto main_window_scope = main_window.render();
 
+        ImGui::Core::Cursor::set_y(24.f);
         ImGui::text("Select Project");
 
         ImGui::newline();
 
         open_project_button.render();
-        if (open_project_button.is_clicked())
+        if (!loading_mode && open_project_button.is_clicked())
         {
             pending_open_project = true;
         }
@@ -67,19 +72,31 @@ namespace Planar::Editor::Scene
         project_gitignore_checkbox.render();
 
         create_project_button.render();
-        if (create_project_button.is_clicked())
+        if (!loading_mode && create_project_button.is_clicked())
         {
             pending_create_project = true;
         }
+
+        if (loading_mode)
+        {
+            ImGui::Core::Cursor::set_y_bottom_viewport(
+                -progress_bar.get_height() - 40.f);
+            text_renderer.render_center_viewport(loading_text);
+
+            ImGui::Core::Cursor::set_x(0.f);
+            ImGui::Core::Cursor::set_y_bottom_viewport(
+                -progress_bar.get_height());
+            progress_bar.set_width(ImGui::get_window_size().width);
+            progress_bar.render();
+        }
     }
 
-    void SelectProjectScene::set_editor_enter_callback(
-        std::function<void()> callback)
+    void SelectProjectScene::set_editor(Core::Editor* new_editor)
     {
-        editor_enter_callback = callback;
+        editor = new_editor;
     }
 
-    void SelectProjectScene::set_project(Planar::Editor::Project::Project*
+    void SelectProjectScene::set_project(Project::Project*
         new_project)
     {
         project = new_project;
@@ -89,10 +106,14 @@ namespace Planar::Editor::Scene
     {
         pending_open_project = false;
 
-        if (project && project->open_project() &&
-            editor_enter_callback)
+        if (!project)
         {
-            editor_enter_callback();
+            return;
+        }
+
+        if (project->open_project() && editor)
+        {
+            editor->enter_editor();
         }
     }
 
@@ -106,11 +127,48 @@ namespace Planar::Editor::Scene
         const bool create_gitignore = project_gitignore_checkbox.
             get_value();
 
-        if (project && project->create_project(project_name,
-            project_description, create_gitignore) &&
-            editor_enter_callback)
+        if (!project)
         {
-            editor_enter_callback();
+            return;
+        }
+
+        enter_loading_mode(project->create_project_tasks(
+            project_name, project_description, create_gitignore));
+
+        if (project->create_project(project_name,
+            project_description, create_gitignore,
+            { std::bind(&SelectProjectScene::load_progress_callback, this,
+            std::placeholders::_1, std::placeholders::_2) }) &&
+            editor)
+        {
+            editor->enter_editor();
+        }
+
+        loading_mode = false;
+    }
+
+    void SelectProjectScene::enter_loading_mode(unsigned max)
+    {
+        loading_mode = true;
+        progress_bar.set_value(0);
+        progress_bar.set_max(max);
+        loading_text.clear();
+    }
+
+    void SelectProjectScene::load_progress_callback(unsigned amount,
+        const std::string& text)
+    {
+        progress_bar.increment(amount);
+
+        if (amount == 0)
+        {
+            loading_text = text;
+        }
+
+        if (editor)
+        {
+            editor->render_single_frame(
+                std::bind(&SelectProjectScene::render, this));
         }
     }
 }
