@@ -1,3 +1,10 @@
+# Visual Studio cache directory
+.vs/
+
+# Generated project and solution files
+*.csproj
+*.sln
+
 [Bb]uild/
 [Cc]ache/
 [Ee]ngine/
