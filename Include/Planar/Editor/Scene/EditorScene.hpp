@@ -14,8 +14,7 @@
 
 namespace Planar::Editor::Scene
 {
-    class EditorScene :
-        public Planar::Engine::Scene::Scene
+    class EditorScene : public Engine::Scene::Scene
     {
     public:
         EditorScene();
@@ -24,26 +23,23 @@ namespace Planar::Editor::Scene
         virtual void update() override;
         virtual void render() override;
 
-        void set_project(Planar::Editor::Project::Project* new_project);
+        void set_project(Project::Project* new_project);
 
     private:
-        Planar::Editor::UI::Window::HierarchyWindow hierarchy_window;
-        Planar::Editor::UI::Window::InspectorWindow inspector_window;
-        Planar::Editor::UI::Window::SettingsWindow settings_window;
-        Planar::Editor::UI::Window::ContentWindow content_window;
-        Planar::Editor::UI::Window::ConsoleWindow console_window;
-        Planar::Editor::UI::Window::GameWindow game_window;
-        Planar::Editor::UI::Window::SceneWindow scene_window;
-        Planar::Editor::UI::Window::BuildWindow build_window;
+        UI::Window::HierarchyWindow hierarchy_window;
+        UI::Window::InspectorWindow inspector_window;
+        UI::Window::SettingsWindow settings_window;
+        UI::Window::ContentWindow content_window;
+        UI::Window::ConsoleWindow console_window;
+        UI::Window::GameWindow game_window;
+        UI::Window::SceneWindow scene_window;
+        UI::Window::BuildWindow build_window;
 
-        Planar::Engine::Graphics::OpenGL::Texture::Texture2D
-            file_texture;
-        Planar::Engine::Graphics::OpenGL::Texture::Texture2D
-            folder_texture;
-        Planar::Engine::Graphics::OpenGL::Texture::Texture2D
-            left_arrow_texture;
+        Engine::Graphics::OpenGL::Texture::Texture2D file_texture;
+        Engine::Graphics::OpenGL::Texture::Texture2D folder_texture;
+        Engine::Graphics::OpenGL::Texture::Texture2D left_arrow_texture;
 
-        Planar::Editor::Project::Project* project;
+        Project::Project* project;
 
         void restore_default_layout() const;
 

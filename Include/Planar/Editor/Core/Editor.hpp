@@ -1,7 +1,10 @@
 #pragma once
 
+#include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Editor/Project/Project.hpp"
+
+#include <memory>
 
 namespace Planar::Editor::Core
 {
@@ -16,5 +19,6 @@ namespace Planar::Editor::Core
 
     private:
         Project::Project project;
+        std::unique_ptr<Engine::Scene::Scene> current_scene;
     };
 }

@@ -14,7 +14,7 @@ namespace Planar::Editor::UI::Window
     ContentWindow::ContentWindow() : EditorWindow("Content"),
         folder_texture{}, file_texture{}, left_arrow_texture{}
     {
-        using namespace Planar::Engine::Core::Utils::EnumClass;
+        using namespace Engine::Core::Utils::EnumClass;
 
         set_flags(Engine::UI::ImGui::Window::WindowFlags::
             ALWAYS_VERTICAL_SCROLLBAR |
@@ -29,7 +29,7 @@ namespace Planar::Editor::UI::Window
 
     void ContentWindow::render_window()
     {
-        using namespace Planar::Engine::UI;
+        using namespace Engine::UI;
 
         std::unique_ptr<Window::Scope> result = render();
 
@@ -119,7 +119,7 @@ namespace Planar::Editor::UI::Window
     }
 
     void ContentWindow::set_folder_texture(
-        Planar::Engine::Graphics::OpenGL::Texture::Texture2D&
+        Engine::Graphics::OpenGL::Texture::Texture2D&
         new_folder_texture)
     {
         folder_texture = &new_folder_texture;
@@ -133,7 +133,7 @@ namespace Planar::Editor::UI::Window
     }
 
     void ContentWindow::set_left_arrow_texture(
-        Planar::Engine::Graphics::OpenGL::Texture::Texture2D&
+        Engine::Graphics::OpenGL::Texture::Texture2D&
         new_left_arrow_texture)
     {
         left_arrow_texture = &new_left_arrow_texture;
@@ -148,7 +148,7 @@ namespace Planar::Editor::UI::Window
 
     void ContentWindow::render_menu_bar()
     {
-        using namespace Planar::Engine::UI;
+        using namespace Engine::UI;
 
         ImGui::Menu::WindowMenuBar menu_bar;
         if (menu_bar.start())

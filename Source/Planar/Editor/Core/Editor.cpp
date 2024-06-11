@@ -3,9 +3,6 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Editor/UI/Init/Init.hpp"
 
-#include <memory>
-#include <functional>
-
 namespace Planar::Editor::Core
 {
     Editor::Editor() :

@@ -61,7 +61,7 @@ namespace Planar::Editor::Scene
 
     void EditorScene::render()
     {
-        using namespace Planar::Engine::UI;
+        using namespace Engine::UI;
 
         ImGui::Core::Docking::dock_space_over_viewport();
 
@@ -77,16 +77,15 @@ namespace Planar::Editor::Scene
         build_window.render_window();
     }
 
-    void EditorScene::set_project(
-        Planar::Editor::Project::Project* new_project)
+    void EditorScene::set_project(Project::Project* new_project)
     {
         project = new_project;
     }
 
     void EditorScene::restore_default_layout() const
     {
-        Planar::Engine::UI::ImGui::load_ini_from_string(
-            Planar::Asset::Editor::Layout::DefaultLayout);
+        Engine::UI::ImGui::load_ini_from_string(
+            Asset::Editor::Layout::DefaultLayout);
     }
 
     void EditorScene::load_icons()
@@ -99,7 +98,7 @@ namespace Planar::Editor::Scene
 
     void EditorScene::render_main_menu_bar()
     {
-        using namespace Planar::Engine::UI;
+        using namespace Engine::UI;
 
         ImGui::Menu::MainMenuBar main_menu_bar;
         if (main_menu_bar.start())
@@ -176,7 +175,7 @@ namespace Planar::Editor::Scene
                 {
                     if (main_menu_bar.add_menu_item("Website"))
                     {
-                        Planar::Engine::Core::Shell::open_planar_website();
+                        Engine::Core::Shell::open_planar_website();
                     }
                 });
         }
