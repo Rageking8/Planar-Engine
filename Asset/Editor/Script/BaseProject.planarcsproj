@@ -6,6 +6,10 @@
         <SelfContained>true</SelfContained>
         <PublishTrimmed>true</PublishTrimmed>
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+
+        <BaseOutputPath>nul</BaseOutputPath>
+        <BaseIntermediateOutputPath>nul</BaseIntermediateOutputPath>
+        <MSBUildProjectExtensionsPath>nul</MSBUildProjectExtensionsPath>
     </PropertyGroup>
 
     <ItemGroup Label="Engine Resources">
