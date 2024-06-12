@@ -183,7 +183,6 @@ namespace Planar::Editor::UI::Window
         if (editor && std::filesystem::is_regular_file(path) &&
             path.extension() == ".planarscene")
         {
-            Engine::Scene::Scene s;
             std::unique_ptr<Engine::Scene::Scene> scene =
                 std::make_unique<Engine::Scene::Scene>();
             scene->get_asset().load(
