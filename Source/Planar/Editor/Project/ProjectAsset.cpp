@@ -20,20 +20,20 @@ namespace Planar::Editor::Project
         const std::string& main_scene_guid)
     {
         asset = Engine::Asset::preprocess_asset(
-        Planar::Asset::Editor::Project::Project,
-        {
-            { "<VERSION>", Engine::Core::VERSION },
+            Planar::Asset::Editor::Project::Project,
+            {
+                { "<VERSION>", Engine::Core::VERSION },
 
-            { "<GUID>", Engine::Core::GUID::generate_guid(
-                Engine::Core::GUID::Representation::
-                DEFAULT_COMPACT) },
+                { "<GUID>", Engine::Core::GUID::generate_guid(
+                    Engine::Core::GUID::Representation::
+                    DEFAULT_COMPACT) },
 
-            { "<NAME>", project_name },
+                { "<NAME>", project_name },
 
-            { "<DESCRIPTION>", project_description },
+                { "<DESCRIPTION>", project_description },
 
-            { "<MAIN_SCENE_GUID>", main_scene_guid },
-        });
+                { "<MAIN_SCENE_GUID>", main_scene_guid },
+            });
 
         Engine::Core::FileSystem::create_file(
             path / (project_name + ".planar"), asset);
