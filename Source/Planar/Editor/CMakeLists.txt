@@ -38,6 +38,7 @@ add_custom_command(TARGET ${PLANAR_EDITOR_TARGET} POST_BUILD
     ${CMAKE_BINARY_DIR}/Asset
 )
 
+add_subdirectory(Asset)
 add_subdirectory(Build)
 add_subdirectory(Core)
 add_subdirectory(Entry)
