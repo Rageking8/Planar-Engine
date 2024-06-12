@@ -67,6 +67,13 @@ namespace Planar::Engine::Asset
         }
     }
 
+    std::string preprocess_asset(const std::string& asset,
+        const std::vector<std::pair<std::string, std::string>>& mapping)
+    {
+        return preprocess_asset_scalar(
+            preprocess_asset_meta(asset), mapping);
+    }
+
     std::string preprocess_asset_meta(const std::string& asset)
     {
         YAML::Node root = YAML::Load(asset);

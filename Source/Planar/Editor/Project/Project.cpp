@@ -197,9 +197,8 @@ namespace Planar::Editor::Project
     {
         Engine::Core::FileSystem::create_file(
             root_path / "Project.planar",
-            Engine::Asset::preprocess_asset_scalar(
-            Engine::Asset::preprocess_asset_meta(
-            Asset::Editor::Project::Project),
+            Engine::Asset::preprocess_asset(
+            Asset::Editor::Project::Project,
             {
                 { "<VERSION>", Engine::Core::VERSION },
 
@@ -223,9 +222,8 @@ namespace Planar::Editor::Project
 
         Engine::Core::FileSystem::create_file(
             root_path / "Scenes/MainScene.planarscene",
-            Engine::Asset::preprocess_asset_scalar(
-            Engine::Asset::preprocess_asset_meta(
-            Asset::Editor::Project::Scene),
+            Engine::Asset::preprocess_asset(
+            Asset::Editor::Project::Scene,
             {
                 { "<VERSION>", Engine::Core::VERSION },
 
