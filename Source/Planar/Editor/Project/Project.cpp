@@ -39,18 +39,31 @@ namespace Planar::Editor::Project
             return false;
         }
 
-        if (!std::filesystem::exists(directory + L"/Project.planar"))
+        unsigned project_asset_count =
+            Engine::Core::FileSystem::file_count_with_extension(
+            directory, "planar");
+        if (project_asset_count == 0)
         {
             Engine::Core::Log::TerminalLogger::get("Editor")->
-                error("No project file found");
-            
+                error("No project asset found");
+
+            return false;
+        }
+        else if (project_asset_count > 1)
+        {
+            Engine::Core::Log::TerminalLogger::get("Editor")->
+                error("More than 1 project asset found");
+
             return false;
         }
 
         root_path = directory;
+        std::filesystem::path project_asset_path =
+            Engine::Core::FileSystem::first_file_with_extension(
+            root_path, "planar");
         project_name = Engine::Asset::get_value(
             Engine::Core::FileSystem::read_file(
-            directory + L"/Project.planar"), "Name");
+            project_asset_path), "Name");
 
         return true;
     }
