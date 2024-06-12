@@ -25,6 +25,14 @@ namespace Planar::Engine::Core::FileSystem
         ListingSortType sort_type = ListingSortType::
         FOLDER_THEN_FILE_ALPHABETICAL);
 
+    PLANAR_API unsigned file_count_with_extension(
+        const std::filesystem::path& path,
+        const std::string& extension);
+
+    PLANAR_API std::filesystem::path first_file_with_extension(
+        const std::filesystem::path& path,
+        const std::string& extension);
+
     PLANAR_API void clear_file(const std::filesystem::path& path);
 
     template <typename T, std::size_t N>

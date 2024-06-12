@@ -125,6 +125,42 @@ namespace Planar::Engine::Core::FileSystem
         return listing;
     }
 
+    unsigned file_count_with_extension(
+        const std::filesystem::path& path,
+        const std::string& extension)
+    {
+        unsigned count = 0;
+
+        for (const auto& i :
+            std::filesystem::directory_iterator(path))
+        {
+            if (i.is_regular_file() &&
+                i.path().extension() == "." + extension)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    std::filesystem::path first_file_with_extension(
+        const std::filesystem::path& path,
+        const std::string& extension)
+    {
+        for (const auto& i :
+            std::filesystem::directory_iterator(path))
+        {
+            if (i.is_regular_file() &&
+                i.path().extension() == "." + extension)
+            {
+                return i.path();
+            }
+        }
+
+        return {};
+    }
+
     void clear_file(const std::filesystem::path& path)
     {
         create_file(path, "");
