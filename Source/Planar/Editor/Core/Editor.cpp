@@ -24,7 +24,6 @@ namespace Planar::Editor::Core
         std::unique_ptr<Scene::SelectProjectScene> scene =
             std::make_unique<Scene::SelectProjectScene>();
         scene->set_editor(this);
-        scene->set_project(&project);
 
         load_scene(std::move(scene));
 
@@ -35,9 +34,15 @@ namespace Planar::Editor::Core
     {
         std::unique_ptr<Scene::EditorScene> scene =
             std::make_unique<Scene::EditorScene>();
-        scene->set_project(&project);
+        scene->set_editor(this);
+
         load_scene(std::move(scene));
 
         set_window_name("Planar Editor - " + project.get_project_name());
+    }
+
+    Project::Project& Editor::get_project()
+    {
+        return project;
     }
 }

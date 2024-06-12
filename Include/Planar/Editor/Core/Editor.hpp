@@ -17,6 +17,8 @@ namespace Planar::Editor::Core
 
         void enter_editor();
 
+        Project::Project& get_project();
+
     private:
         Project::Project project;
         std::unique_ptr<Engine::Scene::Scene> current_scene;

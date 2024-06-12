@@ -17,7 +17,7 @@ PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
 
 namespace Planar::Editor::Scene
 {
-    EditorScene::EditorScene() : project{}
+    EditorScene::EditorScene()
     {
 
     }
@@ -26,10 +26,10 @@ namespace Planar::Editor::Scene
     {
         load_icons();
 
-        if (project)
+        if (editor)
         {
             std::filesystem::path project_root_path =
-                project->get_root_path();
+                editor->get_project().get_root_path();
             content_window.set_root_path(project_root_path);
             build_window.set_root_path(project_root_path);
         }
@@ -75,11 +75,6 @@ namespace Planar::Editor::Scene
         game_window.render_window();
         scene_window.render_window();
         build_window.render_window();
-    }
-
-    void EditorScene::set_project(Project::Project* new_project)
-    {
-        project = new_project;
     }
 
     void EditorScene::restore_default_layout() const

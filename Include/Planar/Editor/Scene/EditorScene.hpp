@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Planar/Engine/Scene/Scene.hpp"
-#include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
+#include "Planar/Editor/Scene/Scene.hpp"
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 #include "Planar/Editor/UI/Window/InspectorWindow.hpp"
 #include "Planar/Editor/UI/Window/SettingsWindow.hpp"
@@ -10,11 +9,11 @@
 #include "Planar/Editor/UI/Window/GameWindow.hpp"
 #include "Planar/Editor/UI/Window/SceneWindow.hpp"
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
-#include "Planar/Editor/Project/Project.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
 
 namespace Planar::Editor::Scene
 {
-    class EditorScene : public Engine::Scene::Scene
+    class EditorScene : public Scene
     {
     public:
         EditorScene();
@@ -22,8 +21,6 @@ namespace Planar::Editor::Scene
         virtual void init() override;
         virtual void update() override;
         virtual void render() override;
-
-        void set_project(Project::Project* new_project);
 
     private:
         UI::Window::HierarchyWindow hierarchy_window;
@@ -38,8 +35,6 @@ namespace Planar::Editor::Scene
         Engine::Graphics::OpenGL::Texture::Texture2D file_texture;
         Engine::Graphics::OpenGL::Texture::Texture2D folder_texture;
         Engine::Graphics::OpenGL::Texture::Texture2D left_arrow_texture;
-
-        Project::Project* project;
 
         void restore_default_layout() const;
 

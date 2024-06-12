@@ -1,4 +1,5 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
+#include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
@@ -14,7 +15,7 @@ namespace Planar::Editor::Scene
         project_gitignore_checkbox("Create .gitignore", true),
         create_project_button("Create Project"),
         pending_open_project{}, pending_create_project{},
-        loading_mode{}, project{}
+        loading_mode{}
     {
 
     }
@@ -91,27 +92,16 @@ namespace Planar::Editor::Scene
         }
     }
 
-    void SelectProjectScene::set_editor(Core::Editor* new_editor)
-    {
-        editor = new_editor;
-    }
-
-    void SelectProjectScene::set_project(Project::Project*
-        new_project)
-    {
-        project = new_project;
-    }
-
     void SelectProjectScene::open_project()
     {
         pending_open_project = false;
 
-        if (!project)
+        if (!editor)
         {
             return;
         }
 
-        if (project->open_project() && editor)
+        if (editor->get_project().open_project())
         {
             editor->enter_editor();
         }
@@ -127,15 +117,17 @@ namespace Planar::Editor::Scene
         const bool create_gitignore = project_gitignore_checkbox.
             get_value();
 
-        if (!project)
+        if (!editor)
         {
             return;
         }
 
-        enter_loading_mode(project->create_project_tasks(
+        Project::Project& project = editor->get_project();
+
+        enter_loading_mode(project.create_project_tasks(
             project_name, project_description, create_gitignore));
 
-        if (project->create_project(project_name,
+        if (project.create_project(project_name,
             project_description, create_gitignore,
             { std::bind(&SelectProjectScene::load_progress_callback, this,
             std::placeholders::_1, std::placeholders::_2) }) &&
