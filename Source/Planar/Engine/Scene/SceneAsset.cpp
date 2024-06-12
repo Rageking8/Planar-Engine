@@ -15,6 +15,7 @@ namespace Planar::Engine::Scene
         const std::filesystem::path& path,
         const std::string& scene_name)
     {
+        name = scene_name;
         asset = Engine::Asset::preprocess_asset(scene_asset,
             {
                 { "<VERSION>", Core::VERSION },
@@ -25,6 +26,18 @@ namespace Planar::Engine::Scene
 
         Core::FileSystem::create_file(path / (scene_name +
             ".planarscene"), asset);
+    }
+
+    void SceneAsset::load(const std::string& scene_asset,
+        const std::string& scene_name)
+    {
+        name = scene_name;
+        asset = scene_asset;
+    }
+
+    std::string SceneAsset::get_name() const
+    {
+        return name;
     }
 
     std::string SceneAsset::get_guid() const
