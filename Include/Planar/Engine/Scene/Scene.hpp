@@ -8,7 +8,7 @@ namespace Planar::Engine::Scene
     {
     public:
         Scene();
-        virtual ~Scene() = 0;
+        virtual ~Scene();
 
         virtual void init();
         virtual void start();
