@@ -31,4 +31,9 @@ namespace Planar::Engine::Scene
     {
 
     }
+
+    SceneAsset& Scene::get_asset()
+    {
+        return asset;
+    }
 }
