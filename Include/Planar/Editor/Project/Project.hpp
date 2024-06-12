@@ -3,6 +3,7 @@
 #include "Planar/Editor/Project/ProjectAsset.hpp"
 #include "Planar/Editor/Core/Progress/Progress.hpp"
 #include "Planar/Editor/Script/CSProject.hpp"
+#include "Planar/Engine/Scene/SceneAsset.hpp"
 
 #include <string>
 #include <functional>
@@ -31,6 +32,7 @@ namespace Planar::Editor::Project
         std::string project_name;
         Script::CSProject cs_project;
         ProjectAsset project_asset;
+        Engine::Scene::SceneAsset scene_asset;
 
         bool create_project(bool dry_run, unsigned& tasks,
             const std::string& project_name,
@@ -38,7 +40,6 @@ namespace Planar::Editor::Project
             bool create_gitignore,
             const Core::Progress::ProgressHandler& progress_handler = {});
 
-        std::string create_main_scene();
         void create_engine_files(
             const Core::Progress::ProgressHandler& progress_handler);
         void create_script_files(

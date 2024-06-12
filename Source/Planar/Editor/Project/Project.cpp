@@ -1,15 +1,11 @@
 #include "Planar/Editor/Project/Project.hpp"
 #include "Asset/Editor/PlanarEngine.h"
 #include "Planar/Editor/Script/Init/Init.hpp"
-#include "Planar/Engine/Core/Version.hpp"
-#include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
-
-#include <filesystem>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Scene)
@@ -139,12 +135,11 @@ namespace Planar::Editor::Project
                     progress_handler);
             }, dry_run, tasks, 2);
 
-        std::string main_scene_guid;
-
         dry_run_helper([&]
             {
-                progress_handler("Creating main scene");
-                main_scene_guid = create_main_scene();
+                progress_handler("Creating main scene asset");
+                scene_asset.create(Asset::Editor::Project::Scene,
+                    root_path / "Scenes", "MainScene");
                 progress_handler();
             }, dry_run, tasks);
 
@@ -152,7 +147,7 @@ namespace Planar::Editor::Project
             {
                 progress_handler("Creating project asset");
                 project_asset.create(root_path, project_name,
-                    project_description, main_scene_guid);
+                    project_description, scene_asset.get_guid());
                 progress_handler();
             }, dry_run, tasks);
 
@@ -201,25 +196,6 @@ namespace Planar::Editor::Project
         }
 
         return true;
-    }
-
-    std::string Project::create_main_scene()
-    {
-        std::string main_scene_guid =
-            Engine::Core::GUID::generate_guid(
-            Engine::Core::GUID::Representation::DEFAULT_COMPACT);
-
-        Engine::Core::FileSystem::create_file(
-            root_path / "Scenes/MainScene.planarscene",
-            Engine::Asset::preprocess_asset(
-            Planar::Asset::Editor::Project::Scene,
-            {
-                { "<VERSION>", Engine::Core::VERSION },
-
-                { "<GUID>", main_scene_guid },
-            }));
-
-        return main_scene_guid;
     }
 
     void Project::create_engine_files(
