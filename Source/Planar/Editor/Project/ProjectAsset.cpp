@@ -1,4 +1,4 @@
-#include "Planar/Editor/Asset/ProjectAsset.hpp"
+#include "Planar/Editor/Project/ProjectAsset.hpp"
 #include "Planar/Engine/Core/Version.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
@@ -7,7 +7,7 @@
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Project)
 
-namespace Planar::Editor::Asset
+namespace Planar::Editor::Project
 {
     ProjectAsset::ProjectAsset()
     {

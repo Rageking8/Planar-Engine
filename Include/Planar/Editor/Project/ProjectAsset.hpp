@@ -5,7 +5,7 @@
 #include <string>
 #include <filesystem>
 
-namespace Planar::Editor::Asset
+namespace Planar::Editor::Project
 {
     class ProjectAsset : public Engine::Asset::Asset
     {

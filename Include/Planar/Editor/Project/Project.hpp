@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Planar/Editor/Script/CSProject.hpp"
+#include "Planar/Editor/Project/ProjectAsset.hpp"
 #include "Planar/Editor/Core/Progress/Progress.hpp"
-#include "Planar/Editor/Asset/ProjectAsset.hpp"
+#include "Planar/Editor/Script/CSProject.hpp"
 
 #include <string>
 #include <functional>
@@ -30,7 +30,7 @@ namespace Planar::Editor::Project
         std::filesystem::path root_path;
         std::string project_name;
         Script::CSProject cs_project;
-        Asset::ProjectAsset project_asset;
+        ProjectAsset project_asset;
 
         bool create_project(bool dry_run, unsigned& tasks,
             const std::string& project_name,
