@@ -6,8 +6,10 @@
 #include "Planar/Engine/UI/ImGui/Menu/WindowMenuBar.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
+#include "Planar/Engine/Scene/Scene.hpp"
 
 #include <vector>
+#include <memory>
 
 namespace Planar::Editor::UI::Window
 {
@@ -85,10 +87,12 @@ namespace Planar::Editor::UI::Window
                     {
                         current_path = i;
                     }
+
+                    content_double_click(i);
                 }
-                else if (button.is_clicked() && select_callback)
+                else if (button.is_clicked())
                 {
-                    select_callback(name);
+                    content_single_click(name);
                 }
 
                 text_renderer.render_center_truncate(name, button_size,
@@ -162,6 +166,31 @@ namespace Planar::Editor::UI::Window
                     current_path = current_path.parent_path();
                 }
             }
+        }
+    }
+
+    void ContentWindow::content_single_click(const std::string& name)
+    {
+        if (select_callback)
+        {
+            select_callback(name);
+        }
+    }
+
+    void ContentWindow::content_double_click(
+        const std::filesystem::path& path)
+    {
+        if (editor && std::filesystem::is_regular_file(path) &&
+            path.extension() == ".planarscene")
+        {
+            Engine::Scene::Scene s;
+            std::unique_ptr<Engine::Scene::Scene> scene =
+                std::make_unique<Engine::Scene::Scene>();
+            scene->get_asset().load(
+                Engine::Core::FileSystem::read_file(path),
+                path.stem().string());
+
+            editor->change_scene(std::move(scene));
         }
     }
 }

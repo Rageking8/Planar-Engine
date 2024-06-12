@@ -28,6 +28,9 @@ namespace Planar::Editor::Scene
 
         if (editor)
         {
+            hierarchy_window.set_editor(editor);
+            content_window.set_editor(editor);
+
             std::filesystem::path project_root_path =
                 editor->get_project().get_root_path();
             content_window.set_root_path(project_root_path);

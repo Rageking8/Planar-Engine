@@ -41,8 +41,19 @@ namespace Planar::Editor::Core
         set_window_name("Planar Editor - " + project.get_project_name());
     }
 
+    void Editor::change_scene(
+        std::unique_ptr<Engine::Scene::Scene> new_scene)
+    {
+        current_scene = std::move(new_scene);
+    }
+
     Project::Project& Editor::get_project()
     {
         return project;
+    }
+
+    std::unique_ptr<Engine::Scene::Scene>& Editor::get_current_scene()
+    {
+        return current_scene;
     }
 }

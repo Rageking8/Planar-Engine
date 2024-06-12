@@ -53,5 +53,8 @@ namespace Planar::Editor::UI::Window
         std::function<void(const std::string&)> select_callback;
 
         void render_menu_bar();
+
+        void content_single_click(const std::string& name);
+        void content_double_click(const std::filesystem::path& path);
     };
 }

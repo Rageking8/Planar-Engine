@@ -74,8 +74,8 @@ namespace Planar::Editor::UI::Window
     {
         using namespace Planar::Engine::Graphics::OpenGL;
 
-        Core::ViewportScope viewport_scope(0, 0,
-            static_cast<GLsizei>(content_size.width),
+        Engine::Graphics::OpenGL::Core::ViewportScope
+            viewport_scope(0, 0, static_cast<GLsizei>(content_size.width),
             static_cast<GLsizei>(content_size.height));
 
         framebuffer.bind();
