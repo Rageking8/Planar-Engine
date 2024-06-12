@@ -3,7 +3,7 @@
 #include "Planar/Editor/Script/Init/Init.hpp"
 #include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
-#include "Planar/Engine/Asset/Asset.hpp"
+#include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Version.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"

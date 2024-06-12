@@ -1,4 +1,4 @@
-#include "Planar/Engine/Asset/Asset.hpp"
+#include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
