@@ -85,7 +85,7 @@ namespace Planar::Editor::Scene
     void EditorScene::restore_default_layout() const
     {
         Engine::UI::ImGui::load_ini_from_string(
-            Asset::Editor::Layout::DefaultLayout);
+            Planar::Asset::Editor::Layout::DefaultLayout);
     }
 
     void EditorScene::load_icons()

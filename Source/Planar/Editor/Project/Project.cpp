@@ -1,18 +1,17 @@
 #include "Planar/Editor/Project/Project.hpp"
 #include "Asset/Editor/PlanarEngine.h"
 #include "Planar/Editor/Script/Init/Init.hpp"
-#include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
-#include "Planar/Engine/Core/Log/TerminalLogger.hpp"
-#include "Planar/Engine/Asset/AssetFunction.hpp"
-#include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Version.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
+#include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
+#include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
+#include "Planar/Engine/Asset/AssetFunction.hpp"
+#include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 
 #include <filesystem>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
-PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Project)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Scene)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Script, GeneratedEntry)
 PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Script,
@@ -138,9 +137,9 @@ namespace Planar::Editor::Project
 
         dry_run_helper([&]
             {
-                progress_handler("Creating project file");
-                create_project_file(project_name, project_description,
-                    main_scene_guid);
+                progress_handler("Creating project asset");
+                project_asset.create(root_path, project_name,
+                    project_description, main_scene_guid);
                 progress_handler();
             }, dry_run, tasks);
 
@@ -180,7 +179,7 @@ namespace Planar::Editor::Project
             progress_handler("Writing .gitignore file");
             Engine::Core::FileSystem::create_file(
                 root_path / ".gitignore",
-                Asset::Editor::Project::Ignore);
+                Planar::Asset::Editor::Project::Ignore);
             progress_handler();
         }
         else if (create_gitignore && dry_run)
@@ -189,29 +188,6 @@ namespace Planar::Editor::Project
         }
 
         return true;
-    }
-
-    void Project::create_project_file(const std::string& project_name,
-        const std::string& project_description,
-        const std::string& main_scene_guid)
-    {
-        Engine::Core::FileSystem::create_file(
-            root_path / "Project.planar",
-            Engine::Asset::preprocess_asset(
-            Asset::Editor::Project::Project,
-            {
-                { "<VERSION>", Engine::Core::VERSION },
-
-                { "<GUID>", Engine::Core::GUID::generate_guid(
-                    Engine::Core::GUID::Representation::
-                    DEFAULT_COMPACT) },
-
-                { "<NAME>", project_name },
-
-                { "<DESCRIPTION>", project_description },
-
-                { "<MAIN_SCENE_GUID>", main_scene_guid },
-            }));
     }
 
     std::string Project::create_main_scene()
@@ -223,7 +199,7 @@ namespace Planar::Editor::Project
         Engine::Core::FileSystem::create_file(
             root_path / "Scenes/MainScene.planarscene",
             Engine::Asset::preprocess_asset(
-            Asset::Editor::Project::Scene,
+            Planar::Asset::Editor::Project::Scene,
             {
                 { "<VERSION>", Engine::Core::VERSION },
 
@@ -260,7 +236,7 @@ namespace Planar::Editor::Project
         progress_handler("Writing GeneratedEntry.cs");
         Engine::Core::FileSystem::create_file(
             engine_path / "GeneratedEntry.cs",
-            Asset::Editor::Script::GeneratedEntry);
+            Planar::Asset::Editor::Script::GeneratedEntry);
         progress_handler();
     }
 
