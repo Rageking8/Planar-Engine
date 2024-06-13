@@ -26,6 +26,7 @@ namespace Planar::Editor::Project
 
         std::filesystem::path get_root_path() const;
         std::string get_project_name() const;
+        const Script::CSProject& get_cs_project() const;
 
     private:
         std::filesystem::path root_path;

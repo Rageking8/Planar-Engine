@@ -98,6 +98,11 @@ namespace Planar::Editor::Project
         return project_name;
     }
 
+    const Script::CSProject& Project::get_cs_project() const
+    {
+        return cs_project;
+    }
+
     bool Project::create_project(bool dry_run, unsigned& tasks,
         const std::string& project_name,
         const std::string& project_description, bool create_gitignore,
