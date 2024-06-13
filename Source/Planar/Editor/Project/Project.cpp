@@ -61,6 +61,8 @@ namespace Planar::Editor::Project
             Engine::Core::FileSystem::read_file(
             project_asset_path), "Name");
 
+        cs_project.load(project_name, root_path);
+
         return true;
     }
 
@@ -154,7 +156,7 @@ namespace Planar::Editor::Project
         dry_run_helper([&]
             {
                 progress_handler("Creating C# project");
-                cs_project.create(root_path, project_name);
+                cs_project.create(project_name, root_path);
                 progress_handler();
             }, dry_run, tasks);
 

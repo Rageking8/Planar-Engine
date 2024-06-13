@@ -10,8 +10,10 @@ namespace Planar::Editor::Script
     public:
         CSProject();
 
-        void create(const std::filesystem::path& path,
-            const std::string& name);
+        void load(const std::string& new_name,
+            const std::filesystem::path& new_path);
+        void create(const std::string& name,
+            const std::filesystem::path& path);
 
         std::string get_name() const;
         std::filesystem::path get_path() const;
