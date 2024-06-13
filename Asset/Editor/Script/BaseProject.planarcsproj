@@ -5,8 +5,18 @@
         <TargetFramework>net8.0</TargetFramework>
         <SelfContained>true</SelfContained>
         <PublishTrimmed>true</PublishTrimmed>
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 
+        <!-- Toggles suppression of output folders. When
+        building, this property is set to `False`. -->
+        <SuppressOutputFolders>True</SuppressOutputFolders>
+    </PropertyGroup>
+
+    <!-- Used to suppress `bin` and `obj` folder generation
+    when opening solution file in Visual Studio. This works
+    by setting the respective output paths to a reserved name.
+    Attempting to build the project emits a hard error when
+    these properties are active. -->
+    <PropertyGroup Condition="'$(SuppressOutputFolders)' == 'True'">
         <BaseOutputPath>nul</BaseOutputPath>
         <BaseIntermediateOutputPath>nul</BaseIntermediateOutputPath>
         <MSBUildProjectExtensionsPath>nul</MSBUildProjectExtensionsPath>

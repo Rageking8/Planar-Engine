@@ -115,7 +115,11 @@ namespace Planar::Editor::UI::Window
     {
         pending_build = false;
 
-        Build::build(root_path, root_path / "Cache" / "DotnetSDK",
-            build_directory_input.get_text());
+        if (editor)
+        {
+            Build::build(editor->get_project().get_cs_project(),
+                root_path / "Cache" / "DotnetSDK",
+                build_directory_input.get_text());
+        }
     }
 }

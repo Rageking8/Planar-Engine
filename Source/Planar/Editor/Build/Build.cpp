@@ -1,28 +1,25 @@
 #include "Planar/Editor/Build/Build.hpp"
+#include "Planar/Editor/Build/Platform.hpp"
+#include "Planar/Editor/Build/DotnetArguments.hpp"
 #include "Planar/Engine/Core/Execute/Execute.hpp"
-
-#include <string>
 
 namespace Planar::Editor::Build
 {
-    void build(std::filesystem::path project_root,
+    void build(const Script::CSProject& cs_project,
         std::filesystem::path dotnet_exe_path,
         std::filesystem::path build_path,
         bool remove_artifacts)
     {
-        project_root = std::filesystem::absolute(project_root);
-
         dotnet_exe_path /= "dotnet.exe";
-        dotnet_exe_path = std::filesystem::absolute(dotnet_exe_path);
 
-        build_path = std::filesystem::absolute(build_path);
+        DotnetArguments dotnet_arguments(Platform::WINDOWS_X64,
+            cs_project.get_absolute_path_string());
+        dotnet_arguments.add_property("SuppressOutputFolders", "False");
+        dotnet_arguments.set_artifacts_path(build_path);
+        dotnet_arguments.set_output_path(build_path);
 
-        std::string build_path_string = build_path.string();
-
-        Engine::Core::Execute::run_program(project_root, dotnet_exe_path,
-            { "publish", project_root.string(), "--artifacts-path",
-            build_path_string, "-r", "win-x64", "-o",
-            build_path_string });
+        Engine::Core::Execute::run_program(".", dotnet_exe_path,
+            dotnet_arguments.generate_publish_vector());
 
         if (remove_artifacts)
         {
