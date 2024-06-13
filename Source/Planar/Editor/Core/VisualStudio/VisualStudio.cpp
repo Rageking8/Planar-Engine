@@ -15,7 +15,7 @@ namespace Planar::Editor::Core::VisualStudio
 
         progress_handler("Adding C# project to solution file");
         Engine::Core::Execute::run_program(path, dotnet_exe_path,
-            { "sln", "add", cs_project.get_full_path().string() });
+            { "sln", "add", cs_project.get_absolute_path_string() });
         progress_handler();
     }
 }
