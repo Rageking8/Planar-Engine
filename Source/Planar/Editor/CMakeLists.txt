@@ -26,6 +26,11 @@ if(MSVC)
     )
 endif()
 
+if(WIN32)
+    target_link_options(${PLANAR_EDITOR_TARGET} PRIVATE
+        /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup)
+endif()
+
 if(${PLANAR_EDITOR_LINK_ENGINE} STREQUAL SHARED)
     target_compile_definitions(${PLANAR_EDITOR_TARGET} PRIVATE
         PLANAR_ENABLE_EXPORT
