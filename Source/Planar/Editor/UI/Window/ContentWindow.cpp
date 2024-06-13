@@ -26,6 +26,11 @@ namespace Planar::Editor::UI::Window
 
     void ContentWindow::init()
     {
+        if (editor)
+        {
+            current_path = editor->get_project().get_root_path();
+        }
+
         back_button.set("Back", 15.f, left_arrow_texture->get_id());
     }
 
@@ -110,18 +115,6 @@ namespace Planar::Editor::UI::Window
         }
     }
 
-    void ContentWindow::set_root_path(
-        const std::filesystem::path& new_root_path,
-        bool reset_current_path)
-    {
-        root_path = new_root_path;
-
-        if (reset_current_path)
-        {
-            current_path = root_path;
-        }
-    }
-
     void ContentWindow::set_folder_texture(
         Engine::Graphics::OpenGL::Texture::Texture2D&
         new_folder_texture)
@@ -160,8 +153,9 @@ namespace Planar::Editor::UI::Window
             back_button.render();
             if (back_button.is_clicked())
             {
-                if (current_path.has_parent_path() &&
-                    !std::filesystem::equivalent(current_path, root_path))
+                if (current_path.has_parent_path() && editor &&
+                    !std::filesystem::equivalent(current_path,
+                    editor->get_project().get_root_path()))
                 {
                     current_path = current_path.parent_path();
                 }

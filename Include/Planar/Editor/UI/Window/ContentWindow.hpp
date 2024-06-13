@@ -20,10 +20,6 @@ namespace Planar::Editor::UI::Window
 
         virtual void render_window() override;
 
-        void set_root_path(
-            const std::filesystem::path& new_root_path,
-            bool reset_current_path = true);
-
         void set_folder_texture(
             Engine::Graphics::OpenGL::Texture::Texture2D&
             new_folder_texture);
@@ -39,7 +35,6 @@ namespace Planar::Editor::UI::Window
             new_select_callback);
 
     private:
-        std::filesystem::path root_path;
         std::filesystem::path current_path;
 
         Engine::Graphics::OpenGL::Texture::Texture2D* folder_texture;

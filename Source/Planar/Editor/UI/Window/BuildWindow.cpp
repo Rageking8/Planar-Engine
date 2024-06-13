@@ -1,4 +1,5 @@
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
+#include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Editor/Build/Build.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
@@ -25,8 +26,11 @@ namespace Planar::Editor::UI::Window
 
     void BuildWindow::init()
     {
-        build_directory_input.set_text((root_path / "Build").
-            string());
+        if (editor)
+        {
+            build_directory_input.set_text((editor->get_project().
+                get_root_path() / "Build").string());
+        }
     }
 
     void BuildWindow::update()
@@ -86,12 +90,6 @@ namespace Planar::Editor::UI::Window
         }
     }
 
-    void BuildWindow::set_root_path(
-        const std::filesystem::path& new_root_path)
-    {
-        root_path = new_root_path;
-    }
-
     void BuildWindow::browse()
     {
         pending_browse = false;
@@ -117,8 +115,9 @@ namespace Planar::Editor::UI::Window
 
         if (editor)
         {
-            Build::build(editor->get_project().get_cs_project(),
-                root_path / "Cache" / "DotnetSDK",
+            Project::Project& project = editor->get_project();
+            Build::build(project.get_cs_project(),
+                project.get_root_path() / "Cache" / "DotnetSDK",
                 build_directory_input.get_text());
         }
     }
