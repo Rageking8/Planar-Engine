@@ -8,13 +8,19 @@ namespace Planar::Editor::Build
     void build(const Script::CSProject& cs_project,
         std::filesystem::path dotnet_exe_path,
         std::filesystem::path build_path,
-        bool remove_artifacts)
+        bool show_console_window, bool remove_artifacts)
     {
         dotnet_exe_path /= "dotnet.exe";
 
         DotnetArguments dotnet_arguments(Platform::WINDOWS_X64,
             cs_project.get_absolute_path_string());
+
+        if (show_console_window)
+        {
+            dotnet_arguments.add_property("OutputType", "Exe");
+        }
         dotnet_arguments.add_property("SuppressOutputFolders", "False");
+
         dotnet_arguments.set_artifacts_path(build_path);
         dotnet_arguments.set_output_path(build_path);
 

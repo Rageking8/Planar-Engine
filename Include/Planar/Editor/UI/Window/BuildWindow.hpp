@@ -23,6 +23,7 @@ namespace Planar::Editor::UI::Window
         Engine::UI::ImGui::Element::InputField build_directory_input;
         Engine::UI::ImGui::Element::Button browse_button;
         Engine::UI::ImGui::Element::DropDown target_drop_down;
+        Engine::UI::ImGui::Element::Checkbox show_console_window_checkbox;
         Engine::UI::ImGui::Element::Checkbox use_compression_checkbox;
         Engine::UI::ImGui::Element::IntSlider compression_level_slider;
         Engine::UI::ImGui::Element::Button build_button;

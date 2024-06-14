@@ -13,10 +13,15 @@ namespace Planar::Editor::UI::Window
 {
     BuildWindow::BuildWindow() : EditorWindow("Build", false),
         build_directory_input("Build directory"),
-        browse_button("Browse"), target_drop_down({ "Windows 64-bit" },
-        "Target:", 200.f), use_compression_checkbox("Use UPX compression",
-        true), compression_level_slider(7, 1, 10, "Compression Level:",
-        200.f), build_button("Build"), pending_browse{}, pending_build{}
+        browse_button("Browse"),
+        target_drop_down({ "Windows 64-bit" }, "Target:", 200.f),
+        show_console_window_checkbox("Show console window"),
+        use_compression_checkbox("Use UPX compression", true),
+        compression_level_slider(7, 1, 10, "Compression Level:",
+        200.f),
+        build_button("Build"),
+        pending_browse{},
+        pending_build{}
     {
         set_size({ { 1280.f, 720.f } });
         set_min_size({ { 500.f, 400.f } });
@@ -70,6 +75,7 @@ namespace Planar::Editor::UI::Window
         ImGui::separator(separator_extra_height);
 
         target_drop_down.render();
+        show_console_window_checkbox.render();
 
         ImGui::separator(separator_extra_height);
 
@@ -118,7 +124,8 @@ namespace Planar::Editor::UI::Window
             Project::Project& project = editor->get_project();
             Build::build(project.get_cs_project(),
                 project.get_root_path() / "Cache" / "DotnetSDK",
-                build_directory_input.get_text());
+                build_directory_input.get_text(),
+                show_console_window_checkbox.get_value());
         }
     }
 }
