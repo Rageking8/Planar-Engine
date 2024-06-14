@@ -82,7 +82,7 @@ namespace Planar::Editor::UI::Window
         ImGui::separator(separator_extra_height);
 
         ImGui::Core::Cursor::set_y_bottom_window(
-            -separator_extra_height * 2.f - 6.f);
+            -separator_extra_height);
         build_button.render();
         if (build_button.is_clicked())
         {

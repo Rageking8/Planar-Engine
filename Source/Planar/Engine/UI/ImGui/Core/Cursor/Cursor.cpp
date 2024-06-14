@@ -6,8 +6,8 @@ namespace Planar::Engine::UI::ImGui::Core::Cursor
 {
     void set_y_bottom_window(float y_offset)
     {
-        set_y(::ImGui::GetWindowContentRegionMax().y -
-            ::ImGui::GetItemRectSize().y + y_offset);
+        set_y(::ImGui::GetWindowHeight() -
+            ::ImGui::GetFrameHeightWithSpacing() + y_offset);
     }
 
     void set_y_bottom_viewport(float y_offset)
