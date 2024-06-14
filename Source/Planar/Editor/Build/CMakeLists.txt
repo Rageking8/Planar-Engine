@@ -3,3 +3,5 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     DotnetArguments.cpp
     Platform.cpp
 )
+
+add_subdirectory(Compression)
