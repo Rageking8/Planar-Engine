@@ -9,13 +9,14 @@ namespace Planar::Editor::Core::VisualStudio
         const Progress::ProgressHandler& progress_handler)
     {
         progress_handler("Creating new solution file");
-        Engine::Core::Execute::run_program(path, dotnet_exe_path,
-            { "new", "sln", "--name", cs_project.get_name() });
+        Engine::Core::Execute::run_program(dotnet_exe_path,
+            { "new", "sln", "--name", cs_project.get_name() }, path);
         progress_handler();
 
         progress_handler("Adding C# project to solution file");
-        Engine::Core::Execute::run_program(path, dotnet_exe_path,
-            { "sln", "add", cs_project.get_absolute_path_string() });
+        Engine::Core::Execute::run_program(dotnet_exe_path,
+            { "sln", "add", cs_project.get_absolute_path_string() },
+            path);
         progress_handler();
     }
 }

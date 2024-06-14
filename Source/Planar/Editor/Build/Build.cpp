@@ -24,7 +24,7 @@ namespace Planar::Editor::Build
         dotnet_arguments.set_artifacts_path(build_path);
         dotnet_arguments.set_output_path(build_path);
 
-        Engine::Core::Execute::run_program(".", dotnet_exe_path,
+        Engine::Core::Execute::run_program(dotnet_exe_path,
             dotnet_arguments.generate_publish_vector());
 
         if (remove_artifacts)

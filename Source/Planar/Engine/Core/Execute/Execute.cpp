@@ -4,9 +4,9 @@
 
 namespace Planar::Engine::Core::Execute
 {
-    int run_program(std::filesystem::path working_directory,
-        std::filesystem::path program_path,
-        std::vector<std::string> arguments)
+    int run_program(std::filesystem::path program_path,
+        std::vector<std::string> arguments,
+        std::filesystem::path working_directory)
     {
         working_directory =
             std::filesystem::absolute(working_directory);
