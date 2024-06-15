@@ -121,11 +121,11 @@ namespace Planar::Editor::UI::Window
 
         if (editor)
         {
-            Project::Project& project = editor->get_project();
-            Build::build(project.get_cs_project(),
-                project.get_root_path() / "Cache" / "DotnetSDK",
+            Build::build(editor->get_project(),
                 build_directory_input.get_text(),
-                show_console_window_checkbox.get_value());
+                show_console_window_checkbox.get_value(),
+                use_compression_checkbox.get_value() ?
+                compression_level_slider.get_value() : 0);
         }
     }
 }
