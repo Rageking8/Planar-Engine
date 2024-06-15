@@ -17,7 +17,7 @@ namespace Planar::Editor::UI::Window
         target_drop_down({ "Windows 64-bit" }, "Target:", 200.f),
         show_console_window_checkbox("Show console window"),
         use_compression_checkbox("Use UPX compression"),
-        compression_level_slider(7, 1, 10, "Compression Level:",
+        compression_level_slider(7, 1, 9, "Compression Level:",
         200.f),
         build_button("Build"),
         pending_browse{},
