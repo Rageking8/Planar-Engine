@@ -142,7 +142,7 @@ namespace Planar::Engine::UI::ImGui::Window
             flags, WindowFlags::MINIMAL))
         {
             begin_flags |= ImGuiWindowFlags_NoDecoration |
-                ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground;
+                ImGuiWindowFlags_NoMove;
         }
 
         if (Core::Utils::EnumClass::has(flags,
@@ -167,6 +167,18 @@ namespace Planar::Engine::UI::ImGui::Window
             WindowFlags::HORIZONTAL_SCROLLBAR))
         {
             begin_flags |= ImGuiWindowFlags_HorizontalScrollbar;
+        }
+
+        if (Core::Utils::EnumClass::has(flags,
+            WindowFlags::NO_BACKGROUND))
+        {
+            begin_flags |= ImGuiWindowFlags_NoBackground;
+        }
+
+        if (Core::Utils::EnumClass::has(flags,
+            WindowFlags::ALWAYS_AUTO_RESIZE))
+        {
+            begin_flags |= ImGuiWindowFlags_AlwaysAutoResize;
         }
     }
 

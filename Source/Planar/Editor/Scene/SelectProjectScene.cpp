@@ -28,6 +28,7 @@ namespace Planar::Editor::Scene
         main_window.set("Select Project",
             ImGui::Window::WindowFlags::FIT_TO_WINDOW |
             ImGui::Window::WindowFlags::MINIMAL |
+            ImGui::Window::WindowFlags::NO_BACKGROUND |
             ImGui::Window::WindowFlags::NO_STORE_INI);
         main_window.set_padding({ { 24.f, 0.f } });
     }
