@@ -17,6 +17,7 @@ namespace Planar::Engine::UI::ImGui::Element
             float indent_size = 15.f, float vertical_spacing = 10.f);
 
         virtual void render() override;
+        void render(const std::function<void()>& content);
 
         std::string get_label() const;
         Math::Size2Df get_padding() const;
@@ -27,13 +28,11 @@ namespace Planar::Engine::UI::ImGui::Element
         void set_padding(Math::Size2Df new_padding);
         void set_indent_size(float new_indent_size);
         void set_vertical_spacing(float new_vertical_spacing);
-        void set_content(const std::function<void()>& new_content = {});
 
     private:
         std::string label;
         Math::Size2Df padding;
         float indent_size;
         float vertical_spacing;
-        std::function<void()> content;
     };
 }

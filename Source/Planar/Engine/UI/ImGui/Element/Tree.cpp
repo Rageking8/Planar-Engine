@@ -16,6 +16,11 @@ namespace Planar::Engine::UI::ImGui::Element
 
     void Tree::render()
     {
+        render({});
+    }
+
+    void Tree::render(const std::function<void()>& content)
+    {
         ImGuiTreeNodeFlags tree_flags =
             ImGuiTreeNodeFlags_OpenOnArrow |
             ImGuiTreeNodeFlags_OpenOnDoubleClick |
@@ -75,10 +80,5 @@ namespace Planar::Engine::UI::ImGui::Element
     void Tree::set_vertical_spacing(float new_vertical_spacing)
     {
         vertical_spacing = new_vertical_spacing;
-    }
-
-    void Tree::set_content(const std::function<void()>& new_content)
-    {
-        content = new_content;
     }
 }
