@@ -20,9 +20,30 @@ namespace Planar::Editor::UI::Window
 
         if (editor && editor->get_current_scene())
         {
-            current_scene_tree.set_label(
-                editor->get_current_scene()->get_asset().get_name());
-            current_scene_tree.render();
+            std::unique_ptr<Engine::Scene::Scene>& current_scene =
+                editor->get_current_scene();
+
+            hierarchy_tree.set_label(current_scene->get_asset().
+                get_name());
+            render_scene_node(current_scene->get_root());
         }
+    }
+
+    void HierarchyWindow::render_scene_node(
+        Engine::Scene::SceneNode& scene_node)
+    {
+        if (!scene_node.is_root_node())
+        {
+            hierarchy_tree.set_label(scene_node.get_game_object().
+                get_name());
+        }
+
+        hierarchy_tree.render([&]
+            {
+                for (auto& i : *scene_node.get_children())
+                {
+                    render_scene_node(i);
+                }
+            });
     }
 }

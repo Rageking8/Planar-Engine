@@ -179,8 +179,7 @@ namespace Planar::Editor::UI::Window
         {
             std::unique_ptr<Engine::Scene::Scene> scene =
                 std::make_unique<Engine::Scene::Scene>();
-            scene->get_asset().load(
-                Engine::Core::FileSystem::read_file(path),
+            scene->load(Engine::Core::FileSystem::read_file(path),
                 path.stem().string());
 
             editor->change_scene(std::move(scene));
