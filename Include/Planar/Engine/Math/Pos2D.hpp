@@ -4,7 +4,7 @@
 
 namespace Planar::Engine::Math
 {
-    template <Planar::Engine::Core::Utils::Concepts::Arithmetic T>
+    template <Core::Utils::Concepts::Arithmetic T>
     struct Pos2D
     {
         Pos2D();
@@ -12,6 +12,7 @@ namespace Planar::Engine::Math
         Pos2D(T x, T y);
 
         bool operator==(const Pos2D&) const = default;
+        Pos2D& operator-(T value);
 
         T x;
         T y;
