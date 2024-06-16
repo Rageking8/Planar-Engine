@@ -11,12 +11,12 @@ namespace Planar::Engine::Scene
 
     }
 
-    void SceneAsset::create(const std::string& scene_asset,
+    void SceneAsset::create(std::string scene_asset,
         const std::filesystem::path& path,
         const std::string& scene_name)
     {
         name = scene_name;
-        asset = Engine::Asset::preprocess_asset(scene_asset,
+        scene_asset = Engine::Asset::preprocess_asset(scene_asset,
             {
                 { "<VERSION>", Core::VERSION },
 
@@ -25,14 +25,15 @@ namespace Planar::Engine::Scene
             });
 
         Core::FileSystem::create_file(path / (scene_name +
-            ".planarscene"), asset);
+            ".planarscene"), scene_asset);
+        asset = YAML::Load(scene_asset);
     }
 
     void SceneAsset::load(const std::string& scene_asset,
         const std::string& scene_name)
     {
         name = scene_name;
-        asset = scene_asset;
+        asset = YAML::Load(scene_asset);
     }
 
     std::string SceneAsset::get_name() const
@@ -42,6 +43,11 @@ namespace Planar::Engine::Scene
 
     std::string SceneAsset::get_guid() const
     {
-        return Engine::Asset::get_value(asset, "GUID");
+        return asset["GUID"].Scalar();
+    }
+
+    YAML::Node SceneAsset::get_hierarchy()
+    {
+        return asset["Hierarchy"];
     }
 }

@@ -3,6 +3,8 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
 
+#include "ThirdParty/yaml-cpp/yaml.h"
+
 #include <string>
 #include <filesystem>
 
@@ -13,7 +15,7 @@ namespace Planar::Engine::Scene
     public:
         SceneAsset();
 
-        void create(const std::string& scene_asset,
+        void create(std::string scene_asset,
             const std::filesystem::path& path,
             const std::string& scene_name);
 
@@ -22,9 +24,10 @@ namespace Planar::Engine::Scene
 
         std::string get_name() const;
         std::string get_guid() const;
+        YAML::Node get_hierarchy();
 
     private:
         std::string name;
-        std::string asset;
+        YAML::Node asset;
     };
 }
