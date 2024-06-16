@@ -54,6 +54,11 @@ namespace Planar::Engine::Scene
         return !game_object.has_value();
     }
 
+    bool SceneNode::is_leaf_node() const
+    {
+        return children->empty();
+    }
+
     Core::GameObject& SceneNode::get_game_object()
     {
         return *game_object;

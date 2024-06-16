@@ -22,6 +22,7 @@ namespace Planar::Engine::Scene
             node_stack_ptr = nullptr);
 
         bool is_root_node() const;
+        bool is_leaf_node() const;
         Core::GameObject& get_game_object();
         std::shared_ptr<std::vector<SceneNode>> get_children();
 
