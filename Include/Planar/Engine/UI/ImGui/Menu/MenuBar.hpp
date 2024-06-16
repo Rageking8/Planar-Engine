@@ -17,10 +17,6 @@ namespace Planar::Engine::UI::ImGui::Menu
 
         void add_menu(const std::string& name,
             std::function<void()> content) const;
-        bool add_menu_item(const std::string& label,
-            const std::string& shortcut = "",
-            bool selected = false, bool enabled = true) const;
-        void add_menu_separator() const;
 
     protected:
         bool started;

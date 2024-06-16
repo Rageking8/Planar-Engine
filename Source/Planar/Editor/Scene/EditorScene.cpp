@@ -7,7 +7,6 @@
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
 
-#include <filesystem>
 #include <functional>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
@@ -97,11 +96,11 @@ namespace Planar::Editor::Scene
         ImGui::Menu::MainMenuBar main_menu_bar;
         if (main_menu_bar.start())
         {
-            auto make_active_on_menu_item = [&](const std::string& name,
+            auto make_active_on_menu_item = [](const std::string& name,
                 ImGui::Window::Window& window,
                 bool reset_first_render = false)
                 {
-                    if (main_menu_bar.add_menu_item(name))
+                    if (ImGui::menu_item(name))
                     {
                         window.set_active(true);
 
@@ -113,20 +112,19 @@ namespace Planar::Editor::Scene
                 };
 
             main_menu_bar.add_menu("File",
-                [&]()
+                []()
                 {
-                    main_menu_bar.add_menu_item("New Project");
-                    main_menu_bar.add_menu_item("Open Project");
+                    ImGui::menu_item("New Project");
+                    ImGui::menu_item("Open Project");
                     
-                    main_menu_bar.add_menu_separator();
+                    ImGui::separator();
 
-                    main_menu_bar.add_menu_item("Save", "Ctrl + S");
-                    main_menu_bar.add_menu_item("Save As",
-                        "Ctrl + Shift + S");
+                    ImGui::menu_item("Save", "Ctrl + S");
+                    ImGui::menu_item("Save As", "Ctrl + Shift + S");
 
-                    main_menu_bar.add_menu_separator();
+                    ImGui::separator();
 
-                    main_menu_bar.add_menu_item("Exit");
+                    ImGui::menu_item("Exit");
                 });
 
             main_menu_bar.add_menu("Build",
@@ -139,24 +137,24 @@ namespace Planar::Editor::Scene
             main_menu_bar.add_menu("Window",
                 [&]()
                 {
-                    make_active_on_menu_item("hierarchy",
+                    make_active_on_menu_item("Hierarchy",
                         hierarchy_window);
 
-                    main_menu_bar.add_menu_separator();
+                    ImGui::separator();
 
                     make_active_on_menu_item("Scene",
                         scene_window);
                     make_active_on_menu_item("Game",
                         game_window);
 
-                    main_menu_bar.add_menu_separator();
+                    ImGui::separator();
 
                     make_active_on_menu_item("Inspector",
                         inspector_window);
                     make_active_on_menu_item("Settings",
                         settings_window);
 
-                    main_menu_bar.add_menu_separator();
+                    ImGui::separator();
 
                     make_active_on_menu_item("Content",
                         content_window);
@@ -165,9 +163,9 @@ namespace Planar::Editor::Scene
                 });
 
             main_menu_bar.add_menu("Help",
-                [&]()
+                []()
                 {
-                    if (main_menu_bar.add_menu_item("Website"))
+                    if (ImGui::menu_item("Website"))
                     {
                         Engine::Core::Shell::open_planar_website();
                     }

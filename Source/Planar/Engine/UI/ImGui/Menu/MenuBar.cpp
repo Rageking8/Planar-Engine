@@ -24,16 +24,4 @@ namespace Planar::Engine::UI::ImGui::Menu
             ::ImGui::EndMenu();
         }
     }
-
-    bool MenuBar::add_menu_item(const std::string& label,
-        const std::string& shortcut, bool selected, bool enabled) const
-    {
-        return ::ImGui::MenuItem(label.c_str(), shortcut.c_str(),
-            selected, enabled);
-    }
-
-    void MenuBar::add_menu_separator() const
-    {
-        ::ImGui::Separator();
-    }
 }

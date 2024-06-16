@@ -72,4 +72,8 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API bool is_item_hovered();
 
     PLANAR_API bool is_left_mouse_double_clicked();
+
+    PLANAR_API bool menu_item(const std::string& label,
+        const std::string& shortcut = "", bool selected = false,
+        bool enabled = true);
 }
