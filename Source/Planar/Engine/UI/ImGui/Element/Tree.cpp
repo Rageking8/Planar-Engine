@@ -22,8 +22,7 @@ namespace Planar::Engine::UI::ImGui::Element
     void Tree::render(const std::function<void()>& content)
     {
         ImGuiTreeNodeFlags tree_flags =
-            ImGuiTreeNodeFlags_OpenOnArrow |
-            ImGuiTreeNodeFlags_OpenOnDoubleClick |
+            ImGuiTreeNodeFlags_SpanFullWidth |
             ImGuiTreeNodeFlags_FramePadding;
 
         Style::StyleVar style_var;
