@@ -42,7 +42,14 @@ namespace Planar::Editor::UI::Window
             {
                 for (auto& i : *scene_node.get_children())
                 {
+                    if (i.is_leaf_node())
+                    {
+                        hierarchy_tree.set_is_leaf(true);
+                    }
+
                     render_scene_node(i);
+
+                    hierarchy_tree.set_is_leaf(false);
                 }
             });
     }

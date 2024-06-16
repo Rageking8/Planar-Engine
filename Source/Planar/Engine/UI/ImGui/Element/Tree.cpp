@@ -9,7 +9,7 @@ namespace Planar::Engine::UI::ImGui::Element
         float indent_size, float vertical_spacing) :
         label{ label }, padding{ padding },
         indent_size{ indent_size },
-        vertical_spacing{ vertical_spacing }
+        vertical_spacing{ vertical_spacing }, is_leaf{}
     {
 
     }
@@ -24,6 +24,11 @@ namespace Planar::Engine::UI::ImGui::Element
         ImGuiTreeNodeFlags tree_flags =
             ImGuiTreeNodeFlags_SpanFullWidth |
             ImGuiTreeNodeFlags_FramePadding;
+
+        if (is_leaf)
+        {
+            tree_flags |= ImGuiTreeNodeFlags_Leaf;
+        }
 
         Style::StyleVar style_var;
         style_var.set_frame_padding(padding);
@@ -61,6 +66,11 @@ namespace Planar::Engine::UI::ImGui::Element
         return vertical_spacing;
     }
 
+    bool Tree::get_is_leaf() const
+    {
+        return is_leaf;
+    }
+
     void Tree::set_label(const std::string& new_label)
     {
         label = new_label;
@@ -79,5 +89,10 @@ namespace Planar::Engine::UI::ImGui::Element
     void Tree::set_vertical_spacing(float new_vertical_spacing)
     {
         vertical_spacing = new_vertical_spacing;
+    }
+
+    void Tree::set_is_leaf(bool new_is_leaf)
+    {
+        is_leaf = new_is_leaf;
     }
 }
