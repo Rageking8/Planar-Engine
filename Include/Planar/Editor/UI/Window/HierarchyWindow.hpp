@@ -17,6 +17,7 @@ namespace Planar::Editor::UI::Window
     private:
         Engine::UI::ImGui::Element::Tree hierarchy_tree;
         Engine::UI::ImGui::Menu::ContextMenu context_menu;
+        bool context_menu_active;
 
         void render_scene_node(Engine::Scene::SceneNode& scene_node);
     };

@@ -16,10 +16,11 @@ namespace Planar::Engine::UI::ImGui::Element
 
     void Tree::render()
     {
-        render({});
+        render({}, {});
     }
 
-    void Tree::render(const std::function<void()>& content)
+    void Tree::render(const std::function<void()>& callback,
+        const std::function<void()>& content)
     {
         ImGuiTreeNodeFlags tree_flags =
             ImGuiTreeNodeFlags_SpanFullWidth |
@@ -36,13 +37,20 @@ namespace Planar::Engine::UI::ImGui::Element
         style_var.set_item_spacing({ 0.f, vertical_spacing });
         style_var.set_indent_spacing(indent_size);
 
-        if (::ImGui::TreeNodeEx(label.c_str(), tree_flags))
-        {
-            if (is_leaf)
-            {
-                ::ImGui::Indent();
-            }
+        bool tree_open = ::ImGui::TreeNodeEx(label.c_str(), tree_flags);
 
+        if (callback)
+        {
+            callback();
+        }
+
+        if (is_leaf)
+        {
+            ::ImGui::Indent();
+        }
+
+        if (tree_open)
+        {
             if (content)
             {
                 content();

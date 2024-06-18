@@ -1,8 +1,10 @@
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
+#include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 namespace Planar::Editor::UI::Window
 {
-    HierarchyWindow::HierarchyWindow() : EditorWindow("Hierarchy")
+    HierarchyWindow::HierarchyWindow() : EditorWindow("Hierarchy"),
+        context_menu_active{}
     {
         set_padding({ { 0.f, 15.f } });
     }
@@ -16,6 +18,11 @@ namespace Planar::Editor::UI::Window
         if (!result)
         {
             return;
+        }
+
+        if (context_menu_active)
+        {
+            context_menu_active = context_menu.render();
         }
 
         if (editor && editor->get_current_scene())
@@ -32,6 +39,8 @@ namespace Planar::Editor::UI::Window
     void HierarchyWindow::render_scene_node(
         Engine::Scene::SceneNode& scene_node)
     {
+        using namespace Engine::UI;
+
         if (!scene_node.is_root_node())
         {
             hierarchy_tree.set_label(scene_node.get_game_object().
@@ -39,6 +48,25 @@ namespace Planar::Editor::UI::Window
         }
 
         hierarchy_tree.render([&]
+            {
+                if (!context_menu_active)
+                {
+                    context_menu.set_content([]
+                        {
+                            if (ImGui::menu_item("Create GameObject"))
+                            {
+                                return true;
+                            }
+
+                            return false;
+                        });
+
+                    if (context_menu.render())
+                    {
+                        context_menu_active = true;
+                    }
+                }
+            }, [&]
             {
                 for (auto& i : *scene_node.get_children())
                 {
