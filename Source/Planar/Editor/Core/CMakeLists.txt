@@ -3,4 +3,5 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
 )
 
 add_subdirectory(Progress)
+add_subdirectory(Save)
 add_subdirectory(VisualStudio)
