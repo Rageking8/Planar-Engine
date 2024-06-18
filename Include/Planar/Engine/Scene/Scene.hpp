@@ -5,6 +5,7 @@
 #include "Planar/Engine/Scene/SceneNode.hpp"
 
 #include <string>
+#include <filesystem>
 
 namespace Planar::Engine::Scene
 {
@@ -15,7 +16,8 @@ namespace Planar::Engine::Scene
         virtual ~Scene();
 
         void load(const std::string& scene_asset,
-            const std::string& scene_name);
+            const std::string& scene_name,
+            const std::filesystem::path& asset_path = {});
 
         virtual void init();
         virtual void start();

@@ -13,9 +13,10 @@ namespace Planar::Engine::Scene
     }
 
     void Scene::load(const std::string& scene_asset,
-        const std::string& scene_name)
+        const std::string& scene_name,
+        const std::filesystem::path& asset_path)
     {
-        asset.load(scene_asset, scene_name);
+        asset.load(scene_asset, scene_name, asset_path);
         root.load(asset.get_hierarchy());
     }
 

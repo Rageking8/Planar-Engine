@@ -30,10 +30,12 @@ namespace Planar::Engine::Scene
     }
 
     void SceneAsset::load(const std::string& scene_asset,
-        const std::string& scene_name)
+        const std::string& scene_name,
+        const std::filesystem::path& asset_path)
     {
         name = scene_name;
         asset = YAML::Load(scene_asset);
+        path = asset_path;
     }
 
     std::string SceneAsset::get_name() const

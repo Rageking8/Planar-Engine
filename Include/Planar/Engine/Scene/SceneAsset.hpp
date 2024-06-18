@@ -20,7 +20,8 @@ namespace Planar::Engine::Scene
             const std::string& scene_name);
 
         void load(const std::string& scene_asset,
-            const std::string& scene_name);
+            const std::string& scene_name,
+            const std::filesystem::path& asset_path = {});
 
         std::string get_name() const;
         std::string get_guid() const;
@@ -29,5 +30,6 @@ namespace Planar::Engine::Scene
     private:
         std::string name;
         YAML::Node asset;
+        std::filesystem::path path;
     };
 }
