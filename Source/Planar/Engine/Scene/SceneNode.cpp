@@ -68,4 +68,18 @@ namespace Planar::Engine::Scene
     {
         return children;
     }
+
+    void SceneNode::add_child(const std::string& name)
+    {
+        YAML::Node new_game_object;
+        new_game_object["Name"] = name;
+        new_game_object["Children"] = YAML::Node(YAML::NodeType::Null);
+
+        (is_root_node() ? node : node["Children"]).
+            push_back(new_game_object);
+
+        children->push_back({});
+        SceneNode& scene_node = children->back();
+        scene_node.game_object = { { name } };
+    }
 }

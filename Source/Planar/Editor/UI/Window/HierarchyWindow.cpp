@@ -51,10 +51,17 @@ namespace Planar::Editor::UI::Window
             {
                 if (!context_menu_active)
                 {
-                    context_menu.set_content([]
+                    context_menu.set_content([&]
                         {
                             if (ImGui::menu_item("Create GameObject"))
                             {
+                                scene_node.add_child("GameObject");
+                                
+                                if (editor)
+                                {
+                                    editor->set_dirty();
+                                }
+
                                 return true;
                             }
 
