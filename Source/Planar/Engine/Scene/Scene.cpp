@@ -20,6 +20,11 @@ namespace Planar::Engine::Scene
         root.load(asset.get_hierarchy());
     }
 
+    void Scene::save()
+    {
+        asset.save();
+    }
+
     void Scene::init()
     {
 

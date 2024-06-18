@@ -2,6 +2,7 @@
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Core/Version.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
 namespace Planar::Engine::Scene
@@ -36,6 +37,14 @@ namespace Planar::Engine::Scene
         name = scene_name;
         asset = YAML::Load(scene_asset);
         path = asset_path;
+    }
+
+    void SceneAsset::save()
+    {
+        PLANAR_ASSERT_NOT_EMPTY(path);
+
+        Core::FileSystem::create_file(path,
+            Engine::Asset::to_string(asset));
     }
 
     std::string SceneAsset::get_name() const

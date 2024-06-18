@@ -18,6 +18,7 @@ namespace Planar::Engine::Scene
         void load(const std::string& scene_asset,
             const std::string& scene_name,
             const std::filesystem::path& asset_path = {});
+        void save();
 
         virtual void init();
         virtual void start();
