@@ -12,10 +12,14 @@ namespace Planar::Engine::UI::ImGui::Menu
     public:
         ContextMenu();
 
-        void render(const std::function<bool()>& content = {});
+        bool render(
+            const std::function<bool()>& content_override = {});
+
+        void set_content(const std::function<bool()>& new_content);
 
     private:
         Window::Window window;
+        std::function<bool()> content;
         unsigned wait_frames;
     };
 }

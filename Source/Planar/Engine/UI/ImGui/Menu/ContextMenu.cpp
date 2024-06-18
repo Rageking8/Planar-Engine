@@ -18,7 +18,8 @@ namespace Planar::Engine::UI::ImGui::Menu
             ImGui::Window::WindowFlags::ALWAYS_AUTO_RESIZE);
     }
 
-    void ContextMenu::render(const std::function<bool()>& content)
+    bool ContextMenu::render(
+        const std::function<bool()>& content_override)
     {
         bool right_clicked = is_item_hovered() &&
             ::ImGui::IsMouseReleased(ImGuiMouseButton_Right);
@@ -39,18 +40,27 @@ namespace Planar::Engine::UI::ImGui::Menu
 
         if (!result)
         {
-            return;
+            return false;
         }
 
-        if (content && content())
+        if ((content && content()) ||
+            (content_override && content_override()))
         {
             window.set_active(false);
 
-            return;
+            return false;
         }
 
         window.set_active(wait_frames != 0 ||
             ::ImGui::IsWindowHovered());
         wait_frames = wait_frames > 0 ? wait_frames - 1 : 0;
+
+        return window.get_active();
+    }
+
+    void ContextMenu::set_content(
+        const std::function<bool()>& new_content)
+    {
+        content = new_content;
     }
 }
