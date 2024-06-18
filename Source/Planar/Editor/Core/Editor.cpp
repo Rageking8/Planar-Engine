@@ -38,13 +38,36 @@ namespace Planar::Editor::Core
 
         load_scene(std::move(scene));
 
-        set_window_name("Planar Editor - " + project.get_project_name());
+        update_window_name(project.get_project_name());
     }
 
     void Editor::change_scene(
         std::unique_ptr<Engine::Scene::Scene> new_scene)
     {
         current_scene = std::move(new_scene);
+    }
+
+    void Editor::update_window_name(const std::string& scene_name,
+        bool show_asterisk)
+    {
+        std::string name;
+
+        if (!scene_name.empty())
+        {
+            name += " - " + scene_name;
+        }
+
+        if (show_asterisk)
+        {
+            name += "*";
+        }
+
+        set_window_name("Planar Editor" + name);
+    }
+
+    void Editor::set_window_asterisk(bool show)
+    {
+        update_window_name(project.get_project_name(), show);
     }
 
     Project::Project& Editor::get_project()
