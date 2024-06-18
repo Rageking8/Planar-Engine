@@ -112,14 +112,17 @@ namespace Planar::Editor::Scene
                 };
 
             main_menu_bar.add_menu("File",
-                []()
+                [&]()
                 {
                     ImGui::menu_item("New Project");
                     ImGui::menu_item("Open Project");
                     
                     ImGui::separator();
 
-                    ImGui::menu_item("Save", "Ctrl + S");
+                    if (ImGui::menu_item("Save", "Ctrl + S") && editor)
+                    {
+                        editor->save_all();
+                    }
                     ImGui::menu_item("Save As", "Ctrl + Shift + S");
 
                     ImGui::separator();

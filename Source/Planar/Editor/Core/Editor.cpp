@@ -79,4 +79,24 @@ namespace Planar::Editor::Core
     {
         return current_scene;
     }
+
+    void Editor::add_save_callback(const std::string& name,
+        const std::function<void()>& save_callback)
+    {
+        save_handler.add_save_callback(name, save_callback);
+    }
+
+    void Editor::set_dirty()
+    {
+        save_handler.set_dirty();
+
+        set_window_asterisk(save_handler.get_dirty());
+    }
+
+    void Editor::save_all()
+    {
+        save_handler.save_all();
+
+        set_window_asterisk(save_handler.get_dirty());
+    }
 }

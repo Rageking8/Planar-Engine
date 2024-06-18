@@ -3,9 +3,11 @@
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Editor/Project/Project.hpp"
+#include "Planar/Editor/Core/Save/SaveHandler.hpp"
 
 #include <string>
 #include <memory>
+#include <functional>
 
 namespace Planar::Editor::Core
 {
@@ -28,8 +30,15 @@ namespace Planar::Editor::Core
         Project::Project& get_project();
         std::unique_ptr<Engine::Scene::Scene>& get_current_scene();
 
+        void add_save_callback(const std::string& name,
+            const std::function<void()>& save_callback);
+
+        void set_dirty();
+        void save_all();
+
     private:
         Project::Project project;
         std::unique_ptr<Engine::Scene::Scene> current_scene;
+        Save::SaveHandler save_handler;
     };
 }

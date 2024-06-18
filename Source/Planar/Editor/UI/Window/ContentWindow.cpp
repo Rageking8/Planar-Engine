@@ -182,6 +182,9 @@ namespace Planar::Editor::UI::Window
             scene->load(Engine::Core::FileSystem::read_file(path),
                 path.stem().string(), path);
 
+            editor->add_save_callback("active_scene",
+                std::bind(&Engine::Scene::Scene::save, scene.get()));
+
             editor->change_scene(std::move(scene));
         }
     }
