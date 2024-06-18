@@ -33,4 +33,6 @@ namespace Planar::Engine::Asset
 
     PLANAR_API std::string get_value(const std::string& asset,
         const std::string& key);
+
+    PLANAR_API std::string to_string(YAML::Node node);
 }

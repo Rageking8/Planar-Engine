@@ -130,4 +130,13 @@ namespace Planar::Engine::Asset
 
         return root[key].as<std::string>();
     }
+
+    std::string to_string(YAML::Node node)
+    {
+        YAML::Emitter emitter;
+        emitter.SetSeqFormat(YAML::EMITTER_MANIP::Block);
+        emitter << node;
+
+        return emitter.c_str();
+    }
 }
