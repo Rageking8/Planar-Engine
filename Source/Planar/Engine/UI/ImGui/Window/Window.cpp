@@ -123,6 +123,11 @@ namespace Planar::Engine::UI::ImGui::Window
         set_flags(new_flags);
     }
 
+    bool Window::get_active() const
+    {
+        return active;
+    }
+
     void Window::set_active(bool new_active)
     {
         active = new_active;

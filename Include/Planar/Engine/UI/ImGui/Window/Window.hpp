@@ -47,7 +47,9 @@ namespace Planar::Engine::UI::ImGui::Window
             std::optional<Math::Size2Df> new_size,
             WindowFlags new_flags = WindowFlags::NONE);
 
+        bool get_active() const;
         void set_active(bool new_active);
+
         void set_name(const std::string& new_name);
         void set_flags(WindowFlags new_flags);
         void set_position(std::optional<Math::Pos2Df> new_position);
