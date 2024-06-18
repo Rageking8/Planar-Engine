@@ -28,6 +28,7 @@ namespace Planar::Engine::UI::ImGui::Element
         if (is_leaf)
         {
             tree_flags |= ImGuiTreeNodeFlags_Leaf;
+            ::ImGui::Unindent();
         }
 
         Style::StyleVar style_var;
@@ -37,6 +38,11 @@ namespace Planar::Engine::UI::ImGui::Element
 
         if (::ImGui::TreeNodeEx(label.c_str(), tree_flags))
         {
+            if (is_leaf)
+            {
+                ::ImGui::Indent();
+            }
+
             if (content)
             {
                 content();
