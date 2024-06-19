@@ -16,7 +16,7 @@ namespace Planar::Editor::UI::Window
         {
             editor->get_select_handler().set_content_callback(
                 PLANAR_BIND_MEMBER_FUNCTION_ARG1(select_content));
-            editor->get_select_handler().set_content_callback(
+            editor->get_select_handler().set_game_object_callback(
                 PLANAR_BIND_MEMBER_FUNCTION_ARG1(select_game_object));
         }
     }
