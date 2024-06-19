@@ -42,10 +42,9 @@ namespace Planar::Engine::Scene
                 continue;
             }
 
-            node_stack_ptr->top()->push_back({});
+            node_stack_ptr->top()->emplace_back();
             SceneNode& scene_node = node_stack_ptr->top()->back();
-            scene_node.game_object =
-                { { i["Name"].Scalar(), i["GUID"].Scalar() } };
+            scene_node.game_object.emplace(i["Name"].Scalar(), i["GUID"].Scalar());
             scene_node.load(i, node_stack_ptr);
         }
 
@@ -95,9 +94,9 @@ namespace Planar::Engine::Scene
             name += std::to_string(postfix);
         }
 
-        children->push_back({});
+        children->emplace_back();
         SceneNode& scene_node = children->back();
-        scene_node.game_object = { { name } };
+        scene_node.game_object.emplace(name);
         Core::GameObject& object = *scene_node.game_object;
 
         YAML::Node new_game_object;

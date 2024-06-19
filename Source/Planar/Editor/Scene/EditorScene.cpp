@@ -7,8 +7,6 @@
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
 
-#include <functional>
-
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
 PLANAR_LOAD_EDITOR_ICON(FolderIcon)
