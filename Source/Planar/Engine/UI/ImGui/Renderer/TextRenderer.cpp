@@ -13,11 +13,12 @@ namespace Planar::Engine::UI::ImGui::Renderer
 
     void TextRenderer::render_center_viewport(const std::string& text)
     {
-        float main_viewport_width = get_main_viewport_size().width;
-        float text_width = ::ImGui::CalcTextSize(text.c_str()).x;
+        render_center(text, get_main_viewport_size().width);
+    }
 
-        Core::Cursor::set_x((main_viewport_width - text_width) * 0.5f);
-        ::ImGui::Text(text.c_str());
+    void TextRenderer::render_center_window(const std::string& text)
+    {
+        render_center(text, get_window_size().width);
     }
 
     void TextRenderer::render_center_truncate(const std::string& text,
@@ -104,5 +105,14 @@ namespace Planar::Engine::UI::ImGui::Renderer
         }
 
         return result;
+    }
+
+    void TextRenderer::render_center(const std::string& text,
+        float width)
+    {
+        float text_width = ::ImGui::CalcTextSize(text.c_str()).x;
+
+        Core::Cursor::set_x((width - text_width) * 0.5f);
+        ImGui::text(text);
     }
 }
