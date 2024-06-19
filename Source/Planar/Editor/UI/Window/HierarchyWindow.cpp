@@ -31,7 +31,8 @@ namespace Planar::Editor::UI::Window
                 editor->get_current_scene();
 
             hierarchy_tree.set_label(current_scene->get_asset().
-                get_name());
+                get_name() + "##" + current_scene->get_asset().
+                get_guid());
             render_scene_node(current_scene->get_root());
         }
     }
@@ -43,8 +44,10 @@ namespace Planar::Editor::UI::Window
 
         if (!scene_node.is_root_node())
         {
-            hierarchy_tree.set_label(scene_node.get_game_object().
-                get_name());
+            Engine::Core::GameObject& current =
+                scene_node.get_game_object();
+            hierarchy_tree.set_label(current.get_name() +
+                "##" + current.get_guid());
         }
 
         hierarchy_tree.render([&]
