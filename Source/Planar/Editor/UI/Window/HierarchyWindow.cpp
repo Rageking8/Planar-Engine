@@ -1,6 +1,7 @@
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/Core/GameObject.hpp"
+
+#include <functional>
 
 namespace Planar::Editor::UI::Window
 {
@@ -41,8 +42,6 @@ namespace Planar::Editor::UI::Window
     void HierarchyWindow::render_scene_node(
         Engine::Scene::SceneNode& scene_node)
     {
-        using namespace Engine::UI;
-
         Engine::Core::GameObject* current_game_object = nullptr;
         bool has_game_object = !scene_node.is_root_node();
 
@@ -54,57 +53,73 @@ namespace Planar::Editor::UI::Window
         }
 
         hierarchy_tree.render(
-            [&]
-            {
-                if (!context_menu_active)
-                {
-                    context_menu.set_content([&]
-                        {
-                            if (ImGui::menu_item("Create GameObject"))
-                            {
-                                scene_node.add_child();
+            std::bind(&HierarchyWindow::render_context_menu, this,
+            scene_node),
 
-                                if (editor)
-                                {
-                                    editor->set_dirty();
-                                }
+            std::bind(&HierarchyWindow::handle_select, this,
+            current_game_object),
 
-                                return true;
-                            }
-
-                            return false;
-                        });
-
-                    if (context_menu.render())
-                    {
-                        context_menu_active = true;
-                    }
-                }
-            },
-
-            [&]
-            {
-                if (current_game_object && editor)
-                {
-                    editor->get_select_handler().select_game_object(
-                        *current_game_object);
-                }
-            },
-
-            [&]
-            {
-                for (auto& i : *scene_node.get_children())
-                {
-                    if (i.is_leaf_node())
-                    {
-                        hierarchy_tree.set_is_leaf(true);
-                    }
-
-                    render_scene_node(i);
-
-                    hierarchy_tree.set_is_leaf(false);
-                }
-            }
+            std::bind(&HierarchyWindow::render_scene_node_children,
+            this, scene_node)
         );
+    }
+
+    void HierarchyWindow::render_scene_node_children(
+        Engine::Scene::SceneNode& scene_node)
+    {
+        for (auto& i : *scene_node.get_children())
+        {
+            if (i.is_leaf_node())
+            {
+                hierarchy_tree.set_is_leaf(true);
+            }
+
+            render_scene_node(i);
+
+            hierarchy_tree.set_is_leaf(false);
+        }
+    }
+
+    void HierarchyWindow::render_context_menu(
+        Engine::Scene::SceneNode& scene_node)
+    {
+        using namespace Engine::UI;
+
+        if (context_menu_active)
+        {
+            return;
+        }
+
+        context_menu.set_content([&]
+            {
+                if (ImGui::menu_item("Create GameObject"))
+                {
+                    scene_node.add_child();
+
+                    if (editor)
+                    {
+                        editor->set_dirty();
+                    }
+
+                    return true;
+                }
+
+                return false;
+            });
+
+        if (context_menu.render())
+        {
+            context_menu_active = true;
+        }
+    }
+
+    void HierarchyWindow::handle_select(
+        Engine::Core::GameObject* current_game_object)
+    {
+        if (current_game_object && editor)
+        {
+            editor->get_select_handler().select_game_object(
+                *current_game_object);
+        }
     }
 }
