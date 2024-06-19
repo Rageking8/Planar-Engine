@@ -1,5 +1,7 @@
 #include "Planar/Engine/Scene/SceneNode.hpp"
 
+#include <unordered_set>
+
 namespace Planar::Engine::Scene
 {
     SceneNode::SceneNode() :
@@ -70,8 +72,29 @@ namespace Planar::Engine::Scene
         return children;
     }
 
-    void SceneNode::add_child(const std::string& name)
+    void SceneNode::add_child(std::string name)
     {
+        if (name.empty())
+        {
+            name = "GameObject";
+
+            std::unordered_set<std::string> name_set;
+            name_set.reserve(children->size());
+
+            for (const auto& i : *children)
+            {
+                name_set.insert(i.game_object->get_name());
+            }
+
+            unsigned postfix = 1;
+            while (name_set.contains(name + std::to_string(postfix)))
+            {
+                postfix++;
+            }
+
+            name += std::to_string(postfix);
+        }
+
         children->push_back({});
         SceneNode& scene_node = children->back();
         scene_node.game_object = { { name } };

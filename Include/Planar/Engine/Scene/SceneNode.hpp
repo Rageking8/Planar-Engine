@@ -28,7 +28,7 @@ namespace Planar::Engine::Scene
         Core::GameObject& get_game_object();
         std::shared_ptr<std::vector<SceneNode>> get_children();
 
-        void add_child(const std::string& name);
+        void add_child(std::string name = "");
 
     private:
         YAML::Node node;

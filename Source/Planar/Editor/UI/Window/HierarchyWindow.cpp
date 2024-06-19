@@ -58,8 +58,8 @@ namespace Planar::Editor::UI::Window
                         {
                             if (ImGui::menu_item("Create GameObject"))
                             {
-                                scene_node.add_child("GameObject");
-                                
+                                scene_node.add_child();
+
                                 if (editor)
                                 {
                                     editor->set_dirty();
