@@ -80,15 +80,7 @@ namespace Planar::Editor::Scene
 
         if (loading_mode)
         {
-            ImGui::Core::Cursor::set_y_bottom_viewport(
-                -progress_bar.get_height() - 40.f);
-            text_renderer.render_center_viewport(loading_text);
-
-            ImGui::Core::Cursor::set_x(0.f);
-            ImGui::Core::Cursor::set_y_bottom_viewport(
-                -progress_bar.get_height());
-            progress_bar.set_width(ImGui::get_window_size().width);
-            progress_bar.render();
+            progress_display.render();
         }
     }
 
@@ -140,19 +132,17 @@ namespace Planar::Editor::Scene
     void SelectProjectScene::enter_loading_mode(unsigned max)
     {
         loading_mode = true;
-        progress_bar.set_value(0);
-        progress_bar.set_max(max);
-        loading_text.clear();
+        progress_display.reset(max);
     }
 
     void SelectProjectScene::load_progress_callback(unsigned amount,
         const std::string& text)
     {
-        progress_bar.increment(amount);
+        progress_display.increment(amount);
 
         if (amount == 0)
         {
-            loading_text = text;
+            progress_display.set_text(text);
         }
 
         if (editor)

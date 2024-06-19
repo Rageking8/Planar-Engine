@@ -5,8 +5,7 @@
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
-#include "Planar/Engine/UI/ImGui/Element/ProgressBar.hpp"
-#include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
+#include "Planar/Editor/UI/Element/ProgressDisplay.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -25,15 +24,12 @@ namespace Planar::Editor::Scene
         Engine::UI::ImGui::Element::InputField project_description_input;
         Engine::UI::ImGui::Element::Checkbox project_gitignore_checkbox;
         Engine::UI::ImGui::Element::Button create_project_button;
-        Engine::UI::ImGui::Element::ProgressBar progress_bar;
-
-        Engine::UI::ImGui::Renderer::TextRenderer text_renderer;
+        UI::Element::ProgressDisplay progress_display;
 
         bool pending_open_project;
         bool pending_create_project;
 
         bool loading_mode;
-        std::string loading_text;
 
         Engine::UI::ImGui::Window::Window main_window;
 
