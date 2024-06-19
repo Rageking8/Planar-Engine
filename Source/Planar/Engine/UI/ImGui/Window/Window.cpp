@@ -1,5 +1,6 @@
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
+#include "Planar/Engine/UI/ImGui/Style/StyleColor.hpp"
 
 namespace Planar::Engine::UI::ImGui::Window
 {
@@ -8,17 +9,20 @@ namespace Planar::Engine::UI::ImGui::Window
         std::optional<Math::Size2Df> min_size,
         std::optional<Math::Size2Df> padding)
     {
-        Style::StyleVar style;
+        Style::StyleVar style_var;
+        Style::StyleColor style_color;
 
         if (min_size)
         {
-            style.set_min_window_size(*min_size);
+            style_var.set_min_window_size(*min_size);
         }
 
         if (padding)
         {
-            style.set_window_padding(*padding);
+            style_var.set_window_padding(*padding);
         }
+
+        style_color.set_resize_grip_all_color({});
 
         ::ImGui::Begin(name, open, begin_flags);
     }
