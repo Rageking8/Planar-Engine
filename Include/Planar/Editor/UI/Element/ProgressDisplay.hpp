@@ -23,6 +23,7 @@ namespace Planar::Editor::UI::Element
 
         virtual void render() override;
 
+        void set(unsigned delta, const std::string& text);
         void set_layout_mode(LayoutMode new_layout_mode);
         void set_text(const std::string& new_text);
         void set_y_offset(float new_y_offset);

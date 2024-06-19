@@ -51,6 +51,16 @@ namespace Planar::Editor::UI::Element
         }
     }
 
+    void ProgressDisplay::set(unsigned delta, const std::string& text)
+    {
+        increment(delta);
+
+        if (delta == 0)
+        {
+            set_text(text);
+        }
+    }
+
     void ProgressDisplay::set_layout_mode(
         LayoutMode new_layout_mode)
     {

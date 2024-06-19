@@ -138,12 +138,7 @@ namespace Planar::Editor::Scene
     void SelectProjectScene::load_progress_callback(unsigned amount,
         const std::string& text)
     {
-        progress_display.increment(amount);
-
-        if (amount == 0)
-        {
-            progress_display.set_text(text);
-        }
+        progress_display.set(amount, text);
 
         if (editor)
         {
