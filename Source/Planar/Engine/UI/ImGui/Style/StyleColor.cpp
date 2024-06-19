@@ -9,8 +9,7 @@ namespace Planar::Engine::UI::ImGui::Style
         pop();
     }
 
-    void StyleColor::set_frame_bg_color(
-        Graphics::Color color)
+    void StyleColor::set_frame_bg_color(Graphics::Color color)
     {
         push_style_color(ImGuiCol_FrameBg, color);
     }
@@ -37,6 +36,31 @@ namespace Planar::Engine::UI::ImGui::Style
         Graphics::Color color)
     {
         push_style_color(ImGuiCol_ButtonActive, color);
+    }
+
+    void StyleColor::set_resize_grip_color(Graphics::Color color)
+    {
+        push_style_color(ImGuiCol_ResizeGrip, color);
+    }
+
+    void StyleColor::set_resize_grip_hover_color(
+        Graphics::Color color)
+    {
+        push_style_color(ImGuiCol_ResizeGripHovered, color);
+    }
+
+    void StyleColor::set_resize_grip_active_color(
+        Graphics::Color color)
+    {
+        push_style_color(ImGuiCol_ResizeGripActive, color);
+    }
+
+    void StyleColor::set_resize_grip_all_color(
+        Graphics::Color color)
+    {
+        set_resize_grip_color(color);
+        set_resize_grip_hover_color(color);
+        set_resize_grip_active_color(color);
     }
 
     void StyleColor::pop()

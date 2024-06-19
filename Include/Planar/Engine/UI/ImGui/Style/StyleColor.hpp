@@ -13,11 +13,17 @@ namespace Planar::Engine::UI::ImGui::Style
 
         void set_frame_bg_color(Graphics::Color color);
         void set_plot_histogram_color(Graphics::Color color);
+
         void set_button_background_color(Graphics::Color color);
         void set_button_hover_background_color(
             Graphics::Color color);
         void set_button_active_background_color(
             Graphics::Color color);
+
+        void set_resize_grip_color(Graphics::Color color);
+        void set_resize_grip_hover_color(Graphics::Color color);
+        void set_resize_grip_active_color(Graphics::Color color);
+        void set_resize_grip_all_color(Graphics::Color color);
 
         virtual void pop() override;
 
