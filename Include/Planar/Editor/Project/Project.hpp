@@ -41,10 +41,10 @@ namespace Planar::Editor::Project
             bool create_gitignore,
             const Core::Progress::ProgressHandler& progress_handler = {});
 
-        void create_engine_files(
-            const Core::Progress::ProgressHandler& progress_handler);
-        void create_script_files(
-            const Core::Progress::ProgressHandler& progress_handler);
+        void create_engine_files(const Core::Progress::ProgressHandler&
+            progress_handler) const;
+        void create_script_files(const Core::Progress::ProgressHandler&
+            progress_handler) const;
 
         void dry_run_helper(const std::function<void()> run,
             bool dry_run, unsigned& tasks, unsigned amount = 1);

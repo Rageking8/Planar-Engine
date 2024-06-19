@@ -206,7 +206,7 @@ namespace Planar::Editor::Project
     }
 
     void Project::create_engine_files(
-        const Core::Progress::ProgressHandler& progress_handler)
+        const Core::Progress::ProgressHandler& progress_handler) const
     {
         progress_handler("Creating engine folder");
         std::filesystem::path engine_path = root_path / "Engine";
@@ -237,7 +237,7 @@ namespace Planar::Editor::Project
     }
 
     void Project::create_script_files(
-        const Core::Progress::ProgressHandler& progress_handler)
+        const Core::Progress::ProgressHandler& progress_handler) const
     {
         progress_handler("Creating scripts folder");
         std::filesystem::path scripts_path = root_path / "Scripts";
