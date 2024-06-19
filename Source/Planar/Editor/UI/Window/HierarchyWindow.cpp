@@ -1,5 +1,6 @@
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/Core/GameObject.hpp"
 
 namespace Planar::Editor::UI::Window
 {
@@ -42,15 +43,18 @@ namespace Planar::Editor::UI::Window
     {
         using namespace Engine::UI;
 
-        if (!scene_node.is_root_node())
+        Engine::Core::GameObject* current_game_object = nullptr;
+        bool has_game_object = !scene_node.is_root_node();
+
+        if (has_game_object)
         {
-            Engine::Core::GameObject& current =
-                scene_node.get_game_object();
-            hierarchy_tree.set_label(current.get_name() +
-                "##" + current.get_guid());
+            current_game_object = &scene_node.get_game_object();
+            hierarchy_tree.set_label(current_game_object->get_name() +
+                "##" + current_game_object->get_guid());
         }
 
-        hierarchy_tree.render([&]
+        hierarchy_tree.render(
+            [&]
             {
                 if (!context_menu_active)
                 {
@@ -76,7 +80,18 @@ namespace Planar::Editor::UI::Window
                         context_menu_active = true;
                     }
                 }
-            }, [&]
+            },
+
+            [&]
+            {
+                if (current_game_object && editor)
+                {
+                    editor->get_select_handler().select_game_object(
+                        *current_game_object);
+                }
+            },
+
+            [&]
             {
                 for (auto& i : *scene_node.get_children())
                 {
@@ -89,6 +104,7 @@ namespace Planar::Editor::UI::Window
 
                     hierarchy_tree.set_is_leaf(false);
                 }
-            });
+            }
+        );
     }
 }

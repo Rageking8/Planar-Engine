@@ -18,6 +18,9 @@ namespace Planar::Editor::UI::Window
             editor->get_select_handler().set_content_callback(
                 std::bind(&InspectorWindow::select_content, this,
                 std::placeholders::_1));
+            editor->get_select_handler().set_game_object_callback(
+                std::bind(&InspectorWindow::select_game_object, this,
+                std::placeholders::_1));
         }
     }
 
@@ -38,5 +41,11 @@ namespace Planar::Editor::UI::Window
     void InspectorWindow::select_content(const std::string& name)
     {
         name_input.set_text(name);
+    }
+
+    void InspectorWindow::select_game_object(
+        const Engine::Core::GameObject& game_object)
+    {
+        name_input.set_text(game_object.get_name());
     }
 }

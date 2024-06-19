@@ -16,10 +16,11 @@ namespace Planar::Engine::UI::ImGui::Element
 
     void Tree::render()
     {
-        render({}, {});
+        render({}, {}, {});
     }
 
-    void Tree::render(const std::function<void()>& callback,
+    void Tree::render(const std::function<void()>& post_callback,
+        const std::function<void()>& click_callback,
         const std::function<void()>& content)
     {
         ImGuiTreeNodeFlags tree_flags =
@@ -41,9 +42,14 @@ namespace Planar::Engine::UI::ImGui::Element
 
         bool tree_open = ::ImGui::TreeNodeEx(label.c_str(), tree_flags);
 
-        if (callback)
+        if (click_callback && ::ImGui::IsItemClicked())
         {
-            callback();
+            click_callback();
+        }
+
+        if (post_callback)
+        {
+            post_callback();
         }
 
         if (is_leaf)

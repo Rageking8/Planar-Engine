@@ -17,7 +17,8 @@ namespace Planar::Engine::UI::ImGui::Element
             float indent_size = 24.f, float vertical_spacing = 10.f);
 
         virtual void render() override;
-        void render(const std::function<void()>& callback,
+        void render(const std::function<void()>& post_callback,
+            const std::function<void()>& click_callback,
             const std::function<void()>& content);
 
         std::string get_label() const;
