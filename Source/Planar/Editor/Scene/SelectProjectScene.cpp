@@ -3,8 +3,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
-
-#include <functional>
+#include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::Scene
 {
@@ -128,11 +127,9 @@ namespace Planar::Editor::Scene
         enter_loading_mode(project.create_project_tasks(
             project_name, project_description, create_gitignore));
 
-        if (project.create_project(project_name,
-            project_description, create_gitignore,
-            { std::bind(&SelectProjectScene::load_progress_callback, this,
-            std::placeholders::_1, std::placeholders::_2) }) &&
-            editor)
+        if (project.create_project(project_name, project_description,
+            create_gitignore, { PLANAR_BIND_MEMBER_FUNCTION_ARG2(
+            load_progress_callback) }) && editor)
         {
             editor->enter_editor();
         }
@@ -161,7 +158,7 @@ namespace Planar::Editor::Scene
         if (editor)
         {
             editor->render_single_frame(
-                std::bind(&SelectProjectScene::render, this));
+                PLANAR_BIND_MEMBER_FUNCTION(render));
         }
     }
 }

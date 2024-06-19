@@ -1,6 +1,5 @@
 #include "Planar/Editor/UI/Window/InspectorWindow.hpp"
-
-#include <functional>
+#include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::UI::Window
 {
@@ -16,11 +15,9 @@ namespace Planar::Editor::UI::Window
         if (editor)
         {
             editor->get_select_handler().set_content_callback(
-                std::bind(&InspectorWindow::select_content, this,
-                std::placeholders::_1));
-            editor->get_select_handler().set_game_object_callback(
-                std::bind(&InspectorWindow::select_game_object, this,
-                std::placeholders::_1));
+                PLANAR_BIND_MEMBER_FUNCTION_ARG1(select_content));
+            editor->get_select_handler().set_content_callback(
+                PLANAR_BIND_MEMBER_FUNCTION_ARG1(select_game_object));
         }
     }
 
