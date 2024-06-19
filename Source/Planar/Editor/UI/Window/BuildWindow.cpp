@@ -7,8 +7,6 @@
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
-#include <string>
-
 namespace Planar::Editor::UI::Window
 {
     BuildWindow::BuildWindow() : EditorWindow("Build", false),
@@ -20,11 +18,14 @@ namespace Planar::Editor::UI::Window
         compression_level_slider(7, 1, 9, "Compression Level:",
         200.f),
         build_button("Build"),
+        progress_display(Element::ProgressDisplay::LayoutMode::WINDOW),
         pending_browse{},
-        pending_build{}
+        pending_build{},
+        build_mode{}
     {
         set_size({ { 1280.f, 720.f } });
         set_min_size({ { 500.f, 400.f } });
+        set_padding({ { 24.f, 0.f } });
         set_flags(Engine::UI::ImGui::Window::WindowFlags::
             VIEWPORT_CENTER);
     }
@@ -62,10 +63,12 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
+        ImGui::Core::Cursor::set_y(60.f);
+
         build_directory_input.render();
         ImGui::same_line();
         browse_button.render();
-        if (browse_button.is_clicked())
+        if (!build_mode && browse_button.is_clicked())
         {
             pending_browse = true;
         }
@@ -87,12 +90,20 @@ namespace Planar::Editor::UI::Window
 
         ImGui::separator(separator_extra_height);
 
-        ImGui::Core::Cursor::set_y_bottom_window(
-            -separator_extra_height);
-        build_button.render();
-        if (build_button.is_clicked())
+        if (!build_mode)
         {
-            pending_build = true;
+            ImGui::Core::Cursor::set_y_bottom_window(
+                -separator_extra_height);
+            build_button.render();
+            if (build_button.is_clicked())
+            {
+                pending_build = true;
+            }
+        }
+        else
+        {
+            progress_display.set_y_offset(48.f);
+            progress_display.render();
         }
     }
 
@@ -121,11 +132,39 @@ namespace Planar::Editor::UI::Window
 
         if (editor)
         {
+            enter_build_mode(1);
+            progress_display.increment();
+            build_progress_callback(0, "Building project...");
+
             Build::build(editor->get_project(),
                 build_directory_input.get_text(),
                 show_console_window_checkbox.get_value(),
                 use_compression_checkbox.get_value() ?
                 compression_level_slider.get_value() : 0);
+
+            build_mode = false;
+        }
+    }
+
+    void BuildWindow::enter_build_mode(unsigned max)
+    {
+        build_mode = true;
+        progress_display.reset(max);
+    }
+
+    void BuildWindow::build_progress_callback(unsigned amount,
+        const std::string& text)
+    {
+        progress_display.increment(amount);
+
+        if (amount == 0)
+        {
+            progress_display.set_text(text);
+        }
+
+        if (editor)
+        {
+            editor->render_main_scene_single_frame();
         }
     }
 }
