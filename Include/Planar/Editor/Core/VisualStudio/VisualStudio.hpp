@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Editor/Script/CSProject.hpp"
-#include "Planar/Editor/Core/Progress/Progress.hpp"
+#include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
 
 #include <filesystem>
 

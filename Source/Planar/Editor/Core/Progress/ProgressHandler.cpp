@@ -1,4 +1,4 @@
-#include "Planar/Editor/Core/Progress/Progress.hpp"
+#include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
 namespace Planar::Editor::Core::Progress
