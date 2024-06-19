@@ -24,6 +24,8 @@ namespace Planar::Engine::UI::ImGui::Element
     {
         ImGuiTreeNodeFlags tree_flags =
             ImGuiTreeNodeFlags_SpanFullWidth |
+            ImGuiTreeNodeFlags_OpenOnArrow |
+            ImGuiTreeNodeFlags_OpenOnDoubleClick |
             ImGuiTreeNodeFlags_FramePadding;
 
         if (is_leaf)
