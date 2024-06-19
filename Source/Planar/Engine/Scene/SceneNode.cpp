@@ -44,7 +44,8 @@ namespace Planar::Engine::Scene
 
             node_stack_ptr->top()->emplace_back();
             SceneNode& scene_node = node_stack_ptr->top()->back();
-            scene_node.game_object.emplace(i["Name"].Scalar(), i["GUID"].Scalar());
+            scene_node.game_object.emplace(i["Name"].Scalar(),
+                i["GUID"].Scalar());
             scene_node.load(i, node_stack_ptr);
         }
 
