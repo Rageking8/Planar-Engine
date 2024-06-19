@@ -28,6 +28,7 @@ namespace Planar::Engine::Core
         virtual void run();
 
         void render_single_frame(const std::function<void()>& render);
+        void render_main_scene_single_frame();
 
         void load_scene(std::unique_ptr<Scene::Scene> scene);
 

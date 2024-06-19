@@ -147,7 +147,7 @@ namespace Planar::Editor::Scene
 
         if (editor)
         {
-            editor->render_single_frame(PLANAR_CAPTURE_THIS(render));
+            editor->render_main_scene_single_frame();
         }
     }
 }

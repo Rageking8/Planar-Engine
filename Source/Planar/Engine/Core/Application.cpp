@@ -1,6 +1,7 @@
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Engine/Core/Version.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
+#include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
@@ -80,6 +81,11 @@ namespace Planar::Engine::Core
         imgui_context.render();
 
         glfw_context.main_window_swap_buffers();
+    }
+
+    void Application::render_main_scene_single_frame()
+    {
+        render_single_frame(PLANAR_CAPTURE_THIS(main_scene->render));
     }
 
     void Application::load_scene(std::unique_ptr<Scene::Scene> scene)
