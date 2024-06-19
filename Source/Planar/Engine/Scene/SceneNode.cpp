@@ -42,7 +42,8 @@ namespace Planar::Engine::Scene
 
             node_stack_ptr->top()->push_back({});
             SceneNode& scene_node = node_stack_ptr->top()->back();
-            scene_node.game_object = { { i["Name"].Scalar() } };
+            scene_node.game_object =
+                { { i["Name"].Scalar(), i["GUID"].Scalar() } };
             scene_node.load(i, node_stack_ptr);
         }
 
@@ -71,15 +72,17 @@ namespace Planar::Engine::Scene
 
     void SceneNode::add_child(const std::string& name)
     {
+        children->push_back({});
+        SceneNode& scene_node = children->back();
+        scene_node.game_object = { { name } };
+        Core::GameObject& object = *scene_node.game_object;
+
         YAML::Node new_game_object;
-        new_game_object["Name"] = name;
+        new_game_object["Name"] = object.get_name();
+        new_game_object["GUID"] = object.get_guid();
         new_game_object["Children"] = YAML::Node(YAML::NodeType::Null);
 
         (is_root_node() ? node : node["Children"]).
             push_back(new_game_object);
-
-        children->push_back({});
-        SceneNode& scene_node = children->back();
-        scene_node.game_object = { { name } };
     }
 }
