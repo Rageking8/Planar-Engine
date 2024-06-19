@@ -28,16 +28,16 @@ namespace Planar::Editor::Scene
         if (editor)
         {
             hierarchy_window.set_editor(editor);
+            inspector_window.set_editor(editor);
             content_window.set_editor(editor);
             build_window.set_editor(editor);
         }
 
+        inspector_window.init();
+
         content_window.set_file_texture(file_texture);
         content_window.set_folder_texture(folder_texture);
         content_window.set_left_arrow_texture(left_arrow_texture);
-        content_window.set_select_callback(std::bind(
-            &UI::Window::InspectorWindow::select_callback,
-            &inspector_window, std::placeholders::_1));
         content_window.init();
 
         game_window.init();

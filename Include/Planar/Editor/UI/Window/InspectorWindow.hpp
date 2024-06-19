@@ -12,11 +12,13 @@ namespace Planar::Editor::UI::Window
     public:
         InspectorWindow();
 
-        virtual void render_window() override;
+        void init();
 
-        void select_callback(const std::string& name);
+        virtual void render_window() override;
 
     private:
         Engine::UI::ImGui::Element::InputField name_input;
+
+        void select_content(const std::string& name);
     };
 }

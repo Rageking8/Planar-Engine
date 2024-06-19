@@ -136,13 +136,6 @@ namespace Planar::Editor::UI::Window
         left_arrow_texture = &new_left_arrow_texture;
     }
 
-    void ContentWindow::set_select_callback(
-        const std::function<void(const std::string&)>&
-        new_select_callback)
-    {
-        select_callback = new_select_callback;
-    }
-
     void ContentWindow::render_menu_bar()
     {
         using namespace Engine::UI;
@@ -165,9 +158,9 @@ namespace Planar::Editor::UI::Window
 
     void ContentWindow::content_single_click(const std::string& name)
     {
-        if (select_callback)
+        if (editor)
         {
-            select_callback(name);
+            editor->get_select_handler().select_content(name);
         }
     }
 

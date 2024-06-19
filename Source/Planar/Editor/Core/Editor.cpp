@@ -99,4 +99,9 @@ namespace Planar::Editor::Core
 
         set_window_asterisk(save_handler.get_dirty());
     }
+
+    Select::SelectHandler& Editor::get_select_handler()
+    {
+        return select_handler;
+    }
 }

@@ -7,7 +7,6 @@
 
 #include <string>
 #include <filesystem>
-#include <functional>
 
 namespace Planar::Editor::UI::Window
 {
@@ -30,10 +29,6 @@ namespace Planar::Editor::UI::Window
             Engine::Graphics::OpenGL::Texture::Texture2D&
             new_left_arrow_texture);
 
-        void set_select_callback(
-            const std::function<void(const std::string&)>&
-            new_select_callback);
-
     private:
         std::filesystem::path current_path;
 
@@ -44,8 +39,6 @@ namespace Planar::Editor::UI::Window
         Engine::UI::ImGui::Renderer::TextRenderer text_renderer;
 
         Engine::UI::ImGui::Element::Button back_button;
-
-        std::function<void(const std::string&)> select_callback;
 
         void render_menu_bar();
 

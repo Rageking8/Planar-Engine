@@ -4,6 +4,7 @@
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Editor/Core/Save/SaveHandler.hpp"
+#include "Planar/Editor/Core/Select/SelectHandler.hpp"
 
 #include <string>
 #include <memory>
@@ -36,9 +37,12 @@ namespace Planar::Editor::Core
         void set_dirty();
         void save_all();
 
+        Select::SelectHandler& get_select_handler();
+
     private:
         Project::Project project;
         std::unique_ptr<Engine::Scene::Scene> current_scene;
         Save::SaveHandler save_handler;
+        Select::SelectHandler select_handler;
     };
 }
