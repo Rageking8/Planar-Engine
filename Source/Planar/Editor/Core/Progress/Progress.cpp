@@ -2,7 +2,7 @@
 
 namespace Planar::Editor::Core::Progress
 {
-    void dry_run_helper(const std::function<void()>& run,
+    void task(const std::function<void()>& run,
         bool dry_run, unsigned& tasks, unsigned amount)
     {
         if (!dry_run)
@@ -13,5 +13,18 @@ namespace Planar::Editor::Core::Progress
         {
             tasks += amount;
         }
+    }
+
+    void task(const std::string& text,
+        const std::function<void()>& run,
+        const ProgressHandler& progress_handler,
+        bool dry_run, unsigned& tasks, unsigned amount)
+    {
+        task([&]
+            {
+                progress_handler(text);
+                run();
+                progress_handler();
+            }, dry_run, tasks, amount);
     }
 }

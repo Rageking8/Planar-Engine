@@ -137,70 +137,60 @@ namespace Planar::Editor::Project
         root_path = directory;
         this->project_name = project_name;
 
-        Core::Progress::dry_run_helper([&]
+        Core::Progress::task([&]
             {
                 Script::Init::verify_dotnet_sdk(root_path / "Cache",
                     progress_handler);
             }, dry_run, tasks, 2);
 
-        Core::Progress::dry_run_helper([&]
+        Core::Progress::task("Creating main scene asset", [&]
             {
-                progress_handler("Creating main scene asset");
                 scene_asset.create(Asset::Editor::Project::Scene,
                     root_path / "Scenes", "MainScene");
-                progress_handler();
-            }, dry_run, tasks);
+            }, progress_handler, dry_run, tasks);
 
-        Core::Progress::dry_run_helper([&]
+        Core::Progress::task("Creating project asset", [&]
             {
-                progress_handler("Creating project asset");
                 project_asset.create(root_path, project_name,
                     project_description, scene_asset.get_guid());
-                progress_handler();
-            }, dry_run, tasks);
+            }, progress_handler, dry_run, tasks);
 
-        Core::Progress::dry_run_helper([&]
+        Core::Progress::task("Creating C# project", [&]
             {
-                progress_handler("Creating C# project");
                 cs_project.create(project_name, root_path);
-                progress_handler();
-            }, dry_run, tasks);
+            }, progress_handler, dry_run, tasks);
 
-        Core::Progress::dry_run_helper([&]
+        Core::Progress::task([&]
             {
                 Core::VisualStudio::create_solution_file(
                     root_path, root_path / "Cache" / "DotnetSDK" /
                     "dotnet.exe", cs_project, progress_handler);
             }, dry_run, tasks, 2);
 
-        Core::Progress::dry_run_helper([&]
+        Core::Progress::task("Creating build folder", [&]
             {
-                progress_handler("Creating build folder");
-                std::filesystem::create_directories(root_path / "Build");
-                progress_handler();
-            }, dry_run, tasks);
+                std::filesystem::create_directories(root_path /
+                    "Build");
+            }, progress_handler, dry_run, tasks);
 
-        Core::Progress::dry_run_helper([&]
+        Core::Progress::task([&]
             {
                 create_engine_files(progress_handler);
             }, dry_run, tasks, 4);
 
-        Core::Progress::dry_run_helper([&]
+        Core::Progress::task([&]
             {
                 create_script_files(progress_handler);
             }, dry_run, tasks);
 
-        if (create_gitignore && !dry_run)
+        if (create_gitignore)
         {
-            progress_handler("Writing .gitignore file");
-            Engine::Core::FileSystem::create_file(
-                root_path / ".gitignore",
-                Planar::Asset::Editor::Project::Ignore);
-            progress_handler();
-        }
-        else if (create_gitignore && dry_run)
-        {
-            tasks += 1;
+            Core::Progress::task("Writing .gitignore file", [&]
+                {
+                    Engine::Core::FileSystem::create_file(
+                        root_path / ".gitignore",
+                        Planar::Asset::Editor::Project::Ignore);
+                }, progress_handler, dry_run, tasks);
         }
 
         return true;
