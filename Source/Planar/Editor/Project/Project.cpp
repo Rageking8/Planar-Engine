@@ -1,9 +1,10 @@
 #include "Planar/Editor/Project/Project.hpp"
 #include "Asset/Editor/PlanarEngine.h"
 #include "Planar/Editor/Script/Init/Init.hpp"
+#include "Planar/Editor/Core/Progress/Progress.hpp"
+#include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
-#include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 
@@ -136,13 +137,13 @@ namespace Planar::Editor::Project
         root_path = directory;
         this->project_name = project_name;
 
-        dry_run_helper([&]
+        Core::Progress::dry_run_helper([&]
             {
                 Script::Init::verify_dotnet_sdk(root_path / "Cache",
                     progress_handler);
             }, dry_run, tasks, 2);
 
-        dry_run_helper([&]
+        Core::Progress::dry_run_helper([&]
             {
                 progress_handler("Creating main scene asset");
                 scene_asset.create(Asset::Editor::Project::Scene,
@@ -150,7 +151,7 @@ namespace Planar::Editor::Project
                 progress_handler();
             }, dry_run, tasks);
 
-        dry_run_helper([&]
+        Core::Progress::dry_run_helper([&]
             {
                 progress_handler("Creating project asset");
                 project_asset.create(root_path, project_name,
@@ -158,33 +159,33 @@ namespace Planar::Editor::Project
                 progress_handler();
             }, dry_run, tasks);
 
-        dry_run_helper([&]
+        Core::Progress::dry_run_helper([&]
             {
                 progress_handler("Creating C# project");
                 cs_project.create(project_name, root_path);
                 progress_handler();
             }, dry_run, tasks);
 
-        dry_run_helper([&]
+        Core::Progress::dry_run_helper([&]
             {
                 Core::VisualStudio::create_solution_file(
                     root_path, root_path / "Cache" / "DotnetSDK" /
                     "dotnet.exe", cs_project, progress_handler);
             }, dry_run, tasks, 2);
 
-        dry_run_helper([&]
+        Core::Progress::dry_run_helper([&]
             {
                 progress_handler("Creating build folder");
                 std::filesystem::create_directories(root_path / "Build");
                 progress_handler();
             }, dry_run, tasks);
 
-        dry_run_helper([&]
+        Core::Progress::dry_run_helper([&]
             {
                 create_engine_files(progress_handler);
             }, dry_run, tasks, 4);
 
-        dry_run_helper([&]
+        Core::Progress::dry_run_helper([&]
             {
                 create_script_files(progress_handler);
             }, dry_run, tasks);
@@ -243,18 +244,5 @@ namespace Planar::Editor::Project
         std::filesystem::path scripts_path = root_path / "Scripts";
         std::filesystem::create_directories(scripts_path);
         progress_handler();
-    }
-
-    void Project::dry_run_helper(const std::function<void()> run,
-        bool dry_run, unsigned& tasks, unsigned amount)
-    {
-        if (!dry_run)
-        {
-            run();
-        }
-        else
-        {
-            tasks += amount;
-        }
     }
 }
