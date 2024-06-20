@@ -6,6 +6,9 @@
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
+#include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
+
+#include <filesystem>
 
 namespace Planar::Editor::UI::Window
 {
@@ -130,20 +133,29 @@ namespace Planar::Editor::UI::Window
     {
         pending_build = false;
 
-        if (editor)
+        if (!editor)
         {
-            enter_build_mode(1);
-            progress_display.increment();
-            build_progress_callback(0, "Building project...");
-
-            Build::build(editor->get_project(),
-                build_directory_input.get_text(),
-                show_console_window_checkbox.get_value(),
-                use_compression_checkbox.get_value() ?
-                compression_level_slider.get_value() : 0);
-
-            build_mode = false;
+            return;
         }
+
+        Project::Project& project = editor->get_project();
+        const std::filesystem::path& build_path =
+            build_directory_input.get_text();
+        const bool show_console_window =
+            show_console_window_checkbox.get_value();
+        const bool use_compression = use_compression_checkbox.
+            get_value();
+        const unsigned compression_level = use_compression ?
+            compression_level_slider.get_value() : 0;
+
+        enter_build_mode(Build::build_dry_run(project, build_path,
+            show_console_window, compression_level));
+
+        Build::build(project, build_path, show_console_window,
+            compression_level, { PLANAR_CAPTURE_THIS_ARG2(
+            build_progress_callback) });
+
+        build_mode = false;
     }
 
     void BuildWindow::enter_build_mode(unsigned max)
