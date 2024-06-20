@@ -23,7 +23,7 @@ namespace Planar::Editor::UI::Window
         pending_build{},
         build_mode{}
     {
-        set_size({ { 1280.f, 720.f } });
+        set_size({ { 1440.f, 810.f } });
         set_min_size({ { 500.f, 400.f } });
         set_padding({ { 24.f, 0.f } });
         set_flags(Engine::UI::ImGui::Window::WindowFlags::
