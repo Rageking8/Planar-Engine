@@ -120,7 +120,7 @@ namespace Planar::Editor::Scene
             project_name, project_description, create_gitignore));
 
         if (project.create_project(project_name, project_description,
-            create_gitignore, { PLANAR_CAPTURE_THIS_ARG2(
+            create_gitignore, { PLANAR_CAPTURE_THIS_PARAM2(
             load_progress_callback) }) && editor)
         {
             editor->enter_editor();

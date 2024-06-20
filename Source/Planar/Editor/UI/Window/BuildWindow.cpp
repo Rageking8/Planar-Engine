@@ -152,7 +152,7 @@ namespace Planar::Editor::UI::Window
             show_console_window, compression_level));
 
         Build::build(project, build_path, show_console_window,
-            compression_level, { PLANAR_CAPTURE_THIS_ARG2(
+            compression_level, { PLANAR_CAPTURE_THIS_PARAM2(
             build_progress_callback) });
 
         build_mode = false;
