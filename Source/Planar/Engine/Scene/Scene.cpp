@@ -7,6 +7,13 @@ namespace Planar::Engine::Scene
 
     }
 
+    Scene::Scene(const std::string& scene_asset,
+        const std::string& scene_name,
+        const std::filesystem::path& asset_path)
+    {
+        load(scene_asset, scene_name, asset_path);
+    }
+
     Scene::~Scene()
     {
 

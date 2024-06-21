@@ -13,6 +13,9 @@ namespace Planar::Engine::Scene
     {
     public:
         Scene();
+        Scene(const std::string& scene_asset,
+            const std::string& scene_name,
+            const std::filesystem::path& asset_path = {});
         virtual ~Scene();
 
         void load(const std::string& scene_asset,
