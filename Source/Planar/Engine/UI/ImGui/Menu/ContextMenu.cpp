@@ -14,6 +14,7 @@ namespace Planar::Engine::UI::ImGui::Menu
     {
         using namespace Planar::Engine::Core::Utils::EnumClass;
 
+        window.set_padding({ { 20.f, 14.f } });
         window.set_flags(ImGui::Window::WindowFlags::MINIMAL |
             ImGui::Window::WindowFlags::ALWAYS_AUTO_RESIZE);
     }
@@ -62,5 +63,10 @@ namespace Planar::Engine::UI::ImGui::Menu
         const std::function<bool()>& new_content)
     {
         content = new_content;
+    }
+
+    void ContextMenu::add_separator()
+    {
+        separator(2.5f);
     }
 }
