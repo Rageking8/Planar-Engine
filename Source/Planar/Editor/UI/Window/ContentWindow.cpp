@@ -170,15 +170,9 @@ namespace Planar::Editor::UI::Window
         if (editor && std::filesystem::is_regular_file(path) &&
             path.extension() == ".planarscene")
         {
-            std::unique_ptr<Engine::Scene::Scene> scene =
-                std::make_unique<Engine::Scene::Scene>();
-            scene->load(Engine::Core::FileSystem::read_file(path),
+            editor->new_current_scene(
+                Engine::Core::FileSystem::read_file(path),
                 path.stem().string(), path);
-
-            editor->add_save_callback("current_scene",
-                std::bind(&Engine::Scene::Scene::save, scene.get()));
-
-            editor->change_scene(std::move(scene));
         }
     }
 }

@@ -2,6 +2,7 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Editor/UI/Init/Init.hpp"
+#include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::Core
 {
@@ -78,6 +79,17 @@ namespace Planar::Editor::Core
     std::unique_ptr<Engine::Scene::Scene>& Editor::get_current_scene()
     {
         return current_scene;
+    }
+
+    void Editor::new_current_scene(const std::string& scene_asset,
+        const std::string& scene_name,
+        const std::filesystem::path& asset_path)
+    {
+        current_scene = std::make_unique<Engine::Scene::Scene>(
+            scene_asset, scene_name, asset_path);
+
+        save_handler.add_save_callback("current_scene",
+            PLANAR_CAPTURE_REF(current_scene->save));
     }
 
     void Editor::close_current_scene()
