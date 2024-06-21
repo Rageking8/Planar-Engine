@@ -13,6 +13,7 @@ namespace Planar::Editor::Core::Save
 
         void add_save_callback(const std::string& name,
             const std::function<void()>& save_callback);
+        void remove_save_callback(const std::string& name);
 
         bool get_dirty() const;
         void set_dirty();

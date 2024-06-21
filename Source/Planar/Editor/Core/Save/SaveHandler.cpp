@@ -1,4 +1,5 @@
 #include "Planar/Editor/Core/Save/SaveHandler.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
 namespace Planar::Editor::Core::Save
 {
@@ -11,6 +12,14 @@ namespace Planar::Editor::Core::Save
         const std::function<void()>& save_callback)
     {
         save_callbacks[name] = save_callback;
+    }
+
+    void SaveHandler::remove_save_callback(const std::string& name)
+    {
+        auto result = save_callbacks.erase(name);
+
+        PLANAR_ASSERT(result,
+            "`name` does not exist in `save_callbacks`");
     }
 
     bool SaveHandler::get_dirty() const
