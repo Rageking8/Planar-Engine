@@ -4,7 +4,7 @@
 
 namespace Planar::Engine::Scene
 {
-    SceneNode::SceneNode() :
+    SceneNode::SceneNode() : parent{},
         children{ std::make_shared<std::vector<SceneNode>>() }
     {
 
@@ -44,6 +44,7 @@ namespace Planar::Engine::Scene
 
             node_stack_ptr->top()->emplace_back();
             SceneNode& scene_node = node_stack_ptr->top()->back();
+            scene_node.parent = this;
             scene_node.game_object.emplace(i["Name"].Scalar(),
                 i["GUID"].Scalar());
             scene_node.load(i, node_stack_ptr);
@@ -54,12 +55,17 @@ namespace Planar::Engine::Scene
 
     bool SceneNode::is_root_node() const
     {
-        return !game_object.has_value();
+        return !parent;
     }
 
     bool SceneNode::is_leaf_node() const
     {
         return children->empty();
+    }
+
+    SceneNode* SceneNode::get_parent() const
+    {
+        return parent;
     }
 
     Core::GameObject& SceneNode::get_game_object()
@@ -97,6 +103,7 @@ namespace Planar::Engine::Scene
 
         children->emplace_back();
         SceneNode& scene_node = children->back();
+        scene_node.parent = this;
         scene_node.game_object.emplace(name);
         Core::GameObject& object = *scene_node.game_object;
 

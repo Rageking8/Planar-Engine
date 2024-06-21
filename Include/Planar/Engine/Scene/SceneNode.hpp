@@ -25,6 +25,7 @@ namespace Planar::Engine::Scene
         bool is_root_node() const;
         bool is_leaf_node() const;
 
+        SceneNode* get_parent() const;
         Core::GameObject& get_game_object();
         std::shared_ptr<std::vector<SceneNode>> get_children();
 
@@ -32,6 +33,7 @@ namespace Planar::Engine::Scene
 
     private:
         YAML::Node node;
+        SceneNode* parent;
         std::optional<Core::GameObject> game_object;
         std::shared_ptr<std::vector<SceneNode>> children;
     };
