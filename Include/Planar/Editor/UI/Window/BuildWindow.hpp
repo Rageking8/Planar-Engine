@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
@@ -8,8 +7,11 @@
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
 #include "Planar/Engine/UI/ImGui/Element/IntSlider.hpp"
 #include "Planar/Editor/UI/Element/ProgressDisplay.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
+
+PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Planar/Editor/Scene/Scene.hpp"
-#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 #include "Planar/Editor/UI/Window/InspectorWindow.hpp"
 #include "Planar/Editor/UI/Window/SettingsWindow.hpp"
@@ -11,6 +10,9 @@
 #include "Planar/Editor/UI/Window/SceneWindow.hpp"
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
+
+PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
 
 namespace Planar::Editor::Scene
 {

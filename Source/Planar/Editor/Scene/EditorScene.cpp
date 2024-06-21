@@ -1,4 +1,5 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"

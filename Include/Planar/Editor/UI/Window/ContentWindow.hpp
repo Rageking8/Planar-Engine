@@ -1,13 +1,15 @@
 #pragma once
 
-#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 #include <filesystem>
+
+PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {

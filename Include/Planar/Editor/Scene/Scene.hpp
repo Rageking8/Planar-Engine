@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Planar/Engine/Scene/Scene.hpp"
-#include "Planar/Editor/Core/Editor.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
+
+PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
 
 namespace Planar::Editor::Scene
 {

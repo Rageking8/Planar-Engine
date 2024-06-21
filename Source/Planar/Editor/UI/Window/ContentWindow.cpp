@@ -1,4 +1,5 @@
 #include "Planar/Editor/UI/Window/ContentWindow.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleColor.hpp"
@@ -6,7 +7,6 @@
 #include "Planar/Engine/UI/ImGui/Menu/WindowMenuBar.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
-#include "Planar/Engine/Scene/Scene.hpp"
 
 #include <vector>
 #include <memory>

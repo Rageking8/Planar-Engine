@@ -1,4 +1,5 @@
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Editor/Build/Build.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
