@@ -1,4 +1,5 @@
 #include "Planar/Engine/Scene/SceneNode.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 
 #include <unordered_set>
 
@@ -110,10 +111,35 @@ namespace Planar::Engine::Scene
         YAML::Node new_game_object;
         new_game_object["Name"] = object.get_name();
         new_game_object["GUID"] = object.get_guid();
-        new_game_object["Children"] = YAML::Node(YAML::NodeType::Null);
+        new_game_object["Children"] = YAML::Node();
 
         (is_root_node() ? node : node["Children"]).
             push_back(new_game_object);
         scene_node.node = new_game_object;
+    }
+
+    void SceneNode::remove_child(const std::string& guid)
+    {
+        for (std::size_t i = 0; i < children->size(); ++i)
+        {
+            SceneNode& current = (*children)[i];
+
+            if (guid == current.game_object->get_guid())
+            {
+                YAML::Node target = is_root_node() ? node :
+                    node["Children"];
+                target.remove(i);
+                children->erase(children->begin() + i);
+
+                if (children->empty())
+                {
+                    target = YAML::Node();
+                }
+
+                return;
+            }
+        }
+
+        PLANAR_FATAL("No child with `guid` found");
     }
 }

@@ -116,6 +116,14 @@ namespace Planar::Editor::UI::Window
                 {
                     if (ImGui::menu_item("Remove"))
                     {
+                        scene_node.get_parent()->remove_child(
+                            scene_node.get_game_object().get_guid());
+
+                        if (editor)
+                        {
+                            editor->set_dirty();
+                        }
+
                         return true;
                     }
                 }

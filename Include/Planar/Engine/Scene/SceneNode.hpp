@@ -30,6 +30,7 @@ namespace Planar::Engine::Scene
         std::shared_ptr<std::vector<SceneNode>> get_children();
 
         void add_child(std::string name = "");
+        void remove_child(const std::string& guid);
 
     private:
         YAML::Node node;
