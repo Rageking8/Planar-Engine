@@ -88,11 +88,6 @@ namespace Planar::Editor::Scene
     {
         pending_open_project = false;
 
-        if (!editor)
-        {
-            return;
-        }
-
         if (editor->get_project().open_project())
         {
             editor->enter_editor();
@@ -109,11 +104,6 @@ namespace Planar::Editor::Scene
         const bool create_gitignore = project_gitignore_checkbox.
             get_value();
 
-        if (!editor)
-        {
-            return;
-        }
-
         Project::Project& project = editor->get_project();
 
         enter_loading_mode(project.create_project_tasks(
@@ -121,7 +111,7 @@ namespace Planar::Editor::Scene
 
         if (project.create_project(project_name, project_description,
             create_gitignore, { PLANAR_CAPTURE_THIS_PARAM2(
-            load_progress_callback) }) && editor)
+            load_progress_callback) }))
         {
             editor->enter_editor();
         }
@@ -140,9 +130,6 @@ namespace Planar::Editor::Scene
     {
         progress_display.set(amount, text);
 
-        if (editor)
-        {
-            editor->render_main_scene_single_frame();
-        }
+        editor->render_main_scene_single_frame();
     }
 }

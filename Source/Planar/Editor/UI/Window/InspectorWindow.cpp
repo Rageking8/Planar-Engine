@@ -12,13 +12,10 @@ namespace Planar::Editor::UI::Window
 
     void InspectorWindow::init()
     {
-        if (editor)
-        {
-            editor->get_select_handler().set_content_callback(
-                PLANAR_CAPTURE_THIS_PARAM1(select_content));
-            editor->get_select_handler().set_game_object_callback(
-                PLANAR_CAPTURE_THIS_PARAM1(select_game_object));
-        }
+        editor->get_select_handler().set_content_callback(
+            PLANAR_CAPTURE_THIS_PARAM1(select_content));
+        editor->get_select_handler().set_game_object_callback(
+            PLANAR_CAPTURE_THIS_PARAM1(select_game_object));
     }
 
     void InspectorWindow::render_window()

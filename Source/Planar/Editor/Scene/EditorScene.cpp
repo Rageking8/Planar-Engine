@@ -114,7 +114,7 @@ namespace Planar::Editor::Scene
                     
                     ImGui::separator();
 
-                    if (ImGui::menu_item("Save", "Ctrl + S") && editor)
+                    if (ImGui::menu_item("Save", "Ctrl + S"))
                     {
                         editor->save_all();
                     }

@@ -36,11 +36,8 @@ namespace Planar::Editor::UI::Window
 
     void BuildWindow::init()
     {
-        if (editor)
-        {
-            build_directory_input.set_text((editor->get_project().
-                get_root_path() / "Build").string());
-        }
+        build_directory_input.set_text((editor->get_project().
+            get_root_path() / "Build").string());
     }
 
     void BuildWindow::update()
@@ -134,11 +131,6 @@ namespace Planar::Editor::UI::Window
     {
         pending_build = false;
 
-        if (!editor)
-        {
-            return;
-        }
-
         Project::Project& project = editor->get_project();
         const std::filesystem::path& build_path =
             build_directory_input.get_text();
@@ -170,9 +162,6 @@ namespace Planar::Editor::UI::Window
     {
         progress_display.set(amount, text);
 
-        if (editor)
-        {
-            editor->render_main_scene_single_frame();
-        }
+        editor->render_main_scene_single_frame();
     }
 }

@@ -27,10 +27,7 @@ namespace Planar::Editor::UI::Window
 
     void ContentWindow::init()
     {
-        if (editor)
-        {
-            current_path = editor->get_project().get_root_path();
-        }
+        current_path = editor->get_project().get_root_path();
 
         back_button.set("Back", 15.f, left_arrow_texture->get_id());
     }
@@ -147,7 +144,7 @@ namespace Planar::Editor::UI::Window
             back_button.render();
             if (back_button.is_clicked())
             {
-                if (current_path.has_parent_path() && editor &&
+                if (current_path.has_parent_path() &&
                     !std::filesystem::equivalent(current_path,
                     editor->get_project().get_root_path()))
                 {
@@ -159,16 +156,13 @@ namespace Planar::Editor::UI::Window
 
     void ContentWindow::content_single_click(const std::string& name)
     {
-        if (editor)
-        {
-            editor->get_select_handler().select_content(name);
-        }
+        editor->get_select_handler().select_content(name);
     }
 
     void ContentWindow::content_double_click(
         const std::filesystem::path& path)
     {
-        if (editor && std::filesystem::is_regular_file(path) &&
+        if (std::filesystem::is_regular_file(path) &&
             path.extension() == ".planarscene")
         {
             editor->new_current_scene(

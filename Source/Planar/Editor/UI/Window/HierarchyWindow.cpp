@@ -26,7 +26,7 @@ namespace Planar::Editor::UI::Window
             context_menu_active = context_menu.render();
         }
 
-        if (editor && editor->get_current_scene())
+        if (editor->get_current_scene())
         {
             std::unique_ptr<Engine::Scene::Scene>& current_scene =
                 editor->get_current_scene();
@@ -90,10 +90,7 @@ namespace Planar::Editor::UI::Window
                 {
                     scene_node.add_child();
 
-                    if (editor)
-                    {
-                        editor->set_dirty();
-                    }
+                    editor->set_dirty();
 
                     return true;
                 }
@@ -104,10 +101,7 @@ namespace Planar::Editor::UI::Window
                 {
                     if (ImGui::menu_item("Close Scene"))
                     {
-                        if (editor)
-                        {
-                            editor->close_current_scene();
-                        }
+                        editor->close_current_scene();
 
                         return true;
                     }
@@ -119,10 +113,7 @@ namespace Planar::Editor::UI::Window
                         scene_node.get_parent()->remove_child(
                             scene_node.get_game_object().get_guid());
 
-                        if (editor)
-                        {
-                            editor->set_dirty();
-                        }
+                        editor->set_dirty();
 
                         return true;
                     }
@@ -140,7 +131,7 @@ namespace Planar::Editor::UI::Window
     void HierarchyWindow::handle_select(
         Engine::Core::GameObject* current_game_object)
     {
-        if (current_game_object && editor)
+        if (current_game_object)
         {
             editor->get_select_handler().select_game_object(
                 *current_game_object);
