@@ -80,6 +80,12 @@ namespace Planar::Editor::Core
         return current_scene;
     }
 
+    void Editor::close_current_scene()
+    {
+        save_handler.remove_save_callback("current_scene");
+        current_scene.reset();
+    }
+
     void Editor::add_save_callback(const std::string& name,
         const std::function<void()>& save_callback)
     {

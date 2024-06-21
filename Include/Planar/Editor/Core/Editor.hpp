@@ -29,7 +29,9 @@ namespace Planar::Editor::Core
         void set_window_asterisk(bool show);
 
         Project::Project& get_project();
+
         std::unique_ptr<Engine::Scene::Scene>& get_current_scene();
+        void close_current_scene();
 
         void add_save_callback(const std::string& name,
             const std::function<void()>& save_callback);

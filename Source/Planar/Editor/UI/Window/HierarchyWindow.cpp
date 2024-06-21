@@ -104,6 +104,11 @@ namespace Planar::Editor::UI::Window
                 {
                     if (ImGui::menu_item("Close Scene"))
                     {
+                        if (editor)
+                        {
+                            editor->close_current_scene();
+                        }
+
                         return true;
                     }
                 }
