@@ -98,6 +98,23 @@ namespace Planar::Editor::UI::Window
                     return true;
                 }
 
+                context_menu.add_separator();
+
+                if (scene_node.is_root_node())
+                {
+                    if (ImGui::menu_item("Close Scene"))
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (ImGui::menu_item("Remove"))
+                    {
+                        return true;
+                    }
+                }
+
                 return false;
             });
 
