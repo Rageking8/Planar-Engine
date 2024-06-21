@@ -17,3 +17,9 @@
     {                                        \
         callable(param1, param2);            \
     }                                        \
+
+#define PLANAR_CAPTURE_REF_ARG1(callable, arg1) \
+    [&]                                         \
+    {                                           \
+        callable(arg1);                         \
+    }                                           \
