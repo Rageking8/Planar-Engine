@@ -2,7 +2,8 @@
 
 namespace Planar::Editor::UI::Window
 {
-    SceneWindow::SceneWindow() : EditorWindow("Scene")
+    SceneWindow::SceneWindow(Core::Editor* editor) :
+        EditorWindow("Scene", editor)
     {
 
     }

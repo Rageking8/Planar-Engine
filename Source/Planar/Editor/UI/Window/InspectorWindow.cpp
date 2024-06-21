@@ -3,8 +3,8 @@
 
 namespace Planar::Editor::UI::Window
 {
-    InspectorWindow::InspectorWindow() : EditorWindow("Inspector"),
-        name_input("Name",
+    InspectorWindow::InspectorWindow(Core::Editor* editor) :
+        EditorWindow("Inspector", editor), name_input("Name",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL })
     {
 

@@ -12,7 +12,8 @@
 
 namespace Planar::Editor::UI::Window
 {
-    BuildWindow::BuildWindow() : EditorWindow("Build", false),
+    BuildWindow::BuildWindow(Core::Editor* editor) :
+        EditorWindow("Build", editor, false),
         build_directory_input("Build directory"),
         browse_button("Browse"),
         target_drop_down({ "Windows 64-bit" }, "Target:", 200.f),

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/Core/GameObject.hpp"
@@ -11,7 +12,7 @@ namespace Planar::Editor::UI::Window
     class InspectorWindow : public EditorWindow
     {
     public:
-        InspectorWindow();
+        InspectorWindow(Core::Editor* editor);
 
         void init();
 

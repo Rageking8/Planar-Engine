@@ -14,7 +14,12 @@ PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
 
 namespace Planar::Editor::Scene
 {
-    EditorScene::EditorScene()
+    EditorScene::EditorScene(Core::Editor* editor) :
+        Scene(editor), hierarchy_window(editor),
+        inspector_window(editor), settings_window(editor),
+        content_window(editor), console_window(editor),
+        game_window(editor), scene_window(editor),
+        build_window(editor)
     {
 
     }
@@ -22,14 +27,6 @@ namespace Planar::Editor::Scene
     void EditorScene::init()
     {
         load_icons();
-
-        if (editor)
-        {
-            hierarchy_window.set_editor(editor);
-            inspector_window.set_editor(editor);
-            content_window.set_editor(editor);
-            build_window.set_editor(editor);
-        }
 
         inspector_window.init();
 

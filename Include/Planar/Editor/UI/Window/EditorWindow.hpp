@@ -11,11 +11,10 @@ namespace Planar::Editor::UI::Window
         public Engine::UI::ImGui::Window::Window
     {
     public:
-        EditorWindow(const std::string& name, bool active = true);
+        EditorWindow(const std::string& name,
+            Core::Editor* editor, bool active = true);
 
         virtual void render_window() = 0;
-
-        void set_editor(Core::Editor* new_editor);
 
     protected:
         Core::Editor* editor;

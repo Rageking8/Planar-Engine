@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
@@ -13,7 +14,7 @@ namespace Planar::Editor::UI::Window
     class ContentWindow : public EditorWindow
     {
     public:
-        ContentWindow();
+        ContentWindow(Core::Editor* editor);
 
         void init();
 

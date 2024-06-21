@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Framebuffer/Framebuffer.hpp"
@@ -12,7 +13,7 @@ namespace Planar::Editor::UI::Window
     class GameWindow : public EditorWindow
     {
     public:
-        GameWindow();
+        GameWindow(Core::Editor* editor);
 
         void init();
 

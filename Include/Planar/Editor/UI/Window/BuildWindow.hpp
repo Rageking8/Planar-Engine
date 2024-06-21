@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
@@ -15,7 +16,7 @@ namespace Planar::Editor::UI::Window
     class BuildWindow : public EditorWindow
     {
     public:
-        BuildWindow();
+        BuildWindow(Core::Editor* editor);
 
         void init();
         void update();

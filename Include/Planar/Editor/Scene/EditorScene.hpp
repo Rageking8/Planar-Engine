@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Editor/Scene/Scene.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 #include "Planar/Editor/UI/Window/InspectorWindow.hpp"
 #include "Planar/Editor/UI/Window/SettingsWindow.hpp"
@@ -16,7 +17,7 @@ namespace Planar::Editor::Scene
     class EditorScene : public Scene
     {
     public:
-        EditorScene();
+        EditorScene(Core::Editor* editor);
 
         virtual void init() override;
         virtual void update() override;

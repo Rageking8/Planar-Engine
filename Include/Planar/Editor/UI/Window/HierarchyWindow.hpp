@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/ContextMenu.hpp"
@@ -11,7 +12,7 @@ namespace Planar::Editor::UI::Window
     class HierarchyWindow : public EditorWindow
     {
     public:
-        HierarchyWindow();
+        HierarchyWindow(Core::Editor* editor);
 
         virtual void render_window() override;
 

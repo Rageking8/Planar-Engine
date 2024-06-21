@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Editor/Scene/Scene.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
@@ -12,7 +13,7 @@ namespace Planar::Editor::Scene
     class SelectProjectScene : public Scene
     {
     public:
-        SelectProjectScene();
+        SelectProjectScene(Core::Editor* editor);
 
         virtual void init() override;
         virtual void update() override;

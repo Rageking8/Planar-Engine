@@ -8,10 +8,8 @@ namespace Planar::Editor::Scene
     class Scene : public Engine::Scene::Scene
     {
     public:
-        Scene();
+        Scene(Core::Editor* editor);
         virtual ~Scene() = 0;
-
-        void set_editor(Core::Editor* new_editor);
 
     protected:
         Core::Editor* editor;

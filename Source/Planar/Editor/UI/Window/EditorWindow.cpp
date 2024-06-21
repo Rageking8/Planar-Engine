@@ -3,13 +3,9 @@
 namespace Planar::Editor::UI::Window
 {
     EditorWindow::EditorWindow(const std::string& name,
-        bool active) : Window(name, {}, active), editor{}
+        Core::Editor* editor, bool active) :
+        Window(name, {}, active), editor{ editor }
     {
 
-    }
-
-    void EditorWindow::set_editor(Core::Editor* new_editor)
-    {
-        editor = new_editor;
     }
 }

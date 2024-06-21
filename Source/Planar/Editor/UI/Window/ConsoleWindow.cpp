@@ -2,7 +2,8 @@
 
 namespace Planar::Editor::UI::Window
 {
-    ConsoleWindow::ConsoleWindow() : EditorWindow("Console")
+    ConsoleWindow::ConsoleWindow(Core::Editor* editor) :
+        EditorWindow("Console", editor)
     {
 
     }
