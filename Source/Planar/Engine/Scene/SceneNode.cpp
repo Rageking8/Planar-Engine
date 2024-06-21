@@ -107,5 +107,6 @@ namespace Planar::Engine::Scene
 
         (is_root_node() ? node : node["Children"]).
             push_back(new_game_object);
+        scene_node.node = new_game_object;
     }
 }
