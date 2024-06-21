@@ -1,7 +1,6 @@
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-
-#include <functional>
+#include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::UI::Window
 {
@@ -53,14 +52,9 @@ namespace Planar::Editor::UI::Window
         }
 
         hierarchy_tree.render(
-            std::bind(&HierarchyWindow::render_context_menu, this,
-            scene_node),
-
-            std::bind(&HierarchyWindow::handle_select, this,
-            current_game_object),
-
-            std::bind(&HierarchyWindow::render_scene_node_children,
-            this, scene_node)
+            PLANAR_CAPTURE_REF_ARG1(render_context_menu, scene_node),
+            PLANAR_CAPTURE_REF_ARG1(handle_select, current_game_object),
+            PLANAR_CAPTURE_REF_ARG1(render_scene_node_children, scene_node)
         );
     }
 
