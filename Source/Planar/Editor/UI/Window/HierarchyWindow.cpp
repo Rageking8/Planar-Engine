@@ -32,8 +32,9 @@ namespace Planar::Editor::UI::Window
             std::unique_ptr<Engine::Scene::Scene>& current_scene =
                 editor->get_current_scene();
 
-            hierarchy_tree.set_label(current_scene->get_asset().
-                get_name() + "##" + current_scene->get_asset().
+            hierarchy_tree.set_text(current_scene->get_asset().
+                get_name());
+            hierarchy_tree.set_id(current_scene->get_asset().
                 get_guid());
             render_scene_node(current_scene->get_root());
         }
@@ -48,8 +49,8 @@ namespace Planar::Editor::UI::Window
         if (has_game_object)
         {
             current_game_object = &scene_node.get_game_object();
-            hierarchy_tree.set_label(current_game_object->get_name() +
-                "##" + current_game_object->get_guid());
+            hierarchy_tree.set_text(current_game_object->get_name());
+            hierarchy_tree.set_id(current_game_object->get_guid());
         }
 
         hierarchy_tree.render(
