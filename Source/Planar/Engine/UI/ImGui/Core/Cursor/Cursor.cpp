@@ -25,6 +25,12 @@ namespace Planar::Engine::UI::ImGui::Core::Cursor
         ::ImGui::SetCursorPosY(new_y);
     }
 
+    void set(Math::Pos2Df new_pos)
+    {
+        set_x(new_pos.x);
+        set_y(new_pos.y);
+    }
+
     float get_x()
     {
         return ::ImGui::GetCursorPosX();
@@ -33,6 +39,11 @@ namespace Planar::Engine::UI::ImGui::Core::Cursor
     float get_y()
     {
         return ::ImGui::GetCursorPosY();
+    }
+
+    Math::Pos2Df get()
+    {
+        return { get_x(), get_y() };
     }
 
     void move(Math::Size2Df delta)
