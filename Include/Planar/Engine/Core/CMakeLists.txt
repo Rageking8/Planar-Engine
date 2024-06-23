@@ -7,6 +7,7 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
 )
 
 add_subdirectory(Archive)
+add_subdirectory(Constants)
 add_subdirectory(Execute)
 add_subdirectory(FileSystem)
 add_subdirectory(GUID)
