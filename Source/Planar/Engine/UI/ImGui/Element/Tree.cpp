@@ -1,6 +1,8 @@
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/Math/Pos2D.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
@@ -9,7 +11,8 @@ namespace Planar::Engine::UI::ImGui::Element
     Tree::Tree(const std::string& text, const std::string& id,
         Math::Size2Df padding, float indent_size,
         float vertical_spacing) : text{ text }, id{ id },
-        padding{ padding }, indent_size{ indent_size },
+        padding{ padding }, pre_header_left_padding{},
+        pre_header_right_padding{}, indent_size{ indent_size },
         vertical_spacing{ vertical_spacing }, is_leaf{}
     {
 
@@ -22,7 +25,8 @@ namespace Planar::Engine::UI::ImGui::Element
 
     void Tree::render(const std::function<void()>& post_callback,
         const std::function<void()>& click_callback,
-        const std::function<void()>& content)
+        const std::function<void()>& content,
+        const std::function<void()>& pre_header)
     {
         ImGuiTreeNodeFlags tree_flags =
             ImGuiTreeNodeFlags_SpanFullWidth |
@@ -42,10 +46,32 @@ namespace Planar::Engine::UI::ImGui::Element
         style_var.set_item_spacing({ 0.f, vertical_spacing });
         style_var.set_indent_spacing(indent_size);
 
+        Math::Pos2Df initial_cursor_pos = Core::Cursor::get();
+        Math::Pos2Df pre_header_end_pos{};
+
+        if (pre_header)
+        {
+            Core::Cursor::move_x(pre_header_left_padding);
+
+            pre_header();
+
+            same_line();
+            pre_header_end_pos = Core::Cursor::get();
+            pre_header_end_pos.x += pre_header_right_padding;
+
+            Core::Cursor::set(initial_cursor_pos);
+        }
+
         bool tree_open = ::ImGui::TreeNodeEx(("##" + text + id).
             c_str(), tree_flags);
         bool clicked = ::ImGui::IsItemClicked();
         same_line();
+
+        if (pre_header)
+        {
+            Core::Cursor::set(pre_header_end_pos);
+        }
+
         ImGui::text(text);
 
         if (click_callback && clicked)
@@ -117,6 +143,18 @@ namespace Planar::Engine::UI::ImGui::Element
     void Tree::set_padding(Math::Size2Df new_padding)
     {
         padding = new_padding;
+    }
+
+    void Tree::set_pre_header_left_padding(
+        float new_pre_header_left_padding)
+    {
+        pre_header_left_padding = new_pre_header_left_padding;
+    }
+
+    void Tree::set_pre_header_right_padding(
+        float new_pre_header_right_padding)
+    {
+        pre_header_right_padding = new_pre_header_right_padding;
     }
 
     void Tree::set_indent_size(float new_indent_size)
