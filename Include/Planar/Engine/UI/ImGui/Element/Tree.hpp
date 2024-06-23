@@ -15,9 +15,8 @@ namespace Planar::Engine::UI::ImGui::Element
         Tree(Math::Size2Df padding = { 10.f, 0.f },
             float indent_size = 24.f, float vertical_spacing = 10.f,
             float pre_header_left_padding = 0.f,
-            float pre_header_right_padding = 0.f,
-            const std::string& text = "",
-            const std::string& id = "");
+            float pre_header_right_padding = 0.f, bool is_framed = false,
+            const std::string& text = "", const std::string& id = "");
 
         virtual void render() override;
         void render(const std::function<void()>& post_callback,
@@ -42,6 +41,7 @@ namespace Planar::Engine::UI::ImGui::Element
         void set_indent_size(float new_indent_size);
         void set_vertical_spacing(float new_vertical_spacing);
         void set_is_leaf(bool new_is_leaf);
+        void set_is_framed(bool new_is_framed);
 
     private:
         std::string text;
@@ -52,5 +52,6 @@ namespace Planar::Engine::UI::ImGui::Element
         float indent_size;
         float vertical_spacing;
         bool is_leaf;
+        bool is_framed;
     };
 }

@@ -10,12 +10,14 @@ namespace Planar::Engine::UI::ImGui::Element
 {
     Tree::Tree(Math::Size2Df padding, float indent_size,
         float vertical_spacing, float pre_header_left_padding,
-        float pre_header_right_padding, const std::string& text,
-        const std::string& id) : padding{ padding },
-        indent_size{ indent_size }, vertical_spacing{ vertical_spacing },
+        float pre_header_right_padding, bool is_framed,
+        const std::string& text, const std::string& id) :
+        padding{ padding }, indent_size{ indent_size },
+        vertical_spacing{ vertical_spacing },
         pre_header_left_padding{ pre_header_left_padding },
         pre_header_right_padding{ pre_header_right_padding },
-        text{ text }, id{ id }, is_leaf{}
+        is_framed{ is_framed }, text{ text }, id{ id },
+        is_leaf{}
     {
 
     }
@@ -41,6 +43,11 @@ namespace Planar::Engine::UI::ImGui::Element
         {
             tree_flags |= ImGuiTreeNodeFlags_Leaf;
             ::ImGui::Unindent();
+        }
+
+        if (is_framed)
+        {
+            tree_flags |= ImGuiTreeNodeFlags_Framed;
         }
 
         Style::StyleVar style_var;
@@ -172,5 +179,10 @@ namespace Planar::Engine::UI::ImGui::Element
     void Tree::set_is_leaf(bool new_is_leaf)
     {
         is_leaf = new_is_leaf;
+    }
+
+    void Tree::set_is_framed(bool new_is_framed)
+    {
+        is_framed = new_is_framed;
     }
 }
