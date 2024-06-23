@@ -2,8 +2,6 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     Application.hpp
     GameObject.hpp
     GLFWContext.hpp
-    Links.hpp
-    Version.hpp
 )
 
 add_subdirectory(Archive)

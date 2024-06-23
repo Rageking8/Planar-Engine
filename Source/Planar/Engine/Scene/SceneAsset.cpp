@@ -1,6 +1,6 @@
 #include "Planar/Engine/Scene/SceneAsset.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
-#include "Planar/Engine/Core/Version.hpp"
+#include "Planar/Engine/Core/Constants/Version.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
@@ -19,7 +19,7 @@ namespace Planar::Engine::Scene
         name = scene_name;
         scene_asset = Engine::Asset::preprocess_asset(scene_asset,
             {
-                { "<VERSION>", Core::VERSION },
+                { "<VERSION>", Core::Constants::VERSION },
 
                 { "<GUID>", Core::GUID::generate_guid(
                     Core::GUID::Representation::DEFAULT_COMPACT) },

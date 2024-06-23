@@ -1,5 +1,5 @@
 #include "Planar/Engine/Core/Application.hpp"
-#include "Planar/Engine/Core/Version.hpp"
+#include "Planar/Engine/Core/Constants/Version.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
@@ -15,7 +15,7 @@ namespace Planar::Engine::Core
         maximize{ maximize }, graphics_api{ graphics_api }
     {
         Log::TerminalLogger::get("Engine")->log(
-            "Planar Engine " + VERSION);
+            "Planar Engine " + Constants::VERSION);
     }
 
     Application::~Application()

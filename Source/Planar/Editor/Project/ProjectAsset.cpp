@@ -1,5 +1,5 @@
 #include "Planar/Editor/Project/ProjectAsset.hpp"
-#include "Planar/Engine/Core/Version.hpp"
+#include "Planar/Engine/Core/Constants/Version.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
@@ -22,7 +22,7 @@ namespace Planar::Editor::Project
         asset = Engine::Asset::preprocess_asset(
             Planar::Asset::Editor::Project::Project,
             {
-                { "<VERSION>", Engine::Core::VERSION },
+                { "<VERSION>", Engine::Core::Constants::VERSION },
 
                 { "<GUID>", Engine::Core::GUID::generate_guid(
                     Engine::Core::GUID::Representation::
