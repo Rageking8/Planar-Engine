@@ -1,6 +1,7 @@
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/CursorScope.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
 
@@ -55,20 +56,18 @@ namespace Planar::Engine::UI::ImGui::Element
         style_var.set_item_spacing({ 0.f, vertical_spacing });
         style_var.set_indent_spacing(indent_size);
 
-        Math::Pos2Df initial_cursor_pos = Core::Cursor::get();
         Math::Pos2Df pre_header_end_pos{};
 
         if (pre_header)
         {
+            Core::Cursor::CursorScope cursor_scope;
+
             Core::Cursor::move_x(pre_header_left_padding);
 
             pre_header();
 
-            same_line();
             pre_header_end_pos = Core::Cursor::get();
             pre_header_end_pos.x += pre_header_right_padding;
-
-            Core::Cursor::set(initial_cursor_pos);
         }
 
         bool tree_open = ::ImGui::TreeNodeEx(("##" + text + id).
