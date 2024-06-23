@@ -17,15 +17,17 @@ namespace Planar::Engine::UI::ImGui::Core::Size
         };
 
         Width(WidthMode mode = WidthMode::DEFAULT,
-            float width = 0.f);
+            float width = 0.f, float fill_offset = 0.f);
 
         void set() const;
 
         void set_mode(WidthMode new_mode);
         void set_width(float new_width);
+        void set_fill_offset(float new_fill_offset);
 
     private:
         WidthMode mode;
         float width;
+        float fill_offset;
     };
 }

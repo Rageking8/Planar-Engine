@@ -1,12 +1,13 @@
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
 namespace Planar::Engine::UI::ImGui::Core::Size
 {
-    Width::Width(WidthMode mode, float width) :
-        mode{ mode }, width{ width }
+    Width::Width(WidthMode mode, float width, float fill_offset) :
+        mode{ mode }, width{ width }, fill_offset{ fill_offset }
     {
 
     }
@@ -23,8 +24,9 @@ namespace Planar::Engine::UI::ImGui::Core::Size
             break;
 
         case WidthMode::FILL:
-            ::ImGui::SetNextItemWidth(
-                get_content_region_avail().width);
+            Cursor::move_x(fill_offset);
+            ::ImGui::SetNextItemWidth(get_content_region_avail().
+                width - fill_offset);
             break;
         }
     }
@@ -37,5 +39,10 @@ namespace Planar::Engine::UI::ImGui::Core::Size
     void Width::set_width(float new_width)
     {
         width = new_width;
+    }
+
+    void Width::set_fill_offset(float new_fill_offset)
+    {
+        fill_offset = new_fill_offset;
     }
 }
