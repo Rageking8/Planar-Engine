@@ -8,12 +8,14 @@
 
 namespace Planar::Engine::UI::ImGui::Element
 {
-    Tree::Tree(const std::string& text, const std::string& id,
-        Math::Size2Df padding, float indent_size,
-        float vertical_spacing) : text{ text }, id{ id },
-        padding{ padding }, pre_header_left_padding{},
-        pre_header_right_padding{}, indent_size{ indent_size },
-        vertical_spacing{ vertical_spacing }, is_leaf{}
+    Tree::Tree(Math::Size2Df padding, float indent_size,
+        float vertical_spacing, float pre_header_left_padding,
+        float pre_header_right_padding, const std::string& text,
+        const std::string& id) : padding{ padding },
+        indent_size{ indent_size }, vertical_spacing{ vertical_spacing },
+        pre_header_left_padding{ pre_header_left_padding },
+        pre_header_right_padding{ pre_header_right_padding },
+        text{ text }, id{ id }, is_leaf{}
     {
 
     }

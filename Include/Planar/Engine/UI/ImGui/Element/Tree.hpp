@@ -12,10 +12,12 @@ namespace Planar::Engine::UI::ImGui::Element
     class PLANAR_API Tree : public Element
     {
     public:
-        Tree(const std::string& text = "",
-            const std::string& id = "",
-            Math::Size2Df padding = { 10.f, 0.f },
-            float indent_size = 24.f, float vertical_spacing = 10.f);
+        Tree(Math::Size2Df padding = { 10.f, 0.f },
+            float indent_size = 24.f, float vertical_spacing = 10.f,
+            float pre_header_left_padding = 0.f,
+            float pre_header_right_padding = 0.f,
+            const std::string& text = "",
+            const std::string& id = "");
 
         virtual void render() override;
         void render(const std::function<void()>& post_callback,
