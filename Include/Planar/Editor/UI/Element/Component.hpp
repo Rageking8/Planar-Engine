@@ -24,6 +24,8 @@ namespace Planar::Editor::UI::Element
         Engine::UI::ImGui::Element::Checkbox active_checkbox;
         bool show_active_checkbox;
 
+        virtual void render_content();
+
         void render_active_checkbox();
     };
 }
