@@ -15,6 +15,8 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void set_config_flags(int config_flags);
 
+    PLANAR_API void set_drag_click_to_input(bool drag_click_to_input);
+
     PLANAR_API void save_ini();
 
     PLANAR_API void load_ini_from_string(

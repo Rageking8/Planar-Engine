@@ -18,6 +18,12 @@ namespace Planar::Engine::UI::ImGui
         ::ImGui::GetIO().ConfigFlags = config_flags;
     }
 
+    void set_drag_click_to_input(bool drag_click_to_input)
+    {
+        ::ImGui::GetIO().ConfigDragClickToInputText =
+            drag_click_to_input;
+    }
+
     void save_ini()
     {
         const char* ini_filename = ::ImGui::GetIO().IniFilename;
