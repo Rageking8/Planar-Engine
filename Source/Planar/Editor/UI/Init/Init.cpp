@@ -7,6 +7,13 @@ PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Fonts, Roboto)
 
 namespace Planar::Editor::UI::Init
 {
+    void init()
+    {
+        load_default_font();
+        set_scale();
+        set_config();
+    }
+
     void load_default_font()
     {
         Engine::UI::ImGui::Font::load_font(
@@ -18,5 +25,10 @@ namespace Planar::Editor::UI::Init
     {
         Engine::UI::ImGui::scale_ui(3);
         Engine::UI::ImGui::set_scrollbar_size(15.f);
+    }
+
+    void set_config()
+    {
+        Engine::UI::ImGui::set_drag_click_to_input(true);
     }
 }
