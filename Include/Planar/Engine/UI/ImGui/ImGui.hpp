@@ -6,7 +6,9 @@
 
 #include "ThirdParty/glad/gl.h"
 
+#include <array>
 #include <string>
+#include <cfloat>
 
 namespace Planar::Engine::UI::ImGui
 {
@@ -78,4 +80,14 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API bool menu_item(const std::string& label,
         const std::string& shortcut = "", bool selected = false,
         bool enabled = true);
+
+    PLANAR_API void drag_float(const std::string& label,
+        float& value, float speed = 0.1f, float min = -FLT_MAX,
+        float max = FLT_MAX, const std::string& format = "%.3f",
+        int flags = 0);
+
+    PLANAR_API void drag_float_2(const std::string& label,
+        std::array<float, 2>& value, float speed = 0.1f,
+        float min = -FLT_MAX, float max = FLT_MAX,
+        const std::string& format = "%.3f", int flags = 0);
 }
