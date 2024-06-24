@@ -3,7 +3,6 @@
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/CursorScope.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/Math/Pos2D.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
@@ -33,43 +32,20 @@ namespace Planar::Engine::UI::ImGui::Element
         const std::function<void()>& content,
         const std::function<void()>& pre_header)
     {
-        ImGuiTreeNodeFlags tree_flags =
-            ImGuiTreeNodeFlags_SpanFullWidth |
-            ImGuiTreeNodeFlags_OpenOnArrow |
-            ImGuiTreeNodeFlags_OpenOnDoubleClick |
-            ImGuiTreeNodeFlags_AllowOverlap |
-            ImGuiTreeNodeFlags_FramePadding;
-
         if (is_leaf)
         {
-            tree_flags |= ImGuiTreeNodeFlags_Leaf;
             ::ImGui::Unindent();
         }
-
-        tree_flags |= is_framed ? ImGuiTreeNodeFlags_Framed : 0;
-        tree_flags |= default_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
 
         Style::StyleVar style_var;
         style_var.set_frame_padding(padding);
         style_var.set_item_spacing({ 0.f, vertical_spacing });
         style_var.set_indent_spacing(indent_size);
 
-        Math::Pos2Df pre_header_end_pos{};
-
-        if (pre_header)
-        {
-            Core::Cursor::CursorScope cursor_scope;
-
-            Core::Cursor::move_x(pre_header_left_padding);
-
-            pre_header();
-
-            pre_header_end_pos = Core::Cursor::get();
-            pre_header_end_pos.x += pre_header_right_padding;
-        }
+        Math::Pos2Df pre_header_end_pos = handle_pre_header(pre_header);
 
         bool tree_open = ::ImGui::TreeNodeEx(("##" + text + id).
-            c_str(), tree_flags);
+            c_str(), generate_flags());
         bool clicked = ::ImGui::IsItemClicked();
         same_line();
 
@@ -186,5 +162,41 @@ namespace Planar::Engine::UI::ImGui::Element
     void Tree::set_default_open(bool new_default_open)
     {
         default_open = new_default_open;
+    }
+
+    int Tree::generate_flags() const
+    {
+        ImGuiTreeNodeFlags tree_flags =
+            ImGuiTreeNodeFlags_SpanFullWidth |
+            ImGuiTreeNodeFlags_OpenOnArrow |
+            ImGuiTreeNodeFlags_OpenOnDoubleClick |
+            ImGuiTreeNodeFlags_AllowOverlap |
+            ImGuiTreeNodeFlags_FramePadding;
+
+        tree_flags |= is_leaf ? ImGuiTreeNodeFlags_Leaf : 0;
+        tree_flags |= is_framed ? ImGuiTreeNodeFlags_Framed : 0;
+        tree_flags |= default_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
+
+        return tree_flags;
+    }
+
+    Math::Pos2Df Tree::handle_pre_header(
+        const std::function<void()>& pre_header)
+    {
+        Math::Pos2Df pre_header_end_pos{};
+
+        if (pre_header)
+        {
+            Core::Cursor::CursorScope cursor_scope;
+
+            Core::Cursor::move_x(pre_header_left_padding);
+
+            pre_header();
+
+            pre_header_end_pos = Core::Cursor::get();
+            pre_header_end_pos.x += pre_header_right_padding;
+        }
+
+        return pre_header_end_pos;
     }
 }

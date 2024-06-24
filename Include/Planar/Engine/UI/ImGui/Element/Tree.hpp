@@ -3,6 +3,7 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Element.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
+#include "Planar/Engine/Math/Pos2D.hpp"
 
 #include <string>
 #include <functional>
@@ -56,5 +57,9 @@ namespace Planar::Engine::UI::ImGui::Element
         bool is_leaf;
         bool is_framed;
         bool default_open;
+
+        int generate_flags() const;
+        Math::Pos2Df handle_pre_header(
+            const std::function<void()>& pre_header);
     };
 }
