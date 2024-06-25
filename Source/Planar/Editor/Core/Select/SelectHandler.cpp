@@ -1,4 +1,5 @@
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 
 namespace Planar::Editor::Core::Select
 {

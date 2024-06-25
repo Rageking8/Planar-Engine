@@ -1,9 +1,11 @@
 #pragma once
 
-#include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 #include <functional>
+
+PLANAR_FORWARD_DECLARE_CLASS(Engine::GameObject, GameObject)
 
 namespace Planar::Editor::Core::Select
 {

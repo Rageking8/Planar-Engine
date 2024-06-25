@@ -4,10 +4,10 @@
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/ContextMenu.hpp"
 #include "Planar/Engine/Scene/SceneNode.hpp"
-#include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
+PLANAR_FORWARD_DECLARE_CLASS(Engine::GameObject, GameObject)
 
 namespace Planar::Editor::UI::Window
 {
