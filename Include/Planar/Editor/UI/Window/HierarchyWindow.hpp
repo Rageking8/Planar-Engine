@@ -6,8 +6,8 @@
 #include "Planar/Engine/Scene/SceneNode.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
-PLANAR_FORWARD_DECLARE_CLASS(Engine::GameObject, GameObject)
+PLANAR_FORWARD_DECLARE_CLASS(Planar::Editor::Core, Editor)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Editor::UI::Window
 {

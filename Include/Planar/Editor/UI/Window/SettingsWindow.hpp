@@ -4,7 +4,7 @@
 #include "Planar/Engine/UI/ImGui/Element/Button.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
+PLANAR_FORWARD_DECLARE_CLASS(Planar::Editor::Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {

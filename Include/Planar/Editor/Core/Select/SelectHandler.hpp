@@ -5,7 +5,7 @@
 #include <string>
 #include <functional>
 
-PLANAR_FORWARD_DECLARE_CLASS(Engine::GameObject, GameObject)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Editor::Core::Select
 {

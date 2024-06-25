@@ -9,7 +9,7 @@
 #include <string>
 #include <filesystem>
 
-PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
+PLANAR_FORWARD_DECLARE_CLASS(Planar::Editor::Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {
