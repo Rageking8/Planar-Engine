@@ -16,7 +16,8 @@ namespace Planar::Engine::UI::ImGui::Element
     public:
         using ValueT = std::array<float, N>;
 
-        DragFloat(const std::string& label = "");
+        DragFloat(const std::string& text = "",
+            const std::string& id = "");
 
         virtual void render() override;
 
@@ -24,14 +25,18 @@ namespace Planar::Engine::UI::ImGui::Element
         float get_x() const;
         float get_y() const;
 
-        void set_label(const std::string& new_label);
+        void set_text(const std::string& new_text);
+        void set_id(const std::string& new_id);
         void set_value(ValueT new_value);
         void set_x(float new_x);
         void set_y(float new_y);
 
     private:
-        std::string label;
+        std::string text;
+        std::string id;
         ValueT value;
+
+        std::string get_label() const;
     };
 
     using DragFloat1 = DragFloat<1>;

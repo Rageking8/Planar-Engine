@@ -4,8 +4,8 @@
 namespace Planar::Engine::UI::ImGui::Element
 {
     template <std::size_t N>
-    inline DragFloat<N>::DragFloat(const std::string& label) :
-        label{ label }, value{}
+    inline DragFloat<N>::DragFloat(const std::string& text,
+        const std::string& id) : text{ text }, id{ id }, value{}
     {
 
     }
@@ -13,13 +13,13 @@ namespace Planar::Engine::UI::ImGui::Element
     template <>
     inline void DragFloat<1>::render()
     {
-        drag_float(label, value.front());
+        drag_float(get_label(), value.front());
     }
 
     template <>
     inline void DragFloat<2>::render()
     {
-        drag_float_2(label, value);
+        drag_float_2(get_label(), value);
     }
 
     template <std::size_t N>
@@ -45,9 +45,15 @@ namespace Planar::Engine::UI::ImGui::Element
     }
 
     template <std::size_t N>
-    inline void DragFloat<N>::set_label(const std::string& new_label)
+    inline void DragFloat<N>::set_text(const std::string& new_text)
     {
-        label = new_label;
+        text = new_text;
+    }
+
+    template <std::size_t N>
+    inline void DragFloat<N>::set_id(const std::string& new_id)
+    {
+        id = new_id;
     }
 
     template <std::size_t N>
@@ -70,5 +76,11 @@ namespace Planar::Engine::UI::ImGui::Element
         static_assert(N >= 2, "Setting Y is not allowed");
 
         value[1] = new_y;
+    }
+
+    template <std::size_t N>
+    inline std::string DragFloat<N>::get_label() const
+    {
+        return "##" + text + id;
     }
 }
