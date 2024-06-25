@@ -1,6 +1,6 @@
 #include "Planar/Engine/Component/Component.hpp"
 
-namespace Planar::Engine::Core::Component
+namespace Planar::Engine::Component
 {
     Component::Component() : active{ true }
     {

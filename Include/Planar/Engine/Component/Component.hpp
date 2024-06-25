@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 
-namespace Planar::Engine::Core::Component
+namespace Planar::Engine::Component
 {
     class PLANAR_API Component
     {
