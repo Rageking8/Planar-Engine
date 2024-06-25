@@ -59,6 +59,7 @@ add_custom_command(TARGET ${PLANAR_ENGINE_SHARED_TARGET} POST_BUILD
 )
 
 add_subdirectory(Asset)
+add_subdirectory(Component)
 add_subdirectory(Core)
 add_subdirectory(Export)
 add_subdirectory(Graphics)
