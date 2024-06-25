@@ -1,16 +1,14 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 #include <vector>
 #include <utility>
 #include <functional>
 
-namespace YAML
-{
-    class Node;
-}
+PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 
 namespace Planar::Engine::Asset
 {
