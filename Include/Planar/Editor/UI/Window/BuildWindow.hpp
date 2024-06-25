@@ -7,11 +7,11 @@
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
 #include "Planar/Engine/UI/ImGui/Element/IntSlider.hpp"
 #include "Planar/Editor/UI/Element/ProgressDisplay.hpp"
-#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 
-PLANAR_FORWARD_DECLARE_CLASS(Planar::Editor::Core, Editor)
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {

@@ -1,14 +1,14 @@
 #pragma once
 
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Framebuffer/Framebuffer.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Buffer/Buffer.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Core/VertexArrayObject.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Shader/ShaderProgram.hpp"
-#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-PLANAR_FORWARD_DECLARE_CLASS(Planar::Editor::Core, Editor)
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {

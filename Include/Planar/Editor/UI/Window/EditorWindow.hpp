@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
-#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 
-PLANAR_FORWARD_DECLARE_CLASS(Planar::Editor::Core, Editor)
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {

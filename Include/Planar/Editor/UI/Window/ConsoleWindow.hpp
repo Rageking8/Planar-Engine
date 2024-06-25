@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
-#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
-PLANAR_FORWARD_DECLARE_CLASS(Planar::Editor::Core, Editor)
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {

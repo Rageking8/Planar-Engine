@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 
-PLANAR_FORWARD_DECLARE_CLASS(Planar::Editor::Core, Editor)
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Editor::UI::Window
