@@ -7,6 +7,16 @@ namespace Planar::Engine::Component
 
     }
 
+    Component::~Component()
+    {
+
+    }
+
+    bool Component::match(ComponentType other) const
+    {
+        return other == TYPE;
+    }
+
     bool Component::get_active() const
     {
         return active;
