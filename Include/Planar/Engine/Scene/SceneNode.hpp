@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/Core/GameObject.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -26,7 +26,7 @@ namespace Planar::Engine::Scene
         bool is_leaf_node() const;
 
         SceneNode* get_parent() const;
-        Core::GameObject& get_game_object();
+        GameObject::GameObject& get_game_object();
         std::shared_ptr<std::vector<SceneNode>> get_children();
 
         void add_child(std::string name = "");
@@ -35,7 +35,7 @@ namespace Planar::Engine::Scene
     private:
         YAML::Node node;
         SceneNode* parent;
-        std::optional<Core::GameObject> game_object;
+        std::optional<GameObject::GameObject> game_object;
         std::shared_ptr<std::vector<SceneNode>> children;
     };
 }

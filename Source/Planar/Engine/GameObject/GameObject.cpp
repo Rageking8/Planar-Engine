@@ -1,13 +1,13 @@
-#include "Planar/Engine/Core/GameObject.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 
-namespace Planar::Engine::Core
+namespace Planar::Engine::GameObject
 {
     GameObject::GameObject(const std::string& name) :
         name{ name }
     {
-        guid = GUID::generate_guid(
-            GUID::Representation::DEFAULT_COMPACT);
+        guid = Core::GUID::generate_guid(
+            Core::GUID::Representation::DEFAULT_COMPACT);
     }
 
     GameObject::GameObject(const std::string& name,

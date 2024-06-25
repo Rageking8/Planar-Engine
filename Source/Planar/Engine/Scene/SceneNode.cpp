@@ -69,7 +69,7 @@ namespace Planar::Engine::Scene
         return parent;
     }
 
-    Core::GameObject& SceneNode::get_game_object()
+    GameObject::GameObject& SceneNode::get_game_object()
     {
         return *game_object;
     }
@@ -106,7 +106,7 @@ namespace Planar::Engine::Scene
         SceneNode& scene_node = children->back();
         scene_node.parent = this;
         scene_node.game_object.emplace(name);
-        Core::GameObject& object = *scene_node.game_object;
+        GameObject::GameObject& object = *scene_node.game_object;
 
         YAML::Node new_game_object;
         new_game_object["Name"] = object.get_name();

@@ -13,7 +13,7 @@ namespace Planar::Editor::Core::Select
     }
 
     void SelectHandler::select_game_object(
-        const Engine::Core::GameObject& game_object)
+        const Engine::GameObject::GameObject& game_object)
     {
         game_object_callback(game_object);
     }

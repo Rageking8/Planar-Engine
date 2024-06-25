@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace Planar::Engine::Core
+namespace Planar::Engine::GameObject
 {
     class PLANAR_API GameObject
     {

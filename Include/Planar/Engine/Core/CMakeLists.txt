@@ -1,6 +1,5 @@
 target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     Application.hpp
-    GameObject.hpp
     GLFWContext.hpp
 )
 

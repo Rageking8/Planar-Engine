@@ -40,7 +40,7 @@ namespace Planar::Editor::UI::Window
     }
 
     void InspectorWindow::select_game_object(
-        const Engine::Core::GameObject& game_object)
+        const Engine::GameObject::GameObject& game_object)
     {
         name_input.set_text(game_object.get_name());
     }

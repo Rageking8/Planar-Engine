@@ -4,7 +4,7 @@
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/ContextMenu.hpp"
 #include "Planar/Engine/Scene/SceneNode.hpp"
-#include "Planar/Engine/Core/GameObject.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 PLANAR_FORWARD_DECLARE_CLASS(Editor::Core, Editor)
@@ -30,6 +30,6 @@ namespace Planar::Editor::UI::Window
             Engine::Scene::SceneNode& scene_node);
 
         void handle_select(
-            Engine::Core::GameObject* current_game_object);
+            Engine::GameObject::GameObject* current_game_object);
     };
 }

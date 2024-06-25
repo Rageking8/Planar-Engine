@@ -43,7 +43,7 @@ namespace Planar::Editor::UI::Window
     void HierarchyWindow::render_scene_node(
         Engine::Scene::SceneNode& scene_node)
     {
-        Engine::Core::GameObject* current_game_object = nullptr;
+        Engine::GameObject::GameObject* current_game_object = nullptr;
         bool has_game_object = !scene_node.is_root_node();
 
         if (has_game_object)
@@ -131,7 +131,7 @@ namespace Planar::Editor::UI::Window
     }
 
     void HierarchyWindow::handle_select(
-        Engine::Core::GameObject* current_game_object)
+        Engine::GameObject::GameObject* current_game_object)
     {
         if (current_game_object)
         {

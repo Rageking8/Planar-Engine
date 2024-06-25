@@ -2,7 +2,7 @@
 
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
-#include "Planar/Engine/Core/GameObject.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
@@ -25,6 +25,6 @@ namespace Planar::Editor::UI::Window
 
         void select_content(const std::string& name);
         void select_game_object(
-            const Engine::Core::GameObject& game_object);
+            const Engine::GameObject::GameObject& game_object);
     };
 }
