@@ -1,11 +1,14 @@
 #include "Planar/Engine/UI/ImGui/Element/DragFloat.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 namespace Planar::Engine::UI::ImGui::Element
 {
     template <std::size_t N>
     inline DragFloat<N>::DragFloat(const std::string& text,
-        const std::string& id) : text{ text }, id{ id }, value{}
+        const std::string& id, Core::Size::Width drag_width,
+        float drag_x_pos) : text{ text }, id{ id }, value{},
+        drag_width{ drag_width }, drag_x_pos{ drag_x_pos }
     {
 
     }
@@ -13,12 +16,16 @@ namespace Planar::Engine::UI::ImGui::Element
     template <>
     inline void DragFloat<1>::render()
     {
+        render_text();
+        drag_width.set();
         drag_float(get_label(), value.front());
     }
 
     template <>
     inline void DragFloat<2>::render()
     {
+        render_text();
+        drag_width.set();
         drag_float_2(get_label(), value);
     }
 
@@ -82,5 +89,18 @@ namespace Planar::Engine::UI::ImGui::Element
     inline std::string DragFloat<N>::get_label() const
     {
         return "##" + text + id;
+    }
+
+    template <std::size_t N>
+    inline void DragFloat<N>::render_text() const
+    {
+        if (text.empty())
+        {
+            return;
+        }
+
+        ImGui::text(text, true);
+        same_line();
+        Core::Cursor::set_x(drag_x_pos);
     }
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/UI/ImGui/Element/Element.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 
 #include <array>
 #include <string>
@@ -17,7 +18,9 @@ namespace Planar::Engine::UI::ImGui::Element
         using ValueT = std::array<float, N>;
 
         DragFloat(const std::string& text = "",
-            const std::string& id = "");
+            const std::string& id = "",
+            Core::Size::Width drag_width = {},
+            float drag_x_pos = 0.f);
 
         virtual void render() override;
 
@@ -35,8 +38,12 @@ namespace Planar::Engine::UI::ImGui::Element
         std::string text;
         std::string id;
         ValueT value;
+        Core::Size::Width drag_width;
+        float drag_x_pos;
 
         std::string get_label() const;
+
+        void render_text() const;
     };
 
     using DragFloat1 = DragFloat<1>;
