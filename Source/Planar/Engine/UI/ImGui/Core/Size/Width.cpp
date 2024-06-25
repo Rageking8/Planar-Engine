@@ -6,8 +6,10 @@
 
 namespace Planar::Engine::UI::ImGui::Core::Size
 {
-    Width::Width(WidthMode mode, float width, float fill_offset) :
-        mode{ mode }, width{ width }, fill_offset{ fill_offset }
+    Width::Width(WidthMode mode, float width, float fill_offset_left,
+        float fill_offset_right) : mode{ mode }, width{ width },
+        fill_offset_left{ fill_offset_left },
+        fill_offset_right{ fill_offset_right }
     {
 
     }
@@ -24,9 +26,9 @@ namespace Planar::Engine::UI::ImGui::Core::Size
             break;
 
         case WidthMode::FILL:
-            Cursor::move_x(fill_offset);
+            Cursor::move_x(fill_offset_left);
             ::ImGui::SetNextItemWidth(get_content_region_avail().
-                width - fill_offset);
+                width - fill_offset_right);
             break;
         }
     }
@@ -41,8 +43,13 @@ namespace Planar::Engine::UI::ImGui::Core::Size
         width = new_width;
     }
 
-    void Width::set_fill_offset(float new_fill_offset)
+    void Width::set_fill_offset_left(float new_fill_offset_left)
     {
-        fill_offset = new_fill_offset;
+        fill_offset_left = new_fill_offset_left;
+    }
+
+    void Width::set_fill_offset_right(float new_fill_offset_right)
+    {
+        fill_offset_right = new_fill_offset_right;
     }
 }
