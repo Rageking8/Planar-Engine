@@ -6,9 +6,10 @@ namespace Planar::Editor::UI::Window
 {
     InspectorWindow::InspectorWindow(Core::Editor* editor) :
         EditorWindow("Inspector", editor), name_input("Name",
-        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL })
+        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
+        0.f, 20.f, 20.f })
     {
-
+        set_padding({ { 0.f, 20.f } });
     }
 
     void InspectorWindow::init()
