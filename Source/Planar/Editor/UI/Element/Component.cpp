@@ -1,6 +1,7 @@
 #include "Planar/Editor/UI/Element/Component.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/CursorScope.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
@@ -9,16 +10,16 @@
 namespace Planar::Editor::UI::Element
 {
     Component::Component() :
-        header({ 10.f, 7.5f }, 24.f, 0.f, 40.f, 10.f, true),
+        header({ 10.f, 7.5f }, 24.f, 0.f, 40.f, 10.f, true, true),
         active_checkbox(Engine::UI::ImGui::generate_unique_label(),
-        true), show_active_checkbox{ true }
+        true), show_active_checkbox{ true }, top_padding{ 10.f }
     {
 
     }
 
     void Component::render()
     {
-        header.render({}, {}, PLANAR_CAPTURE_THIS(render_content),
+        header.render({}, {}, PLANAR_CAPTURE_THIS(render_content_impl),
             show_active_checkbox ? PLANAR_CAPTURE_THIS(
             render_active_checkbox) : std::function<void()>{});
     }
@@ -37,6 +38,13 @@ namespace Planar::Editor::UI::Element
     void Component::render_content()
     {
 
+    }
+
+    void Component::render_content_impl()
+    {
+        Engine::UI::ImGui::Core::Cursor::move_y(top_padding);
+
+        render_content();
     }
 
     void Component::render_active_checkbox()
