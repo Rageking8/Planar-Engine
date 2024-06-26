@@ -30,7 +30,6 @@ namespace Planar::Engine::Scene
 
     private:
         std::string name;
-        YAML::Node asset;
         std::filesystem::path path;
     };
 }

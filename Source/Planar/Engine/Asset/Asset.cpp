@@ -11,4 +11,9 @@ namespace Planar::Engine::Asset
     {
 
     }
+
+    YAML::Node Asset::get_asset() const
+    {
+        return asset;
+    }
 }
