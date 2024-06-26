@@ -2,9 +2,10 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Scene/SceneAsset.hpp"
-#include "Planar/Engine/Scene/SceneNode.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 
 #include <string>
+#include <memory>
 #include <filesystem>
 
 namespace Planar::Engine::Scene
@@ -30,10 +31,12 @@ namespace Planar::Engine::Scene
         virtual void render();
 
         SceneAsset& get_asset();
-        SceneNode& get_root();
+        std::shared_ptr<GameObject::GameObject> get_root();
 
     private:
         SceneAsset asset;
-        SceneNode root;
+        std::shared_ptr<GameObject::GameObject> root;
+
+        void load_root();
     };
 }

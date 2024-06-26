@@ -1,15 +1,20 @@
 #include "Planar/Engine/Scene/Scene.hpp"
 
+#include "ThirdParty/yaml-cpp/yaml.h"
+
+#include <stack>
+
 namespace Planar::Engine::Scene
 {
-    Scene::Scene()
+    Scene::Scene() :
+        root(std::make_shared<GameObject::GameObject>())
     {
 
     }
 
     Scene::Scene(const std::string& scene_asset,
         const std::string& scene_name,
-        const std::filesystem::path& asset_path)
+        const std::filesystem::path& asset_path) : Scene()
     {
         load(scene_asset, scene_name, asset_path);
     }
@@ -24,7 +29,8 @@ namespace Planar::Engine::Scene
         const std::filesystem::path& asset_path)
     {
         asset.load(scene_asset, scene_name, asset_path);
-        root.load(asset.get_hierarchy());
+
+        load_root();
     }
 
     void Scene::save()
@@ -57,8 +63,18 @@ namespace Planar::Engine::Scene
         return asset;
     }
 
-    SceneNode& Scene::get_root()
+    std::shared_ptr<GameObject::GameObject> Scene::get_root()
     {
         return root;
+    }
+
+    void Scene::load_root()
+    {
+        YAML::Node root_node = asset.get_hierarchy();
+
+        std::stack<std::vector<std::shared_ptr<GameObject::GameObject>>*>
+            children_vector_stack;
+
+        root->load(root_node, children_vector_stack);
     }
 }

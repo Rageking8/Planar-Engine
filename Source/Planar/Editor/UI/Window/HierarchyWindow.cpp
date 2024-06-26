@@ -37,48 +37,44 @@ namespace Planar::Editor::UI::Window
                 get_name());
             hierarchy_tree.set_id(current_scene->get_asset().
                 get_guid());
-            render_scene_node(current_scene->get_root());
+            render_scene_game_object(current_scene->get_root());
         }
     }
 
-    void HierarchyWindow::render_scene_node(
-        Engine::Scene::SceneNode& scene_node)
+    void HierarchyWindow::render_scene_game_object(
+        std::shared_ptr<Engine::GameObject::GameObject> game_object)
     {
-        Engine::GameObject::GameObject* current_game_object = nullptr;
-        bool has_game_object = !scene_node.is_root_node();
-
-        if (has_game_object)
+        if (!game_object->is_empty())
         {
-            current_game_object = &scene_node.get_game_object();
-            hierarchy_tree.set_text(current_game_object->get_name());
-            hierarchy_tree.set_id(current_game_object->get_guid());
+            hierarchy_tree.set_text(game_object->get_name());
+            hierarchy_tree.set_id(game_object->get_guid());
         }
 
         hierarchy_tree.render(
-            PLANAR_CAPTURE_REF_ARG1(render_context_menu, scene_node),
-            PLANAR_CAPTURE_REF_ARG1(handle_select, current_game_object),
-            PLANAR_CAPTURE_REF_ARG1(render_scene_node_children, scene_node)
+            PLANAR_CAPTURE_REF_ARG1(render_context_menu, game_object),
+            PLANAR_CAPTURE_REF_ARG1(handle_select, game_object),
+            PLANAR_CAPTURE_REF_ARG1(render_scene_children, game_object)
         );
     }
 
-    void HierarchyWindow::render_scene_node_children(
-        Engine::Scene::SceneNode& scene_node)
+    void HierarchyWindow::render_scene_children(
+        std::shared_ptr<Engine::GameObject::GameObject> game_object)
     {
-        for (auto& i : *scene_node.get_children())
+        for (auto& i : game_object->get_children())
         {
-            if (i.is_leaf_node())
+            if (i->is_leaf())
             {
                 hierarchy_tree.set_is_leaf(true);
             }
 
-            render_scene_node(i);
+            render_scene_game_object(i);
 
             hierarchy_tree.set_is_leaf(false);
         }
     }
 
     void HierarchyWindow::render_context_menu(
-        Engine::Scene::SceneNode& scene_node)
+        std::shared_ptr<Engine::GameObject::GameObject> game_object)
     {
         using namespace Engine::UI;
 
@@ -87,11 +83,11 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        context_menu.set_content([&]
+        context_menu.set_content([=]
             {
                 if (ImGui::menu_item("Create GameObject"))
                 {
-                    scene_node.add_child();
+                    game_object->add_child();
 
                     editor->set_dirty();
 
@@ -100,7 +96,7 @@ namespace Planar::Editor::UI::Window
 
                 context_menu.add_separator();
 
-                if (scene_node.is_root_node())
+                if (game_object->is_empty())
                 {
                     if (ImGui::menu_item("Close Scene"))
                     {
@@ -113,8 +109,16 @@ namespace Planar::Editor::UI::Window
                 {
                     if (ImGui::menu_item("Remove"))
                     {
-                        scene_node.get_parent()->remove_child(
-                            scene_node.get_game_object().get_guid());
+                        if (game_object->is_root())
+                        {
+                            editor->get_current_scene()->get_root()->
+                                remove_child(game_object->get_guid());
+                        }
+                        else
+                        {
+                            game_object->get_parent()->remove_child(
+                                game_object->get_guid());
+                        }
 
                         editor->set_dirty();
 
@@ -132,12 +136,14 @@ namespace Planar::Editor::UI::Window
     }
 
     void HierarchyWindow::handle_select(
-        Engine::GameObject::GameObject* current_game_object)
+        std::shared_ptr<Engine::GameObject::GameObject> game_object)
     {
-        if (current_game_object)
+        if (game_object->is_empty())
         {
-            editor->get_select_handler().select_game_object(
-                *current_game_object);
+            return;
         }
+
+        editor->get_select_handler().select_game_object(
+            *game_object);
     }
 }

@@ -1,19 +1,81 @@
 #include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
+
+#include "ThirdParty/yaml-cpp/yaml.h"
+
+#include <cstddef>
+#include <unordered_set>
 
 namespace Planar::Engine::GameObject
 {
     GameObject::GameObject(const std::string& name) :
-        name{ name }
+        parent{}, name{ name }
     {
-        guid = Core::GUID::generate_guid(
-            Core::GUID::Representation::DEFAULT_COMPACT);
+        if (!name.empty())
+        {
+            guid = Core::GUID::generate_guid(
+                Core::GUID::Representation::DEFAULT_COMPACT);
+        }
     }
 
-    GameObject::GameObject(const std::string& name,
-        const std::string& guid) : name{ name }, guid{ guid }
+    void GameObject::load(YAML::Node node,
+        std::stack<std::vector<std::shared_ptr<GameObject>>*>&
+        children_vector_stack)
     {
+        asset.load(node);
 
+        if (node.size() == 0)
+        {
+            return;
+        }
+
+        const bool is_root = node.IsSequence();
+
+        children_vector_stack.push(&children);
+
+        if (!is_root)
+        {
+            name = asset.get_name();
+            guid = asset.get_guid();
+        }
+
+        for (auto i : (is_root ? node : node["Children"]))
+        {
+            if (!i.IsMap())
+            {
+                continue;
+            }
+
+            children_vector_stack.top()->push_back(
+                std::make_shared<GameObject>());
+            std::shared_ptr<GameObject>& game_object =
+                children_vector_stack.top()->back();
+            game_object->parent = is_root ? nullptr : this;
+            game_object->load(i, children_vector_stack);
+        }
+
+        children_vector_stack.pop();
+    }
+
+    bool GameObject::is_leaf() const
+    {
+        return children.empty();
+    }
+
+    bool GameObject::is_root() const
+    {
+        return !parent;
+    }
+
+    bool GameObject::is_empty() const
+    {
+        return name.empty() && guid.empty();
+    }
+
+    GameObject* GameObject::get_parent() const
+    {
+        return parent;
     }
 
     std::string GameObject::get_name() const
@@ -29,5 +91,60 @@ namespace Planar::Engine::GameObject
     std::string GameObject::get_guid() const
     {
         return guid;
+    }
+
+    std::vector<std::shared_ptr<GameObject>>& GameObject::get_children()
+    {
+        return children;
+    }
+
+    void GameObject::add_child(std::string name)
+    {
+        if (name.empty())
+        {
+            name = "GameObject";
+
+            std::unordered_set<std::string> name_set;
+            name_set.reserve(children.size());
+
+            for (const auto& i : children)
+            {
+                name_set.insert(i->get_name());
+            }
+
+            unsigned postfix = 1;
+            while (name_set.contains(name + std::to_string(postfix)))
+            {
+                postfix++;
+            }
+
+            name += std::to_string(postfix);
+        }
+
+        const bool is_root = asset.get_asset().IsNull() ||
+            asset.get_asset().IsSequence();
+
+        children.push_back(std::make_shared<GameObject>(name));
+        std::shared_ptr<GameObject>& child = children.back();
+        child->parent = is_root ? nullptr : this;
+
+        child->asset.load(*child);
+        asset.add_child(child->asset.get_asset());
+    }
+
+    void GameObject::remove_child(const std::string& guid)
+    {
+        for (std::size_t i = 0; i < children.size(); ++i)
+        {
+            if (guid == children[i]->guid)
+            {
+                asset.remove_child(i);
+                children.erase(children.begin() + i);
+
+                return;
+            }
+        }
+
+        PLANAR_FATAL("No child with `guid` found");
     }
 }
