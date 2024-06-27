@@ -5,6 +5,10 @@
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
+#include "ThirdParty/yaml-cpp/yaml.h"
+
+#include <memory>
+
 namespace Planar::Engine::Scene
 {
     SceneAsset::SceneAsset()
@@ -27,7 +31,7 @@ namespace Planar::Engine::Scene
 
         Core::FileSystem::create_file(path / (scene_name +
             ".planarscene"), scene_asset);
-        asset = YAML::Load(scene_asset);
+        *asset = YAML::Load(scene_asset);
     }
 
     void SceneAsset::load(const std::string& scene_asset,
@@ -35,7 +39,7 @@ namespace Planar::Engine::Scene
         const std::filesystem::path& asset_path)
     {
         name = scene_name;
-        asset = YAML::Load(scene_asset);
+        *asset = YAML::Load(scene_asset);
         path = asset_path;
     }
 
@@ -44,7 +48,7 @@ namespace Planar::Engine::Scene
         PLANAR_ASSERT_NOT_EMPTY(path);
 
         Core::FileSystem::create_file(path,
-            Engine::Asset::to_string(asset));
+            Engine::Asset::to_string(*asset));
     }
 
     std::string SceneAsset::get_name() const
@@ -54,11 +58,11 @@ namespace Planar::Engine::Scene
 
     std::string SceneAsset::get_guid() const
     {
-        return asset["GUID"].Scalar();
+        return (*asset)["GUID"].Scalar();
     }
 
     YAML::Node SceneAsset::get_hierarchy()
     {
-        return asset["Hierarchy"];
+        return (*asset)["Hierarchy"];
     }
 }

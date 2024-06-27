@@ -1,6 +1,8 @@
 #include "Planar/Engine/GameObject/GameObjectAsset.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
 
+#include "ThirdParty/yaml-cpp/yaml.h"
+
 namespace Planar::Engine::GameObject
 {
     GameObjectAsset::GameObjectAsset()
@@ -10,25 +12,25 @@ namespace Planar::Engine::GameObject
 
     void GameObjectAsset::load(YAML::Node node)
     {
-        asset = node;
+        *asset = node;
     }
 
     void GameObjectAsset::load(GameObject& game_object)
     {
-        asset = YAML::Node();
-        asset["Name"] = game_object.get_name();
-        asset["GUID"] = game_object.get_guid();
-        asset["Children"] = YAML::Node();
+        *asset = YAML::Node();
+        (*asset)["Name"] = game_object.get_name();
+        (*asset)["GUID"] = game_object.get_guid();
+        (*asset)["Children"] = YAML::Node();
     }
 
     std::string GameObjectAsset::get_name() const
     {
-        return asset["Name"].Scalar();
+        return (*asset)["Name"].Scalar();
     }
 
     std::string GameObjectAsset::get_guid() const
     {
-        return asset["GUID"].Scalar();
+        return (*asset)["GUID"].Scalar();
     }
 
     void GameObjectAsset::add_child(YAML::Node child)
@@ -49,7 +51,7 @@ namespace Planar::Engine::GameObject
 
     YAML::Node GameObjectAsset::get_target() const
     {
-        return (asset.IsNull() || asset.IsSequence()) ?
-            asset : asset["Children"];
+        return (asset->IsNull() || asset->IsSequence()) ?
+            *asset : (*asset)["Children"];
     }
 }

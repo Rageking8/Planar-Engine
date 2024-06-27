@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-#include "ThirdParty/yaml-cpp/yaml.h"
+#include <memory>
+
+PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 
 namespace Planar::Engine::Asset
 {
@@ -15,6 +18,6 @@ namespace Planar::Engine::Asset
         YAML::Node get_asset() const;
 
     protected:
-        YAML::Node asset;
+        std::unique_ptr<YAML::Node> asset;
     };
 }

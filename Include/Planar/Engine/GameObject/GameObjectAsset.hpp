@@ -4,11 +4,10 @@
 #include "Planar/Engine/Asset/Asset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-#include "ThirdParty/yaml-cpp/yaml.h"
-
 #include <string>
 #include <cstddef>
 
+PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::GameObject

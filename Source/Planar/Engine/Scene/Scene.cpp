@@ -70,11 +70,9 @@ namespace Planar::Engine::Scene
 
     void Scene::load_root()
     {
-        YAML::Node root_node = asset.get_hierarchy();
-
         std::stack<std::vector<std::shared_ptr<GameObject::GameObject>>*>
             children_vector_stack;
 
-        root->load(root_node, children_vector_stack);
+        root->load(asset.get_hierarchy(), children_vector_stack);
     }
 }

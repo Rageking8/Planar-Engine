@@ -2,11 +2,12 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
-
-#include "ThirdParty/yaml-cpp/yaml.h"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 #include <filesystem>
+
+PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 
 namespace Planar::Engine::Scene
 {
