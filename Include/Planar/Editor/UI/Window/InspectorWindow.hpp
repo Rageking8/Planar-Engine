@@ -6,6 +6,7 @@
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
+PLANAR_EDITOR_FORWARD_DECLARE_ENUM_CLASS(Core::Select, SelectType)
 
 namespace Planar::Editor::UI::Window
 {
@@ -14,6 +15,7 @@ namespace Planar::Editor::UI::Window
     public:
         InspectorWindow(Core::Editor* editor);
 
+        void init();
         void update();
 
         virtual void render_window() override;
@@ -21,5 +23,7 @@ namespace Planar::Editor::UI::Window
     private:
         Engine::UI::ImGui::Element::InputField name_input;
         Element::Transform2D transform2d;
+
+        void handle_select(Core::Select::SelectType select_type);
     };
 }
