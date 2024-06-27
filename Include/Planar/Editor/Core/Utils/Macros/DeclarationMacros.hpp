@@ -8,3 +8,7 @@
 #define PLANAR_EDITOR_FORWARD_DECLARE_CLASS(ns, name)      \
     PLANAR_FORWARD_DECLARE_CLASS(                          \
         PLANAR_EDITOR_FORWARD_DECLARE_EXPAND_NS(ns), name) \
+
+#define PLANAR_EDITOR_FORWARD_DECLARE_ENUM_CLASS(ns, name) \
+    PLANAR_FORWARD_DECLARE_ENUM_CLASS(                     \
+        PLANAR_EDITOR_FORWARD_DECLARE_EXPAND_NS(ns), name) \
