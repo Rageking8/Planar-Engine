@@ -18,6 +18,7 @@ namespace Planar::Engine::UI::ImGui::Element
 
         const std::string& get_text() const;
         void set_text(const std::string& new_text);
+        void clear_text();
 
     private:
         std::string label;

@@ -25,4 +25,9 @@ namespace Planar::Engine::UI::ImGui::Element
     {
         text = new_text;
     }
+
+    void InputField::clear_text()
+    {
+        text.clear();
+    }
 }
