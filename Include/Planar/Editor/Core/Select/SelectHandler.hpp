@@ -5,6 +5,7 @@
 
 #include <string>
 #include <memory>
+#include <functional>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
@@ -13,7 +14,12 @@ namespace Planar::Editor::Core::Select
     class SelectHandler
     {
     public:
+        using SelectCallback = std::function<void(SelectType)>;
+
         SelectHandler();
+
+        void set_select_callback(
+            const SelectCallback& new_select_callback);
 
         SelectType get_select_type() const;
         std::string get_name() const;
@@ -27,8 +33,11 @@ namespace Planar::Editor::Core::Select
 
     private:
         SelectType select_type;
+        SelectCallback select_callback;
 
         std::string name;
         std::shared_ptr<Engine::GameObject::GameObject> game_object;
+
+        void invoke_select_callback();
     };
 }

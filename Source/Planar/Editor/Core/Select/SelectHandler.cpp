@@ -8,6 +8,12 @@ namespace Planar::Editor::Core::Select
 
     }
 
+    void SelectHandler::set_select_callback(
+        const SelectCallback& new_select_callback)
+    {
+        select_callback = new_select_callback;
+    }
+
     SelectType SelectHandler::get_select_type() const
     {
         return select_type;
@@ -26,14 +32,26 @@ namespace Planar::Editor::Core::Select
 
     void SelectHandler::select_content(const std::string& new_name)
     {
-        name = new_name;
         select_type = SelectType::CONTENT;
+        name = new_name;
+
+        invoke_select_callback();
     }
 
     void SelectHandler::select_game_object(
         std::shared_ptr<Engine::GameObject::GameObject> new_game_object)
     {
-        game_object = new_game_object;
         select_type = SelectType::GAME_OBJECT;
+        game_object = new_game_object;
+
+        invoke_select_callback();
+    }
+
+    void SelectHandler::invoke_select_callback()
+    {
+        if (select_callback)
+        {
+            select_callback(select_type);
+        }
     }
 }
