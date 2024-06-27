@@ -1,7 +1,9 @@
 #include "Planar/Editor/UI/Window/InspectorWindow.hpp"
-#include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
-#include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
+#include "Planar/Editor/Core/Select/SelectHandler.hpp"
+#include "Planar/Editor/Core/Select/SelectType.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 namespace Planar::Editor::UI::Window
 {
@@ -13,12 +15,25 @@ namespace Planar::Editor::UI::Window
         set_padding({ { 0.f, 20.f } });
     }
 
-    void InspectorWindow::init()
+    void InspectorWindow::update()
     {
-        editor->get_select_handler().set_content_callback(
-            PLANAR_CAPTURE_THIS_PARAM1(select_content));
-        editor->get_select_handler().set_game_object_callback(
-            [this](auto& param1) { select_game_object(param1); });
+        Core::Select::SelectHandler& select_handler =
+            editor->get_select_handler();
+
+        switch (select_handler.get_select_type())
+        {
+        case Core::Select::SelectType::NONE:
+            break;
+
+        case Core::Select::SelectType::CONTENT:
+            name_input.set_text(select_handler.get_name());
+            break;
+
+        case Core::Select::SelectType::GAME_OBJECT:
+            name_input.set_text(select_handler.get_game_object()->
+                get_name());
+            break;
+        }
     }
 
     void InspectorWindow::render_window()
@@ -32,17 +47,19 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        name_input.render();
-    }
+        const Core::Select::SelectType select_type =
+            editor->get_select_handler().get_select_type();
 
-    void InspectorWindow::select_content(const std::string& name)
-    {
-        name_input.set_text(name);
-    }
+        if (select_type != Core::Select::SelectType::NONE)
+        {
+            name_input.render();
+        }
 
-    void InspectorWindow::select_game_object(
-        const Engine::GameObject::GameObject& game_object)
-    {
-        name_input.set_text(game_object.get_name());
+        if (select_type == Core::Select::SelectType::GAME_OBJECT)
+        {
+            ImGui::Core::Cursor::move_y(8.f);
+            transform2d.set_text("Transform2D");
+            transform2d.render();
+        }
     }
 }

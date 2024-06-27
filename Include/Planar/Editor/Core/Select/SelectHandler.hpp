@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Planar/Editor/Core/Select/SelectType.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
-#include <functional>
+#include <memory>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
@@ -12,23 +13,22 @@ namespace Planar::Editor::Core::Select
     class SelectHandler
     {
     public:
-        using ContentCallback = std::function<void(const std::string&)>;
-        using GameObjectCallback =
-            std::function<void(const Engine::GameObject::GameObject&)>;
-
         SelectHandler();
 
-        void select_content(const std::string& name);
-        void select_game_object(
-            const Engine::GameObject::GameObject& game_object);
+        SelectType get_select_type() const;
+        std::string get_name() const;
+        std::shared_ptr<Engine::GameObject::GameObject>
+            get_game_object() const;
 
-        void set_content_callback(
-            const ContentCallback& new_content_callback);
-        void set_game_object_callback(
-            const GameObjectCallback& new_game_object_callback);
+        void select_content(const std::string& new_name);
+        void select_game_object(
+            std::shared_ptr<Engine::GameObject::GameObject>
+            new_game_object);
 
     private:
-        ContentCallback content_callback;
-        GameObjectCallback game_object_callback;
+        SelectType select_type;
+
+        std::string name;
+        std::shared_ptr<Engine::GameObject::GameObject> game_object;
     };
 }

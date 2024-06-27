@@ -29,8 +29,6 @@ namespace Planar::Editor::Scene
     {
         load_icons();
 
-        inspector_window.init();
-
         content_window.set_file_texture(file_texture);
         content_window.set_folder_texture(folder_texture);
         content_window.set_left_arrow_texture(left_arrow_texture);
@@ -50,6 +48,7 @@ namespace Planar::Editor::Scene
             restore_default_layout();
         }
 
+        inspector_window.update();
         build_window.update();
     }
 
