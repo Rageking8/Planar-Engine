@@ -17,20 +17,20 @@ namespace Planar::Engine::GameObject
 
     void GameObjectAsset::load(GameObject& game_object)
     {
-        *asset = YAML::Node();
-        (*asset)["Name"] = game_object.get_name();
-        (*asset)["GUID"] = game_object.get_guid();
-        (*asset)["Children"] = YAML::Node();
+        clear();
+        get("Name") = game_object.get_name();
+        get("GUID") = game_object.get_guid();
+        get("Children") = YAML::Node();
     }
 
     std::string GameObjectAsset::get_name() const
     {
-        return (*asset)["Name"].Scalar();
+        return get_scalar("Name");
     }
 
     std::string GameObjectAsset::get_guid() const
     {
-        return (*asset)["GUID"].Scalar();
+        return get_scalar("GUID");
     }
 
     void GameObjectAsset::add_child(YAML::Node child)
@@ -51,7 +51,7 @@ namespace Planar::Engine::GameObject
 
     YAML::Node GameObjectAsset::get_target() const
     {
-        return (asset->IsNull() || asset->IsSequence()) ?
-            *asset : (*asset)["Children"];
+        return (is_null() || is_sequence()) ?
+            *asset : get("Children");
     }
 }
