@@ -1,3 +1,4 @@
+add_subdirectory(Cast)
 add_subdirectory(Checks)
 add_subdirectory(Concepts)
 add_subdirectory(EnumClass)
