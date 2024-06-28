@@ -39,6 +39,7 @@ namespace Planar::Editor::UI::Container
             switch (type)
             {
             case Engine::Component::ComponentType::Transform2D:
+            {
                 Element::Transform2D* element =
                     Engine::Core::Utils::Cast::unique_ptr_downcast
                     <Element::Transform2D>(item.component);
@@ -48,6 +49,7 @@ namespace Planar::Editor::UI::Container
                 element->set_position(transform->get_position());
                 element->set_rotation(transform->get_rotation());
                 break;
+            }
 
             default:
                 PLANAR_FATAL("Unsupported `type`");
