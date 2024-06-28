@@ -20,10 +20,13 @@ namespace Planar::Engine::UI::ImGui::Element
         void set_text(const std::string& new_text);
         void clear_text();
 
+        bool get_modified(bool reset = true);
+
     private:
         std::string label;
         std::string placeholder;
         std::string text;
         Core::Size::Width width;
+        bool modified;
     };
 }

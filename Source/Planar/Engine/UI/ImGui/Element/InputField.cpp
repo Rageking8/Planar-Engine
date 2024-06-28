@@ -5,7 +5,7 @@ namespace Planar::Engine::UI::ImGui::Element
 {
     InputField::InputField(const std::string& placeholder,
         Core::Size::Width width) : label{ generate_unique_label() },
-        placeholder{ placeholder }, width{ width }
+        placeholder{ placeholder }, width{ width }, modified{}
     {
 
     }
@@ -13,7 +13,8 @@ namespace Planar::Engine::UI::ImGui::Element
     void InputField::render()
     {
         width.set();
-        input_text(label, placeholder, text);
+
+        modified |= input_text(label, placeholder, text);
     }
 
     const std::string& InputField::get_text() const
@@ -29,5 +30,14 @@ namespace Planar::Engine::UI::ImGui::Element
     void InputField::clear_text()
     {
         text.clear();
+    }
+
+    bool InputField::get_modified(bool reset)
+    {
+        bool result = modified;
+
+        modified = reset ? false : modified;
+
+        return result;
     }
 }
