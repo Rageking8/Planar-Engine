@@ -8,4 +8,11 @@ namespace Planar::Engine::Core::Utils::Cast
     {
         return static_cast<Derived*>(pointer.get());
     }
+
+    template <typename Derived, Concepts::Polymorphic Base>
+        requires Concepts::Downcast<Derived, Base>
+    Derived* shared_ptr_downcast(std::shared_ptr<Base>& pointer)
+    {
+        return static_cast<Derived*>(pointer.get());
+    }
 }
