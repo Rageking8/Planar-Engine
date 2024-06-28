@@ -16,6 +16,8 @@ namespace Planar::Engine::Component
         Component(bool generate_guid = true);
         virtual ~Component();
 
+        virtual ComponentType get_type() const = 0;
+
         virtual bool match(ComponentType other) const;
 
         bool get_active() const;

@@ -18,6 +18,11 @@
     using Parent = parent;                                 \
     PLANAR_DEFINE_COMPONENT_TYPE_AND_NAME(type)            \
                                                            \
+    virtual ComponentType get_type() const override        \
+    {                                                      \
+        return TYPE;                                       \
+    }                                                      \
+                                                           \
     virtual bool match(ComponentType other) const override \
     {                                                      \
         if (other == TYPE)                                 \
