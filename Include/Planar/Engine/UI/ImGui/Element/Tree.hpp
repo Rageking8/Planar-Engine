@@ -21,8 +21,8 @@ namespace Planar::Engine::UI::ImGui::Element
             const std::string& id = "");
 
         virtual void render() override;
-        void render(const std::function<void()>& post_callback,
-            const std::function<void()>& click_callback,
+        void render(const std::function<void()>& left_click_callback,
+            const std::function<void()>& right_click_callback,
             const std::function<void()>& content,
             const std::function<void()>& pre_header = {});
 

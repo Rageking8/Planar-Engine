@@ -25,7 +25,7 @@ namespace Planar::Editor::UI::Window
 
         if (context_menu_active)
         {
-            context_menu_active = context_menu.render();
+            context_menu_active = context_menu.render({}, { false });
         }
 
         if (editor->get_current_scene())
@@ -51,8 +51,8 @@ namespace Planar::Editor::UI::Window
         }
 
         hierarchy_tree.render(
-            PLANAR_CAPTURE_REF_ARG1(render_context_menu, game_object),
             PLANAR_CAPTURE_REF_ARG1(handle_select, game_object),
+            PLANAR_CAPTURE_REF_ARG1(render_context_menu, game_object),
             PLANAR_CAPTURE_REF_ARG1(render_scene_children, game_object)
         );
     }
@@ -129,7 +129,7 @@ namespace Planar::Editor::UI::Window
                 return false;
             });
 
-        if (context_menu.render())
+        if (context_menu.render({}, { true }))
         {
             context_menu_active = true;
         }

@@ -27,8 +27,8 @@ namespace Planar::Engine::UI::ImGui::Element
         render({}, {}, {});
     }
 
-    void Tree::render(const std::function<void()>& post_callback,
-        const std::function<void()>& click_callback,
+    void Tree::render(const std::function<void()>& left_click_callback,
+        const std::function<void()>& right_click_callback,
         const std::function<void()>& content,
         const std::function<void()>& pre_header)
     {
@@ -46,7 +46,9 @@ namespace Planar::Engine::UI::ImGui::Element
 
         bool tree_open = ::ImGui::TreeNodeEx(("##" + text + id).
             c_str(), generate_flags());
-        bool clicked = ::ImGui::IsItemClicked();
+        bool left_clicked = ::ImGui::IsItemClicked();
+        bool right_clicked = is_item_hovered() &&
+            ::ImGui::IsMouseReleased(ImGuiMouseButton_Right);
         same_line();
 
         if (pre_header)
@@ -56,14 +58,14 @@ namespace Planar::Engine::UI::ImGui::Element
 
         ImGui::text(text);
 
-        if (click_callback && clicked)
+        if (left_click_callback && left_clicked)
         {
-            click_callback();
+            left_click_callback();
         }
 
-        if (post_callback)
+        if (right_click_callback && right_clicked)
         {
-            post_callback();
+            right_click_callback();
         }
 
         if (is_leaf)
