@@ -29,9 +29,15 @@ namespace Planar::Engine::Asset
         return asset->IsSequence();
     }
 
-    YAML::Node Asset::get(const std::string& key) const
+    YAML::Node Asset::get(const std::string& key1) const
     {
-        return (*asset)[key];
+        return (*asset)[key1];
+    }
+
+    YAML::Node Asset::get(const std::string& key1,
+        const std::string& key2) const
+    {
+        return get(key1)[key2];
     }
 
     YAML::Node Asset::get_asset() const

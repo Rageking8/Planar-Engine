@@ -21,7 +21,9 @@ namespace Planar::Engine::Asset
         bool is_null() const;
         bool is_sequence() const;
 
-        YAML::Node get(const std::string& key) const;
+        YAML::Node get(const std::string& key1) const;
+        YAML::Node get(const std::string& key1,
+            const std::string& key2) const;
         YAML::Node get_asset() const;
 
         std::string get_scalar(const std::string& key) const;
