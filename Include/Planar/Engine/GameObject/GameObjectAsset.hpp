@@ -28,6 +28,8 @@ namespace Planar::Engine::GameObject
         void add_child(YAML::Node child);
         void remove_child(std::size_t index);
 
+        void add_component(YAML::Node component);
+
     private:
         YAML::Node get_target() const;
     };

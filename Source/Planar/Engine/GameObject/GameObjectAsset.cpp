@@ -20,6 +20,7 @@ namespace Planar::Engine::GameObject
         clear();
         set_name(game_object.get_name());
         get("GUID") = game_object.get_guid();
+        get("Components") = YAML::Node();
         get("Children") = YAML::Node();
     }
 
@@ -52,6 +53,11 @@ namespace Planar::Engine::GameObject
         {
             target = YAML::Node();
         }
+    }
+
+    void GameObjectAsset::add_component(YAML::Node component)
+    {
+        get("Components").push_back(component);
     }
 
     YAML::Node GameObjectAsset::get_target() const

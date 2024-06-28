@@ -10,6 +10,7 @@
 #include <memory>
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
 
 namespace Planar::Engine::GameObject
 {
@@ -43,6 +44,7 @@ namespace Planar::Engine::GameObject
         std::string name;
         std::string guid;
         GameObjectAsset asset;
+        std::vector<std::shared_ptr<Component::Component>> components;
         std::vector<std::shared_ptr<GameObject>> children;
     };
 }

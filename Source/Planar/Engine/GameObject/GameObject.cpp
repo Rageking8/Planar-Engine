@@ -1,6 +1,8 @@
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
+#include "Planar/Engine/Component/Transform2D.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -38,6 +40,28 @@ namespace Planar::Engine::GameObject
         {
             name = asset.get_name();
             guid = asset.get_guid();
+
+            for (auto i : node["Components"])
+            {
+                if (!i.IsMap())
+                {
+                    continue;
+                }
+
+                std::string type = i["Type"].Scalar();
+
+                if (type == Component::Transform2D::NAME)
+                {
+                    std::shared_ptr<Component::Transform2D> transform =
+                        std::make_shared<Component::Transform2D>(false);
+                    transform->load(i);
+                    components.push_back(transform);
+                }
+                else
+                {
+                    PLANAR_FATAL("Unrecognized component type");
+                }
+            }
         }
 
         for (auto i : (is_root ? node : node["Children"]))
@@ -129,8 +153,14 @@ namespace Planar::Engine::GameObject
         std::shared_ptr<GameObject>& child = children.back();
         child->parent = is_root ? nullptr : this;
 
+        std::shared_ptr<Component::Transform2D> transform =
+            std::make_shared<Component::Transform2D>();
+        transform->load();
+        child->components.push_back(transform);
+
         child->asset.load(*child);
         asset.add_child(child->asset.get_asset());
+        child->asset.add_component(transform->get_asset().get_asset());
     }
 
     void GameObject::remove_child(const std::string& guid)
