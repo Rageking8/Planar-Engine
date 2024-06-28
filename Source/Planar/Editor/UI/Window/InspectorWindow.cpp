@@ -24,7 +24,28 @@ namespace Planar::Editor::UI::Window
 
     void InspectorWindow::update()
     {
+        const Core::Select::SelectHandler& select_handler =
+            editor->get_select_handler();
+        const Core::Select::SelectType select_type =
+            select_handler.get_select_type();
 
+        if (name_input.get_modified())
+        {
+            switch (select_type)
+            {
+            case Core::Select::SelectType::NONE:
+                break;
+
+            case Core::Select::SelectType::CONTENT:
+                break;
+
+            case Core::Select::SelectType::GAME_OBJECT:
+                select_handler.get_game_object()->set_name(
+                    name_input.get_text());
+                editor->set_dirty();
+                break;
+            }
+        }
     }
 
     void InspectorWindow::render_window()
