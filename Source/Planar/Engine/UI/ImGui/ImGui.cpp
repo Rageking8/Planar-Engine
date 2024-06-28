@@ -157,16 +157,17 @@ namespace Planar::Engine::UI::ImGui
             { size.width, size.height });
     }
 
-    void input_text(const std::string& label, std::string& text)
+    bool input_text(const std::string& label, std::string& text,
+        int flags)
     {
-        ::ImGui::InputText(label.c_str(), &text);
+        return ::ImGui::InputText(label.c_str(), &text, flags);
     }
 
-    void input_text(const std::string& label,
-        const std::string& placeholder, std::string& text)
+    bool input_text(const std::string& label,
+        const std::string& placeholder, std::string& text, int flags)
     {
-        ::ImGui::InputTextWithHint(label.c_str(),
-            placeholder.c_str(), &text);
+        return ::ImGui::InputTextWithHint(label.c_str(),
+            placeholder.c_str(), &text, flags);
     }
 
     void image(GLuint texture, Math::Size2Df size, bool flip_y)

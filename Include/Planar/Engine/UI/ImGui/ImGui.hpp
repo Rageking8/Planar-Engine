@@ -59,10 +59,10 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API bool button(const std::string& name, GLuint texture,
         Math::Size2Df size);
 
-    PLANAR_API void input_text(const std::string& label,
-        std::string& text);
-    PLANAR_API void input_text(const std::string& label,
-        const std::string& placeholder, std::string& text);
+    PLANAR_API bool input_text(const std::string& label,
+        std::string& text, int flags = 0);
+    PLANAR_API bool input_text(const std::string& label,
+        const std::string& placeholder, std::string& text, int flags = 0);
 
     PLANAR_API void image(GLuint texture, Math::Size2Df size,
         bool flip_y = false);
