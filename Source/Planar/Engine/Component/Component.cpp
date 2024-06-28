@@ -1,10 +1,15 @@
 #include "Planar/Engine/Component/Component.hpp"
+#include "Planar/Engine/Core/GUID/GUID.hpp"
 
 namespace Planar::Engine::Component
 {
-    Component::Component() : active{ true }
+    Component::Component(bool generate_guid) : active{ true }
     {
-
+        if (generate_guid)
+        {
+            guid = Core::GUID::generate_guid(
+                Core::GUID::Representation::DEFAULT_COMPACT);
+        }
     }
 
     Component::~Component()
@@ -25,5 +30,10 @@ namespace Planar::Engine::Component
     void Component::set_active(bool new_active)
     {
         active = new_active;
+    }
+
+    std::string Component::get_guid() const
+    {
+        return guid;
     }
 }
