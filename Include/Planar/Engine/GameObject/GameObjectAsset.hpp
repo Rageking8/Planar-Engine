@@ -21,6 +21,8 @@ namespace Planar::Engine::GameObject
         void load(GameObject& game_object);
 
         std::string get_name() const;
+        void set_name(const std::string& new_name);
+
         std::string get_guid() const;
 
         void add_child(YAML::Node child);

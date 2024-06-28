@@ -86,6 +86,7 @@ namespace Planar::Engine::GameObject
     void GameObject::set_name(const std::string& new_name)
     {
         name = new_name;
+        asset.set_name(new_name);
     }
 
     std::string GameObject::get_guid() const
