@@ -34,6 +34,9 @@ namespace Planar::Engine::GameObject
 
         std::string get_guid() const;
 
+        std::vector<std::shared_ptr<Component::Component>>&
+            get_components();
+
         std::vector<std::shared_ptr<GameObject>>& get_children();
 
         void add_child(std::string name = "");

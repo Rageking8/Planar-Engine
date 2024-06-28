@@ -118,6 +118,12 @@ namespace Planar::Engine::GameObject
         return guid;
     }
 
+    std::vector<std::shared_ptr<Component::Component>>&
+        GameObject::get_components()
+    {
+        return components;
+    }
+
     std::vector<std::shared_ptr<GameObject>>& GameObject::get_children()
     {
         return children;
