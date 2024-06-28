@@ -12,7 +12,7 @@ namespace Planar::Editor::UI::Element
         public Engine::UI::ImGui::Element::Element
     {
     public:
-        Component();
+        Component(const std::string& text);
 
         virtual void render() override;
 
