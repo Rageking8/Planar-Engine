@@ -1,34 +1,19 @@
 #pragma once
 
-#include "Planar/Editor/UI/Element/Component.hpp"
-#include "Planar/Engine/Component/ComponentType.hpp"
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-#include <vector>
-#include <memory>
-#include <unordered_map>
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(UI::Container, ComponentStore)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Editor::UI::Renderer
 {
     class ComponentRenderer
     {
     public:
-        struct ComponentItem
-        {
-            bool in_use;
-            std::unique_ptr<Element::Component> component;
-        };
-
         ComponentRenderer();
 
-        void render(Engine::Component::ComponentType type);
-
-    private:
-        std::unordered_map<Engine::Component::ComponentType,
-            std::vector<ComponentItem>> component_map;
-
-        void reset_component_map();
-        std::unique_ptr<Element::Component>&
-            find_free_or_create_component(
-            Engine::Component::ComponentType type);
+        void render(Container::ComponentStore& component_store,
+            Engine::GameObject::GameObject& game_object);
     };
 }

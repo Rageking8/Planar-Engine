@@ -74,11 +74,8 @@ namespace Planar::Editor::UI::Window
         {
             ImGui::Core::Cursor::move_y(8.f);
 
-            for (auto& i : select_handler.get_game_object()->
-                get_components())
-            {
-                component_renderer.render(i->get_type());
-            }
+            component_renderer.render(component_store,
+                *select_handler.get_game_object());
         }
     }
 
@@ -99,8 +96,10 @@ namespace Planar::Editor::UI::Window
             break;
 
         case Core::Select::SelectType::GAME_OBJECT:
-            name_input.set_text(select_handler.get_game_object()->
-                get_name());
+            std::shared_ptr<Engine::GameObject::GameObject> game_object =
+                select_handler.get_game_object();
+            name_input.set_text(game_object->get_name());
+            component_store.update_items(*game_object);
             break;
         }
     }
