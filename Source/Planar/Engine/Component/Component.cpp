@@ -36,4 +36,9 @@ namespace Planar::Engine::Component
     {
         return guid;
     }
+
+    void Component::set_guid(const std::string& new_guid)
+    {
+        guid = new_guid;
+    }
 }

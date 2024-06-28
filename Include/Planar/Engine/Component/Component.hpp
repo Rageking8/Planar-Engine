@@ -22,6 +22,7 @@ namespace Planar::Engine::Component
         void set_active(bool new_active);
 
         std::string get_guid() const;
+        void set_guid(const std::string& new_guid);
 
     private:
         bool active;
