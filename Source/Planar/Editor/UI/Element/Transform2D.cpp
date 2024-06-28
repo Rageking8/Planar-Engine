@@ -13,6 +13,26 @@ namespace Planar::Editor::UI::Element
 
     }
 
+    Engine::Math::Pos2Df Transform2D::get_position() const
+    {
+        return position.get_value();
+    }
+
+    void Transform2D::set_position(Engine::Math::Pos2Df new_position)
+    {
+        position.set_value(new_position.get_array());
+    }
+
+    float Transform2D::get_rotation() const
+    {
+        return rotation.get_x();
+    }
+
+    void Transform2D::set_rotation(float new_rotation)
+    {
+        rotation.set_x(new_rotation);
+    }
+
     void Transform2D::render_content()
     {
         position.render();
