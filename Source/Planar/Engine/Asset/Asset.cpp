@@ -49,4 +49,15 @@ namespace Planar::Engine::Asset
     {
         return get(key).Scalar();
     }
+
+    float Asset::get_float(const std::string& key1) const
+    {
+        return get(key1).as<float>();
+    }
+
+    float Asset::get_float(const std::string& key1,
+        const std::string& key2) const
+    {
+        return get(key1, key2).as<float>();
+    }
 }

@@ -27,6 +27,9 @@ namespace Planar::Engine::Asset
         YAML::Node get_asset() const;
 
         std::string get_scalar(const std::string& key) const;
+        float get_float(const std::string& key1) const;
+        float get_float(const std::string& key1,
+            const std::string& key2) const;
 
     protected:
         std::unique_ptr<YAML::Node> asset;
