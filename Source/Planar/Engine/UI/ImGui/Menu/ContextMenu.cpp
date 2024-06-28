@@ -20,10 +20,12 @@ namespace Planar::Engine::UI::ImGui::Menu
     }
 
     bool ContextMenu::render(
-        const std::function<bool()>& content_override)
+        const std::function<bool()>& content_override,
+        std::optional<bool> right_clicked_override)
     {
-        bool right_clicked = is_item_hovered() &&
-            ::ImGui::IsMouseReleased(ImGuiMouseButton_Right);
+        bool right_clicked = right_clicked_override ?
+            *right_clicked_override : (is_item_hovered() &&
+            ::ImGui::IsMouseReleased(ImGuiMouseButton_Right));
 
         if (right_clicked)
         {

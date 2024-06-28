@@ -3,6 +3,7 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 
+#include <optional>
 #include <functional>
 
 namespace Planar::Engine::UI::ImGui::Menu
@@ -13,7 +14,8 @@ namespace Planar::Engine::UI::ImGui::Menu
         ContextMenu();
 
         bool render(
-            const std::function<bool()>& content_override = {});
+            const std::function<bool()>& content_override = {},
+            std::optional<bool> right_clicked_override = {});
 
         void set_content(const std::function<bool()>& new_content);
 
