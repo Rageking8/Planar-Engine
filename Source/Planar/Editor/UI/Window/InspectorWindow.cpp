@@ -2,6 +2,7 @@
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectType.hpp"
+#include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
@@ -59,8 +60,10 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
+        const Core::Select::SelectHandler& select_handler =
+            editor->get_select_handler();
         const Core::Select::SelectType select_type =
-            editor->get_select_handler().get_select_type();
+            select_handler.get_select_type();
 
         if (select_type != Core::Select::SelectType::NONE)
         {
@@ -70,8 +73,12 @@ namespace Planar::Editor::UI::Window
         if (select_type == Core::Select::SelectType::GAME_OBJECT)
         {
             ImGui::Core::Cursor::move_y(8.f);
-            transform2d.set_text("Transform2D");
-            transform2d.render();
+
+            for (auto& i : select_handler.get_game_object()->
+                get_components())
+            {
+                component_renderer.render(i->get_type());
+            }
         }
     }
 
