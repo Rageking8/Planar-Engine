@@ -1,8 +1,8 @@
-#include "Planar/Engine/UI/ImGui/Element/DragFloat.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
-namespace Planar::Engine::UI::ImGui::Element
+namespace Planar::Engine::UI::ImGui::Element::Drag
 {
     template <std::size_t N>
     inline DragFloat<N>::DragFloat(const std::string& text,

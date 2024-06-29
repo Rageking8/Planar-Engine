@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Editor/UI/Element/Component.hpp"
-#include "Planar/Engine/UI/ImGui/Element/DragFloat.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
 
 namespace Planar::Editor::UI::Element
@@ -18,8 +18,8 @@ namespace Planar::Editor::UI::Element
         void set_rotation(float new_rotation);
 
     private:
-        Engine::UI::ImGui::Element::DragFloat2 position;
-        Engine::UI::ImGui::Element::DragFloat1 rotation;
+        Engine::UI::ImGui::Element::Drag::DragFloat2 position;
+        Engine::UI::ImGui::Element::Drag::DragFloat1 rotation;
 
         virtual void render_content() override;
     };

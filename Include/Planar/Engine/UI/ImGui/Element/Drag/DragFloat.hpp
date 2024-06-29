@@ -7,7 +7,7 @@
 #include <string>
 #include <cstddef>
 
-namespace Planar::Engine::UI::ImGui::Element
+namespace Planar::Engine::UI::ImGui::Element::Drag
 {
     template <std::size_t N = 1>
     class DragFloat : public Element
@@ -50,4 +50,4 @@ namespace Planar::Engine::UI::ImGui::Element
     using DragFloat2 = DragFloat<2>;
 }
 
-#include "Planar/Engine/UI/ImGui/Element/DragFloat.tpp"
+#include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.tpp"
