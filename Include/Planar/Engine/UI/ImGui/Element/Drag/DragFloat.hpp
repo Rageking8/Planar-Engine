@@ -24,6 +24,8 @@ namespace Planar::Engine::UI::ImGui::Element::Drag
 
         virtual void render() override;
 
+        bool get_modified(bool reset = true);
+
         ValueT get_value() const;
         float get_x() const;
         float get_y() const;
@@ -40,6 +42,7 @@ namespace Planar::Engine::UI::ImGui::Element::Drag
         ValueT value;
         Core::Size::Width drag_width;
         float drag_x_pos;
+        bool modified;
 
         std::string get_label() const;
 

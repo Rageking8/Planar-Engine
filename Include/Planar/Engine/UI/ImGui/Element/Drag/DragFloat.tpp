@@ -19,7 +19,7 @@ namespace Planar::Engine::UI::ImGui::Element::Drag
     {
         render_text();
         drag_width.set();
-        drag_float(get_label(), value.front());
+        modified |= drag_float(get_label(), value.front());
     }
 
     template <>
@@ -27,7 +27,17 @@ namespace Planar::Engine::UI::ImGui::Element::Drag
     {
         render_text();
         drag_width.set();
-        drag_float_2(get_label(), value);
+        modified |= drag_float_2(get_label(), value);
+    }
+
+    template <std::size_t N>
+    inline bool DragFloat<N>::get_modified(bool reset)
+    {
+        bool result = modified;
+
+        modified = reset ? false : modified;
+
+        return result;
     }
 
     template <std::size_t N>
