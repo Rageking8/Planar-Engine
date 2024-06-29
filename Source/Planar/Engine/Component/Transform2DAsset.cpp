@@ -19,9 +19,8 @@ namespace Planar::Engine::Component
     {
         get("Type") = transform.NAME;
         get("GUID") = transform.get_guid();
-        get("Position", "X") = transform.get_position().x;
-        get("Position", "Y") = transform.get_position().y;
-        get("Rotation") = transform.get_rotation();
+        set_position(transform.get_position());
+        set_rotation(transform.get_rotation());
     }
 
     std::string Transform2DAsset::get_guid() const
@@ -35,8 +34,19 @@ namespace Planar::Engine::Component
             get_float("Position", "Y") };
     }
 
+    void Transform2DAsset::set_position(Math::Pos2Df new_position)
+    {
+        get("Position", "X") = new_position.x;
+        get("Position", "Y") = new_position.y;
+    }
+
     float Transform2DAsset::get_rotation() const
     {
         return get_float("Rotation");
+    }
+
+    void Transform2DAsset::set_rotation(float new_rotation)
+    {
+        get("Rotation") = new_rotation;
     }
 }

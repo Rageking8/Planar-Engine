@@ -32,6 +32,7 @@ namespace Planar::Engine::Component
     void Transform2D::set_position(Math::Pos2Df new_position)
     {
         position = new_position;
+        asset.set_position(new_position);
     }
 
     float Transform2D::get_rotation() const
@@ -42,6 +43,7 @@ namespace Planar::Engine::Component
     void Transform2D::set_rotation(float new_rotation)
     {
         rotation = new_rotation;
+        asset.set_rotation(new_rotation);
     }
 
     Transform2DAsset& Transform2D::get_asset()

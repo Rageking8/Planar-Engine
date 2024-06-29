@@ -21,7 +21,11 @@ namespace Planar::Engine::Component
         void load(Transform2D& transform);
 
         std::string get_guid() const;
+
         Math::Pos2Df get_position() const;
+        void set_position(Math::Pos2Df new_position);
+
         float get_rotation() const;
+        void set_rotation(float new_rotation);
     };
 }
