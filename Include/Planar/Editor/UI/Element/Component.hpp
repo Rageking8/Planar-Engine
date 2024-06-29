@@ -24,6 +24,9 @@ namespace Planar::Editor::UI::Element
 
         virtual void set(
             std::shared_ptr<Engine::Component::Component> component) = 0;
+        virtual bool write(
+            std::shared_ptr<Engine::Component::Component> component,
+            bool force = false) = 0;
 
         void set_text(const std::string& new_text);
         void set_show_active_checkbox(bool new_show_active_checkbox);

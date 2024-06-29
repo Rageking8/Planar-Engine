@@ -8,6 +8,7 @@
 #include <memory>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Transform2D)
 
 namespace Planar::Editor::UI::Element
 {
@@ -20,6 +21,9 @@ namespace Planar::Editor::UI::Element
 
         virtual void set(
             std::shared_ptr<Engine::Component::Component> component) override;
+        virtual bool write(
+            std::shared_ptr<Engine::Component::Component> component,
+            bool force = false) override;
 
         Engine::Math::Pos2Df get_position() const;
         void set_position(Engine::Math::Pos2Df new_position);
@@ -32,5 +36,8 @@ namespace Planar::Editor::UI::Element
         Engine::UI::ImGui::Element::Drag::DragFloat1 rotation;
 
         virtual void render_content() override;
+
+        Engine::Component::Transform2D* get_engine_component(
+            std::shared_ptr<Engine::Component::Component>& component);
     };
 }

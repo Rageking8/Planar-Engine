@@ -29,16 +29,32 @@ namespace Planar::Editor::UI::Element
     void Transform2D::set(
         std::shared_ptr<Engine::Component::Component> component)
     {
-        PLANAR_ASSERT(component->get_type() ==
-            Engine::Component::ComponentType::Transform2D,
-            "`component` has wrong type");
-
         Engine::Component::Transform2D* transform =
-            Engine::Core::Utils::Cast::shared_ptr_downcast
-            <Engine::Component::Transform2D>(component);
+            get_engine_component(component);
 
         set_position(transform->get_position());
         set_rotation(transform->get_rotation());
+
+        position.get_modified();
+        rotation.get_modified();
+    }
+
+    bool Transform2D::write(
+        std::shared_ptr<Engine::Component::Component> component,
+        bool force)
+    {
+        if (!(force || get_modified()))
+        {
+            return false;
+        }
+
+        Engine::Component::Transform2D* transform =
+            get_engine_component(component);
+
+        transform->set_position(get_position());
+        transform->set_rotation(get_rotation());
+
+        return true;
     }
 
     Engine::Math::Pos2Df Transform2D::get_position() const
@@ -66,5 +82,16 @@ namespace Planar::Editor::UI::Element
         position.render();
         Engine::UI::ImGui::Core::Cursor::move_y(10.f);
         rotation.render();
+    }
+
+    Engine::Component::Transform2D* Transform2D::get_engine_component(
+        std::shared_ptr<Engine::Component::Component>& component)
+    {
+        PLANAR_ASSERT(component->get_type() ==
+            Engine::Component::ComponentType::Transform2D,
+            "`component` has wrong type");
+
+        return Engine::Core::Utils::Cast::shared_ptr_downcast
+            <Engine::Component::Transform2D>(component);
     }
 }
