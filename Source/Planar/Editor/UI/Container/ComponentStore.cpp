@@ -1,11 +1,9 @@
 #include "Planar/Editor/UI/Container/ComponentStore.hpp"
 #include "Planar/Editor/UI/Element/Transform2D.hpp"
-#include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
-#include "Planar/Engine/Core/Utils/Cast/Cast.hpp"
 
 namespace Planar::Editor::UI::Container
 {
@@ -32,29 +30,9 @@ namespace Planar::Editor::UI::Container
 
         for (auto& component : game_object.get_components())
         {
-            const Engine::Component::ComponentType type =
-                component->get_type();
-            Item& item = get_item(type, true);
+            Item& item = get_item(component->get_type(), true);
 
-            switch (type)
-            {
-            case Engine::Component::ComponentType::Transform2D:
-            {
-                Element::Transform2D* element =
-                    Engine::Core::Utils::Cast::unique_ptr_downcast
-                    <Element::Transform2D>(item.component);
-                Engine::Component::Transform2D* transform =
-                    Engine::Core::Utils::Cast::shared_ptr_downcast
-                    <Engine::Component::Transform2D>(component);
-                element->set_position(transform->get_position());
-                element->set_rotation(transform->get_rotation());
-                break;
-            }
-
-            default:
-                PLANAR_FATAL("Unsupported `type`");
-                break;
-            }
+            item.component->set(component);
         }
     }
 

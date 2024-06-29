@@ -3,8 +3,12 @@
 #include "Planar/Engine/UI/ImGui/Element/Element.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
+#include <memory>
+
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
 
 namespace Planar::Editor::UI::Element
 {
@@ -15,6 +19,9 @@ namespace Planar::Editor::UI::Element
         Component(const std::string& text);
 
         virtual void render() override;
+
+        virtual void set(
+            std::shared_ptr<Engine::Component::Component> component) = 0;
 
         void set_text(const std::string& new_text);
         void set_show_active_checkbox(bool new_show_active_checkbox);
