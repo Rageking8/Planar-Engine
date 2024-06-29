@@ -20,6 +20,8 @@ namespace Planar::Editor::UI::Element
 
         virtual void render() override;
 
+        virtual bool get_modified(bool reset = true) = 0;
+
         virtual void set(
             std::shared_ptr<Engine::Component::Component> component) = 0;
 

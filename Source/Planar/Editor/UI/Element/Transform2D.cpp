@@ -18,6 +18,14 @@ namespace Planar::Editor::UI::Element
 
     }
 
+    bool Transform2D::get_modified(bool reset)
+    {
+        bool position_modified = position.get_modified(reset);
+        bool rotation_modified = rotation.get_modified(reset);
+
+        return position_modified || rotation_modified;
+    }
+
     void Transform2D::set(
         std::shared_ptr<Engine::Component::Component> component)
     {

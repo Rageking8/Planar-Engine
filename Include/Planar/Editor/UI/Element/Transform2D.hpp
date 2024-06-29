@@ -16,6 +16,8 @@ namespace Planar::Editor::UI::Element
     public:
         Transform2D();
 
+        virtual bool get_modified(bool reset = true) override;
+
         virtual void set(
             std::shared_ptr<Engine::Component::Component> component) override;
 
