@@ -36,6 +36,23 @@ namespace Planar::Editor::UI::Container
         }
     }
 
+    bool ComponentStore::write_components(
+        Engine::GameObject::GameObject& game_object)
+    {
+        bool written = false;
+
+        reset_all_item_flag();
+
+        for (auto& component : game_object.get_components())
+        {
+            Item& item = get_item(component->get_type());
+
+            written |= item.component->write(component);
+        }
+
+        return written;
+    }
+
     ComponentStore::Item& ComponentStore::get_item(
         Engine::Component::ComponentType type, bool create_if_needed)
     {

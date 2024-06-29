@@ -2,7 +2,6 @@
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectType.hpp"
-#include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
@@ -46,6 +45,13 @@ namespace Planar::Editor::UI::Window
                 editor->set_dirty();
                 break;
             }
+        }
+
+        if (select_type == Core::Select::SelectType::GAME_OBJECT &&
+            component_store.write_components(*select_handler.
+            get_game_object()))
+        {
+            editor->set_dirty();
         }
     }
 

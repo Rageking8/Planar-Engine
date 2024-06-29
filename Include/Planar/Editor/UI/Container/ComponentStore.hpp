@@ -26,6 +26,7 @@ namespace Planar::Editor::UI::Container
         void reset_all_item_flag();
 
         void update_items(Engine::GameObject::GameObject& game_object);
+        bool write_components(Engine::GameObject::GameObject& game_object);
 
         Item& get_item(Engine::Component::ComponentType type,
             bool create_if_needed = false);
