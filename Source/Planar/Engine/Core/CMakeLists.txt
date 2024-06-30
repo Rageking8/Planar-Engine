@@ -6,6 +6,7 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
 add_subdirectory(Archive)
 add_subdirectory(Execute)
 add_subdirectory(FileSystem)
+add_subdirectory(GLFW)
 add_subdirectory(GUID)
 add_subdirectory(Input)
 add_subdirectory(Log)
