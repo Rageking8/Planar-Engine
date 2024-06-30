@@ -20,13 +20,10 @@ namespace Planar::Engine::Core
         void terminate();
 
         GLFWwindow* get_main_window() const;
-        Planar::Engine::Graphics::SupportedGraphicsAPI
-            get_window_graphics_api() const;
+        Graphics::SupportedGraphicsAPI get_window_graphics_api() const;
 
-        bool create_window(
-            Planar::Engine::Graphics::SupportedGraphicsAPI graphics_api,
-            Planar::Engine::Math::Size2Di size,
-            const std::string& name,
+        bool create_window(Graphics::SupportedGraphicsAPI graphics_api,
+            Math::Size2Di size, const std::string& name,
             bool maximize = false);
 
         void maximize_window() const;
@@ -43,6 +40,6 @@ namespace Planar::Engine::Core
         bool has_init;
 
         GLFWwindow* main_window;
-        Planar::Engine::Graphics::SupportedGraphicsAPI window_graphics_api;
+        Graphics::SupportedGraphicsAPI window_graphics_api;
     };
 }
