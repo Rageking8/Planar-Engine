@@ -5,3 +5,5 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     VertexArrayObject.tpp
     ViewportScope.hpp
 )
+
+add_subdirectory(Vertex)
