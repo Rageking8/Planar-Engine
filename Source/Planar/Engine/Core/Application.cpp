@@ -1,4 +1,5 @@
 #include "Planar/Engine/Core/Application.hpp"
+#include "Planar/Engine/Core/GLFW/GLFW.hpp"
 #include "Planar/Engine/Core/Constants/Version.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
@@ -34,7 +35,19 @@ namespace Planar::Engine::Core
                 [](GLFWwindow* window, int width, int height)
                 {
 
-                });
+                }
+            );
+
+            GLFW::add_callback_pointer("App input", &input_controller);
+            glfw_context.set_main_window_key_callback(
+                [](GLFWwindow* window, int key, int scancode,
+                    int action, int mods)
+                {
+                    GLFW::get_callback_pointer<Input::InputController>(
+                        "App input")->add_key_event(key, scancode,
+                        action, mods);
+                }
+            );
         }
 
         return result;
@@ -103,6 +116,11 @@ namespace Planar::Engine::Core
     {
         window_name = new_window_name;
         glfw_context.set_main_window_name(new_window_name);
+    }
+
+    Input::InputController& Application::get_input_controller()
+    {
+        return input_controller;
     }
 
     bool Application::init_glfw()

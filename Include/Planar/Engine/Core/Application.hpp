@@ -3,6 +3,7 @@
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Core/GLFW/GLFWContext.hpp"
+#include "Planar/Engine/Core/Input/InputController.hpp"
 #include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
@@ -35,6 +36,8 @@ namespace Planar::Engine::Core
         void maximize_window() const;
         void set_window_name(const std::string& new_window_name);
 
+        Input::InputController& get_input_controller();
+
     protected:
         virtual bool init_glfw();
         virtual bool init_glad();
@@ -46,6 +49,8 @@ namespace Planar::Engine::Core
         Math::Size2Di window_size;
         bool maximize;
         Graphics::SupportedGraphicsAPI graphics_api;
+
+        Input::InputController input_controller;
 
         PLANAR_ADD_BASE_USING(Application)
 
