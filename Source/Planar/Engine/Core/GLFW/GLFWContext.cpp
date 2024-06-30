@@ -1,9 +1,9 @@
-#include "Planar/Engine/Core/GLFWContext.hpp"
+#include "Planar/Engine/Core/GLFW/GLFWContext.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 
 #include "ThirdParty/GLFW/glfw3.h"
 
-namespace Planar::Engine::Core
+namespace Planar::Engine::Core::GLFW
 {
     GLFWContext::GLFWContext() : has_init{}, main_window{}
     {

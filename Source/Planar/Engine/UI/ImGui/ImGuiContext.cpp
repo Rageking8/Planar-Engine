@@ -19,7 +19,7 @@ namespace Planar::Engine::UI::ImGui
     }
 
     bool ImGuiContext::init(
-        const Planar::Engine::Core::GLFWContext& glfw_context)
+        const Engine::Core::GLFW::GLFWContext& glfw_context)
     {
         ::IMGUI_CHECKVERSION();
         ::ImGui::CreateContext();

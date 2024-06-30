@@ -2,7 +2,7 @@
 
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
-#include "Planar/Engine/Core/GLFWContext.hpp"
+#include "Planar/Engine/Core/GLFW/GLFWContext.hpp"
 #include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
@@ -50,7 +50,7 @@ namespace Planar::Engine::Core
         PLANAR_ADD_BASE_USING(Application)
 
     private:
-        GLFWContext glfw_context;
+        GLFW::GLFWContext glfw_context;
         UI::ImGui::ImGuiContext imgui_context;
 
         std::unique_ptr<Scene::Scene> main_scene;

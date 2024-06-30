@@ -8,7 +8,7 @@
 
 struct GLFWwindow;
 
-namespace Planar::Engine::Core
+namespace Planar::Engine::Core::GLFW
 {
     class PLANAR_API GLFWContext
     {

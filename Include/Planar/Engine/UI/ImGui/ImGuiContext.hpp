@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/Core/GLFWContext.hpp"
+#include "Planar/Engine/Core/GLFW/GLFWContext.hpp"
 
 namespace Planar::Engine::UI::ImGui
 {
@@ -12,7 +12,7 @@ namespace Planar::Engine::UI::ImGui
         ~ImGuiContext();
 
         bool init(
-            const Planar::Engine::Core::GLFWContext& glfw_context);
+            const Engine::Core::GLFW::GLFWContext& glfw_context);
         void terminate();
 
         void new_frame() const;
