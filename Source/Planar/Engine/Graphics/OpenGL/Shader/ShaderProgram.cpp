@@ -28,6 +28,11 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
         glUseProgram(id);
     }
 
+    void ShaderProgram::set_mat4(GLint location, const glm::mat4& value)
+    {
+        glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
+    }
+
     void ShaderProgram::free_impl(GLuint id)
     {
         glDeleteProgram(id);
