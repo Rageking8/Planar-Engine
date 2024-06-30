@@ -112,6 +112,12 @@ namespace Planar::Engine::Core::GLFW
         glfwSetFramebufferSizeCallback(main_window, callback);
     }
 
+    void GLFWContext::set_main_window_key_callback(
+        void(*callback)(GLFWwindow*, int, int, int, int))
+    {
+        glfwSetKeyCallback(main_window, callback);
+    }
+
     bool GLFWContext::main_window_should_close() const
     {
         return glfwWindowShouldClose(main_window);

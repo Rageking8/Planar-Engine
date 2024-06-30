@@ -30,6 +30,8 @@ namespace Planar::Engine::Core::GLFW
         void set_main_window_name(const std::string& new_main_window_name);
         void set_main_window_framebuffer_size_callback(
             void(*callback)(GLFWwindow*, int, int));
+        void set_main_window_key_callback(
+            void(*callback)(GLFWwindow*, int, int, int, int));
 
         bool main_window_should_close() const;
         void main_window_swap_buffers() const;
