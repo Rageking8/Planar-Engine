@@ -3,6 +3,7 @@
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
+#include "Planar/Engine/Component/Camera2D.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -56,6 +57,13 @@ namespace Planar::Engine::GameObject
                         std::make_shared<Component::Transform2D>(false);
                     transform->load(i);
                     components.push_back(transform);
+                }
+                else if (type == Component::Camera2D::NAME)
+                {
+                    std::shared_ptr<Component::Camera2D> camera =
+                        std::make_shared<Component::Camera2D>(false);
+                    camera->load(i);
+                    components.push_back(camera);
                 }
                 else
                 {
@@ -135,6 +143,17 @@ namespace Planar::Engine::GameObject
             transform->load();
             components.push_back(transform);
             asset.add_component(transform->get_asset().get_asset());
+
+            break;
+        }
+
+        case Component::ComponentType::Camera2D:
+        {
+            std::shared_ptr<Component::Camera2D> camera =
+                std::make_shared<Component::Camera2D>();
+            camera->load();
+            components.push_back(camera);
+            asset.add_component(camera->get_asset().get_asset());
 
             break;
         }
