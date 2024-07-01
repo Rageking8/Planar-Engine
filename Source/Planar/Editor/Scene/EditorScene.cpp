@@ -3,6 +3,7 @@
 #include "Planar/Editor/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
+#include "Planar/Engine/UI/ImGui/Menu/Menu.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/MainMenuBar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Docking/Docking.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
@@ -98,7 +99,7 @@ namespace Planar::Editor::Scene
                 ImGui::Window::Window& window,
                 bool reset_first_render = false)
                 {
-                    if (ImGui::menu_item(name))
+                    if (ImGui::Menu::menu_item(name))
                     {
                         window.set_active(true);
 
@@ -112,20 +113,21 @@ namespace Planar::Editor::Scene
             main_menu_bar.add_menu("File",
                 [&]()
                 {
-                    ImGui::menu_item("New Project");
-                    ImGui::menu_item("Open Project");
+                    ImGui::Menu::menu_item("New Project");
+                    ImGui::Menu::menu_item("Open Project");
                     
                     ImGui::separator();
 
-                    if (ImGui::menu_item("Save", "Ctrl + S"))
+                    if (ImGui::Menu::menu_item("Save", "Ctrl + S"))
                     {
                         editor->save_all();
                     }
-                    ImGui::menu_item("Save As", "Ctrl + Shift + S");
+                    ImGui::Menu::menu_item("Save As",
+                        "Ctrl + Shift + S");
 
                     ImGui::separator();
 
-                    ImGui::menu_item("Exit");
+                    ImGui::Menu::menu_item("Exit");
                 });
 
             main_menu_bar.add_menu("Build",
@@ -138,13 +140,13 @@ namespace Planar::Editor::Scene
             main_menu_bar.add_menu("Component",
                 [&]()
                 {
-                    if (ImGui::menu_item("Add Transform2D"))
+                    if (ImGui::Menu::menu_item("Add Transform2D"))
                     {
                         inspector_window.add_component(
                             Engine::Component::ComponentType::Transform2D);
                     }
 
-                    if (ImGui::menu_item("Add Camera2D"))
+                    if (ImGui::Menu::menu_item("Add Camera2D"))
                     {
                         inspector_window.add_component(
                             Engine::Component::ComponentType::Camera2D);
@@ -182,7 +184,7 @@ namespace Planar::Editor::Scene
             main_menu_bar.add_menu("Help",
                 []()
                 {
-                    if (ImGui::menu_item("Website"))
+                    if (ImGui::Menu::menu_item("Website"))
                     {
                         Engine::Core::Shell::open_planar_website();
                     }

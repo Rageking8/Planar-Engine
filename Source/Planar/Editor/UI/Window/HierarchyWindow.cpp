@@ -1,7 +1,7 @@
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
-#include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
-#include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Menu/Menu.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::UI::Window
@@ -85,7 +85,7 @@ namespace Planar::Editor::UI::Window
 
         context_menu.set_content([=]
             {
-                if (ImGui::menu_item("Create GameObject"))
+                if (ImGui::Menu::menu_item("Create GameObject"))
                 {
                     game_object->add_child();
 
@@ -98,7 +98,7 @@ namespace Planar::Editor::UI::Window
 
                 if (game_object->is_empty())
                 {
-                    if (ImGui::menu_item("Close Scene"))
+                    if (ImGui::Menu::menu_item("Close Scene"))
                     {
                         editor->close_current_scene();
 
@@ -107,7 +107,7 @@ namespace Planar::Editor::UI::Window
                 }
                 else
                 {
-                    if (ImGui::menu_item("Remove"))
+                    if (ImGui::Menu::menu_item("Remove"))
                     {
                         if (game_object->is_root())
                         {
