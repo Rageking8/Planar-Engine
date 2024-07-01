@@ -6,13 +6,17 @@
 #include "Planar/Engine/Graphics/OpenGL/Buffer/BufferUsage.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Render/Primitive.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Function/Render/RenderFunction.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
 
 #include "ThirdParty/glad/gl.h"
+#include "ThirdParty/glm/gtc/matrix_transform.hpp"
 
 PLANAR_LOAD_STD_STRING_ASSET_USING_IMPORT(
-    Engine::Graphics::Shader, BasicFrag)
+    Engine::Graphics::Shader, SpriteFrag)
 PLANAR_LOAD_STD_STRING_ASSET_USING_IMPORT(
-    Engine::Graphics::Shader, BasicVert)
+    Engine::Graphics::Shader, SpriteVert)
+PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(
+    Editor::Textures, DebugTexture)
 
 namespace Planar::Editor::UI::Window
 {
@@ -28,19 +32,26 @@ namespace Planar::Editor::UI::Window
 
         set_padding({ {} });
 
-        vbo.create({ { -0.5f, -0.5f, 0.f }, { 0.5f, -0.5f, 0.f },
-            { 0.f, 0.5f, 0.f } }, Buffer::BufferUsage::STATIC_DRAW);
+        vbo.create({
+            { 1.f, 1.f, 1.f, 1.f },
+            { -1.f, 1.f, 0.f, 1.f },
+            { 1.f, -1.f, 1.f, 0.f },
+            { -1.f, -1.f, 0.f, 0.f } },
+            Buffer::BufferUsage::STATIC_DRAW);
         vao.create(vbo);
 
         Shader::VertexShader vert;
-        vert.create(Asset::Engine::Graphics::Shader::BasicVert);
+        vert.create(Asset::Engine::Graphics::Shader::SpriteVert);
 
         Shader::FragmentShader frag;
-        frag.create(Asset::Engine::Graphics::Shader::BasicFrag);
+        frag.create(Asset::Engine::Graphics::Shader::SpriteFrag);
 
         shader_program.create(vert, frag);
 
         framebuffer.create(1000, 500);
+
+        texture.load(Asset::Editor::Textures::DebugTexture,
+            Asset::Editor::Textures::DebugTexture_length);
     }
 
     void GameWindow::render_window()
@@ -80,12 +91,29 @@ namespace Planar::Editor::UI::Window
             static_cast<GLsizei>(content_size.height));
 
         framebuffer.bind();
-        Function::Render::color_clear({ 1.f, 1.f, 1.f, 1.f });
+        Function::Render::color_clear({ 0.f, 0.f, 0.f, 1.f });
+
+        glm::mat4 model = glm::mat4(1.f);
+        model = glm::translate(model, { 210.f, 210.f, 0.f });
+        model = glm::scale(model, { 200.f, 200.f, 1.f });
+
+        glm::mat4 proj = glm::ortho(0.f, content_size.width,
+            content_size.height, 0.f, -1.f, 1.f);
+        glm::vec3 pos = { 0.f, 0.f, 0.f };
+        glm::mat4 view = glm::lookAt(pos,
+            pos + glm::vec3(0.f, 0.f, -1.f), { 0.f, 1.f, 0.f });
 
         shader_program.use();
+        shader_program.set_mat4(0, model);
+        shader_program.set_mat4(1, view);
+        shader_program.set_mat4(2, proj);
+
+        glActiveTexture(GL_TEXTURE0);
+        texture.bind();
+
         vao.bind();
-        Function::Render::draw_arrays(Render::Primitive::TRIANGLES,
-            0, 3);
+        Function::Render::draw_arrays(Render::Primitive::TRIANGLE_STRIP,
+            0, 4);
 
         framebuffer.unbind();
     }
