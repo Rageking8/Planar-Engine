@@ -52,11 +52,6 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API void text_wrapped(const std::string& text,
         float wrap_width = -1.f);
 
-    PLANAR_API bool button(const std::string& name,
-        Math::Size2Df size = {});
-    PLANAR_API bool button(const std::string& name, GLuint texture,
-        Math::Size2Df size);
-
     PLANAR_API bool input_text(const std::string& label,
         std::string& text, int flags = 0);
     PLANAR_API bool input_text(const std::string& label,

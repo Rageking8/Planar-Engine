@@ -1,4 +1,5 @@
 #include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button/ButtonFunction.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 namespace Planar::Engine::UI::ImGui::Element::Button

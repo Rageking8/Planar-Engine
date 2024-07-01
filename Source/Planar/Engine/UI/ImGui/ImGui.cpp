@@ -144,19 +144,6 @@ namespace Planar::Engine::UI::ImGui
         }
     }
 
-    bool button(const std::string& name, Math::Size2Df size)
-    {
-        return ::ImGui::Button(name.c_str(),
-            { size.width, size.height });
-    }
-
-    bool button(const std::string& name, GLuint texture,
-        Math::Size2Df size)
-    {
-        return ::ImGui::ImageButton(name.c_str(), (void*)texture,
-            { size.width, size.height });
-    }
-
     bool input_text(const std::string& label, std::string& text,
         int flags)
     {
