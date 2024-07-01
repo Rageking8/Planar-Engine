@@ -5,7 +5,7 @@
 #include "Planar/Engine/Graphics/OpenGL/Core/ViewportScope.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Buffer/BufferUsage.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Render/Primitive.hpp"
-#include "Planar/Engine/Graphics/OpenGL/Function/Render/RenderFunction.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Render/Render.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 
 #include "ThirdParty/glad/gl.h"
@@ -91,7 +91,7 @@ namespace Planar::Editor::UI::Window
             static_cast<GLsizei>(content_size.height));
 
         framebuffer.bind();
-        Function::Render::color_clear({ 0.f, 0.f, 0.f, 1.f });
+        Render::color_clear({ 0.f, 0.f, 0.f, 1.f });
 
         glm::mat4 model = glm::mat4(1.f);
         model = glm::translate(model, { 210.f, 210.f, 0.f });
@@ -112,8 +112,7 @@ namespace Planar::Editor::UI::Window
         texture.bind();
 
         vao.bind();
-        Function::Render::draw_arrays(Render::Primitive::TRIANGLE_STRIP,
-            0, 4);
+        Render::draw_arrays(Render::Primitive::TRIANGLE_STRIP, 0, 4);
 
         framebuffer.unbind();
     }
