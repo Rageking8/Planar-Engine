@@ -1,5 +1,6 @@
 #include "Planar/Engine/GameObject/GameObjectAsset.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/Component/Component.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -20,7 +21,12 @@ namespace Planar::Engine::GameObject
         clear();
         set_name(game_object.get_name());
         get("GUID") = game_object.get_guid();
-        get("Components") = YAML::Node();
+
+        for (const auto& component : game_object.get_components())
+        {
+            add_component(component->get_asset().get_asset());
+        }
+
         get("Children") = YAML::Node();
     }
 

@@ -124,6 +124,23 @@ namespace Planar::Engine::GameObject
         return components;
     }
 
+    void GameObject::add_component(Component::ComponentType type)
+    {
+        switch (type)
+        {
+        case Component::ComponentType::Transform2D:
+        {
+            std::shared_ptr<Component::Transform2D> transform =
+                std::make_shared<Component::Transform2D>();
+            transform->load();
+            components.push_back(transform);
+            asset.add_component(transform->get_asset().get_asset());
+
+            break;
+        }
+        }
+    }
+
     std::vector<std::shared_ptr<GameObject>>& GameObject::get_children()
     {
         return children;
@@ -159,14 +176,10 @@ namespace Planar::Engine::GameObject
         std::shared_ptr<GameObject>& child = children.back();
         child->parent = is_root ? nullptr : this;
 
-        std::shared_ptr<Component::Transform2D> transform =
-            std::make_shared<Component::Transform2D>();
-        transform->load();
-        child->components.push_back(transform);
+        child->add_component(Component::ComponentType::Transform2D);
 
         child->asset.load(*child);
         asset.add_child(child->asset.get_asset());
-        child->asset.add_component(transform->get_asset().get_asset());
     }
 
     void GameObject::remove_child(const std::string& guid)

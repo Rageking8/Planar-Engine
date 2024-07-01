@@ -2,6 +2,7 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/GameObject/GameObjectAsset.hpp"
+#include "Planar/Engine/Component/ComponentType.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <stack>
@@ -36,6 +37,8 @@ namespace Planar::Engine::GameObject
 
         std::vector<std::shared_ptr<Component::Component>>&
             get_components();
+
+        void add_component(Component::ComponentType type);
 
         std::vector<std::shared_ptr<GameObject>>& get_children();
 
