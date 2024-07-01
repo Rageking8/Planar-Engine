@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Engine/UI/ImGui/Macros/WrapperMacros.hpp"
+#include "Planar/Engine/UI/ImGui/Wrapper/WrapperMacros.hpp"
 
 namespace Planar::Engine::UI::ImGui::Wrapper
 {

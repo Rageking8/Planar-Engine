@@ -6,7 +6,6 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
 add_subdirectory(Core)
 add_subdirectory(Element)
 add_subdirectory(Font)
-add_subdirectory(Macros)
 add_subdirectory(Menu)
 add_subdirectory(Renderer)
 add_subdirectory(Style)
