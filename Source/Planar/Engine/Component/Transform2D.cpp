@@ -4,8 +4,9 @@
 
 namespace Planar::Engine::Component
 {
-    Transform2D::Transform2D(bool generate_guid) :
-        Component(generate_guid), rotation{}
+    Transform2D::Transform2D(GameObject::GameObject* parent,
+        bool generate_guid) : Component(parent, generate_guid),
+        rotation{}
     {
 
     }

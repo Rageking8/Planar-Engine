@@ -3,7 +3,8 @@
 
 namespace Planar::Engine::Component
 {
-    Component::Component(bool generate_guid) : active{ true }
+    Component::Component(GameObject::GameObject* parent,
+        bool generate_guid) : active{ true }, parent{ parent }
     {
         if (generate_guid)
         {
@@ -40,5 +41,15 @@ namespace Planar::Engine::Component
     void Component::set_guid(const std::string& new_guid)
     {
         guid = new_guid;
+    }
+
+    GameObject::GameObject* Component::get_parent() const
+    {
+        return parent;
+    }
+
+    void Component::set_parent(GameObject::GameObject* new_parent)
+    {
+        parent = new_parent;
     }
 }

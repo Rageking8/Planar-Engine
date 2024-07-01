@@ -8,6 +8,7 @@
 #include <string>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Asset, Asset)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
 {
@@ -16,7 +17,8 @@ namespace Planar::Engine::Component
     public:
         PLANAR_DEFINE_COMPONENT_TYPE_AND_NAME(Component)
 
-        Component(bool generate_guid = true);
+        Component(GameObject::GameObject* parent,
+            bool generate_guid = true);
         virtual ~Component();
 
         virtual ComponentType get_type() const = 0;
@@ -29,10 +31,14 @@ namespace Planar::Engine::Component
         std::string get_guid() const;
         void set_guid(const std::string& new_guid);
 
+        GameObject::GameObject* get_parent() const;
+        void set_parent(GameObject::GameObject* new_parent);
+
         virtual Asset::Asset& get_asset() = 0;
 
     private:
         bool active;
         std::string guid;
+        GameObject::GameObject* parent;
     };
 }

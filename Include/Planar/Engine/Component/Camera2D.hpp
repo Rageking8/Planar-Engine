@@ -7,6 +7,7 @@
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
 {
@@ -15,7 +16,8 @@ namespace Planar::Engine::Component
     public:
         PLANAR_DEFINE_COMPONENT(Camera2D)
 
-        Camera2D(bool generate_guid = true);
+        Camera2D(GameObject::GameObject* parent,
+            bool generate_guid = true);
 
         void load();
         void load(YAML::Node node);

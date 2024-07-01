@@ -4,8 +4,8 @@
 
 namespace Planar::Engine::Component
 {
-    Camera2D::Camera2D(bool generate_guid) :
-        Component(generate_guid)
+    Camera2D::Camera2D(GameObject::GameObject* parent,
+        bool generate_guid) : Component(parent, generate_guid)
     {
 
     }
