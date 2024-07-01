@@ -4,15 +4,15 @@
 namespace Planar::Engine::UI::ImGui::Element
 {
     Button::Button(const std::string& label,
-        Planar::Engine::Math::Size2Df size, GLuint texture) :
-        label{ label }, size{ size }, texture{ texture }, clicked{},
+        Math::Size2Df size, GLuint texture) : label{ label },
+        size{ size }, texture{ texture }, clicked{},
         left_double_clicked{}
     {
 
     }
 
     void Button::set(const std::string& new_label,
-        Planar::Engine::Math::Size2Df new_size, GLuint new_texture)
+        Math::Size2Df new_size, GLuint new_texture)
     {
         label = new_label;
         size = new_size;
@@ -23,18 +23,15 @@ namespace Planar::Engine::UI::ImGui::Element
     {
         if (texture)
         {
-            clicked |= Planar::Engine::UI::ImGui::button(
-                label, texture, size);
+            clicked |= button(label, texture, size);
         }
         else
         {
-            clicked |= Planar::Engine::UI::ImGui::button(
-                label, size);
+            clicked |= button(label, size);
         }
 
-        left_double_clicked |=
-            Planar::Engine::UI::ImGui::is_item_hovered() &&
-            Planar::Engine::UI::ImGui::is_left_mouse_double_clicked();
+        left_double_clicked |= is_item_hovered() &&
+            is_left_mouse_double_clicked();
     }
 
     bool Button::is_clicked()
