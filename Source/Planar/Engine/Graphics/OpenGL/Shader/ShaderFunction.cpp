@@ -1,8 +1,8 @@
-#include "Planar/Engine/Graphics/OpenGL/Function/Shader/ShaderFunction.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Shader/ShaderFunction.hpp"
 
-namespace Planar::Engine::Graphics::OpenGL::Function::Shader
+namespace Planar::Engine::Graphics::OpenGL::Shader
 {
-    GLuint create_shader(OpenGL::Shader::ShaderType shader_type)
+    GLuint create_shader(ShaderType shader_type)
     {
         return glCreateShader((GLenum)shader_type);
     }
