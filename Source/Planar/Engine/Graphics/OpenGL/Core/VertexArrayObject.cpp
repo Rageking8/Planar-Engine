@@ -1,6 +1,5 @@
 #include "Planar/Engine/Graphics/OpenGL/Core/VertexArrayObject.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Core/Vertex/Pos2DTex.hpp"
-#include "Planar/Engine/Graphics/OpenGL/Vector3.hpp"
 
 #include <cstddef>
 
@@ -34,13 +33,6 @@ namespace Planar::Engine::Graphics::OpenGL::Core
             glCreateVertexArrays(1, &id);
             break;
         }
-    }
-
-    void VertexArrayObject::vertex_attrib_vector3() const
-    {
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-            sizeof(Vector3), nullptr);
-        glEnableVertexAttribArray(0);
     }
 
     void VertexArrayObject::vertex_attrib_pos_2d_tex() const

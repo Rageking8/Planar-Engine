@@ -27,7 +27,6 @@ namespace Planar::Engine::Graphics::OpenGL::Core
         void create_vertex_array(
             ObjectHandlingMode object_handling_mode);
 
-        void vertex_attrib_vector3() const;
         void vertex_attrib_pos_2d_tex() const;
 
         static void free_impl(GLuint id);
