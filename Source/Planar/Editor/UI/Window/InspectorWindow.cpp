@@ -85,6 +85,26 @@ namespace Planar::Editor::UI::Window
         }
     }
 
+    void InspectorWindow::add_component(
+        Engine::Component::ComponentType type)
+    {
+        const Core::Select::SelectHandler& select_handler =
+            editor->get_select_handler();
+        const Core::Select::SelectType select_type =
+            select_handler.get_select_type();
+
+        if (select_type != Core::Select::SelectType::GAME_OBJECT)
+        {
+            return;
+        }
+
+        std::shared_ptr<Engine::GameObject::GameObject>
+            game_object = select_handler.get_game_object();
+
+        game_object->add_component(type);
+        component_store.update_items(*game_object);
+    }
+
     void InspectorWindow::handle_select(
         Core::Select::SelectType select_type)
     {

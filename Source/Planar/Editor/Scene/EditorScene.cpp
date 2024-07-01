@@ -7,6 +7,7 @@
 #include "Planar/Engine/UI/ImGui/Core/Docking/Docking.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
+#include "Planar/Engine/Component/ComponentType.hpp"
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
@@ -132,6 +133,22 @@ namespace Planar::Editor::Scene
                 {
                     make_active_on_menu_item("Build Project",
                         build_window, true);
+                });
+
+            main_menu_bar.add_menu("Component",
+                [&]()
+                {
+                    if (ImGui::menu_item("Add Transform2D"))
+                    {
+                        inspector_window.add_component(
+                            Engine::Component::ComponentType::Transform2D);
+                    }
+
+                    if (ImGui::menu_item("Add Camera2D"))
+                    {
+                        inspector_window.add_component(
+                            Engine::Component::ComponentType::Camera2D);
+                    }
                 });
 
             main_menu_bar.add_menu("Window",
