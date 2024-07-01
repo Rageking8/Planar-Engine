@@ -1,3 +1,4 @@
+add_subdirectory(Buffer)
 add_subdirectory(Core)
 add_subdirectory(Framebuffer)
 add_subdirectory(Function)
