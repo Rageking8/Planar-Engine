@@ -2,6 +2,7 @@
 
 #include "Planar/Engine/UI/ImGui/Element/Element.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
+#include "Planar/Engine/UI/ImGui/Core/State/ModifiedState.hpp"
 
 #include <array>
 #include <string>
@@ -10,7 +11,8 @@
 namespace Planar::Engine::UI::ImGui::Element::Drag
 {
     template <std::size_t N = 1>
-    class DragFloat : public Element
+    class DragFloat : public Element,
+        private Core::State::ModifiedState
     {
         static_assert(N > 0, "`N` must be greater than `0`");
 
@@ -22,9 +24,9 @@ namespace Planar::Engine::UI::ImGui::Element::Drag
             Core::Size::Width drag_width = {},
             float drag_x_pos = 0.f);
 
-        virtual void render() override;
+        using ModifiedState::get_modified;
 
-        bool get_modified(bool reset = true);
+        virtual void render() override;
 
         ValueT get_value() const;
         float get_x() const;
@@ -42,7 +44,6 @@ namespace Planar::Engine::UI::ImGui::Element::Drag
         ValueT value;
         Core::Size::Width drag_width;
         float drag_x_pos;
-        bool modified;
 
         std::string get_label() const;
 
