@@ -36,6 +36,7 @@ namespace Planar::Editor::UI::Element
         Engine::UI::ImGui::Element::Checkbox active_checkbox;
         bool show_active_checkbox;
         float top_padding;
+        float bottom_padding;
 
         virtual void render_content();
         void render_content_impl();
