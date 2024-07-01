@@ -27,7 +27,7 @@ namespace Planar::Engine::Component
         float get_rotation() const;
         void set_rotation(float new_rotation);
 
-        Transform2DAsset& get_asset();
+        virtual Transform2DAsset& get_asset() override;
 
     private:
         Math::Pos2Df position;

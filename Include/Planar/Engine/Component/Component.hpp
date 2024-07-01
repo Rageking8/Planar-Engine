@@ -3,8 +3,11 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Component/ComponentType.hpp"
 #include "Planar/Engine/Component/ComponentMacros.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
+
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Asset, Asset)
 
 namespace Planar::Engine::Component
 {
@@ -25,6 +28,8 @@ namespace Planar::Engine::Component
 
         std::string get_guid() const;
         void set_guid(const std::string& new_guid);
+
+        virtual Asset::Asset& get_asset() = 0;
 
     private:
         bool active;
