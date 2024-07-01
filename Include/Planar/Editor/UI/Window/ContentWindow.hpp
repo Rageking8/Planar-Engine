@@ -3,7 +3,7 @@
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
-#include "Planar/Engine/UI/ImGui/Element/Button.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
 
 #include <string>
@@ -41,7 +41,7 @@ namespace Planar::Editor::UI::Window
 
         Engine::UI::ImGui::Renderer::TextRenderer text_renderer;
 
-        Engine::UI::ImGui::Element::Button back_button;
+        Engine::UI::ImGui::Element::Button::Button back_button;
 
         void render_menu_bar();
 

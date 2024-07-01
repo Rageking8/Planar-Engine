@@ -1,7 +1,7 @@
-#include "Planar/Engine/UI/ImGui/Element/Button.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
-namespace Planar::Engine::UI::ImGui::Element
+namespace Planar::Engine::UI::ImGui::Element::Button
 {
     Button::Button(const std::string& label,
         Math::Size2Df size, GLuint texture) : label{ label },

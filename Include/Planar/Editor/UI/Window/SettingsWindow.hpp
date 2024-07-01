@@ -2,7 +2,7 @@
 
 #include "Planar/Editor/UI/Window/EditorWindow.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
-#include "Planar/Engine/UI/ImGui/Element/Button.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
@@ -20,7 +20,7 @@ namespace Planar::Editor::UI::Window
     private:
         bool pending_restore_default_layout;
 
-        Planar::Engine::UI::ImGui::Element::Button
+        Engine::UI::ImGui::Element::Button::Button
             restore_default_layout_button;
     };
 }

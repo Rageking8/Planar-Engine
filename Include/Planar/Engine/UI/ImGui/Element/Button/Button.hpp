@@ -8,7 +8,7 @@
 
 #include <string>
 
-namespace Planar::Engine::UI::ImGui::Element
+namespace Planar::Engine::UI::ImGui::Element::Button
 {
     class PLANAR_API Button : public Element
     {

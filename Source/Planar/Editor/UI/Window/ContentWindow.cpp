@@ -5,7 +5,6 @@
 #include "Planar/Engine/UI/ImGui/Style/StyleColor.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/WindowMenuBar.hpp"
-#include "Planar/Engine/UI/ImGui/Element/Button.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
 #include <vector>
@@ -70,7 +69,7 @@ namespace Planar::Editor::UI::Window
                 bool is_regular_file =
                     std::filesystem::is_regular_file(i);
 
-                ImGui::Element::Button button;
+                ImGui::Element::Button::Button button;
 
                 if (is_directory)
                 {
