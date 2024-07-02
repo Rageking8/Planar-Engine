@@ -103,6 +103,7 @@ namespace Planar::Editor::UI::Window
 
         game_object->add_component(type);
         component_store.update_items(*game_object);
+        editor->set_dirty();
     }
 
     void InspectorWindow::handle_select(
