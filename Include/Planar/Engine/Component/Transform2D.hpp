@@ -2,6 +2,7 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
+#include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/Component/ComponentMacros.hpp"
 #include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
@@ -29,12 +30,16 @@ namespace Planar::Engine::Component
         float get_rotation() const;
         void set_rotation(float new_rotation);
 
+        Math::Size2Df get_scale() const;
+        void set_scale(Math::Size2Df new_scale);
+
         virtual Asset::Component::Transform2DAsset& get_asset()
             override;
 
     private:
         Math::Pos2Df position;
         float rotation;
+        Math::Size2Df scale;
         Asset::Component::Transform2DAsset asset;
     };
 }

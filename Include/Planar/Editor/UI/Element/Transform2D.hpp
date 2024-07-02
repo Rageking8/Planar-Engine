@@ -2,6 +2,7 @@
 
 #include "Planar/Editor/UI/Element/Component.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
+#include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
 
@@ -20,9 +21,13 @@ namespace Planar::Editor::UI::Element
         float get_rotation() const;
         void set_rotation(float new_rotation);
 
+        Engine::Math::Size2Df get_scale() const;
+        void set_scale(Engine::Math::Size2Df new_scale);
+
     private:
         Engine::UI::ImGui::Element::Drag::DragFloat2 position;
         Engine::UI::ImGui::Element::Drag::DragFloat1 rotation;
+        Engine::UI::ImGui::Element::Drag::DragFloat2 scale;
 
         virtual void render_content() override;
 

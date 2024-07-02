@@ -23,6 +23,7 @@ namespace Planar::Engine::Component
         set_guid(asset.get_guid());
         set_position(asset.get_position());
         set_rotation(asset.get_rotation());
+        set_scale(asset.get_scale());
     }
 
     Math::Pos2Df Transform2D::get_position() const
@@ -45,6 +46,17 @@ namespace Planar::Engine::Component
     {
         rotation = new_rotation;
         asset.set_rotation(new_rotation);
+    }
+
+    Math::Size2Df Transform2D::get_scale() const
+    {
+        return scale;
+    }
+
+    void Transform2D::set_scale(Math::Size2Df new_scale)
+    {
+        scale = new_scale;
+        asset.set_scale(new_scale);
     }
 
     Asset::Component::Transform2DAsset& Transform2D::get_asset()
