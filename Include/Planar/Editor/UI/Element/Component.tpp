@@ -5,21 +5,21 @@
 namespace Planar::Editor::UI::Element
 {
     template <typename ComponentT>
-    void Component<ComponentT>::set_values_impl(
+    inline void Component<ComponentT>::set_values_impl(
         std::shared_ptr<Engine::Component::Component>& component)
     {
         set_values_impl(cast(component));
     }
 
     template <typename ComponentT>
-    void Component<ComponentT>::write_values_impl(
+    inline void Component<ComponentT>::write_values_impl(
         std::shared_ptr<Engine::Component::Component>& component)
     {
         write_values_impl(cast(component));
     }
 
     template <typename ComponentT>
-    typename Component<ComponentT>::ComponentType*
+    inline typename Component<ComponentT>::ComponentType*
         Component<ComponentT>::cast(
         std::shared_ptr<Engine::Component::Component>& component) const
     {
