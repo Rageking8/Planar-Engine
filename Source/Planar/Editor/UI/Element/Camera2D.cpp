@@ -20,6 +20,8 @@ namespace Planar::Editor::UI::Element
     {
         auto* camera = Engine::Component::component_downcast
             <Engine::Component::Camera2D>(component);
+
+        set_header_id(component->get_guid());
     }
 
     bool Camera2D::write(

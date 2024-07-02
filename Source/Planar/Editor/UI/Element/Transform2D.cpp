@@ -30,6 +30,8 @@ namespace Planar::Editor::UI::Element
         auto* transform = Engine::Component::component_downcast
             <Engine::Component::Transform2D>(component);
 
+        set_header_id(component->get_guid());
+
         set_position(transform->get_position());
         set_rotation(transform->get_rotation());
 
