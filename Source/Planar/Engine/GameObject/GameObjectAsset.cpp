@@ -15,7 +15,7 @@ namespace Planar::Engine::GameObject
     {
         clear();
         set_name(game_object.get_name());
-        get("GUID") = game_object.get_guid();
+        set_value("GUID", game_object.get_guid());
 
         for (const auto& component : game_object.get_components())
         {
@@ -27,17 +27,17 @@ namespace Planar::Engine::GameObject
 
     std::string GameObjectAsset::get_name() const
     {
-        return get_scalar("Name");
+        return get_value<std::string>("Name");
     }
 
     void GameObjectAsset::set_name(const std::string& new_name)
     {
-        get("Name") = new_name;
+        set_value("Name", new_name);
     }
 
     std::string GameObjectAsset::get_guid() const
     {
-        return get_scalar("GUID");
+        return get_value<std::string>("GUID");
     }
 
     void GameObjectAsset::add_child(YAML::Node child)

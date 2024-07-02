@@ -29,16 +29,23 @@ namespace Planar::Engine::Asset
             const std::string& key2) const;
         YAML::Node get_asset() const;
 
-        std::string get_scalar(const std::string& key) const;
-        float get_float(const std::string& key1) const;
-        float get_float(const std::string& key1,
+        template <typename T>
+        T get_value(const std::string& key) const;
+
+        template <typename T>
+        T get_value(const std::string& key1,
             const std::string& key2) const;
+
         std::array<float, 2> get_float_2(const std::string& key1,
             const std::string& key2, const std::string& key3) const;
 
-        void set_float(const std::string& key1, float value) const;
-        void set_float(const std::string& key1, const std::string& key2,
-            float value) const;
+        template <typename T>
+        void set_value(const std::string& key1, T value) const;
+
+        template <typename T>
+        void set_value(const std::string& key1, const std::string& key2,
+            T value) const;
+
         void set_float_2(const std::string& key1, const std::string& key2,
             const std::string& key3, std::array<float, 2> array) const;
 
@@ -46,3 +53,5 @@ namespace Planar::Engine::Asset
         std::unique_ptr<YAML::Node> asset;
     };
 }
+
+#include "Planar/Engine/Asset/Asset.tpp"

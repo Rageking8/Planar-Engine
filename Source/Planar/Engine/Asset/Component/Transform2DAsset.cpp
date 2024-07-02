@@ -20,12 +20,12 @@ namespace Planar::Engine::Asset::Component
 
     float Transform2DAsset::get_rotation() const
     {
-        return get_float("Rotation");
+        return get_value<float>("Rotation");
     }
 
     void Transform2DAsset::set_rotation(float new_rotation)
     {
-        set_float("Rotation", new_rotation);
+        set_value("Rotation", new_rotation);
     }
 
     Math::Size2Df Transform2DAsset::get_scale() const
