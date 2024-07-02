@@ -7,11 +7,14 @@ namespace Planar::Engine::UI::ImGui::Element::Drag
 {
     template <std::size_t N>
     inline DragFloat<N>::DragFloat(const std::string& text,
-        const std::string& id, Core::Size::Width drag_width,
-        float drag_x_pos) : text{ text }, id{ id }, value{},
+        Core::Size::Width drag_width, float drag_x_pos,
+        bool generate_unique_id) : text{ text }, value{},
         drag_width{ drag_width }, drag_x_pos{ drag_x_pos }
     {
-
+        if (generate_unique_id)
+        {
+            id = generate_unique_label();
+        }
     }
 
     template <>

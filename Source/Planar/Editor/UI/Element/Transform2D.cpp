@@ -9,11 +9,11 @@
 namespace Planar::Editor::UI::Element
 {
     Transform2D::Transform2D() :
-        Component("Transform2D"), position("Position", "",
+        Component("Transform2D"), position("Position",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
-        0.f, 0.f, 20.f }, 100.f), rotation("Rotation", "",
+        0.f, 0.f, 20.f }, 100.f, true), rotation("Rotation",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
-        0.f, 0.f, 20.f }, 100.f)
+        0.f, 0.f, 20.f }, 100.f, true)
     {
 
     }

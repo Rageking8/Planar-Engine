@@ -20,9 +20,9 @@ namespace Planar::Engine::UI::ImGui::Element::Drag
         using ValueT = std::array<float, N>;
 
         DragFloat(const std::string& text = "",
-            const std::string& id = "",
             Core::Size::Width drag_width = {},
-            float drag_x_pos = 0.f);
+            float drag_x_pos = 0.f,
+            bool generate_unique_id = false);
 
         using ModifiedState::get_modified;
 
