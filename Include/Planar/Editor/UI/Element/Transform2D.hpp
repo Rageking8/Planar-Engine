@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Element/Component.hpp"
+#include "Planar/Editor/UI/Element/ComponentBase.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
@@ -12,7 +12,7 @@ PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Transform2D)
 
 namespace Planar::Editor::UI::Element
 {
-    class Transform2D : public Component
+    class Transform2D : public ComponentBase
     {
     public:
         Transform2D();

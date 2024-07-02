@@ -1,4 +1,4 @@
-#include "Planar/Editor/UI/Element/Component.hpp"
+#include "Planar/Editor/UI/Element/ComponentBase.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
@@ -9,7 +9,7 @@
 
 namespace Planar::Editor::UI::Element
 {
-    Component::Component(const std::string& text,
+    ComponentBase::ComponentBase(const std::string& text,
         bool show_active_checkbox) : header({ 10.f, 7.5f }, 24.f, 0.f,
         40.f, 10.f, true, true), active_checkbox(Engine::UI::ImGui::
         generate_unique_label(), true),
@@ -19,35 +19,35 @@ namespace Planar::Editor::UI::Element
         set_header_text(text);
     }
 
-    void Component::render()
+    void ComponentBase::render()
     {
         header.render({}, {}, PLANAR_CAPTURE_THIS(render_content_impl),
             show_active_checkbox ? PLANAR_CAPTURE_THIS(
             render_active_checkbox) : std::function<void()>{});
     }
 
-    void Component::set_header_text(const std::string& new_header_text)
+    void ComponentBase::set_header_text(const std::string& new_header_text)
     {
         header.set_text(new_header_text);
     }
 
-    void Component::set_header_id(const std::string& new_header_id)
+    void ComponentBase::set_header_id(const std::string& new_header_id)
     {
         header.set_id(new_header_id);
     }
 
-    void Component::set_show_active_checkbox(
+    void ComponentBase::set_show_active_checkbox(
         bool new_show_active_checkbox)
     {
         show_active_checkbox = new_show_active_checkbox;
     }
 
-    void Component::render_content()
+    void ComponentBase::render_content()
     {
 
     }
 
-    void Component::render_content_impl()
+    void ComponentBase::render_content_impl()
     {
         Engine::UI::ImGui::Core::Cursor::move_y(top_padding);
 
@@ -56,7 +56,7 @@ namespace Planar::Editor::UI::Element
         Engine::UI::ImGui::Core::Cursor::move_y(bottom_padding);
     }
 
-    void Component::render_active_checkbox()
+    void ComponentBase::render_active_checkbox()
     {
         using namespace Engine::UI;
 

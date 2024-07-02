@@ -5,7 +5,7 @@
 
 namespace Planar::Editor::UI::Element
 {
-    Camera2D::Camera2D() : Component("Camera2D")
+    Camera2D::Camera2D() : ComponentBase("Camera2D")
     {
 
     }

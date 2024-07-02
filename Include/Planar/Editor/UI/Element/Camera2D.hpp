@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Element/Component.hpp"
+#include "Planar/Editor/UI/Element/ComponentBase.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <memory>
@@ -10,7 +10,7 @@ PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Camera2D)
 
 namespace Planar::Editor::UI::Element
 {
-    class Camera2D : public Component
+    class Camera2D : public ComponentBase
     {
     public:
         Camera2D();

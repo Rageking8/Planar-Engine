@@ -12,11 +12,11 @@ PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
 
 namespace Planar::Editor::UI::Element
 {
-    class Component :
+    class ComponentBase :
         public Engine::UI::ImGui::Element::Element
     {
     public:
-        Component(const std::string& text,
+        ComponentBase(const std::string& text,
             bool show_active_checkbox = true);
 
         virtual void render() override;
