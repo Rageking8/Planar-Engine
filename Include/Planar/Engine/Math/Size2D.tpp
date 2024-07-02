@@ -1,22 +1,37 @@
+#include "Planar/Engine/Math/Size2D.hpp"
+
 namespace Planar::Engine::Math
 {
-    template <Planar::Engine::Core::Utils::Concepts::Arithmetic T>
+    template <Core::Utils::Concepts::Arithmetic T>
     inline Size2D<T>::Size2D() : width{}, height{}
     {
 
     }
 
-    template <Planar::Engine::Core::Utils::Concepts::Arithmetic T>
+    template <Core::Utils::Concepts::Arithmetic T>
     inline Size2D<T>::Size2D(T size) :
         width{ size }, height{ size }
     {
 
     }
 
-    template <Planar::Engine::Core::Utils::Concepts::Arithmetic T>
+    template <Core::Utils::Concepts::Arithmetic T>
     inline Size2D<T>::Size2D(T width, T height) :
         width{ width }, height{ height }
     {
 
+    }
+
+    template <Core::Utils::Concepts::Arithmetic T>
+    inline Size2D<T>::Size2D(std::array<T, 2> array) :
+        width{ array[0] }, height{ array[1] }
+    {
+
+    }
+
+    template <Core::Utils::Concepts::Arithmetic T>
+    inline std::array<T, 2> Size2D<T>::get_array() const
+    {
+        return { width, height };
     }
 }
