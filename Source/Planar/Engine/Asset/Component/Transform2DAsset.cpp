@@ -10,20 +10,6 @@ namespace Planar::Engine::Asset::Component
 
     }
 
-    void Transform2DAsset::load(
-        Engine::Component::Transform2D& transform)
-    {
-        get("Type") = transform.NAME;
-        get("GUID") = transform.get_guid();
-        set_position(transform.get_position());
-        set_rotation(transform.get_rotation());
-    }
-
-    std::string Transform2DAsset::get_guid() const
-    {
-        return get_scalar("GUID");
-    }
-
     Math::Pos2Df Transform2DAsset::get_position() const
     {
         return { get_float("Position", "X"),
@@ -44,5 +30,12 @@ namespace Planar::Engine::Asset::Component
     void Transform2DAsset::set_rotation(float new_rotation)
     {
         get("Rotation") = new_rotation;
+    }
+
+    void Component::Transform2DAsset::load_impl(
+        Engine::Component::Transform2D& transform)
+    {
+        set_position(transform.get_position());
+        set_rotation(transform.get_rotation());
     }
 }
