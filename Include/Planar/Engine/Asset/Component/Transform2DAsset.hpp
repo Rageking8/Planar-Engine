@@ -7,17 +7,16 @@
 
 #include <string>
 
-PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Transform2D)
 
-namespace Planar::Engine::Component
+namespace Planar::Engine::Asset::Component
 {
-    class PLANAR_API Transform2DAsset : public Asset::Asset
+    class PLANAR_API Transform2DAsset : public Asset
     {
     public:
         Transform2DAsset();
 
-        void load(Transform2D& transform);
+        void load(Engine::Component::Transform2D& transform);
 
         std::string get_guid() const;
 

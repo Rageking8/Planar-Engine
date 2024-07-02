@@ -3,7 +3,7 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/Component/ComponentMacros.hpp"
-#include "Planar/Engine/Component/Camera2DAsset.hpp"
+#include "Planar/Engine/Asset/Component/Camera2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
@@ -22,9 +22,9 @@ namespace Planar::Engine::Component
         void load();
         void load(YAML::Node node);
 
-        Camera2DAsset& get_asset();
+        Asset::Component::Camera2DAsset& get_asset();
 
     private:
-        Camera2DAsset asset;
+        Asset::Component::Camera2DAsset asset;
     };
 }

@@ -47,7 +47,7 @@ namespace Planar::Engine::Component
         asset.set_rotation(new_rotation);
     }
 
-    Transform2DAsset& Transform2D::get_asset()
+    Asset::Component::Transform2DAsset& Transform2D::get_asset()
     {
         return asset;
     }

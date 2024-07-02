@@ -1,16 +1,17 @@
-#include "Planar/Engine/Component/Transform2DAsset.hpp"
+#include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
-namespace Planar::Engine::Component
+namespace Planar::Engine::Asset::Component
 {
     Transform2DAsset::Transform2DAsset()
     {
 
     }
 
-    void Transform2DAsset::load(Transform2D& transform)
+    void Transform2DAsset::load(
+        Engine::Component::Transform2D& transform)
     {
         get("Type") = transform.NAME;
         get("GUID") = transform.get_guid();

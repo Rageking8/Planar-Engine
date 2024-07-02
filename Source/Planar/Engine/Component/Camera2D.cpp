@@ -22,7 +22,7 @@ namespace Planar::Engine::Component
         set_guid(asset.get_guid());
     }
 
-    Camera2DAsset& Camera2D::get_asset()
+    Asset::Component::Camera2DAsset& Camera2D::get_asset()
     {
         return asset;
     }

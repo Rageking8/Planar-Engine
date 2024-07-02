@@ -8,14 +8,14 @@
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Camera2D)
 
-namespace Planar::Engine::Component
+namespace Planar::Engine::Asset::Component
 {
-    class PLANAR_API Camera2DAsset : public Asset::Asset
+    class PLANAR_API Camera2DAsset : public Asset
     {
     public:
         Camera2DAsset();
 
-        void load(Camera2D& camera);
+        void load(Engine::Component::Camera2D& camera);
 
         std::string get_guid() const;
     };

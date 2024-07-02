@@ -4,7 +4,7 @@
 #include "Planar/Engine/Math/Pos2D.hpp"
 #include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/Component/ComponentMacros.hpp"
-#include "Planar/Engine/Component/Transform2DAsset.hpp"
+#include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
@@ -29,11 +29,12 @@ namespace Planar::Engine::Component
         float get_rotation() const;
         void set_rotation(float new_rotation);
 
-        virtual Transform2DAsset& get_asset() override;
+        virtual Asset::Component::Transform2DAsset& get_asset()
+            override;
 
     private:
         Math::Pos2Df position;
         float rotation;
-        Transform2DAsset asset;
+        Asset::Component::Transform2DAsset asset;
     };
 }
