@@ -25,9 +25,6 @@ namespace Planar::Engine::Component
 
         virtual bool match(ComponentType other) const;
 
-        bool get_active() const;
-        void set_active(bool new_active);
-
         std::string get_guid() const;
         void set_guid(const std::string& new_guid);
 
@@ -37,7 +34,6 @@ namespace Planar::Engine::Component
         virtual Asset::Asset& get_asset() = 0;
 
     private:
-        bool active;
         std::string guid;
         GameObject::GameObject* parent;
     };

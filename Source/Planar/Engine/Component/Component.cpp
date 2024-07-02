@@ -4,7 +4,7 @@
 namespace Planar::Engine::Component
 {
     Component::Component(GameObject::GameObject* parent,
-        bool generate_guid) : active{ true }, parent{ parent }
+        bool generate_guid) : parent{ parent }
     {
         if (generate_guid)
         {
@@ -21,16 +21,6 @@ namespace Planar::Engine::Component
     bool Component::match(ComponentType other) const
     {
         return other == TYPE;
-    }
-
-    bool Component::get_active() const
-    {
-        return active;
-    }
-
-    void Component::set_active(bool new_active)
-    {
-        active = new_active;
     }
 
     std::string Component::get_guid() const
