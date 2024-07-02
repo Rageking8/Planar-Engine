@@ -1,10 +1,8 @@
 #include "Planar/Editor/UI/Element/Transform2D.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
-#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
-#include "Planar/Engine/Core/Utils/Cast/Cast.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/Component/Component.hpp"
-#include "Planar/Engine/Component/ComponentType.hpp"
+#include "Planar/Engine/Component/ComponentFunction.hpp"
 
 namespace Planar::Editor::UI::Element
 {
@@ -29,8 +27,8 @@ namespace Planar::Editor::UI::Element
     void Transform2D::set(
         std::shared_ptr<Engine::Component::Component> component)
     {
-        Engine::Component::Transform2D* transform =
-            get_engine_component(component);
+        auto* transform = Engine::Component::component_downcast
+            <Engine::Component::Transform2D>(component);
 
         set_position(transform->get_position());
         set_rotation(transform->get_rotation());
@@ -48,8 +46,8 @@ namespace Planar::Editor::UI::Element
             return false;
         }
 
-        Engine::Component::Transform2D* transform =
-            get_engine_component(component);
+        auto* transform = Engine::Component::component_downcast
+            <Engine::Component::Transform2D>(component);
 
         transform->set_position(get_position());
         transform->set_rotation(get_rotation());
@@ -82,16 +80,5 @@ namespace Planar::Editor::UI::Element
         position.render();
         Engine::UI::ImGui::Core::Cursor::move_y(10.f);
         rotation.render();
-    }
-
-    Engine::Component::Transform2D* Transform2D::get_engine_component(
-        std::shared_ptr<Engine::Component::Component>& component)
-    {
-        PLANAR_ASSERT(component->get_type() ==
-            Engine::Component::ComponentType::Transform2D,
-            "`component` has wrong type");
-
-        return Engine::Core::Utils::Cast::shared_ptr_downcast
-            <Engine::Component::Transform2D>(component);
     }
 }

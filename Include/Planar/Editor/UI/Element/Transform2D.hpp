@@ -36,8 +36,5 @@ namespace Planar::Editor::UI::Element
         Engine::UI::ImGui::Element::Drag::DragFloat1 rotation;
 
         virtual void render_content() override;
-
-        Engine::Component::Transform2D* get_engine_component(
-            std::shared_ptr<Engine::Component::Component>& component);
     };
 }

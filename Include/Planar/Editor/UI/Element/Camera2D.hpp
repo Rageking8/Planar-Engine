@@ -26,8 +26,5 @@ namespace Planar::Editor::UI::Element
 
     private:
         virtual void render_content() override;
-
-        Engine::Component::Camera2D* get_engine_component(
-            std::shared_ptr<Engine::Component::Component>& component);
     };
 }

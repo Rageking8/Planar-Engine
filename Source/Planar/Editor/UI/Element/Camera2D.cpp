@@ -1,8 +1,7 @@
 #include "Planar/Editor/UI/Element/Camera2D.hpp"
-#include "Planar/Engine/Core/Utils/Cast/Cast.hpp"
-#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/Component.hpp"
+#include "Planar/Engine/Component/ComponentFunction.hpp"
 
 namespace Planar::Editor::UI::Element
 {
@@ -19,8 +18,8 @@ namespace Planar::Editor::UI::Element
     void Camera2D::set(
         std::shared_ptr<Engine::Component::Component> component)
     {
-        Engine::Component::Camera2D* camera =
-            get_engine_component(component);
+        auto* camera = Engine::Component::component_downcast
+            <Engine::Component::Camera2D>(component);
     }
 
     bool Camera2D::write(
@@ -31,8 +30,8 @@ namespace Planar::Editor::UI::Element
             return false;
         }
 
-        Engine::Component::Camera2D* camera =
-            get_engine_component(component);
+        auto* camera = Engine::Component::component_downcast
+            <Engine::Component::Camera2D>(component);
 
         return true;
     }
@@ -40,16 +39,5 @@ namespace Planar::Editor::UI::Element
     void Camera2D::render_content()
     {
 
-    }
-
-    Engine::Component::Camera2D* Camera2D::get_engine_component(
-        std::shared_ptr<Engine::Component::Component>& component)
-    {
-        PLANAR_ASSERT(component->get_type() ==
-            Engine::Component::ComponentType::Camera2D,
-            "`component` has wrong type");
-
-        return Engine::Core::Utils::Cast::shared_ptr_downcast
-            <Engine::Component::Camera2D>(component);
     }
 }
