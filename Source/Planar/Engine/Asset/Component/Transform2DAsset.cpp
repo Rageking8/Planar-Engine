@@ -1,8 +1,6 @@
 #include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 
-#include "ThirdParty/yaml-cpp/yaml.h"
-
 namespace Planar::Engine::Asset::Component
 {
     Transform2DAsset::Transform2DAsset()
@@ -12,14 +10,12 @@ namespace Planar::Engine::Asset::Component
 
     Math::Pos2Df Transform2DAsset::get_position() const
     {
-        return { get_float("Position", "X"),
-            get_float("Position", "Y") };
+        return get_float_2("Position", "X", "Y");
     }
 
     void Transform2DAsset::set_position(Math::Pos2Df new_position)
     {
-        get("Position", "X") = new_position.x;
-        get("Position", "Y") = new_position.y;
+        set_float_2("Position", "X", "Y", new_position.get_array());
     }
 
     float Transform2DAsset::get_rotation() const
@@ -29,19 +25,18 @@ namespace Planar::Engine::Asset::Component
 
     void Transform2DAsset::set_rotation(float new_rotation)
     {
-        get("Rotation") = new_rotation;
+        set_float("Rotation", new_rotation);
     }
 
     Math::Size2Df Transform2DAsset::get_scale() const
     {
-        return { get_float("Scale", "Width"),
-            get_float("Scale", "Height") };
+        return get_float_2("Scale", "Width", "Height");
     }
 
     void Transform2DAsset::set_scale(Math::Size2Df new_scale)
     {
-        get("Scale", "Width") = new_scale.width;
-        get("Scale", "Height") = new_scale.height;
+        set_float_2("Scale", "Width", "Height",
+            new_scale.get_array());
     }
 
     void Component::Transform2DAsset::load_impl(
