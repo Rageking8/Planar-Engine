@@ -1,4 +1,5 @@
 #include "Planar/Editor/UI/Element/ComponentBase.hpp"
+#include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
@@ -26,6 +27,27 @@ namespace Planar::Editor::UI::Element
             render_active_checkbox) : std::function<void()>{});
     }
 
+    void ComponentBase::set_values(
+        std::shared_ptr<Engine::Component::Component> component)
+    {
+        set_header_id(component->get_guid());
+        set_values_impl(component);
+    }
+
+    bool ComponentBase::write_values(
+        std::shared_ptr<Engine::Component::Component> component,
+        bool force)
+    {
+        if (!(force || get_modified()))
+        {
+            return false;
+        }
+
+        write_values_impl(component);
+
+        return true;
+    }
+
     void ComponentBase::set_header_text(const std::string& new_header_text)
     {
         header.set_text(new_header_text);
@@ -40,11 +62,6 @@ namespace Planar::Editor::UI::Element
         bool new_show_active_checkbox)
     {
         show_active_checkbox = new_show_active_checkbox;
-    }
-
-    void ComponentBase::render_content()
-    {
-
     }
 
     void ComponentBase::render_content_impl()

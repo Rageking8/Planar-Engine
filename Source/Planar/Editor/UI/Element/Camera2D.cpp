@@ -1,11 +1,8 @@
 #include "Planar/Editor/UI/Element/Camera2D.hpp"
-#include "Planar/Engine/Component/Camera2D.hpp"
-#include "Planar/Engine/Component/Component.hpp"
-#include "Planar/Engine/Component/ComponentFunction.hpp"
 
 namespace Planar::Editor::UI::Element
 {
-    Camera2D::Camera2D() : ComponentBase("Camera2D")
+    Camera2D::Camera2D() : Component("Camera2D")
     {
 
     }
@@ -15,30 +12,17 @@ namespace Planar::Editor::UI::Element
         return false;
     }
 
-    void Camera2D::set(
-        std::shared_ptr<Engine::Component::Component> component)
-    {
-        auto* camera = Engine::Component::component_downcast
-            <Engine::Component::Camera2D>(component);
-
-        set_header_id(component->get_guid());
-    }
-
-    bool Camera2D::write(
-        std::shared_ptr<Engine::Component::Component> component, bool force)
-    {
-        if (!(force || get_modified()))
-        {
-            return false;
-        }
-
-        auto* camera = Engine::Component::component_downcast
-            <Engine::Component::Camera2D>(component);
-
-        return true;
-    }
-
     void Camera2D::render_content()
+    {
+
+    }
+
+    void Camera2D::set_values_impl(ComponentType* camera)
+    {
+
+    }
+
+    void Camera2D::write_values_impl(ComponentType* camera)
     {
 
     }

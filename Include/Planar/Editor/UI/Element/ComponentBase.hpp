@@ -23,11 +23,11 @@ namespace Planar::Editor::UI::Element
 
         virtual bool get_modified(bool reset = true) = 0;
 
-        virtual void set(
-            std::shared_ptr<Engine::Component::Component> component) = 0;
-        virtual bool write(
+        void set_values(
+            std::shared_ptr<Engine::Component::Component> component);
+        bool write_values(
             std::shared_ptr<Engine::Component::Component> component,
-            bool force = false) = 0;
+            bool force = false);
 
         void set_header_text(const std::string& new_header_text);
         void set_header_id(const std::string& new_header_id);
@@ -40,9 +40,14 @@ namespace Planar::Editor::UI::Element
         float top_padding;
         float bottom_padding;
 
-        virtual void render_content();
+        virtual void render_content() = 0;
         void render_content_impl();
 
         void render_active_checkbox();
+
+        virtual void set_values_impl(
+            std::shared_ptr<Engine::Component::Component>& component) = 0;
+        virtual void write_values_impl(
+            std::shared_ptr<Engine::Component::Component>& component) = 0;
     };
 }

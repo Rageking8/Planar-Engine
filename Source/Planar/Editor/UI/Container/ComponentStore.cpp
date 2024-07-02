@@ -33,7 +33,7 @@ namespace Planar::Editor::UI::Container
         {
             Item& item = get_item(component->get_type(), true);
 
-            item.component->set(component);
+            item.component->set_values(component);
         }
     }
 
@@ -48,7 +48,7 @@ namespace Planar::Editor::UI::Container
         {
             Item& item = get_item(component->get_type());
 
-            written |= item.component->write(component);
+            written |= item.component->write_values(component);
         }
 
         return written;

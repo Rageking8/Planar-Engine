@@ -1,30 +1,21 @@
 #pragma once
 
-#include "Planar/Editor/UI/Element/ComponentBase.hpp"
-#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
-
-#include <memory>
-
-PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
-PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Camera2D)
+#include "Planar/Editor/UI/Element/Component.hpp"
+#include "Planar/Engine/Component/Camera2D.hpp"
 
 namespace Planar::Editor::UI::Element
 {
-    class Camera2D : public ComponentBase
+    class Camera2D : public Component<Engine::Component::Camera2D>
     {
     public:
         Camera2D();
 
         virtual bool get_modified(bool reset = true) override;
 
-        virtual void set(
-            std::shared_ptr<Engine::Component::Component> component)
-            override;
-        virtual bool write(
-            std::shared_ptr<Engine::Component::Component> component,
-            bool force = false) override;
-
     private:
         virtual void render_content() override;
+
+        virtual void set_values_impl(ComponentType* camera) override;
+        virtual void write_values_impl(ComponentType* camera) override;
     };
 }
