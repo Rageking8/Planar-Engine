@@ -3,6 +3,7 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include <array>
 #include <string>
 #include <memory>
 
@@ -32,6 +33,14 @@ namespace Planar::Engine::Asset
         float get_float(const std::string& key1) const;
         float get_float(const std::string& key1,
             const std::string& key2) const;
+        std::array<float, 2> get_float_2(const std::string& key1,
+            const std::string& key2, const std::string& key3) const;
+
+        void set_float(const std::string& key1, float value) const;
+        void set_float(const std::string& key1, const std::string& key2,
+            float value) const;
+        void set_float_2(const std::string& key1, const std::string& key2,
+            const std::string& key3, std::array<float, 2> array) const;
 
     protected:
         std::unique_ptr<YAML::Node> asset;
