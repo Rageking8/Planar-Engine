@@ -10,11 +10,6 @@ namespace Planar::Engine::Component
 
     }
 
-    void Transform2DAsset::load(YAML::Node node)
-    {
-        *asset = node;
-    }
-
     void Transform2DAsset::load(Transform2D& transform)
     {
         get("Type") = transform.NAME;

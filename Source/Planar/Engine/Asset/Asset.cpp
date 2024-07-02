@@ -14,6 +14,11 @@ namespace Planar::Engine::Asset
 
     }
 
+    void Asset::set_node(YAML::Node node)
+    {
+        *asset = node;
+    }
+
     void Asset::clear()
     {
         *asset = YAML::Node();

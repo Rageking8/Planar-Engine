@@ -26,7 +26,7 @@ namespace Planar::Engine::GameObject
         std::stack<std::vector<std::shared_ptr<GameObject>>*>&
         children_vector_stack)
     {
-        asset.load(node);
+        asset.set_node(node);
 
         if (node.size() == 0)
         {

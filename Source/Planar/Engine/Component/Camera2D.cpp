@@ -17,7 +17,7 @@ namespace Planar::Engine::Component
 
     void Camera2D::load(YAML::Node node)
     {
-        asset.load(node);
+        asset.set_node(node);
 
         set_guid(asset.get_guid());
     }

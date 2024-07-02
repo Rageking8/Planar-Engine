@@ -11,11 +11,6 @@ namespace Planar::Engine::GameObject
 
     }
 
-    void GameObjectAsset::load(YAML::Node node)
-    {
-        *asset = node;
-    }
-
     void GameObjectAsset::load(GameObject& game_object)
     {
         clear();

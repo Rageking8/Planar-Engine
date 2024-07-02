@@ -10,11 +10,6 @@ namespace Planar::Engine::Component
 
     }
 
-    void Camera2DAsset::load(YAML::Node node)
-    {
-        *asset = node;
-    }
-
     void Camera2DAsset::load(Camera2D& camera)
     {
         get("Type") = camera.NAME;

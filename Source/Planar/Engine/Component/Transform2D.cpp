@@ -18,7 +18,7 @@ namespace Planar::Engine::Component
 
     void Transform2D::load(YAML::Node node)
     {
-        asset.load(node);
+        asset.set_node(node);
 
         set_guid(asset.get_guid());
         set_position(asset.get_position());

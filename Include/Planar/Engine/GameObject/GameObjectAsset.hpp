@@ -17,7 +17,6 @@ namespace Planar::Engine::GameObject
     public:
         GameObjectAsset();
 
-        void load(YAML::Node node);
         void load(GameObject& game_object);
 
         std::string get_name() const;

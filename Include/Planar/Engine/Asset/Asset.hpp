@@ -16,6 +16,8 @@ namespace Planar::Engine::Asset
         Asset();
         virtual ~Asset() = 0;
 
+        void set_node(YAML::Node node);
+
         void clear();
 
         bool is_null() const;

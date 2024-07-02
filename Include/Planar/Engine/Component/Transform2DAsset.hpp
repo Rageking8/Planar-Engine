@@ -17,7 +17,6 @@ namespace Planar::Engine::Component
     public:
         Transform2DAsset();
 
-        void load(YAML::Node node);
         void load(Transform2D& transform);
 
         std::string get_guid() const;

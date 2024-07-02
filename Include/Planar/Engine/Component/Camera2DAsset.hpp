@@ -15,7 +15,6 @@ namespace Planar::Engine::Component
     public:
         Camera2DAsset();
 
-        void load(YAML::Node node);
         void load(Camera2D& camera);
 
         std::string get_guid() const;
