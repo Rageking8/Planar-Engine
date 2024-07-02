@@ -29,7 +29,8 @@ namespace Planar::Editor::UI::Element
             std::shared_ptr<Engine::Component::Component> component,
             bool force = false) = 0;
 
-        void set_text(const std::string& new_text);
+        void set_header_text(const std::string& new_header_text);
+        void set_header_id(const std::string& new_header_id);
         void set_show_active_checkbox(bool new_show_active_checkbox);
 
     private:

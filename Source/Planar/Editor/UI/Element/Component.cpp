@@ -16,7 +16,7 @@ namespace Planar::Editor::UI::Element
         show_active_checkbox{ show_active_checkbox },
         top_padding{ 10.f }, bottom_padding{ 10.f }
     {
-        set_text(text);
+        set_header_text(text);
     }
 
     void Component::render()
@@ -26,9 +26,14 @@ namespace Planar::Editor::UI::Element
             render_active_checkbox) : std::function<void()>{});
     }
 
-    void Component::set_text(const std::string& new_text)
+    void Component::set_header_text(const std::string& new_header_text)
     {
-        header.set_text(new_text);
+        header.set_text(new_header_text);
+    }
+
+    void Component::set_header_id(const std::string& new_header_id)
+    {
+        header.set_id(new_header_id);
     }
 
     void Component::set_show_active_checkbox(
