@@ -28,7 +28,8 @@ namespace Planar::Editor::UI::Window
     {
         current_path = editor->get_project().get_root_path();
 
-        back_button.set("Back", 15.f, left_arrow_texture->get_id());
+        back_button.set_size(15.f);
+        back_button.set("Back", left_arrow_texture->get_id());
     }
 
     void ContentWindow::render_window()
@@ -70,16 +71,17 @@ namespace Planar::Editor::UI::Window
                     std::filesystem::is_regular_file(i);
 
                 ImGui::Element::Button::Button button;
+                button.set_size(button_size);
 
                 if (is_directory)
                 {
-                    button.set(name, button_size, folder_texture ?
-                        folder_texture->get_id() : 0);
+                    button.set(name, folder_texture ? folder_texture->
+                        get_id() : 0);
                 }
                 else if (is_regular_file)
                 {
-                    button.set(name, button_size, file_texture ?
-                        file_texture->get_id() : 0);
+                    button.set(name, file_texture ? file_texture->
+                        get_id() : 0);
                 }
 
                 button.render();
