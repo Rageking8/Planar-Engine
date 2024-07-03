@@ -1,4 +1,5 @@
 #include "Planar/Editor/Core/Editor.hpp"
+#include "Planar/Editor/Core/Select/SelectType.hpp"
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Editor/UI/Init/Init.hpp"
@@ -93,6 +94,8 @@ namespace Planar::Editor::Core
     {
         save_handler.remove_save_callback("current_scene");
         current_scene.reset();
+
+        select_handler.select_none(Select::SelectType::GAME_OBJECT);
     }
 
     void Editor::add_save_callback(const std::string& name,
