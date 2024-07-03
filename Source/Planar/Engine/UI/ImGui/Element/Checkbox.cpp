@@ -19,4 +19,9 @@ namespace Planar::Engine::UI::ImGui::Element
     {
         return value;
     }
+
+    void Checkbox::set_value(bool new_value)
+    {
+        value = new_value;
+    }
 }

@@ -15,6 +15,7 @@ namespace Planar::Engine::UI::ImGui::Element
         virtual void render() override;
 
         bool get_value() const;
+        void set_value(bool new_value);
 
     private:
         bool value;
