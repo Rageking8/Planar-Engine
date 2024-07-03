@@ -12,7 +12,7 @@ namespace Planar::Engine::UI::ImGui::Element
 
     void Checkbox::render()
     {
-        ::ImGui::Checkbox(label.c_str(), &value);
+        update_modified(::ImGui::Checkbox(label.c_str(), &value));
     }
 
     bool Checkbox::get_value() const
