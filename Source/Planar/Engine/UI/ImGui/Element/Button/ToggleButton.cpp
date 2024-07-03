@@ -9,14 +9,7 @@ namespace Planar::Engine::UI::ImGui::Element::Button
 
     void ToggleButton::render()
     {
-        if (!states || states->empty())
-        {
-            Button::render();
-
-            return;
-        }
-
-        if (current == 0)
+        if (!states || states->empty() || current == 0)
         {
             Button::render();
         }
@@ -53,6 +46,11 @@ namespace Planar::Engine::UI::ImGui::Element::Button
 
     void ToggleButton::increment_current()
     {
+        if (!states)
+        {
+            return;
+        }
+
         current = (current + 1) % (states->size() + 1);
     }
 }
