@@ -10,6 +10,7 @@
 #include "Planar/Editor/UI/Window/SceneWindow.hpp"
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button/ToggleButton.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
@@ -38,6 +39,10 @@ namespace Planar::Editor::Scene
         Engine::Graphics::OpenGL::Texture::Texture2D file_texture;
         Engine::Graphics::OpenGL::Texture::Texture2D folder_texture;
         Engine::Graphics::OpenGL::Texture::Texture2D left_arrow_texture;
+        Engine::Graphics::OpenGL::Texture::Texture2D play_texture;
+        Engine::Graphics::OpenGL::Texture::Texture2D stop_texture;
+
+        Engine::UI::ImGui::Element::Button::ToggleButton play_stop_toggle;
 
         void restore_default_layout() const;
 
