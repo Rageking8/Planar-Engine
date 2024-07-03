@@ -30,6 +30,18 @@ namespace Planar::Editor::Core::Select
         return game_object;
     }
 
+    void SelectHandler::select_none(SelectType if_select_type)
+    {
+        if (select_type != if_select_type)
+        {
+            return;
+        }
+
+        select_type = SelectType::NONE;
+
+        invoke_select_callback();
+    }
+
     void SelectHandler::select_content(const std::string& new_name)
     {
         select_type = SelectType::CONTENT;

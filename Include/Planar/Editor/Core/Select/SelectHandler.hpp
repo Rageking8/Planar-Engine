@@ -26,6 +26,7 @@ namespace Planar::Editor::Core::Select
         std::shared_ptr<Engine::GameObject::GameObject>
             get_game_object() const;
 
+        void select_none(SelectType if_select_type = SelectType::NONE);
         void select_content(const std::string& new_name);
         void select_game_object(
             std::shared_ptr<Engine::GameObject::GameObject>
