@@ -11,9 +11,9 @@
 namespace Planar::Editor::UI::Element
 {
     ComponentBase::ComponentBase(const std::string& text,
-        bool show_active_checkbox) : header({ 10.f, 7.5f }, 24.f, 0.f,
-        40.f, 10.f, true, true), active_checkbox(Engine::UI::ImGui::
-        generate_unique_label(), true),
+        bool show_active_checkbox) : active_checkbox(
+        Engine::UI::ImGui::generate_unique_label(), true),
+        header({ 10.f, 7.5f }, 24.f, 0.f, 40.f, 10.f, true, true),
         show_active_checkbox{ show_active_checkbox },
         top_padding{ 10.f }, bottom_padding{ 10.f }
     {

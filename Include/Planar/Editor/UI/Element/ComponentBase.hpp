@@ -33,9 +33,11 @@ namespace Planar::Editor::UI::Element
         void set_header_id(const std::string& new_header_id);
         void set_show_active_checkbox(bool new_show_active_checkbox);
 
+    protected:
+        Engine::UI::ImGui::Element::Checkbox active_checkbox;
+
     private:
         Engine::UI::ImGui::Element::Tree header;
-        Engine::UI::ImGui::Element::Checkbox active_checkbox;
         bool show_active_checkbox;
         float top_padding;
         float bottom_padding;
