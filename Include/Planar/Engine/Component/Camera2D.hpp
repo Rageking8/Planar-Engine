@@ -22,9 +22,13 @@ namespace Planar::Engine::Component
         void load();
         void load(YAML::Node node);
 
+        bool get_active() const;
+        void set_active(bool new_active);
+
         Asset::Component::Camera2DAsset& get_asset();
 
     private:
+        bool active;
         Asset::Component::Camera2DAsset asset;
     };
 }
