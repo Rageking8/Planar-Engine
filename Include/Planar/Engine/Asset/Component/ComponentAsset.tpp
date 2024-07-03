@@ -4,25 +4,36 @@
 
 namespace Planar::Engine::Asset::Component
 {
-    template <typename ComponentT>
-    inline ComponentAsset<ComponentT>::ComponentAsset()
+    template <typename ComponentT,
+        template <typename> typename... Mixins>
+    inline ComponentAsset<ComponentT, Mixins...>::ComponentAsset() :
+        Mixins<ComponentT>(static_cast<Asset*>(this))...
     {
 
     }
 
-    template <typename ComponentT>
-    inline void ComponentAsset<ComponentT>::load(
+    template <typename ComponentT,
+        template <typename> typename... Mixins>
+    inline void ComponentAsset<ComponentT, Mixins...>::load(
         ComponentT& component)
     {
-        get("Type") = component.NAME;
-        get("GUID") = component.get_guid();
+        set_value("Type", component.NAME);
+        set_value("GUID", component.get_guid());
+
+        // WORKAROUND: Due to a MSVC bug, the following fold
+        // expression does nothing instead of invoking `load`
+        // for all mixins
+        // (Mixins<ComponentT>::load(component), ...);
+        auto x = { 0, (Mixins<ComponentT>::load(component), 0)... };
 
         load_impl(component);
     }
 
-    template <typename ComponentT>
-    inline std::string ComponentAsset<ComponentT>::get_guid() const
+    template <typename ComponentT,
+        template <typename> typename... Mixins>
+    inline std::string ComponentAsset<ComponentT, Mixins...>::
+        get_guid() const
     {
-        return get_scalar("GUID");
+        return get_value<std::string>("GUID");
     }
 }

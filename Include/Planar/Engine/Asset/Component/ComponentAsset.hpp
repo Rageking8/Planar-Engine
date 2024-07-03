@@ -6,8 +6,9 @@
 
 namespace Planar::Engine::Asset::Component
 {
-    template <typename ComponentT>
-    class ComponentAsset : public Asset
+    template <typename ComponentT,
+        template <typename> typename... Mixins>
+    class ComponentAsset : public Asset, public Mixins<ComponentT>...
     {
     public:
         ComponentAsset();
