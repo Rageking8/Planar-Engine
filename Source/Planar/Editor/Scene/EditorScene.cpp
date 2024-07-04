@@ -160,6 +160,13 @@ namespace Planar::Editor::Scene
                         inspector_window.add_component(
                             Engine::Component::ComponentType::Camera2D);
                     }
+
+                    if (ImGui::Menu::menu_item("Add CameraController2D"))
+                    {
+                        inspector_window.add_component(
+                            Engine::Component::ComponentType::
+                            CameraController2D);
+                    }
                 });
 
             main_menu_bar.add_menu("Window",

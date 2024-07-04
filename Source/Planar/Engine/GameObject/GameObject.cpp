@@ -5,6 +5,7 @@
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/Component/Camera2D.hpp"
+#include "Planar/Engine/Component/CameraController2D.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -66,6 +67,14 @@ namespace Planar::Engine::GameObject
                         std::make_shared<Component::Camera2D>(this, false);
                     camera->load(i);
                     components.push_back(camera);
+                }
+                else if (type == Component::CameraController2D::NAME)
+                {
+                    std::shared_ptr<Component::CameraController2D>
+                        camera_controller = std::make_shared
+                        <Component::CameraController2D>(this, false);
+                    camera_controller->load(i);
+                    components.push_back(camera_controller);
                 }
                 else
                 {
@@ -156,6 +165,19 @@ namespace Planar::Engine::GameObject
             camera->load();
             components.push_back(camera);
             asset.add_component(camera->get_asset().get_asset());
+
+            return;
+        }
+
+        case Component::ComponentType::CameraController2D:
+        {
+            std::shared_ptr<Component::CameraController2D>
+                camera_controller = std::make_shared
+                <Component::CameraController2D>(this);
+            camera_controller->load();
+            components.push_back(camera_controller);
+            asset.add_component(camera_controller->get_asset().
+                get_asset());
 
             return;
         }

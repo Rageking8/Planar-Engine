@@ -9,5 +9,7 @@ namespace Planar::Engine::Component
         Transform2D,
 
         Camera2D,
+
+        CameraController2D,
     };
 }
