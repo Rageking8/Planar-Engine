@@ -14,8 +14,9 @@
 
 namespace Planar::Engine::GameObject
 {
-    GameObject::GameObject(const std::string& name) :
-        parent{}, name{ name }
+    GameObject::GameObject(Scene::Scene* scene,
+        const std::string& name) : scene{ scene }, parent{},
+        name{ name }
     {
         if (!name.empty())
         {
@@ -91,7 +92,7 @@ namespace Planar::Engine::GameObject
             }
 
             children_vector_stack.top()->push_back(
-                std::make_shared<GameObject>());
+                std::make_shared<GameObject>(scene));
             std::shared_ptr<GameObject>& game_object =
                 children_vector_stack.top()->back();
             game_object->parent = is_root ? nullptr : this;
@@ -217,7 +218,7 @@ namespace Planar::Engine::GameObject
         const bool is_root = asset.get_asset().IsNull() ||
             asset.get_asset().IsSequence();
 
-        children.push_back(std::make_shared<GameObject>(name));
+        children.push_back(std::make_shared<GameObject>(scene, name));
         std::shared_ptr<GameObject>& child = children.back();
         child->parent = is_root ? nullptr : this;
 

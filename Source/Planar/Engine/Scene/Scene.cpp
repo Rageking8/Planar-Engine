@@ -8,7 +8,7 @@
 namespace Planar::Engine::Scene
 {
     Scene::Scene() :
-        root(std::make_shared<GameObject::GameObject>())
+        root(std::make_shared<GameObject::GameObject>(this))
     {
 
     }

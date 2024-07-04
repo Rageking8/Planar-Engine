@@ -12,6 +12,7 @@
 #include <functional>
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Scene, Scene)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
 
 namespace Planar::Engine::GameObject
@@ -19,7 +20,7 @@ namespace Planar::Engine::GameObject
     class PLANAR_API GameObject
     {
     public:
-        GameObject(const std::string& name = "");
+        GameObject(Scene::Scene* scene, const std::string& name = "");
 
         void load(YAML::Node node,
             std::stack<std::vector<std::shared_ptr<GameObject>>*>&
@@ -53,6 +54,7 @@ namespace Planar::Engine::GameObject
             callback);
 
     private:
+        Scene::Scene* scene;
         GameObject* parent;
         std::string name;
         std::string guid;
