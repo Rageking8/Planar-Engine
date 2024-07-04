@@ -2,6 +2,7 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
+#include "Planar/Engine/UI/ImGui/Core/State/ModifiedState.hpp"
 
 #include "ThirdParty/glad/gl.h"
 
@@ -11,7 +12,8 @@
 
 namespace Planar::Engine::UI::ImGui::Element::Button
 {
-    class PLANAR_API ToggleButton : public Button
+    class PLANAR_API ToggleButton : public Button,
+        private Core::State::ModifiedState
     {
     public:
         struct ToggleState
@@ -21,6 +23,8 @@ namespace Planar::Engine::UI::ImGui::Element::Button
         };
 
         ToggleButton(Math::Size2Df size = {});
+
+        using ModifiedState::get_modified;
 
         virtual void render() override;
 

@@ -52,6 +52,9 @@ namespace Planar::Engine::UI::ImGui::Element::Button
             return;
         }
 
+        unsigned old_currrent = current;
         current = (current + 1) % (states->size() + 1);
+
+        update_modified(current != old_currrent);
     }
 }
