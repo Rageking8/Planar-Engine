@@ -19,6 +19,7 @@ namespace Planar::Editor::UI::Window
         GameWindow(Core::Editor* editor);
 
         void init();
+        void update();
 
         virtual void render_window() override;
 

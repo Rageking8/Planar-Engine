@@ -52,7 +52,16 @@ namespace Planar::Editor::Scene
             restore_default_layout();
         }
 
+        if (play_stop_toggle.get_modified())
+        {
+            editor->set_editor_game_mode(play_stop_toggle.get() ==
+                UI::Element::PlayStopToggle::State::PLAY ?
+                Core::EditorGameMode::PLAYING :
+                Core::EditorGameMode::STOPPED);
+        }
+
         inspector_window.update();
+        game_window.update();
         build_window.update();
     }
 

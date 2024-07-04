@@ -1,4 +1,6 @@
 #include "Planar/Editor/UI/Window/GameWindow.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
+#include "Planar/Editor/Core/EditorGameMode.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Shader/Shader.hpp"
@@ -6,7 +8,6 @@
 #include "Planar/Engine/Graphics/OpenGL/Buffer/BufferUsage.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Render/Primitive.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Render/Render.hpp"
-#include "Planar/Editor/Core/Editor.hpp"
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/glm/gtc/matrix_transform.hpp"
@@ -52,6 +53,18 @@ namespace Planar::Editor::UI::Window
 
         texture.load(Asset::Editor::Textures::DebugTexture,
             Asset::Editor::Textures::DebugTexture_length);
+    }
+
+    void GameWindow::update()
+    {
+        auto& current_scene = editor->get_current_scene();
+        if (!current_scene || editor->get_editor_game_mode() !=
+            Core::EditorGameMode::PLAYING)
+        {
+            return;
+        }
+
+        current_scene->update();
     }
 
     void GameWindow::render_window()
