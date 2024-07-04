@@ -14,8 +14,6 @@ PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
 PLANAR_LOAD_EDITOR_ICON(FolderIcon)
 PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
-PLANAR_LOAD_EDITOR_ICON(PlayIcon)
-PLANAR_LOAD_EDITOR_ICON(StopIcon)
 
 namespace Planar::Editor::Scene
 {
@@ -32,10 +30,6 @@ namespace Planar::Editor::Scene
     void EditorScene::init()
     {
         load_icons();
-
-        play_stop_toggle.set_size(15.f);
-        play_stop_toggle.add_state("Play", play_texture.get_id());
-        play_stop_toggle.add_state("Stop", stop_texture.get_id());
 
         inspector_window.init();
 
@@ -92,8 +86,6 @@ namespace Planar::Editor::Scene
         PLANAR_LOAD_EDITOR_ICON_TEXTURE(folder_texture, FolderIcon)
         PLANAR_LOAD_EDITOR_ICON_TEXTURE(left_arrow_texture,
             LeftArrowIcon)
-        PLANAR_LOAD_EDITOR_ICON_TEXTURE(play_texture, PlayIcon)
-        PLANAR_LOAD_EDITOR_ICON_TEXTURE(stop_texture, StopIcon)
     }
 
     void EditorScene::render_main_menu_bar()
