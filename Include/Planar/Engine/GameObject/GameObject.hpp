@@ -30,6 +30,8 @@ namespace Planar::Engine::GameObject
         bool is_root() const;
         bool is_empty() const;
 
+        Scene::Scene* get_scene() const;
+
         GameObject* get_parent() const;
 
         std::string get_name() const;

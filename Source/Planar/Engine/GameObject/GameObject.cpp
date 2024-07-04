@@ -117,6 +117,11 @@ namespace Planar::Engine::GameObject
         return name.empty() && guid.empty();
     }
 
+    Scene::Scene* GameObject::get_scene() const
+    {
+        return scene;
+    }
+
     GameObject* GameObject::get_parent() const
     {
         return parent;
