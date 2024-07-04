@@ -15,6 +15,7 @@ namespace Planar::Engine::UI::ImGui::Element::Button
     public:
         Button(const std::string& label = "",
             Math::Size2Df size = {}, GLuint texture = 0);
+        Button(Math::Size2Df size);
 
         void set(const std::string& new_label,
             GLuint new_texture = 0);

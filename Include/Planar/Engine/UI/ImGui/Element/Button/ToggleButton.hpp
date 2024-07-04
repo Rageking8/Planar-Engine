@@ -20,7 +20,7 @@ namespace Planar::Engine::UI::ImGui::Element::Button
             GLuint texture;
         };
 
-        ToggleButton();
+        ToggleButton(Math::Size2Df size = {});
 
         virtual void render() override;
 

@@ -12,6 +12,11 @@ namespace Planar::Engine::UI::ImGui::Element::Button
 
     }
 
+    Button::Button(Math::Size2Df size) : Button("", size)
+    {
+
+    }
+
     void Button::set(const std::string& new_label,
         GLuint new_texture)
     {

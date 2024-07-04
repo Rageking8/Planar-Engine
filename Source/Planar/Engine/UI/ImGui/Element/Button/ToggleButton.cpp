@@ -2,7 +2,8 @@
 
 namespace Planar::Engine::UI::ImGui::Element::Button
 {
-    ToggleButton::ToggleButton() : current{}
+    ToggleButton::ToggleButton(Math::Size2Df size) :
+        Button(size), current{}
     {
 
     }
