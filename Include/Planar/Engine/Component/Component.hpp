@@ -25,6 +25,8 @@ namespace Planar::Engine::Component
 
         virtual bool match(ComponentType other) const;
 
+        virtual void update();
+
         std::string get_guid() const;
         void set_guid(const std::string& new_guid);
 
