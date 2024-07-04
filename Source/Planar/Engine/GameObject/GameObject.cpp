@@ -146,7 +146,7 @@ namespace Planar::Engine::GameObject
             components.push_back(transform);
             asset.add_component(transform->get_asset().get_asset());
 
-            break;
+            return;
         }
 
         case Component::ComponentType::Camera2D:
@@ -157,9 +157,11 @@ namespace Planar::Engine::GameObject
             components.push_back(camera);
             asset.add_component(camera->get_asset().get_asset());
 
-            break;
+            return;
         }
         }
+
+        PLANAR_FATAL("Unrecognized component type");
     }
 
     std::vector<std::shared_ptr<GameObject>>& GameObject::get_children()
