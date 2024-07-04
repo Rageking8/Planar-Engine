@@ -37,6 +37,23 @@ namespace Planar::Engine::Component
         asset.set_position(new_position);
     }
 
+    void Transform2D::translate(Math::Size2Df delta)
+    {
+        position.x += delta.width;
+        position.y += delta.height;
+        asset.set_position(position);
+    }
+
+    void Transform2D::translate_x(float delta)
+    {
+        translate({ delta, 0.f });
+    }
+
+    void Transform2D::translate_y(float delta)
+    {
+        translate({ 0.f, delta });
+    }
+
     float Transform2D::get_rotation() const
     {
         return rotation;

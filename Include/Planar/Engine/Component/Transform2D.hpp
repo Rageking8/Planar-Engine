@@ -27,6 +27,10 @@ namespace Planar::Engine::Component
         Math::Pos2Df get_position() const;
         void set_position(Math::Pos2Df new_position);
 
+        void translate(Math::Size2Df delta);
+        void translate_x(float delta);
+        void translate_y(float delta);
+
         float get_rotation() const;
         void set_rotation(float new_rotation);
 
