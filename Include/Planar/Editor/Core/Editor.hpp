@@ -41,8 +41,8 @@ namespace Planar::Editor::Core
         void add_save_callback(const std::string& name,
             const std::function<void()>& save_callback);
 
-        void set_dirty();
-        void save_all();
+        void set_dirty(bool skip_if_editor_game_playing = true);
+        void save_all(bool skip_if_editor_game_playing = true);
 
         Select::SelectHandler& get_select_handler();
 

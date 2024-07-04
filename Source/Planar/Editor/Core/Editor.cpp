@@ -105,15 +105,27 @@ namespace Planar::Editor::Core
         save_handler.add_save_callback(name, save_callback);
     }
 
-    void Editor::set_dirty()
+    void Editor::set_dirty(bool skip_if_editor_game_playing)
     {
+        if (skip_if_editor_game_playing &&
+            editor_game_mode == EditorGameMode::PLAYING)
+        {
+            return;
+        }
+
         save_handler.set_dirty();
 
         set_window_asterisk(save_handler.get_dirty());
     }
 
-    void Editor::save_all()
+    void Editor::save_all(bool skip_if_editor_game_playing)
     {
+        if (skip_if_editor_game_playing &&
+            editor_game_mode == EditorGameMode::PLAYING)
+        {
+            return;
+        }
+
         save_handler.save_all();
 
         set_window_asterisk(save_handler.get_dirty());
