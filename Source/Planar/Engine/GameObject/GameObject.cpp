@@ -1,6 +1,7 @@
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
+#include "Planar/Engine/Core/Utils/Stack/Stack.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/Component/Camera2D.hpp"
@@ -216,5 +217,37 @@ namespace Planar::Engine::GameObject
         }
 
         PLANAR_FATAL("No child with `guid` found");
+    }
+
+    void GameObject::iterate_depth_first(
+        const std::function<void(GameObject*)>& callback)
+    {
+        std::stack<GameObject*> game_object_stack;
+        game_object_stack.push(this);
+
+        while (!game_object_stack.empty())
+        {
+            auto* current = Core::Utils::Stack::pop(game_object_stack);
+
+            if (!current->is_empty())
+            {
+                callback(current);
+            }
+
+            Core::Utils::Stack::push_raw_pointers_reverse(
+                game_object_stack, current->get_children());
+        }
+    }
+
+    void GameObject::iterate_depth_first(
+        const std::function<void(Component::Component*)>& callback)
+    {
+        iterate_depth_first([&](GameObject* game_object)
+            {
+                for (const auto& i : game_object->get_components())
+                {
+                    callback(i.get());
+                }
+            });
     }
 }

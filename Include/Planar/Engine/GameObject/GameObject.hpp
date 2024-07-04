@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <functional>
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
@@ -44,6 +45,12 @@ namespace Planar::Engine::GameObject
 
         void add_child(std::string name = "");
         void remove_child(const std::string& guid);
+
+        void iterate_depth_first(
+            const std::function<void(GameObject*)>& callback);
+        void iterate_depth_first(
+            const std::function<void(Component::Component*)>&
+            callback);
 
     private:
         GameObject* parent;
