@@ -8,7 +8,8 @@
 namespace Planar::Editor::Core
 {
     Editor::Editor() :
-        Application("Planar Editor", { 1280, 720 }, true)
+        Application("Planar Editor", { 1280, 720 }, true),
+        editor_game_mode{ EditorGameMode::STOPPED }
     {
 
     }
@@ -121,5 +122,16 @@ namespace Planar::Editor::Core
     Select::SelectHandler& Editor::get_select_handler()
     {
         return select_handler;
+    }
+
+    EditorGameMode Editor::get_editor_game_mode() const
+    {
+        return editor_game_mode;
+    }
+
+    void Editor::set_editor_game_mode(
+        EditorGameMode new_editor_game_mode)
+    {
+        editor_game_mode = new_editor_game_mode;
     }
 }

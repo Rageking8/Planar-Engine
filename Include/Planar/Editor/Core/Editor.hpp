@@ -3,6 +3,7 @@
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Editor/Project/Project.hpp"
+#include "Planar/Editor/Core/EditorGameMode.hpp"
 #include "Planar/Editor/Core/Save/SaveHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
 
@@ -45,10 +46,15 @@ namespace Planar::Editor::Core
 
         Select::SelectHandler& get_select_handler();
 
+        EditorGameMode get_editor_game_mode() const;
+        void set_editor_game_mode(
+            EditorGameMode new_editor_game_mode);
+
     private:
         Project::Project project;
         std::unique_ptr<Engine::Scene::Scene> current_scene;
         Save::SaveHandler save_handler;
         Select::SelectHandler select_handler;
+        EditorGameMode editor_game_mode;
     };
 }
