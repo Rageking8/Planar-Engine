@@ -7,17 +7,20 @@
 
 namespace Planar::Engine::Scene
 {
-    Scene::Scene() :
+    Scene::Scene(Core::Application* application) :
+        application{ application },
         root(std::make_shared<GameObject::GameObject>(this))
     {
 
     }
 
-    Scene::Scene(const std::string& scene_asset,
+    Scene::Scene(Core::Application* application,
+        const std::string& scene_asset,
         const std::string& scene_name,
-        const std::filesystem::path& asset_path) : Scene()
+        const std::filesystem::path& asset_path) :
+        Scene(application)
     {
-        load(scene_asset, scene_name, asset_path);
+        load(application, scene_asset, scene_name, asset_path);
     }
 
     Scene::~Scene()
@@ -25,7 +28,8 @@ namespace Planar::Engine::Scene
 
     }
 
-    void Scene::load(const std::string& scene_asset,
+    void Scene::load(Core::Application* application,
+        const std::string& scene_asset,
         const std::string& scene_name,
         const std::filesystem::path& asset_path)
     {
@@ -60,6 +64,11 @@ namespace Planar::Engine::Scene
     void Scene::render()
     {
 
+    }
+
+    Core::Application* Scene::get_application() const
+    {
+        return application;
     }
 
     SceneAsset& Scene::get_asset()

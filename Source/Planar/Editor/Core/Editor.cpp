@@ -85,7 +85,7 @@ namespace Planar::Editor::Core
         const std::filesystem::path& asset_path)
     {
         current_scene = std::make_unique<Engine::Scene::Scene>(
-            scene_asset, scene_name, asset_path);
+            this, scene_asset, scene_name, asset_path);
 
         save_handler.add_save_callback("current_scene",
             PLANAR_CAPTURE_REF(current_scene->save));
