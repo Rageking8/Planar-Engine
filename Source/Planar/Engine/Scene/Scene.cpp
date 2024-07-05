@@ -66,6 +66,8 @@ namespace Planar::Engine::Scene
         root->iterate_depth_first([](Component::Component* component)
             {
                 component->update();
+
+                return false;
             });
     }
 

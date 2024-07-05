@@ -52,9 +52,9 @@ namespace Planar::Engine::GameObject
         void clear_all_children();
 
         void iterate_depth_first(
-            const std::function<void(GameObject*)>& callback);
+            const std::function<bool(GameObject*)>& callback);
         void iterate_depth_first(
-            const std::function<void(Component::Component*)>&
+            const std::function<bool(Component::Component*)>&
             callback);
 
     private:

@@ -262,7 +262,7 @@ namespace Planar::Engine::GameObject
     }
 
     void GameObject::iterate_depth_first(
-        const std::function<void(GameObject*)>& callback)
+        const std::function<bool(GameObject*)>& callback)
     {
         std::stack<GameObject*> game_object_stack;
         game_object_stack.push(this);
@@ -273,7 +273,10 @@ namespace Planar::Engine::GameObject
 
             if (!current->is_empty())
             {
-                callback(current);
+                if (callback(current))
+                {
+                    return;
+                }
             }
 
             Core::Utils::Stack::push_raw_pointers_reverse(
@@ -282,14 +285,19 @@ namespace Planar::Engine::GameObject
     }
 
     void GameObject::iterate_depth_first(
-        const std::function<void(Component::Component*)>& callback)
+        const std::function<bool(Component::Component*)>& callback)
     {
         iterate_depth_first([&](GameObject* game_object)
             {
                 for (const auto& i : game_object->get_components())
                 {
-                    callback(i.get());
+                    if (callback(i.get()))
+                    {
+                        return true;
+                    }
                 }
+
+                return false;
             });
     }
 }
