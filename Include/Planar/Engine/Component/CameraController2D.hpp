@@ -19,11 +19,12 @@ namespace Planar::Engine::Component
         CameraController2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
-        void load();
         void load(YAML::Node node);
 
         bool get_active() const;
         void set_active(bool new_active);
+
+        virtual void load_asset() override;
 
         virtual const Asset::Component::CameraController2DAsset&
             get_asset() const override;

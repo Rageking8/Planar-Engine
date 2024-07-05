@@ -157,7 +157,7 @@ namespace Planar::Engine::GameObject
         {
             std::shared_ptr<Component::Transform2D> transform =
                 std::make_shared<Component::Transform2D>(this);
-            transform->load();
+            transform->load_asset();
             components.push_back(transform);
             asset.add_component(transform->get_node());
 
@@ -168,7 +168,7 @@ namespace Planar::Engine::GameObject
         {
             std::shared_ptr<Component::Camera2D> camera =
                 std::make_shared<Component::Camera2D>(this);
-            camera->load();
+            camera->load_asset();
             components.push_back(camera);
             asset.add_component(camera->get_node());
 
@@ -180,7 +180,7 @@ namespace Planar::Engine::GameObject
             std::shared_ptr<Component::CameraController2D>
                 camera_controller = std::make_shared
                 <Component::CameraController2D>(this);
-            camera_controller->load();
+            camera_controller->load_asset();
             components.push_back(camera_controller);
             asset.add_component(camera_controller->get_node());
 

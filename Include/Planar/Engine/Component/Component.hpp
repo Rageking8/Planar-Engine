@@ -34,6 +34,8 @@ namespace Planar::Engine::Component
         GameObject::GameObject* get_parent() const;
         void set_parent(GameObject::GameObject* new_parent);
 
+        virtual void load_asset() = 0;
+
         virtual const Asset::Asset& get_asset() const = 0;
         YAML::Node get_node() const;
 

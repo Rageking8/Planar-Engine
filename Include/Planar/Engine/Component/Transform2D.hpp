@@ -21,7 +21,6 @@ namespace Planar::Engine::Component
         Transform2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
-        void load();
         void load(YAML::Node node);
 
         Math::Pos2Df get_position() const;
@@ -36,6 +35,8 @@ namespace Planar::Engine::Component
 
         Math::Size2Df get_scale() const;
         void set_scale(Math::Size2Df new_scale);
+
+        virtual void load_asset() override;
 
         virtual const Asset::Component::Transform2DAsset& get_asset()
             const override;

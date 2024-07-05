@@ -12,11 +12,6 @@ namespace Planar::Engine::Component
 
     }
 
-    void CameraController2D::load()
-    {
-        asset.load(*this);
-    }
-
     void CameraController2D::load(YAML::Node node)
     {
         asset.set_node(node);
@@ -34,6 +29,11 @@ namespace Planar::Engine::Component
     {
         active = new_active;
         asset.set_active(new_active);
+    }
+
+    void CameraController2D::load_asset()
+    {
+        asset.load(*this);
     }
 
     const Asset::Component::CameraController2DAsset&

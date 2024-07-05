@@ -11,11 +11,6 @@ namespace Planar::Engine::Component
 
     }
 
-    void Transform2D::load()
-    {
-        asset.load(*this);
-    }
-
     void Transform2D::load(YAML::Node node)
     {
         asset.set_node(node);
@@ -74,6 +69,11 @@ namespace Planar::Engine::Component
     {
         scale = new_scale;
         asset.set_scale(new_scale);
+    }
+
+    void Transform2D::load_asset()
+    {
+        asset.load(*this);
     }
 
     const Asset::Component::Transform2DAsset& Transform2D::get_asset() const
