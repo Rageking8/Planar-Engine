@@ -7,6 +7,7 @@
 
 #include <string>
 
+PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Asset, Asset)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
@@ -34,6 +35,7 @@ namespace Planar::Engine::Component
         void set_parent(GameObject::GameObject* new_parent);
 
         virtual const Asset::Asset& get_asset() const = 0;
+        YAML::Node get_node() const;
 
     private:
         std::string guid;

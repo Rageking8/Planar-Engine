@@ -1,5 +1,8 @@
 #include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
+#include "Planar/Engine/Asset/Asset.hpp"
+
+#include "ThirdParty/yaml-cpp/yaml.h"
 
 namespace Planar::Engine::Component
 {
@@ -46,5 +49,10 @@ namespace Planar::Engine::Component
     void Component::set_parent(GameObject::GameObject* new_parent)
     {
         parent = new_parent;
+    }
+
+    YAML::Node Component::get_node() const
+    {
+        return get_asset().get_asset();
     }
 }

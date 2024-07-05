@@ -19,7 +19,7 @@ namespace Planar::Engine::GameObject
 
         for (const auto& component : game_object.get_components())
         {
-            add_component(component->get_asset().get_asset());
+            add_component(component->get_node());
         }
 
         get("Children") = YAML::Node();

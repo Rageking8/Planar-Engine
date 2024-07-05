@@ -159,7 +159,7 @@ namespace Planar::Engine::GameObject
                 std::make_shared<Component::Transform2D>(this);
             transform->load();
             components.push_back(transform);
-            asset.add_component(transform->get_asset().get_asset());
+            asset.add_component(transform->get_node());
 
             return;
         }
@@ -170,7 +170,7 @@ namespace Planar::Engine::GameObject
                 std::make_shared<Component::Camera2D>(this);
             camera->load();
             components.push_back(camera);
-            asset.add_component(camera->get_asset().get_asset());
+            asset.add_component(camera->get_node());
 
             return;
         }
@@ -182,8 +182,7 @@ namespace Planar::Engine::GameObject
                 <Component::CameraController2D>(this);
             camera_controller->load();
             components.push_back(camera_controller);
-            asset.add_component(camera_controller->get_asset().
-                get_asset());
+            asset.add_component(camera_controller->get_node());
 
             return;
         }
