@@ -1,8 +1,8 @@
 #include "Planar/Engine/GameObject/GameObject.hpp"
-#include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
-#include "Planar/Engine/Core/Utils/Stack/Stack.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
+#include "Planar/Engine/Core/Utils/Stack/Stack.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
@@ -235,18 +235,25 @@ namespace Planar::Engine::GameObject
 
     void GameObject::remove_child(const std::string& guid)
     {
+        int index = find_child(guid);
+
+        PLANAR_ASSERT(index != -1, "No child with `guid` found");
+
+        asset.remove_child(static_cast<std::size_t>(index));
+        children.erase(children.begin() + index);
+    }
+
+    int GameObject::find_child(const std::string& guid)
+    {
         for (std::size_t i = 0; i < children.size(); ++i)
         {
             if (guid == children[i]->guid)
             {
-                asset.remove_child(i);
-                children.erase(children.begin() + i);
-
-                return;
+                return static_cast<int>(i);
             }
         }
 
-        PLANAR_FATAL("No child with `guid` found");
+        return -1;
     }
 
     void GameObject::clear_all_children()
