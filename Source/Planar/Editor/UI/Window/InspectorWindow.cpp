@@ -1,5 +1,6 @@
 #include "Planar/Editor/UI/Window/InspectorWindow.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
+#include "Planar/Editor/Core/EditorGameMode.hpp"
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectType.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
@@ -28,6 +29,8 @@ namespace Planar::Editor::UI::Window
             editor->get_select_handler();
         const Core::Select::SelectType select_type =
             select_handler.get_select_type();
+        const bool editor_game_playing = editor->
+            get_editor_game_mode() == Core::EditorGameMode::PLAYING;
 
         if (name_input.get_modified())
         {
@@ -47,11 +50,20 @@ namespace Planar::Editor::UI::Window
             }
         }
 
-        if (select_type == Core::Select::SelectType::GAME_OBJECT &&
-            component_store.write_components(*select_handler.
-            get_game_object()))
+        if (select_type == Core::Select::SelectType::GAME_OBJECT)
         {
-            editor->set_dirty();
+            std::shared_ptr<Engine::GameObject::GameObject>
+                game_object = select_handler.get_game_object();
+
+            if (component_store.write_components(*game_object))
+            {
+                editor->set_dirty();
+            }
+
+            if (editor_game_playing)
+            {
+                component_store.update_items(*game_object);
+            }
         }
     }
 
