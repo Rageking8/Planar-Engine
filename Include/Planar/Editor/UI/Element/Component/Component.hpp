@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Planar/Editor/UI/Element/ComponentBase.hpp"
+#include "Planar/Editor/UI/Element/Component/ComponentBase.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <memory>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
 
-namespace Planar::Editor::UI::Element
+namespace Planar::Editor::UI::Element::Component
 {
     template <typename ComponentT>
     class Component : public ComponentBase
@@ -34,4 +34,4 @@ namespace Planar::Editor::UI::Element
     };
 }
 
-#include "Planar/Editor/UI/Element/Component.tpp"
+#include "Planar/Editor/UI/Element/Component/Component.tpp"

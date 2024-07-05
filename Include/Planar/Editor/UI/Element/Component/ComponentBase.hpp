@@ -10,7 +10,7 @@
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
 
-namespace Planar::Editor::UI::Element
+namespace Planar::Editor::UI::Element::Component
 {
     class ComponentBase :
         public Engine::UI::ImGui::Element::Element

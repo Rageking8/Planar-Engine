@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Element/ComponentBase.hpp"
+#include "Planar/Editor/UI/Element/Component/ComponentBase.hpp"
 #include "Planar/Engine/Component/ComponentType.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
@@ -18,7 +18,8 @@ namespace Planar::Editor::UI::Container
         struct Item
         {
             bool flag;
-            std::unique_ptr<Element::ComponentBase> component;
+            std::unique_ptr<Element::Component::ComponentBase>
+                component;
         };
 
         ComponentStore();

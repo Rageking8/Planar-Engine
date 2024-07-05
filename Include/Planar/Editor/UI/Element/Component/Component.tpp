@@ -1,8 +1,8 @@
-#include "Planar/Editor/UI/Element/Component.hpp"
+#include "Planar/Editor/UI/Element/Component/Component.hpp"
 #include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/Component/ComponentFunction.hpp"
 
-namespace Planar::Editor::UI::Element
+namespace Planar::Editor::UI::Element::Component
 {
     template <typename ComponentT>
     inline void Component<ComponentT>::set_values_impl(
