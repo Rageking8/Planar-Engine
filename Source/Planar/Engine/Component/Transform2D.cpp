@@ -5,20 +5,10 @@
 namespace Planar::Engine::Component
 {
     Transform2D::Transform2D(GameObject::GameObject* parent,
-        bool generate_guid) : ComponentBase(parent, generate_guid),
+        bool generate_guid) : Component(parent, generate_guid),
         rotation{}
     {
 
-    }
-
-    void Transform2D::load(YAML::Node node)
-    {
-        asset.set_node(node);
-
-        set_guid(asset.get_guid());
-        set_position(asset.get_position());
-        set_rotation(asset.get_rotation());
-        set_scale(asset.get_scale());
     }
 
     Math::Pos2Df Transform2D::get_position() const
@@ -71,13 +61,10 @@ namespace Planar::Engine::Component
         asset.set_scale(new_scale);
     }
 
-    void Transform2D::load_asset()
+    void Transform2D::load_impl(YAML::Node node)
     {
-        asset.load(*this);
-    }
-
-    const Asset::Component::Transform2DAsset& Transform2D::get_asset() const
-    {
-        return asset;
+        set_position(asset.get_position());
+        set_rotation(asset.get_rotation());
+        set_scale(asset.get_scale());
     }
 }

@@ -6,18 +6,10 @@ namespace Planar::Engine::Component
 {
     CameraController2D::CameraController2D(
         GameObject::GameObject* parent,
-        bool generate_guid) : ComponentBase(parent, generate_guid),
+        bool generate_guid) : Component(parent, generate_guid),
         active{ true }
     {
 
-    }
-
-    void CameraController2D::load(YAML::Node node)
-    {
-        asset.set_node(node);
-
-        set_guid(asset.get_guid());
-        set_active(asset.get_active());
     }
 
     bool CameraController2D::get_active() const
@@ -31,14 +23,8 @@ namespace Planar::Engine::Component
         asset.set_active(new_active);
     }
 
-    void CameraController2D::load_asset()
+    void CameraController2D::load_impl(YAML::Node node)
     {
-        asset.load(*this);
-    }
-
-    const Asset::Component::CameraController2DAsset&
-        CameraController2D::get_asset() const
-    {
-        return asset;
+        set_active(asset.get_active());
     }
 }
