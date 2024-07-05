@@ -25,9 +25,17 @@ namespace Planar::Editor::Core::Select
     }
 
     std::shared_ptr<Engine::GameObject::GameObject>
-        SelectHandler::get_game_object() const
+        SelectHandler::get_game_object()
     {
-        return game_object;
+        std::shared_ptr<Engine::GameObject::GameObject> result =
+            game_object.lock();
+
+        if (!result)
+        {
+            select_type = SelectType::NONE;
+        }
+
+        return result;
     }
 
     void SelectHandler::select_none(SelectType if_select_type)
@@ -51,7 +59,7 @@ namespace Planar::Editor::Core::Select
     }
 
     void SelectHandler::select_game_object(
-        std::shared_ptr<Engine::GameObject::GameObject> new_game_object)
+        std::weak_ptr<Engine::GameObject::GameObject> new_game_object)
     {
         select_type = SelectType::GAME_OBJECT;
         game_object = new_game_object;

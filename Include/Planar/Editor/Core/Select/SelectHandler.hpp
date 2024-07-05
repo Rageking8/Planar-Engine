@@ -24,12 +24,12 @@ namespace Planar::Editor::Core::Select
         SelectType get_select_type() const;
         std::string get_name() const;
         std::shared_ptr<Engine::GameObject::GameObject>
-            get_game_object() const;
+            get_game_object();
 
         void select_none(SelectType if_select_type = SelectType::NONE);
         void select_content(const std::string& new_name);
         void select_game_object(
-            std::shared_ptr<Engine::GameObject::GameObject>
+            std::weak_ptr<Engine::GameObject::GameObject>
             new_game_object);
 
     private:
@@ -37,7 +37,7 @@ namespace Planar::Editor::Core::Select
         SelectCallback select_callback;
 
         std::string name;
-        std::shared_ptr<Engine::GameObject::GameObject> game_object;
+        std::weak_ptr<Engine::GameObject::GameObject> game_object;
 
         void invoke_select_callback();
     };

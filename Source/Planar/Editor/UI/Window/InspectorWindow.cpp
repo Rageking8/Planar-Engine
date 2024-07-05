@@ -25,7 +25,7 @@ namespace Planar::Editor::UI::Window
 
     void InspectorWindow::update()
     {
-        const Core::Select::SelectHandler& select_handler =
+        Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
         const Core::Select::SelectType select_type =
             select_handler.get_select_type();
@@ -43,9 +43,15 @@ namespace Planar::Editor::UI::Window
                 break;
 
             case Core::Select::SelectType::GAME_OBJECT:
-                select_handler.get_game_object()->set_name(
-                    name_input.get_text());
-                editor->set_dirty();
+                std::shared_ptr<Engine::GameObject::GameObject>
+                    game_object = select_handler.get_game_object();
+                
+                if (game_object)
+                {
+                    select_handler.get_game_object()->set_name(
+                        name_input.get_text());
+                    editor->set_dirty();
+                }
                 break;
             }
         }
@@ -55,12 +61,13 @@ namespace Planar::Editor::UI::Window
             std::shared_ptr<Engine::GameObject::GameObject>
                 game_object = select_handler.get_game_object();
 
-            if (component_store.write_components(*game_object))
+            if (game_object && component_store.write_components(
+                *game_object))
             {
                 editor->set_dirty();
             }
 
-            if (editor_game_playing)
+            if (game_object && editor_game_playing)
             {
                 component_store.update_items(*game_object);
             }
@@ -78,7 +85,7 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        const Core::Select::SelectHandler& select_handler =
+        Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
         const Core::Select::SelectType select_type =
             select_handler.get_select_type();
@@ -92,15 +99,20 @@ namespace Planar::Editor::UI::Window
         {
             ImGui::Core::Cursor::move_y(8.f);
 
-            component_renderer.render(component_store,
-                *select_handler.get_game_object());
+            std::shared_ptr<Engine::GameObject::GameObject>
+                game_object = select_handler.get_game_object();
+
+            if (game_object)
+            {
+                component_renderer.render(component_store, *game_object);
+            }
         }
     }
 
     void InspectorWindow::add_component(
         Engine::Component::ComponentType type)
     {
-        const Core::Select::SelectHandler& select_handler =
+        Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
         const Core::Select::SelectType select_type =
             select_handler.get_select_type();
@@ -113,6 +125,11 @@ namespace Planar::Editor::UI::Window
         std::shared_ptr<Engine::GameObject::GameObject>
             game_object = select_handler.get_game_object();
 
+        if (!game_object)
+        {
+            return;
+        }
+
         game_object->add_component(type);
         component_store.update_items(*game_object);
         editor->set_dirty();
@@ -121,7 +138,7 @@ namespace Planar::Editor::UI::Window
     void InspectorWindow::handle_select(
         Core::Select::SelectType select_type)
     {
-        const Core::Select::SelectHandler& select_handler =
+        Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
 
         switch (select_type)
@@ -135,10 +152,14 @@ namespace Planar::Editor::UI::Window
             break;
 
         case Core::Select::SelectType::GAME_OBJECT:
-            std::shared_ptr<Engine::GameObject::GameObject> game_object =
-                select_handler.get_game_object();
-            name_input.set_text(game_object->get_name());
-            component_store.update_items(*game_object);
+            std::shared_ptr<Engine::GameObject::GameObject>
+                game_object = select_handler.get_game_object();
+
+            if (game_object)
+            {
+                name_input.set_text(game_object->get_name());
+                component_store.update_items(*game_object);
+            }
             break;
         }
     }
