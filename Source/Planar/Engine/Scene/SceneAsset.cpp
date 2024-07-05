@@ -43,6 +43,13 @@ namespace Planar::Engine::Scene
         path = asset_path;
     }
 
+    void SceneAsset::reload_from_path()
+    {
+        PLANAR_ASSERT_NOT_EMPTY(path);
+
+        *asset = YAML::Load(Core::FileSystem::read_file(path));
+    }
+
     void SceneAsset::save()
     {
         PLANAR_ASSERT_NOT_EMPTY(path);

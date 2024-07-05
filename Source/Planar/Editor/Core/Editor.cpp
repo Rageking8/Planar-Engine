@@ -145,5 +145,20 @@ namespace Planar::Editor::Core
         EditorGameMode new_editor_game_mode)
     {
         editor_game_mode = new_editor_game_mode;
+
+        if (editor_game_mode == EditorGameMode::STOPPED)
+        {
+            reset_on_exit_play_mode();
+        }
+    }
+
+    void Editor::reset_on_exit_play_mode()
+    {
+        if (!current_scene)
+        {
+            return;
+        }
+
+        current_scene->reload_from_path();
     }
 }

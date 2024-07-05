@@ -56,5 +56,7 @@ namespace Planar::Editor::Core
         Save::SaveHandler save_handler;
         Select::SelectHandler select_handler;
         EditorGameMode editor_game_mode;
+
+        void reset_on_exit_play_mode();
     };
 }

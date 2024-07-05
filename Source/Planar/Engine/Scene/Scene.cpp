@@ -38,6 +38,14 @@ namespace Planar::Engine::Scene
         load_root();
     }
 
+    void Scene::reload_from_path()
+    {
+        asset.reload_from_path();
+
+        root->clear_all_children();
+        load_root();
+    }
+
     void Scene::save()
     {
         asset.save();
