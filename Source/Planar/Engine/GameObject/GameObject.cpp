@@ -56,26 +56,15 @@ namespace Planar::Engine::GameObject
 
                 if (type == Component::Transform2D::NAME)
                 {
-                    std::shared_ptr<Component::Transform2D> transform =
-                        std::make_shared<Component::Transform2D>(
-                        this, false);
-                    transform->load(i);
-                    components.push_back(transform);
+                    add_component<Component::Transform2D>({ i });
                 }
                 else if (type == Component::Camera2D::NAME)
                 {
-                    std::shared_ptr<Component::Camera2D> camera =
-                        std::make_shared<Component::Camera2D>(this, false);
-                    camera->load(i);
-                    components.push_back(camera);
+                    add_component<Component::Camera2D>({ i });
                 }
                 else if (type == Component::CameraController2D::NAME)
                 {
-                    std::shared_ptr<Component::CameraController2D>
-                        camera_controller = std::make_shared
-                        <Component::CameraController2D>(this, false);
-                    camera_controller->load(i);
-                    components.push_back(camera_controller);
+                    add_component<Component::CameraController2D>({ i });
                 }
                 else
                 {

@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <optional>
 #include <functional>
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
@@ -43,7 +44,7 @@ namespace Planar::Engine::GameObject
             get_components();
 
         template <typename ComponentT>
-        void add_component();
+        void add_component(std::optional<YAML::Node> node = {});
 
         std::vector<std::shared_ptr<GameObject>>& get_children();
 
