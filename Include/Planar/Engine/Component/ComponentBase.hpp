@@ -16,7 +16,7 @@ namespace Planar::Engine::Component
     class PLANAR_API ComponentBase
     {
     public:
-        PLANAR_DEFINE_COMPONENT_TYPE_AND_NAME(Component)
+        PLANAR_DEFINE_COMPONENT_TYPE_AND_NAME(ComponentBase)
 
         ComponentBase(GameObject::GameObject* parent,
             bool generate_guid = true);
