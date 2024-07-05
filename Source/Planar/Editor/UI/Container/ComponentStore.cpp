@@ -74,16 +74,22 @@ namespace Planar::Editor::UI::Container
         switch (type)
         {
         case Engine::Component::ComponentType::Transform2D:
-            return store[type].emplace_back(true,
-                std::make_unique<Element::Component::Transform2D>());
+            return add_element<Element::Component::Transform2D>();
+
         case Engine::Component::ComponentType::Camera2D:
-            return store[type].emplace_back(true,
-                std::make_unique<Element::Component::Camera2D>());
+            return add_element<Element::Component::Camera2D>();
+
         case Engine::Component::ComponentType::CameraController2D:
-            return store[type].emplace_back(true,
-                std::make_unique<Element::Component::CameraController2D>());
+            return add_element<Element::Component::CameraController2D>();
         }
 
         PLANAR_FATAL("Unsupported `type`");
+    }
+
+    template <typename ComponentT>
+    ComponentStore::Item& ComponentStore::add_element()
+    {
+        return store[ComponentT::ComponentType::TYPE].
+            emplace_back(true, std::make_unique<ComponentT>());
     }
 }

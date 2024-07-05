@@ -35,5 +35,8 @@ namespace Planar::Editor::UI::Container
     private:
         std::unordered_map<Engine::Component::ComponentType,
             std::vector<Item>> store;
+
+        template <typename ComponentT>
+        Item& add_element();
     };
 }
