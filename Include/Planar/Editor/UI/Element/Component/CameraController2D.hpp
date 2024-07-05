@@ -3,10 +3,10 @@
 #include "Planar/Editor/UI/Element/Component/Component.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
 
-namespace Planar::Editor::UI::Element
+namespace Planar::Editor::UI::Element::Component
 {
     class CameraController2D :
-        public Component::Component<Engine::Component::CameraController2D>
+        public Component<Engine::Component::CameraController2D>
     {
     public:
         CameraController2D();

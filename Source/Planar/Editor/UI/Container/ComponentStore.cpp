@@ -1,7 +1,7 @@
 #include "Planar/Editor/UI/Container/ComponentStore.hpp"
-#include "Planar/Editor/UI/Element/Transform2D.hpp"
-#include "Planar/Editor/UI/Element/Camera2D.hpp"
-#include "Planar/Editor/UI/Element/CameraController2D.hpp"
+#include "Planar/Editor/UI/Element/Component/Transform2D.hpp"
+#include "Planar/Editor/UI/Element/Component/Camera2D.hpp"
+#include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
@@ -75,13 +75,13 @@ namespace Planar::Editor::UI::Container
         {
         case Engine::Component::ComponentType::Transform2D:
             return store[type].emplace_back(true,
-                std::make_unique<Element::Transform2D>());
+                std::make_unique<Element::Component::Transform2D>());
         case Engine::Component::ComponentType::Camera2D:
             return store[type].emplace_back(true,
-                std::make_unique<Element::Camera2D>());
+                std::make_unique<Element::Component::Camera2D>());
         case Engine::Component::ComponentType::CameraController2D:
             return store[type].emplace_back(true,
-                std::make_unique<Element::CameraController2D>());
+                std::make_unique<Element::Component::CameraController2D>());
         }
 
         PLANAR_FATAL("Unsupported `type`");

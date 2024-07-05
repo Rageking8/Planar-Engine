@@ -1,7 +1,7 @@
-#include "Planar/Editor/UI/Element/Transform2D.hpp"
+#include "Planar/Editor/UI/Element/Component/Transform2D.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
-namespace Planar::Editor::UI::Element
+namespace Planar::Editor::UI::Element::Component
 {
     Transform2D::Transform2D() :
         Component("Transform2D", false), position("Position",

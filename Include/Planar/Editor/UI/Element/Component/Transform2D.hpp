@@ -6,9 +6,9 @@
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
 
-namespace Planar::Editor::UI::Element
+namespace Planar::Editor::UI::Element::Component
 {
-    class Transform2D : public Component::Component<Engine::Component::Transform2D>
+    class Transform2D : public Component<Engine::Component::Transform2D>
     {
     public:
         Transform2D();

@@ -1,6 +1,6 @@
-#include "Planar/Editor/UI/Element/Camera2D.hpp"
+#include "Planar/Editor/UI/Element/Component/Camera2D.hpp"
 
-namespace Planar::Editor::UI::Element
+namespace Planar::Editor::UI::Element::Component
 {
     Camera2D::Camera2D() : Component("Camera2D")
     {
