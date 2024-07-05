@@ -4,7 +4,7 @@ namespace Planar::Engine::Component
 {
     enum class ComponentType
     {
-        Component,
+        ComponentBase,
 
         Transform2D,
 
