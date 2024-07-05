@@ -48,6 +48,7 @@ namespace Planar::Engine::GameObject
 
         void add_child(std::string name = "");
         void remove_child(const std::string& guid);
+        void clear_all_children();
 
         void iterate_depth_first(
             const std::function<void(GameObject*)>& callback);

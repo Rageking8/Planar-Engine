@@ -249,6 +249,11 @@ namespace Planar::Engine::GameObject
         PLANAR_FATAL("No child with `guid` found");
     }
 
+    void GameObject::clear_all_children()
+    {
+        children.clear();
+    }
+
     void GameObject::iterate_depth_first(
         const std::function<void(GameObject*)>& callback)
     {
