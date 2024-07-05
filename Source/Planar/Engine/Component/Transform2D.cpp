@@ -76,7 +76,7 @@ namespace Planar::Engine::Component
         asset.set_scale(new_scale);
     }
 
-    Asset::Component::Transform2DAsset& Transform2D::get_asset()
+    const Asset::Component::Transform2DAsset& Transform2D::get_asset() const
     {
         return asset;
     }

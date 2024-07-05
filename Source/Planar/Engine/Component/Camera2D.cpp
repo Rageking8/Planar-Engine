@@ -35,7 +35,7 @@ namespace Planar::Engine::Component
         asset.set_active(new_active);
     }
 
-    Asset::Component::Camera2DAsset& Camera2D::get_asset()
+    const Asset::Component::Camera2DAsset& Camera2D::get_asset() const
     {
         return asset;
     }

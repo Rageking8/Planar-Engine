@@ -37,8 +37,8 @@ namespace Planar::Engine::Component
         Math::Size2Df get_scale() const;
         void set_scale(Math::Size2Df new_scale);
 
-        virtual Asset::Component::Transform2DAsset& get_asset()
-            override;
+        virtual const Asset::Component::Transform2DAsset& get_asset()
+            const override;
 
     private:
         Math::Pos2Df position;

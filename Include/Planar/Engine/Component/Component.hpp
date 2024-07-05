@@ -33,7 +33,7 @@ namespace Planar::Engine::Component
         GameObject::GameObject* get_parent() const;
         void set_parent(GameObject::GameObject* new_parent);
 
-        virtual Asset::Asset& get_asset() = 0;
+        virtual const Asset::Asset& get_asset() const = 0;
 
     private:
         std::string guid;
