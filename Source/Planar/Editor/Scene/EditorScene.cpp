@@ -8,7 +8,9 @@
 #include "Planar/Engine/UI/ImGui/Core/Docking/Docking.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/Shell/Shell.hpp"
-#include "Planar/Engine/Component/ComponentType.hpp"
+#include "Planar/Engine/Component/Transform2D.hpp"
+#include "Planar/Engine/Component/Camera2D.hpp"
+#include "Planar/Engine/Component/CameraController2D.hpp"
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
@@ -151,21 +153,20 @@ namespace Planar::Editor::Scene
                 {
                     if (ImGui::Menu::menu_item("Add Transform2D"))
                     {
-                        inspector_window.add_component(
-                            Engine::Component::ComponentType::Transform2D);
+                        inspector_window.add_component
+                            <Engine::Component::Transform2D>();
                     }
 
                     if (ImGui::Menu::menu_item("Add Camera2D"))
                     {
-                        inspector_window.add_component(
-                            Engine::Component::ComponentType::Camera2D);
+                        inspector_window.add_component
+                            <Engine::Component::Camera2D>();
                     }
 
                     if (ImGui::Menu::menu_item("Add CameraController2D"))
                     {
-                        inspector_window.add_component(
-                            Engine::Component::ComponentType::
-                            CameraController2D);
+                        inspector_window.add_component
+                            <Engine::Component::CameraController2D>();
                     }
                 });
 

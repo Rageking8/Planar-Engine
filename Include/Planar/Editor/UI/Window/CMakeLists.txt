@@ -6,6 +6,7 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     GameWindow.hpp
     HierarchyWindow.hpp
     InspectorWindow.hpp
+    InspectorWindow.tpp
     SceneWindow.hpp
     SettingsWindow.hpp
 )

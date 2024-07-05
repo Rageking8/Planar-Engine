@@ -5,7 +5,6 @@
 #include "Planar/Editor/UI/Container/ComponentStore.hpp"
 #include "Planar/Editor/UI/Renderer/ComponentRenderer.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
-#include "Planar/Engine/Component/ComponentType.hpp"
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 PLANAR_EDITOR_FORWARD_DECLARE_ENUM_CLASS(Core::Select, SelectType)
@@ -22,7 +21,8 @@ namespace Planar::Editor::UI::Window
 
         virtual void render_window() override;
 
-        void add_component(Engine::Component::ComponentType type);
+        template <typename ComponentT>
+        void add_component();
 
     private:
         Engine::UI::ImGui::Element::InputField name_input;
@@ -32,3 +32,5 @@ namespace Planar::Editor::UI::Window
         void handle_select(Core::Select::SelectType select_type);
     };
 }
+
+#include "Planar/Editor/UI/Window/InspectorWindow.tpp"

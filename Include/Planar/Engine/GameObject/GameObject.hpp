@@ -42,7 +42,8 @@ namespace Planar::Engine::GameObject
         std::vector<std::shared_ptr<Component::Component>>&
             get_components();
 
-        void add_component(Component::ComponentType type);
+        template <typename ComponentT>
+        void add_component();
 
         std::vector<std::shared_ptr<GameObject>>& get_children();
 
@@ -68,3 +69,5 @@ namespace Planar::Engine::GameObject
         std::vector<std::shared_ptr<GameObject>> children;
     };
 }
+
+#include "Planar/Engine/GameObject/GameObject.tpp"

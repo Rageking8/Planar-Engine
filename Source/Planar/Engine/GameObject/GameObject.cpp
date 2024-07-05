@@ -149,48 +149,6 @@ namespace Planar::Engine::GameObject
         return components;
     }
 
-    void GameObject::add_component(Component::ComponentType type)
-    {
-        switch (type)
-        {
-        case Component::ComponentType::Transform2D:
-        {
-            std::shared_ptr<Component::Transform2D> transform =
-                std::make_shared<Component::Transform2D>(this);
-            transform->load_asset();
-            components.push_back(transform);
-            asset.add_component(transform->get_node());
-
-            return;
-        }
-
-        case Component::ComponentType::Camera2D:
-        {
-            std::shared_ptr<Component::Camera2D> camera =
-                std::make_shared<Component::Camera2D>(this);
-            camera->load_asset();
-            components.push_back(camera);
-            asset.add_component(camera->get_node());
-
-            return;
-        }
-
-        case Component::ComponentType::CameraController2D:
-        {
-            std::shared_ptr<Component::CameraController2D>
-                camera_controller = std::make_shared
-                <Component::CameraController2D>(this);
-            camera_controller->load_asset();
-            components.push_back(camera_controller);
-            asset.add_component(camera_controller->get_node());
-
-            return;
-        }
-        }
-
-        PLANAR_FATAL("Unrecognized component type");
-    }
-
     std::vector<std::shared_ptr<GameObject>>& GameObject::get_children()
     {
         return children;
@@ -226,7 +184,7 @@ namespace Planar::Engine::GameObject
         std::shared_ptr<GameObject>& child = children.back();
         child->parent = is_root ? nullptr : this;
 
-        child->add_component(Component::ComponentType::Transform2D);
+        child->add_component<Component::Transform2D>();
 
         child->asset.load(*child);
         asset.add_child(child->asset.get_asset());
