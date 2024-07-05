@@ -25,7 +25,8 @@ namespace Planar::Engine::Component
         bool get_active() const;
         void set_active(bool new_active);
 
-        Asset::Component::Camera2DAsset& get_asset();
+        virtual Asset::Component::Camera2DAsset& get_asset()
+            override;
 
     private:
         bool active;
