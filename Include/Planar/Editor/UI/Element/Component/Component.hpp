@@ -5,7 +5,7 @@
 
 #include <memory>
 
-PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, ComponentBase)
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -19,18 +19,18 @@ namespace Planar::Editor::UI::Element::Component
 
     private:
         virtual void set_values_impl(
-            std::shared_ptr<Engine::Component::Component>& component)
-            override;
+            std::shared_ptr<Engine::Component::ComponentBase>&
+            component) override;
         virtual void write_values_impl(
-            std::shared_ptr<Engine::Component::Component>& component)
-            override;
+            std::shared_ptr<Engine::Component::ComponentBase>&
+            component) override;
 
         virtual void set_values_impl(ComponentType* component) = 0;
         virtual void write_values_impl(ComponentType* component) = 0;
 
         ComponentType* cast(
-            std::shared_ptr<Engine::Component::Component>& component)
-            const;
+            std::shared_ptr<Engine::Component::ComponentBase>&
+            component) const;
     };
 }
 

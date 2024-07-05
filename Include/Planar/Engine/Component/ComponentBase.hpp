@@ -13,14 +13,14 @@ PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
 {
-    class PLANAR_API Component
+    class PLANAR_API ComponentBase
     {
     public:
         PLANAR_DEFINE_COMPONENT_TYPE_AND_NAME(Component)
 
-        Component(GameObject::GameObject* parent,
+        ComponentBase(GameObject::GameObject* parent,
             bool generate_guid = true);
-        virtual ~Component();
+        virtual ~ComponentBase();
 
         virtual ComponentType get_type() const = 0;
 

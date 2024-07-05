@@ -3,7 +3,7 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Math/Pos2D.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
-#include "Planar/Engine/Component/Component.hpp"
+#include "Planar/Engine/Component/ComponentBase.hpp"
 #include "Planar/Engine/Component/ComponentMacros.hpp"
 #include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
@@ -13,7 +13,7 @@ PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
 {
-    class PLANAR_API Transform2D : public Component
+    class PLANAR_API Transform2D : public ComponentBase
     {
     public:
         PLANAR_DEFINE_COMPONENT(Transform2D)

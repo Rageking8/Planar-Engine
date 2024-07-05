@@ -1,6 +1,6 @@
 #include "Planar/Engine/GameObject/GameObjectAsset.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
-#include "Planar/Engine/Component/Component.hpp"
+#include "Planar/Engine/Component/ComponentBase.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 

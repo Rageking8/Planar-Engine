@@ -1,4 +1,4 @@
-#include "Planar/Engine/Component/Component.hpp"
+#include "Planar/Engine/Component/ComponentBase.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
 
@@ -6,7 +6,7 @@
 
 namespace Planar::Engine::Component
 {
-    Component::Component(GameObject::GameObject* parent,
+    ComponentBase::ComponentBase(GameObject::GameObject* parent,
         bool generate_guid) : parent{ parent }
     {
         if (generate_guid)
@@ -16,42 +16,42 @@ namespace Planar::Engine::Component
         }
     }
 
-    Component::~Component()
+    ComponentBase::~ComponentBase()
     {
 
     }
 
-    bool Component::match(ComponentType other) const
+    bool ComponentBase::match(ComponentType other) const
     {
         return other == TYPE;
     }
 
-    void Component::update()
+    void ComponentBase::update()
     {
 
     }
 
-    std::string Component::get_guid() const
+    std::string ComponentBase::get_guid() const
     {
         return guid;
     }
 
-    void Component::set_guid(const std::string& new_guid)
+    void ComponentBase::set_guid(const std::string& new_guid)
     {
         guid = new_guid;
     }
 
-    GameObject::GameObject* Component::get_parent() const
+    GameObject::GameObject* ComponentBase::get_parent() const
     {
         return parent;
     }
 
-    void Component::set_parent(GameObject::GameObject* new_parent)
+    void ComponentBase::set_parent(GameObject::GameObject* new_parent)
     {
         parent = new_parent;
     }
 
-    YAML::Node Component::get_node() const
+    YAML::Node ComponentBase::get_node() const
     {
         return get_asset().get_asset();
     }

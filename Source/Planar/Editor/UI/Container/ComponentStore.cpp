@@ -3,7 +3,7 @@
 #include "Planar/Editor/UI/Element/Component/Camera2D.hpp"
 #include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
-#include "Planar/Engine/Component/Component.hpp"
+#include "Planar/Engine/Component/ComponentBase.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 

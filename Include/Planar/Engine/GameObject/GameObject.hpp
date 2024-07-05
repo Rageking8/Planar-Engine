@@ -14,7 +14,7 @@
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Scene, Scene)
-PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Component)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, ComponentBase)
 
 namespace Planar::Engine::GameObject
 {
@@ -40,7 +40,7 @@ namespace Planar::Engine::GameObject
 
         std::string get_guid() const;
 
-        std::vector<std::shared_ptr<Component::Component>>&
+        std::vector<std::shared_ptr<Component::ComponentBase>>&
             get_components();
 
         template <typename ComponentT>
@@ -57,7 +57,7 @@ namespace Planar::Engine::GameObject
             const std::function<bool(GameObject*)>& callback,
             bool skip_empty = true);
         void iterate_depth_first(
-            const std::function<bool(Component::Component*)>&
+            const std::function<bool(Component::ComponentBase*)>&
             callback, bool skip_empty = true);
 
     private:
@@ -66,7 +66,8 @@ namespace Planar::Engine::GameObject
         std::string name;
         std::string guid;
         GameObjectAsset asset;
-        std::vector<std::shared_ptr<Component::Component>> components;
+        std::vector<std::shared_ptr<Component::ComponentBase>>
+            components;
         std::vector<std::shared_ptr<GameObject>> children;
     };
 }

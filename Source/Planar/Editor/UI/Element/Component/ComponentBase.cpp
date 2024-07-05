@@ -1,5 +1,5 @@
 #include "Planar/Editor/UI/Element/Component/ComponentBase.hpp"
-#include "Planar/Engine/Component/Component.hpp"
+#include "Planar/Engine/Component/ComponentBase.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
@@ -28,14 +28,14 @@ namespace Planar::Editor::UI::Element::Component
     }
 
     void ComponentBase::set_values(
-        std::shared_ptr<Engine::Component::Component> component)
+        std::shared_ptr<Engine::Component::ComponentBase> component)
     {
         set_header_id(component->get_guid());
         set_values_impl(component);
     }
 
     bool ComponentBase::write_values(
-        std::shared_ptr<Engine::Component::Component> component,
+        std::shared_ptr<Engine::Component::ComponentBase> component,
         bool force)
     {
         if (!(force || get_modified()))
@@ -48,12 +48,14 @@ namespace Planar::Editor::UI::Element::Component
         return true;
     }
 
-    void ComponentBase::set_header_text(const std::string& new_header_text)
+    void ComponentBase::set_header_text(
+        const std::string& new_header_text)
     {
         header.set_text(new_header_text);
     }
 
-    void ComponentBase::set_header_id(const std::string& new_header_id)
+    void ComponentBase::set_header_id(
+        const std::string& new_header_id)
     {
         header.set_id(new_header_id);
     }

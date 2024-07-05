@@ -1,7 +1,7 @@
 target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     CameraController2D.hpp
     Camera2D.hpp
-    Component.hpp
+    ComponentBase.hpp
     ComponentFunction.hpp
     ComponentFunction.tpp
     ComponentMacros.hpp

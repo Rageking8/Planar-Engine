@@ -11,8 +11,8 @@
     PLANAR_DEFINE_MACRO_OVERLOAD(PLANAR_DEFINE_COMPONENT \
         __VA_OPT__(,) __VA_ARGS__)                       \
 
-#define PLANAR_DEFINE_COMPONENT1(type)        \
-    PLANAR_DEFINE_COMPONENT2(type, Component) \
+#define PLANAR_DEFINE_COMPONENT1(type)            \
+    PLANAR_DEFINE_COMPONENT2(type, ComponentBase) \
 
 #define PLANAR_DEFINE_COMPONENT2(type, parent)             \
     using Parent = parent;                                 \

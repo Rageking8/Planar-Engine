@@ -6,7 +6,7 @@ namespace Planar::Engine::Component
 {
     CameraController2D::CameraController2D(
         GameObject::GameObject* parent,
-        bool generate_guid) : Component(parent, generate_guid),
+        bool generate_guid) : ComponentBase(parent, generate_guid),
         active{ true }
     {
 
