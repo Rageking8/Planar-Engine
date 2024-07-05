@@ -18,6 +18,7 @@ namespace Planar::Engine::UI::ImGui::Menu
             std::optional<bool> right_clicked_override = {});
 
         void set_content(const std::function<bool()>& new_content);
+        void clear_content();
 
         void add_separator();
 

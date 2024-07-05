@@ -50,6 +50,7 @@ namespace Planar::Engine::UI::ImGui::Menu
             (content_override && content_override()))
         {
             window.set_active(false);
+            clear_content();
 
             return false;
         }
@@ -65,6 +66,11 @@ namespace Planar::Engine::UI::ImGui::Menu
         const std::function<bool()>& new_content)
     {
         content = new_content;
+    }
+
+    void ContextMenu::clear_content()
+    {
+        content = {};
     }
 
     void ContextMenu::add_separator()
