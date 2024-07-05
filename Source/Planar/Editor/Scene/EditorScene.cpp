@@ -12,6 +12,8 @@
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
 
+#include <string>
+
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
 PLANAR_LOAD_EDITOR_ICON(FolderIcon)
@@ -151,23 +153,11 @@ namespace Planar::Editor::Scene
             main_menu_bar.add_menu("Component",
                 [&]()
                 {
-                    if (ImGui::Menu::menu_item("Add Transform2D"))
-                    {
-                        inspector_window.add_component
-                            <Engine::Component::Transform2D>();
-                    }
+                    using namespace Engine::Component;
 
-                    if (ImGui::Menu::menu_item("Add Camera2D"))
-                    {
-                        inspector_window.add_component
-                            <Engine::Component::Camera2D>();
-                    }
-
-                    if (ImGui::Menu::menu_item("Add CameraController2D"))
-                    {
-                        inspector_window.add_component
-                            <Engine::Component::CameraController2D>();
-                    }
+                    add_component_menu_item<Transform2D>();
+                    add_component_menu_item<Camera2D>();
+                    add_component_menu_item<CameraController2D>();
                 });
 
             main_menu_bar.add_menu("Window",
@@ -208,6 +198,18 @@ namespace Planar::Editor::Scene
                 });
 
             play_stop_toggle.render();
+        }
+    }
+
+    template <typename ComponentT>
+    void EditorScene::add_component_menu_item()
+    {
+        const std::string label_prefix = "Add ";
+
+        if (Engine::UI::ImGui::Menu::menu_item(label_prefix +
+            ComponentT::NAME))
+        {
+            inspector_window.add_component<ComponentT>();
         }
     }
 }

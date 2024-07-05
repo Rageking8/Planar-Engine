@@ -47,5 +47,8 @@ namespace Planar::Editor::Scene
         void load_icons();
 
         void render_main_menu_bar();
+
+        template <typename ComponentT>
+        void add_component_menu_item();
     };
 }
