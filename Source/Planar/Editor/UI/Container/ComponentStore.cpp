@@ -7,6 +7,10 @@
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 
+#define PLANAR_COMPONENT_CASE(type)                     \
+    case Engine::Component::ComponentType::type:        \
+        return add_element<Element::Component::type>(); \
+
 namespace Planar::Editor::UI::Container
 {
     ComponentStore::ComponentStore()
@@ -73,14 +77,9 @@ namespace Planar::Editor::UI::Container
 
         switch (type)
         {
-        case Engine::Component::ComponentType::Transform2D:
-            return add_element<Element::Component::Transform2D>();
-
-        case Engine::Component::ComponentType::Camera2D:
-            return add_element<Element::Component::Camera2D>();
-
-        case Engine::Component::ComponentType::CameraController2D:
-            return add_element<Element::Component::CameraController2D>();
+        PLANAR_COMPONENT_CASE(Transform2D)
+        PLANAR_COMPONENT_CASE(Camera2D)
+        PLANAR_COMPONENT_CASE(CameraController2D)
         }
 
         PLANAR_FATAL("Unsupported `type`");
