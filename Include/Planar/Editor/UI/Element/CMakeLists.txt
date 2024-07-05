@@ -8,3 +8,5 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     ProgressDisplay.hpp
     Transform2D.hpp
 )
+
+add_subdirectory(Component)
