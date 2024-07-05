@@ -30,7 +30,10 @@ namespace Planar::Editor::Core::Select
         void select_content(const std::string& new_name);
         void select_game_object(
             std::weak_ptr<Engine::GameObject::GameObject>
-            new_game_object);
+            new_game_object, const std::string& restore_guid);
+
+        void restore_game_object(
+            std::shared_ptr<Engine::GameObject::GameObject> root);
 
     private:
         SelectType select_type;
@@ -38,6 +41,7 @@ namespace Planar::Editor::Core::Select
 
         std::string name;
         std::weak_ptr<Engine::GameObject::GameObject> game_object;
+        std::string game_object_restore_guid;
 
         void invoke_select_callback();
     };

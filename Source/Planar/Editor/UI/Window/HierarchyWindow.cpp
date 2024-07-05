@@ -143,6 +143,7 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        editor->get_select_handler().select_game_object(game_object);
+        editor->get_select_handler().select_game_object(game_object,
+            game_object->get_guid());
     }
 }

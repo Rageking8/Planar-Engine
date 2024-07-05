@@ -59,12 +59,41 @@ namespace Planar::Editor::Core::Select
     }
 
     void SelectHandler::select_game_object(
-        std::weak_ptr<Engine::GameObject::GameObject> new_game_object)
+        std::weak_ptr<Engine::GameObject::GameObject> new_game_object,
+        const std::string& restore_guid)
     {
         select_type = SelectType::GAME_OBJECT;
         game_object = new_game_object;
+        game_object_restore_guid = restore_guid;
 
         invoke_select_callback();
+    }
+
+    void SelectHandler::restore_game_object(
+        std::shared_ptr<Engine::GameObject::GameObject> root)
+    {
+        if (select_type != SelectType::GAME_OBJECT)
+        {
+            return;
+        }
+
+        root->iterate_depth_first([&]
+            (Engine::GameObject::GameObject* current)
+            {
+                int find_result = current->find_child(
+                    game_object_restore_guid);
+
+                if (find_result != -1)
+                {
+                    std::shared_ptr<Engine::GameObject::GameObject>
+                        child = current->get_children()[find_result];
+                    select_game_object(child, child->get_guid());
+
+                    return true;
+                }
+
+                return false;
+            }, false);
     }
 
     void SelectHandler::invoke_select_callback()
