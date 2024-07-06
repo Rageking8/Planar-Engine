@@ -1,7 +1,9 @@
 #include "Planar/Engine/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
+#include "Planar/Engine/Scene/Scene.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -60,5 +62,12 @@ namespace Planar::Engine::Component::Core
     YAML::Node ComponentBase::get_node() const
     {
         return get_asset().get_asset();
+    }
+
+    Engine::Core::Input::InputController&
+        ComponentBase::get_input_controller()
+    {
+        return get_parent()->get_scene()->
+            get_application()->get_input_controller();
     }
 }

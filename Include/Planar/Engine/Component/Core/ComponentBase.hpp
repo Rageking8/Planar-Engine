@@ -12,6 +12,7 @@ PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Asset, Asset)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Transform2D)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Core::Input, InputController)
 
 namespace Planar::Engine::Component::Core
 {
@@ -42,6 +43,9 @@ namespace Planar::Engine::Component::Core
 
         virtual const Asset::Asset& get_asset() const = 0;
         YAML::Node get_node() const;
+
+    protected:
+        Engine::Core::Input::InputController& get_input_controller();
 
     private:
         std::string guid;
