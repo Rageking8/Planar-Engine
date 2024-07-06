@@ -1,11 +1,12 @@
 #pragma once
 
-#include "Planar/Engine/Asset/Component/Mixin/Mixin.hpp"
+#include "Planar/Engine/Core/Mixin/Mixin.hpp"
+#include "Planar/Engine/Asset/Asset.hpp"
 
 namespace Planar::Engine::Asset::Component::Mixin
 {
     template <typename ComponentT>
-    class Active : public Mixin
+    class Active : public Core::Mixin::Mixin<Asset>
     {
     public:
         bool get_active() const;
