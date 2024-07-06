@@ -10,3 +10,5 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     ComponentType.hpp
     Transform2D.hpp
 )
+
+add_subdirectory(Mixin)
