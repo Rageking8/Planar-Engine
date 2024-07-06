@@ -3,6 +3,7 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Component/Component.hpp"
 #include "Planar/Engine/Component/ComponentMacros.hpp"
+#include "Planar/Engine/Component/Mixin/Active.hpp"
 #include "Planar/Engine/Asset/Component/CameraController2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
@@ -13,7 +14,7 @@ namespace Planar::Engine::Component
 {
     class PLANAR_API CameraController2D :
         public Component<CameraController2D,
-        Asset::Component::CameraController2DAsset>
+        Asset::Component::CameraController2DAsset, Mixin::Active>
     {
     public:
         PLANAR_DEFINE_COMPONENT(CameraController2D)
@@ -21,12 +22,7 @@ namespace Planar::Engine::Component
         CameraController2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
-        bool get_active() const;
-        void set_active(bool new_active);
-
     private:
-        bool active;
-
         virtual void load_impl(YAML::Node node) override;
     };
 }
