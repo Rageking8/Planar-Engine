@@ -11,7 +11,10 @@ namespace Planar::Engine::UI::ImGui::Core::State
     {
         bool result = modified;
 
-        modified = reset ? false : modified;
+        if (reset)
+        {
+            clear_modified();
+        }
 
         return result;
     }
@@ -19,5 +22,10 @@ namespace Planar::Engine::UI::ImGui::Core::State
     void ModifiedState::update_modified(bool value)
     {
         modified |= value;
+    }
+
+    void ModifiedState::clear_modified()
+    {
+        modified = false;
     }
 }

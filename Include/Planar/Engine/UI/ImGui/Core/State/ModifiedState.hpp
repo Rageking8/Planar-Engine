@@ -13,6 +13,8 @@ namespace Planar::Engine::UI::ImGui::Core::State
 
         void update_modified(bool value);
 
+        void clear_modified();
+
     private:
         bool modified;
     };
