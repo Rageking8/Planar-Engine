@@ -1,5 +1,5 @@
 #include "Planar/Editor/UI/Element/Component/ComponentBase.hpp"
-#include "Planar/Engine/Component/ComponentBase.hpp"
+#include "Planar/Engine/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
@@ -28,15 +28,16 @@ namespace Planar::Editor::UI::Element::Component
     }
 
     void ComponentBase::set_values(
-        std::shared_ptr<Engine::Component::ComponentBase> component)
+        std::shared_ptr<Engine::Component::Core::ComponentBase>
+        component)
     {
         set_header_id(component->get_guid());
         set_values_impl(component);
     }
 
     bool ComponentBase::write_values(
-        std::shared_ptr<Engine::Component::ComponentBase> component,
-        bool force)
+        std::shared_ptr<Engine::Component::Core::ComponentBase>
+        component, bool force)
     {
         if (!(force || get_modified()))
         {

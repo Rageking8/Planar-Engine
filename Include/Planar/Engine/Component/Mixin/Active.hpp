@@ -8,10 +8,10 @@ PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 namespace Planar::Engine::Component::Mixin
 {
     template <typename AssetT>
-    class Active : public Core::Mixin::Mixin<AssetT>
+    class Active : public Engine::Core::Mixin::Mixin<AssetT>
     {
     public:
-        using Core::Mixin::Mixin<AssetT>::Mixin;
+        using Engine::Core::Mixin::Mixin<AssetT>::Mixin;
 
         void load(YAML::Node node);
 

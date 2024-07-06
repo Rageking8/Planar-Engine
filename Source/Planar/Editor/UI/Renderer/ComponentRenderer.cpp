@@ -1,7 +1,7 @@
 #include "Planar/Editor/UI/Renderer/ComponentRenderer.hpp"
 #include "Planar/Editor/UI/Container/ComponentStore.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
-#include "Planar/Engine/Component/ComponentBase.hpp"
+#include "Planar/Engine/Component/Core/ComponentBase.hpp"
 
 namespace Planar::Editor::UI::Renderer
 {

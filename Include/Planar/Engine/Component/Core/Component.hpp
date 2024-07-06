@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Planar/Engine/Component/ComponentBase.hpp"
+#include "Planar/Engine/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
-namespace Planar::Engine::Component
+namespace Planar::Engine::Component::Core
 {
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
@@ -30,4 +30,4 @@ namespace Planar::Engine::Component
     };
 }
 
-#include "Planar/Engine/Component/Component.tpp"
+#include "Planar/Engine/Component/Core/Component.tpp"

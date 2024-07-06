@@ -1,5 +1,5 @@
 #include "Planar/Engine/Scene/Scene.hpp"
-#include "Planar/Engine/Component/ComponentBase.hpp"
+#include "Planar/Engine/Component/Core/ComponentBase.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -63,7 +63,8 @@ namespace Planar::Engine::Scene
 
     void Scene::update()
     {
-        root->iterate_depth_first([](Component::ComponentBase* component)
+        root->iterate_depth_first([]
+            (Component::Core::ComponentBase* component)
             {
                 component->update();
 

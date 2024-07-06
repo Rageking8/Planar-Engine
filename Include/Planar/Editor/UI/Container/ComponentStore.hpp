@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Editor/UI/Element/Component/ComponentBase.hpp"
-#include "Planar/Engine/Component/ComponentType.hpp"
+#include "Planar/Engine/Component/Core/ComponentType.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <vector>
@@ -29,11 +29,11 @@ namespace Planar::Editor::UI::Container
         void update_items(Engine::GameObject::GameObject& game_object);
         bool write_components(Engine::GameObject::GameObject& game_object);
 
-        Item& get_item(Engine::Component::ComponentType type,
+        Item& get_item(Engine::Component::Core::ComponentType type,
             bool create_if_needed = false);
 
     private:
-        std::unordered_map<Engine::Component::ComponentType,
+        std::unordered_map<Engine::Component::Core::ComponentType,
             std::vector<Item>> store;
 
         template <typename ComponentT>

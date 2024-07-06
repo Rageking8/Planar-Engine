@@ -132,7 +132,7 @@ namespace Planar::Engine::GameObject
         return guid;
     }
 
-    std::vector<std::shared_ptr<Component::ComponentBase>>&
+    std::vector<std::shared_ptr<Component::Core::ComponentBase>>&
         GameObject::get_components()
     {
         return components;
@@ -232,7 +232,7 @@ namespace Planar::Engine::GameObject
     }
 
     void GameObject::iterate_depth_first(
-        const std::function<bool(Component::ComponentBase*)>&
+        const std::function<bool(Component::Core::ComponentBase*)>&
         callback, bool skip_empty)
     {
         iterate_depth_first([&](GameObject* game_object)

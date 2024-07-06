@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/Component/ComponentType.hpp"
-#include "Planar/Engine/Component/ComponentMacros.hpp"
+#include "Planar/Engine/Component/Core/ComponentType.hpp"
+#include "Planar/Engine/Component/Core/ComponentMacros.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
@@ -11,7 +11,7 @@ PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Asset, Asset)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
-namespace Planar::Engine::Component
+namespace Planar::Engine::Component::Core
 {
     class PLANAR_API ComponentBase
     {

@@ -8,7 +8,7 @@
 #include <string>
 #include <memory>
 
-PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, ComponentBase)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component::Core, ComponentBase)
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -24,10 +24,10 @@ namespace Planar::Editor::UI::Element::Component
         virtual bool get_modified(bool reset = true) = 0;
 
         void set_values(
-            std::shared_ptr<Engine::Component::ComponentBase>
+            std::shared_ptr<Engine::Component::Core::ComponentBase>
             component);
         bool write_values(
-            std::shared_ptr<Engine::Component::ComponentBase>
+            std::shared_ptr<Engine::Component::Core::ComponentBase>
             component, bool force = false);
 
         void set_header_text(const std::string& new_header_text);
@@ -49,10 +49,10 @@ namespace Planar::Editor::UI::Element::Component
         void render_active_checkbox();
 
         virtual void set_values_impl(
-            std::shared_ptr<Engine::Component::ComponentBase>&
+            std::shared_ptr<Engine::Component::Core::ComponentBase>&
             component) = 0;
         virtual void write_values_impl(
-            std::shared_ptr<Engine::Component::ComponentBase>&
+            std::shared_ptr<Engine::Component::Core::ComponentBase>&
             component) = 0;
     };
 }

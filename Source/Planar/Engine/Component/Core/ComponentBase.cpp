@@ -1,18 +1,18 @@
-#include "Planar/Engine/Component/ComponentBase.hpp"
+#include "Planar/Engine/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
-namespace Planar::Engine::Component
+namespace Planar::Engine::Component::Core
 {
     ComponentBase::ComponentBase(GameObject::GameObject* parent,
         bool generate_guid) : parent{ parent }
     {
         if (generate_guid)
         {
-            guid = Core::GUID::generate_guid(
-                Core::GUID::Representation::DEFAULT_COMPACT);
+            guid = Engine::Core::GUID::generate_guid(
+                Engine::Core::GUID::Representation::DEFAULT_COMPACT);
         }
     }
 

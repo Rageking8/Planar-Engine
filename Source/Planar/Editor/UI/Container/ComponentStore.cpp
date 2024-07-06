@@ -3,12 +3,12 @@
 #include "Planar/Editor/UI/Element/Component/Camera2D.hpp"
 #include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
-#include "Planar/Engine/Component/ComponentBase.hpp"
+#include "Planar/Engine/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 
 #define PLANAR_COMPONENT_CASE(type)                     \
-    case Engine::Component::ComponentType::type:        \
+    case Engine::Component::Core::ComponentType::type:  \
         return add_element<Element::Component::type>(); \
 
 namespace Planar::Editor::UI::Container
@@ -60,7 +60,8 @@ namespace Planar::Editor::UI::Container
     }
 
     ComponentStore::Item& ComponentStore::get_item(
-        Engine::Component::ComponentType type, bool create_if_needed)
+        Engine::Component::Core::ComponentType type,
+        bool create_if_needed)
     {
         for (auto& item : store[type])
         {

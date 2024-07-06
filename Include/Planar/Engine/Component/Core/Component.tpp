@@ -1,6 +1,6 @@
-#include "Planar/Engine/Component/Component.hpp"
+#include "Planar/Engine/Component/Core/Component.hpp"
 
-namespace Planar::Engine::Component
+namespace Planar::Engine::Component::Core
 {
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
