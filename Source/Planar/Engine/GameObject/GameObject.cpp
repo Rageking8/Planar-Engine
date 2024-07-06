@@ -138,6 +138,17 @@ namespace Planar::Engine::GameObject
         return components;
     }
 
+    std::shared_ptr<Component::Transform2D> GameObject::get_transform()
+    {
+        PLANAR_ASSERT_NOT_EMPTY(components);
+        PLANAR_ASSERT(components[0]->get_type() ==
+            Component::Core::ComponentType::Transform2D,
+            "`Transform2D` component should always be present");
+
+        return std::static_pointer_cast<Component::Transform2D>(
+            components[0]);
+    }
+
     std::vector<std::shared_ptr<GameObject>>& GameObject::get_children()
     {
         return children;

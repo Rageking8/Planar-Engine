@@ -1,4 +1,5 @@
 #include "Planar/Engine/Component/Core/ComponentBase.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
 #include "Planar/Engine/Asset/Asset.hpp"
 
@@ -49,6 +50,11 @@ namespace Planar::Engine::Component::Core
     void ComponentBase::set_parent(GameObject::GameObject* new_parent)
     {
         parent = new_parent;
+    }
+
+    std::shared_ptr<Transform2D> ComponentBase::get_transform()
+    {
+        return get_parent()->get_transform();
     }
 
     YAML::Node ComponentBase::get_node() const

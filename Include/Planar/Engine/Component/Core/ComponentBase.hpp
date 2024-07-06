@@ -6,9 +6,11 @@
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
+#include <memory>
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Asset, Asset)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Transform2D)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component::Core
@@ -33,6 +35,8 @@ namespace Planar::Engine::Component::Core
 
         GameObject::GameObject* get_parent() const;
         void set_parent(GameObject::GameObject* new_parent);
+
+        std::shared_ptr<Transform2D> get_transform();
 
         virtual void load_asset() = 0;
 

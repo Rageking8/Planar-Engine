@@ -14,6 +14,7 @@
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Scene, Scene)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Transform2D)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component::Core, ComponentBase)
 
 namespace Planar::Engine::GameObject
@@ -42,6 +43,8 @@ namespace Planar::Engine::GameObject
 
         std::vector<std::shared_ptr<Component::Core::ComponentBase>>&
             get_components();
+
+        std::shared_ptr<Component::Transform2D> get_transform();
 
         template <typename ComponentT>
         void add_component(std::optional<YAML::Node> node = {});
