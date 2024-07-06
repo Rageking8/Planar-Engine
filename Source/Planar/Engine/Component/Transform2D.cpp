@@ -6,7 +6,7 @@ namespace Planar::Engine::Component
 {
     Transform2D::Transform2D(GameObject::GameObject* parent,
         bool generate_guid) : Component(parent, generate_guid),
-        rotation{}
+        rotation{}, scale{ 1.f }
     {
 
     }
