@@ -30,6 +30,12 @@ namespace Planar::Engine::Math
     }
 
     template <Core::Utils::Concepts::Arithmetic T>
+    inline bool Size2D<T>::operator==(const Size2D<T>& other) const
+    {
+        return width == other.width && height == other.height;
+    }
+
+    template <Core::Utils::Concepts::Arithmetic T>
     inline std::array<T, 2> Size2D<T>::get_array() const
     {
         return { width, height };

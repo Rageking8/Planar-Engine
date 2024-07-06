@@ -14,12 +14,21 @@ namespace Planar::Engine::Math
         Size2D(T width, T height);
         Size2D(std::array<T, 2> array);
 
-        bool operator==(const Size2D&) const = default;
+        bool operator==(const Size2D&) const;
 
         std::array<T, 2> get_array() const;
 
-        T width;
-        T height;
+        union
+        {
+            T width;
+            T first;
+        };
+
+        union
+        {
+            T height;
+            T second;
+        };
     };
 
     using Size2Di = Size2D<int>;
