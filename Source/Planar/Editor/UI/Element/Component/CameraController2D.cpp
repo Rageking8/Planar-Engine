@@ -23,8 +23,6 @@ namespace Planar::Editor::UI::Element::Component
     void CameraController2D::set_values_impl(ComponentType* camera)
     {
         active_checkbox.set_value(camera->get_active());
-
-        active_checkbox.get_modified();
     }
 
     void CameraController2D::write_values_impl(ComponentType* camera)

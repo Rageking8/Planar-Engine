@@ -69,10 +69,6 @@ namespace Planar::Editor::UI::Element::Component
         set_position(transform->get_position());
         set_rotation(transform->get_rotation());
         set_scale(transform->get_scale());
-
-        position.get_modified();
-        rotation.get_modified();
-        scale.get_modified();
     }
 
     void Transform2D::write_values_impl(ComponentType* transform)
