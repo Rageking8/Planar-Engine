@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/Core/Component.hpp"
 #include "Planar/Engine/Component/Core/ComponentMacros.hpp"
 #include "Planar/Engine/Component/Mixin/Active.hpp"
@@ -22,7 +23,12 @@ namespace Planar::Engine::Component
         CameraController2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
+        virtual void update() override;
+
     private:
+        Math::Size2Df horizontal_speed;
+        Math::Size2Df vertical_speed;
+
         virtual void load_impl(YAML::Node node) override;
     };
 }
