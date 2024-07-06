@@ -4,14 +4,17 @@
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
 {
-    template <typename ComponentT, typename AssetT>
-    class Component : public ComponentBase
+    template <typename ComponentT, typename AssetT,
+        template <typename> typename... Mixins>
+    class Component : public ComponentBase, public Mixins<AssetT>...
     {
     public:
-        using ComponentBase::ComponentBase;
+        Component(GameObject::GameObject* parent,
+            bool generate_guid = true);
 
         void load(YAML::Node node);
 
