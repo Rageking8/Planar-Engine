@@ -14,7 +14,8 @@ namespace Planar::Engine::UI::ImGui::Renderer
         TextRenderer();
 
         void render_center_viewport(const std::string& text);
-        void render_center_window(const std::string& text);
+        void render_center_window(const std::string& text,
+            bool vertical = false);
         void render_center_truncate(const std::string& text,
             float width, float line_delta, unsigned lines,
             const std::string& truncate_text = "...");
@@ -24,6 +25,7 @@ namespace Planar::Engine::UI::ImGui::Renderer
             split_text(const std::string& text, float width,
             unsigned lines);
 
-        void render_center(const std::string& text, float width);
+        void render_center(const std::string& text, float width,
+            float height = -1.f);
     };
 }
