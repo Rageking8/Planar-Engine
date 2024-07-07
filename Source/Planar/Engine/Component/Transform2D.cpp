@@ -9,16 +9,7 @@ namespace Planar::Engine::Component
 
     }
 
-    Math::Pos2Df Transform2D::get_position() const
-    {
-        return position;
-    }
-
-    void Transform2D::set_position(Math::Pos2Df new_position)
-    {
-        position = new_position;
-        asset.set_position(new_position);
-    }
+    PLANAR_DEFINE_COMPONENT_GET_SET(Transform2D, Math::Pos2Df, position)
 
     void Transform2D::translate(Math::Size2Df delta)
     {
@@ -37,27 +28,8 @@ namespace Planar::Engine::Component
         translate({ 0.f, delta });
     }
 
-    float Transform2D::get_rotation() const
-    {
-        return rotation;
-    }
-
-    void Transform2D::set_rotation(float new_rotation)
-    {
-        rotation = new_rotation;
-        asset.set_rotation(new_rotation);
-    }
-
-    Math::Size2Df Transform2D::get_scale() const
-    {
-        return scale;
-    }
-
-    void Transform2D::set_scale(Math::Size2Df new_scale)
-    {
-        scale = new_scale;
-        asset.set_scale(new_scale);
-    }
+    PLANAR_DEFINE_COMPONENT_GET_SET(Transform2D, float, rotation)
+    PLANAR_DEFINE_COMPONENT_GET_SET(Transform2D, Math::Size2Df, scale)
 
     void Transform2D::load_impl()
     {
