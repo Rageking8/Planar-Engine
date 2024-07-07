@@ -13,7 +13,7 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
     class Shader : public Core::Resource
     {
     public:
-        Shader();
+        Shader(const std::string& source = "");
         ~Shader();
 
         void create(const std::string& source);

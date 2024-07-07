@@ -4,9 +4,13 @@
 namespace Planar::Engine::Graphics::OpenGL::Shader
 {
     template <ShaderType ShaderT>
-    inline Shader<ShaderT>::Shader() : Resource(free_impl)
+    inline Shader<ShaderT>::Shader(const std::string& source) :
+        Resource(free_impl)
     {
-
+        if (!source.empty())
+        {
+            create(source);
+        }
     }
 
     template <ShaderType ShaderT>
