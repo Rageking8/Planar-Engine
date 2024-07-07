@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Element/Component/Component.hpp"
+#include "Planar/Editor/UI/Element/Component/Core/Component.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
@@ -9,7 +9,7 @@
 namespace Planar::Editor::UI::Element::Component
 {
     class CameraController2D :
-        public Component<Engine::Component::CameraController2D>
+        public Core::Component<Engine::Component::CameraController2D>
     {
     public:
         CameraController2D();

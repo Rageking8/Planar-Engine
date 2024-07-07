@@ -1,4 +1,4 @@
-#include "Planar/Editor/UI/Element/Component/ComponentBase.hpp"
+#include "Planar/Editor/UI/Element/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
@@ -8,7 +8,7 @@
 
 #include <functional>
 
-namespace Planar::Editor::UI::Element::Component
+namespace Planar::Editor::UI::Element::Component::Core
 {
     ComponentBase::ComponentBase(const std::string& text,
         bool show_active_checkbox) : active_checkbox(

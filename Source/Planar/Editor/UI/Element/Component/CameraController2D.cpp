@@ -1,5 +1,5 @@
 #include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
-#include "Planar/Editor/UI/Element/Component/ComponentMacros.hpp"
+#include "Planar/Editor/UI/Element/Component/Core/ComponentMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 namespace Planar::Editor::UI::Element::Component

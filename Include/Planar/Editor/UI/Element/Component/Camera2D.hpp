@@ -1,11 +1,12 @@
 #pragma once
 
-#include "Planar/Editor/UI/Element/Component/Component.hpp"
+#include "Planar/Editor/UI/Element/Component/Core/Component.hpp"
 #include "Planar/Engine/Component/Camera2D.hpp"
 
 namespace Planar::Editor::UI::Element::Component
 {
-    class Camera2D : public Component<Engine::Component::Camera2D>
+    class Camera2D :
+        public Core::Component<Engine::Component::Camera2D>
     {
     public:
         Camera2D();
