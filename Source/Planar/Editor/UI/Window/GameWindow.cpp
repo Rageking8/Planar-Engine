@@ -58,13 +58,21 @@ namespace Planar::Editor::UI::Window
     void GameWindow::update()
     {
         auto& current_scene = editor->get_current_scene();
-        if (!current_scene || editor->get_editor_game_mode() !=
-            Core::EditorGameMode::PLAYING)
+
+        if (!current_scene)
         {
             return;
         }
 
-        current_scene->update();
+        if (editor->get_editor_game_mode() ==
+            Core::EditorGameMode::PLAYING)
+        {
+            current_scene->update();
+        }
+        else
+        {
+            current_scene->editor_update();
+        }
     }
 
     void GameWindow::render_window()
