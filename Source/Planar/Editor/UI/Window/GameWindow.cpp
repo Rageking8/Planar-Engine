@@ -101,6 +101,13 @@ namespace Planar::Editor::UI::Window
 
         ImGui::image(framebuffer.get_color_texture_id(),
             content_size, true);
+
+        if (editor->get_current_scene() &&
+            !editor->get_current_scene()->get_active_main_camera())
+        {
+            text_renderer.render_center_window(
+                "No active camera found in scene", true);
+        }
     }
 
     void GameWindow::render_game()

@@ -8,6 +8,7 @@
 #include "Planar/Engine/Graphics/OpenGL/Core/VertexArrayObject.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Shader/ShaderProgram.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
+#include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
@@ -31,6 +32,8 @@ namespace Planar::Editor::UI::Window
         Engine::Graphics::OpenGL::Core::VertexArrayObject vao;
         Engine::Graphics::OpenGL::Shader::ShaderProgram shader_program;
         Engine::Graphics::OpenGL::Texture::Texture2D texture;
+
+        Engine::UI::ImGui::Renderer::TextRenderer text_renderer;
 
         void render_game();
     };
