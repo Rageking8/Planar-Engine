@@ -5,6 +5,13 @@
 namespace Planar::Editor::UI::Element::Component::Core
 {
     template <typename ComponentT>
+    inline Component<ComponentT>::Component(bool show_active_checkbox) :
+        ComponentBase(ComponentT::NAME, show_active_checkbox)
+    {
+
+    }
+
+    template <typename ComponentT>
     inline void Component<ComponentT>::set_values_impl(
         std::shared_ptr<Engine::Component::Core::ComponentBase>&
         component)

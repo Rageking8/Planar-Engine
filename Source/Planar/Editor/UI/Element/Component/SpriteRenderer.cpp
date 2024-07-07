@@ -2,7 +2,7 @@
 
 namespace Planar::Editor::UI::Element::Component
 {
-    SpriteRenderer::SpriteRenderer() : Component("SpriteRenderer")
+    SpriteRenderer::SpriteRenderer()
     {
 
     }

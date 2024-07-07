@@ -15,7 +15,7 @@ namespace Planar::Editor::UI::Element::Component::Core
     public:
         using ComponentType = ComponentT;
 
-        using ComponentBase::ComponentBase;
+        Component(bool show_active_checkbox = true);
 
     private:
         virtual void set_values_impl(

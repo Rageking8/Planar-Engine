@@ -5,7 +5,6 @@
 namespace Planar::Editor::UI::Element::Component
 {
     CameraController2D::CameraController2D() :
-        Component("CameraController2D"),
         horizontal_speed("Horizontal Speed",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
         0.f, 0.f, 20.f }, 150.f, true),
