@@ -26,7 +26,7 @@ namespace Planar::Engine::Component::Core
         AssetT asset;
 
     private:
-        virtual void load_impl(YAML::Node node) = 0;
+        virtual void load_impl() = 0;
     };
 }
 

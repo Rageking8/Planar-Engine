@@ -22,10 +22,10 @@ namespace Planar::Engine::Component::Core
         // WORKAROUND: Due to a MSVC bug, the following fold
         // expression does nothing instead of invoking `load`
         // for all mixins
-        // (Mixins<AssetT>::load(node), ...);
-        auto x = { 0, (Mixins<AssetT>::load(node), 0)... };
+        // (Mixins<AssetT>::load(), ...);
+        auto x = { 0, (Mixins<AssetT>::load(), 0)... };
 
-        load_impl(node);
+        load_impl();
     }
 
     template <typename ComponentT, typename AssetT,

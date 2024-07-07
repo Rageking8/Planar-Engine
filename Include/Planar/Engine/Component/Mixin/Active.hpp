@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Planar/Engine/Core/Mixin/Mixin.hpp"
-#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
-
-PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 
 namespace Planar::Engine::Component::Mixin
 {
@@ -13,7 +10,7 @@ namespace Planar::Engine::Component::Mixin
     public:
         using Engine::Core::Mixin::Mixin<AssetT>::Mixin;
 
-        void load(YAML::Node node);
+        void load();
 
         bool get_active() const;
         void set_active(bool new_active);

@@ -8,7 +8,6 @@
 #include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
@@ -41,6 +40,6 @@ namespace Planar::Engine::Component
         float rotation;
         Math::Size2Df scale;
 
-        virtual void load_impl(YAML::Node node) override;
+        virtual void load_impl() override;
     };
 }

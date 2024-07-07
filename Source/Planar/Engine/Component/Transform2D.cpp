@@ -1,7 +1,5 @@
 #include "Planar/Engine/Component/Transform2D.hpp"
 
-#include "ThirdParty/yaml-cpp/yaml.h"
-
 namespace Planar::Engine::Component
 {
     Transform2D::Transform2D(GameObject::GameObject* parent,
@@ -61,7 +59,7 @@ namespace Planar::Engine::Component
         asset.set_scale(new_scale);
     }
 
-    void Transform2D::load_impl(YAML::Node node)
+    void Transform2D::load_impl()
     {
         set_position(asset.get_position());
         set_rotation(asset.get_rotation());

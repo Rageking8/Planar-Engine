@@ -2,8 +2,6 @@
 #include "Planar/Engine/Core/Input/InputController.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 
-#include "ThirdParty/yaml-cpp/yaml.h"
-
 namespace Planar::Engine::Component
 {
     CameraController2D::CameraController2D(
@@ -64,7 +62,7 @@ namespace Planar::Engine::Component
         asset.set_vertical_speed(new_vertical_speed);
     }
 
-    void CameraController2D::load_impl(YAML::Node node)
+    void CameraController2D::load_impl()
     {
         set_horizontal_speed(asset.get_horizontal_speed());
         set_vertical_speed(asset.get_vertical_speed());

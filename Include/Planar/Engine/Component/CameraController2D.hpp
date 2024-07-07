@@ -8,7 +8,6 @@
 #include "Planar/Engine/Asset/Component/CameraController2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
@@ -35,6 +34,6 @@ namespace Planar::Engine::Component
         Math::Size2Df horizontal_speed;
         Math::Size2Df vertical_speed;
 
-        virtual void load_impl(YAML::Node node) override;
+        virtual void load_impl() override;
     };
 }

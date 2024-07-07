@@ -3,7 +3,7 @@
 namespace Planar::Engine::Component::Mixin
 {
     template <typename AssetT>
-    inline void Active<AssetT>::load(YAML::Node node)
+    inline void Active<AssetT>::load()
     {
         set_active(this->asset->get_active());
     }
