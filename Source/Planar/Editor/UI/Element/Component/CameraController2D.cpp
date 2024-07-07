@@ -1,4 +1,5 @@
 #include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
+#include "Planar/Editor/UI/Element/Component/ComponentMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 namespace Planar::Editor::UI::Element::Component
@@ -27,29 +28,10 @@ namespace Planar::Editor::UI::Element::Component
             vertical_speed_modified;
     }
 
-    Engine::Math::Size2Df CameraController2D::get_horizontal_speed()
-        const
-    {
-        return horizontal_speed.get_value();
-    }
-
-    void CameraController2D::set_horizontal_speed(
-        Engine::Math::Size2Df new_horizontal_speed)
-    {
-        horizontal_speed.set_value(new_horizontal_speed.get_array());
-    }
-
-    Engine::Math::Size2Df CameraController2D::get_vertical_speed()
-        const
-    {
-        return vertical_speed.get_value();
-    }
-
-    void CameraController2D::set_vertical_speed(
-        Engine::Math::Size2Df new_vertical_speed)
-    {
-        vertical_speed.set_value(new_vertical_speed.get_array());
-    }
+    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(CameraController2D,
+        Engine::Math::Size2Df, horizontal_speed)
+    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(CameraController2D,
+        Engine::Math::Size2Df, vertical_speed)
 
     void CameraController2D::render_content()
     {

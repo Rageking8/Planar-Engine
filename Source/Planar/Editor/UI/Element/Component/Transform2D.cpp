@@ -1,4 +1,5 @@
 #include "Planar/Editor/UI/Element/Component/Transform2D.hpp"
+#include "Planar/Editor/UI/Element/Component/ComponentMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 namespace Planar::Editor::UI::Element::Component
@@ -25,35 +26,12 @@ namespace Planar::Editor::UI::Element::Component
             scale_modified;
     }
 
-    Engine::Math::Pos2Df Transform2D::get_position() const
-    {
-        return position.get_value();
-    }
-
-    void Transform2D::set_position(Engine::Math::Pos2Df new_position)
-    {
-        position.set_value(new_position.get_array());
-    }
-
-    float Transform2D::get_rotation() const
-    {
-        return rotation.get_x();
-    }
-
-    void Transform2D::set_rotation(float new_rotation)
-    {
-        rotation.set_x(new_rotation);
-    }
-
-    Engine::Math::Size2Df Transform2D::get_scale() const
-    {
-        return scale.get_value();
-    }
-
-    void Transform2D::set_scale(Engine::Math::Size2Df new_scale)
-    {
-        scale.set_value(new_scale.get_array());
-    }
+    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(Transform2D,
+        Engine::Math::Pos2Df, position)
+    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_1(Transform2D,
+        rotation)
+    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(Transform2D,
+        Engine::Math::Size2Df, scale)
 
     void Transform2D::render_content()
     {
