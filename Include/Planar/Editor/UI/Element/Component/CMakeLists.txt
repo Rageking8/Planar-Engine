@@ -7,3 +7,5 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     ComponentMacros.hpp
     Transform2D.hpp
 )
+
+add_subdirectory(Core)

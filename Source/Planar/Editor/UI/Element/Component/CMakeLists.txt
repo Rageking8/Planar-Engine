@@ -4,3 +4,5 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     ComponentBase.cpp
     Transform2D.cpp
 )
+
+add_subdirectory(Core)
