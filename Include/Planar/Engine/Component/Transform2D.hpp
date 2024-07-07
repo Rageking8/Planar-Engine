@@ -8,6 +8,8 @@
 #include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include "ThirdParty/glm/fwd.hpp"
+
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
@@ -30,6 +32,8 @@ namespace Planar::Engine::Component
 
         PLANAR_DECLARE_GET_SET(float, rotation)
         PLANAR_DECLARE_GET_SET(Math::Size2Df, scale)
+
+        glm::mat4 get_model_mat() const;
 
     private:
         Math::Pos2Df position;
