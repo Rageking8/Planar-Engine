@@ -36,6 +36,13 @@ namespace Planar::Engine::Math
     }
 
     template <Core::Utils::Concepts::Arithmetic T>
+    template <Core::Utils::Concepts::Arithmetic U>
+    inline Size2D<T>::operator Size2D<U>() const
+    {
+        return { static_cast<U>(width), static_cast<U>(height) };
+    }
+
+    template <Core::Utils::Concepts::Arithmetic T>
     inline std::array<T, 2> Size2D<T>::get_array() const
     {
         return { width, height };

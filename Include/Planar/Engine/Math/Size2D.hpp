@@ -16,6 +16,9 @@ namespace Planar::Engine::Math
 
         bool operator==(const Size2D&) const;
 
+        template <Core::Utils::Concepts::Arithmetic U>
+        explicit operator Size2D<U>() const;
+
         std::array<T, 2> get_array() const;
 
         union
