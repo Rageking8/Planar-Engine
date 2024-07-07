@@ -95,6 +95,15 @@ namespace Planar::Engine::Core::GLFW
         return window;
     }
 
+    Math::Size2Di GLFWContext::get_framebuffer_size() const
+    {
+        Math::Size2Di framebuffer_size{};
+        glfwGetFramebufferSize(main_window, &framebuffer_size.width,
+            &framebuffer_size.height);
+
+        return framebuffer_size;
+    }
+
     void GLFWContext::maximize_window() const
     {
         glfwMaximizeWindow(main_window);

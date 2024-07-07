@@ -26,6 +26,8 @@ namespace Planar::Engine::Core::GLFW
             Math::Size2Di size, const std::string& name,
             bool maximize = false);
 
+        Math::Size2Di get_framebuffer_size() const;
+
         void maximize_window() const;
         void set_main_window_name(const std::string& new_main_window_name);
         void set_main_window_framebuffer_size_callback(
