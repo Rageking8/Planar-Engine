@@ -2,6 +2,7 @@
 #include "Planar/Editor/UI/Element/Component/Transform2D.hpp"
 #include "Planar/Editor/UI/Element/Component/Camera2D.hpp"
 #include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
+#include "Planar/Editor/UI/Element/Component/SpriteRenderer.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
@@ -81,6 +82,7 @@ namespace Planar::Editor::UI::Container
         PLANAR_COMPONENT_CASE(Transform2D)
         PLANAR_COMPONENT_CASE(Camera2D)
         PLANAR_COMPONENT_CASE(CameraController2D)
+        PLANAR_COMPONENT_CASE(SpriteRenderer)
         }
 
         PLANAR_FATAL("Unsupported `type`");

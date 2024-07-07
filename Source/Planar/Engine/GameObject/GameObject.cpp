@@ -6,6 +6,7 @@
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
+#include "Planar/Engine/Component/SpriteRenderer.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -65,6 +66,10 @@ namespace Planar::Engine::GameObject
                 else if (type == Component::CameraController2D::NAME)
                 {
                     add_component<Component::CameraController2D>({ i });
+                }
+                else if (type == Component::SpriteRenderer::NAME)
+                {
+                    add_component<Component::SpriteRenderer>({ i });
                 }
                 else
                 {

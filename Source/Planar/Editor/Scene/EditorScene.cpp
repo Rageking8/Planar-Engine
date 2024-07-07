@@ -11,6 +11,7 @@
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
+#include "Planar/Engine/Component/SpriteRenderer.hpp"
 
 #include <string>
 
@@ -158,6 +159,7 @@ namespace Planar::Editor::Scene
                     add_component_menu_item<Transform2D>();
                     add_component_menu_item<Camera2D>();
                     add_component_menu_item<CameraController2D>();
+                    add_component_menu_item<SpriteRenderer>();
                 });
 
             main_menu_bar.add_menu("Window",

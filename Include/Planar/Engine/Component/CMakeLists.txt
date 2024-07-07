@@ -1,6 +1,7 @@
 target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     CameraController2D.hpp
     Camera2D.hpp
+    SpriteRenderer.hpp
     Transform2D.hpp
 )
 
