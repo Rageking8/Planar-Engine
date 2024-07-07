@@ -54,6 +54,12 @@ namespace Planar::Engine::Component::Core
         return get_parent()->get_transform();
     }
 
+    std::shared_ptr<Camera2D> ComponentBase::get_active_main_camera()
+        const
+    {
+        return get_parent()->get_scene()->get_active_main_camera();
+    }
+
     YAML::Node ComponentBase::get_node() const
     {
         return get_asset().get_asset();

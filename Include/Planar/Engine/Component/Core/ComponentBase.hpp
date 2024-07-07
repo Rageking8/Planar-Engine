@@ -11,6 +11,7 @@
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Asset, Asset)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Transform2D)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, Camera2D)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Core::Input, InputController)
 
@@ -38,6 +39,7 @@ namespace Planar::Engine::Component::Core
         void set_parent(GameObject::GameObject* new_parent);
 
         std::shared_ptr<Transform2D> get_transform() const;
+        std::shared_ptr<Camera2D> get_active_main_camera() const;
 
         virtual void load_asset() = 0;
 
