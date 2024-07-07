@@ -1,4 +1,5 @@
 #include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
+#include "Planar/Engine/Asset/Component/ComponentAssetMacros.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 
 namespace Planar::Engine::Asset::Component
@@ -8,36 +9,12 @@ namespace Planar::Engine::Asset::Component
 
     }
 
-    Math::Pos2Df Transform2DAsset::get_position() const
-    {
-        return get_float_2("Position", "X", "Y");
-    }
-
-    void Transform2DAsset::set_position(Math::Pos2Df new_position)
-    {
-        set_float_2("Position", "X", "Y", new_position.get_array());
-    }
-
-    float Transform2DAsset::get_rotation() const
-    {
-        return get_value<float>("Rotation");
-    }
-
-    void Transform2DAsset::set_rotation(float new_rotation)
-    {
-        set_value("Rotation", new_rotation);
-    }
-
-    Math::Size2Df Transform2DAsset::get_scale() const
-    {
-        return get_float_2("Scale", "Width", "Height");
-    }
-
-    void Transform2DAsset::set_scale(Math::Size2Df new_scale)
-    {
-        set_float_2("Scale", "Width", "Height",
-            new_scale.get_array());
-    }
+    PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_FLOAT_2(Transform2D,
+        Math::Pos2Df, position, Position, X, Y)
+    PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_VALUE(Transform2D,
+        float, rotation, Rotation)
+    PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_FLOAT_2(Transform2D,
+        Math::Size2Df, scale, Scale, Width, Height)
 
     void Component::Transform2DAsset::load_impl(
         Engine::Component::Transform2D& transform)
