@@ -7,6 +7,8 @@
 #include "Planar/Engine/Asset/Component/Camera2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include "ThirdParty/glm/fwd.hpp"
+
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
@@ -20,6 +22,8 @@ namespace Planar::Engine::Component
 
         Camera2D(GameObject::GameObject* parent,
             bool generate_guid = true);
+
+        glm::mat4 get_view_mat() const;
 
     private:
         virtual void load_impl() override;
