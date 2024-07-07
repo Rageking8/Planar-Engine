@@ -13,6 +13,14 @@
 #include <cstddef>
 #include <unordered_set>
 
+#define PLANAR_LOAD_COMPONENT_BEGIN_IF if (false) {}
+
+#define PLANAR_LOAD_COMPONENT_ELSE_IF(component)    \
+    else if (type == Component::component::NAME)    \
+    {                                               \
+        add_component<Component::component>({ i }); \
+    }                                               \
+
 namespace Planar::Engine::GameObject
 {
     GameObject::GameObject(Scene::Scene* scene,
@@ -55,22 +63,11 @@ namespace Planar::Engine::GameObject
 
                 std::string type = i["Type"].Scalar();
 
-                if (type == Component::Transform2D::NAME)
-                {
-                    add_component<Component::Transform2D>({ i });
-                }
-                else if (type == Component::Camera2D::NAME)
-                {
-                    add_component<Component::Camera2D>({ i });
-                }
-                else if (type == Component::CameraController2D::NAME)
-                {
-                    add_component<Component::CameraController2D>({ i });
-                }
-                else if (type == Component::SpriteRenderer::NAME)
-                {
-                    add_component<Component::SpriteRenderer>({ i });
-                }
+                PLANAR_LOAD_COMPONENT_BEGIN_IF
+                PLANAR_LOAD_COMPONENT_ELSE_IF(Transform2D)
+                PLANAR_LOAD_COMPONENT_ELSE_IF(Camera2D)
+                PLANAR_LOAD_COMPONENT_ELSE_IF(CameraController2D)
+                PLANAR_LOAD_COMPONENT_ELSE_IF(SpriteRenderer)
                 else
                 {
                     PLANAR_FATAL("Unrecognized component type");
