@@ -40,8 +40,33 @@ namespace Planar::Engine::Component
         }
     }
 
+    Math::Size2Df CameraController2D::get_horizontal_speed() const
+    {
+        return horizontal_speed;
+    }
+
+    void CameraController2D::set_horizontal_speed(
+        Math::Size2Df new_horizontal_speed)
+    {
+        horizontal_speed = new_horizontal_speed;
+        asset.set_horizontal_speed(new_horizontal_speed);
+    }
+
+    Math::Size2Df CameraController2D::get_vertical_speed() const
+    {
+        return vertical_speed;
+    }
+
+    void CameraController2D::set_vertical_speed(
+        Math::Size2Df new_vertical_speed)
+    {
+        vertical_speed = new_vertical_speed;
+        asset.set_vertical_speed(new_vertical_speed);
+    }
+
     void CameraController2D::load_impl(YAML::Node node)
     {
-
+        set_horizontal_speed(asset.get_horizontal_speed());
+        set_vertical_speed(asset.get_vertical_speed());
     }
 }

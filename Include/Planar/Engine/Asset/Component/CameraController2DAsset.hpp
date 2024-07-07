@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Asset/Component/ComponentAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Asset/Component/Mixin/Active.hpp"
@@ -15,6 +16,12 @@ namespace Planar::Engine::Asset::Component
     {
     public:
         CameraController2DAsset();
+
+        Math::Size2Df get_horizontal_speed() const;
+        void set_horizontal_speed(Math::Size2Df new_horizontal_speed);
+
+        Math::Size2Df get_vertical_speed() const;
+        void set_vertical_speed(Math::Size2Df new_vertical_speed);
 
     private:
         virtual void load_impl(
