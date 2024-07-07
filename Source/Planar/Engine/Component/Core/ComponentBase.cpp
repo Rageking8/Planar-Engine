@@ -49,7 +49,7 @@ namespace Planar::Engine::Component::Core
         parent = new_parent;
     }
 
-    std::shared_ptr<Transform2D> ComponentBase::get_transform()
+    std::shared_ptr<Transform2D> ComponentBase::get_transform() const
     {
         return get_parent()->get_transform();
     }

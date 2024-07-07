@@ -37,7 +37,7 @@ namespace Planar::Engine::Component::Core
         GameObject::GameObject* get_parent() const;
         void set_parent(GameObject::GameObject* new_parent);
 
-        std::shared_ptr<Transform2D> get_transform();
+        std::shared_ptr<Transform2D> get_transform() const;
 
         virtual void load_asset() = 0;
 

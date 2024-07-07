@@ -141,6 +141,7 @@ namespace Planar::Engine::GameObject
     }
 
     std::shared_ptr<Component::Transform2D> GameObject::get_transform()
+        const
     {
         PLANAR_ASSERT_NOT_EMPTY(components);
         PLANAR_ASSERT(components[0]->get_type() ==
