@@ -14,3 +14,7 @@
 
 #define PLANAR_ENGINE_FORWARD_DECLARE_CLASS(ns, name)      \
     PLANAR_FORWARD_DECLARE_CLASS(Planar::Engine::ns, name) \
+
+#define PLANAR_DECLARE_GET_SET(type, name) \
+    type get_##name() const;               \
+    void set_##name(type new_##name);      \
