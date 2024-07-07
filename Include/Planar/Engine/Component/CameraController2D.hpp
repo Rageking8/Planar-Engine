@@ -22,8 +22,6 @@ namespace Planar::Engine::Component
         CameraController2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
-        virtual void update() override;
-
         PLANAR_DECLARE_GET_SET(Math::Size2Df, horizontal_speed)
         PLANAR_DECLARE_GET_SET(Math::Size2Df, vertical_speed)
 
@@ -32,5 +30,7 @@ namespace Planar::Engine::Component
         Math::Size2Df vertical_speed;
 
         virtual void load_impl() override;
+
+        virtual void update_impl() override;
     };
 }

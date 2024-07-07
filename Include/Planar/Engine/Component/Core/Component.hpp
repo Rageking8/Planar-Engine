@@ -18,6 +18,8 @@ namespace Planar::Engine::Component::Core
 
         void load(YAML::Node node);
 
+        virtual void update() override final;
+
         virtual void load_asset() override;
 
         virtual const AssetT& get_asset() const override;
@@ -27,6 +29,8 @@ namespace Planar::Engine::Component::Core
 
     private:
         virtual void load_impl() = 0;
+
+        virtual void update_impl();
     };
 }
 

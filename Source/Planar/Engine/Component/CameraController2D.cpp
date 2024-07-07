@@ -12,7 +12,18 @@ namespace Planar::Engine::Component
 
     }
 
-    void CameraController2D::update()
+    PLANAR_DEFINE_COMPONENT_GET_SET(CameraController2D, Math::Size2Df,
+        horizontal_speed)
+    PLANAR_DEFINE_COMPONENT_GET_SET(CameraController2D, Math::Size2Df,
+        vertical_speed)
+
+    void CameraController2D::load_impl()
+    {
+        set_horizontal_speed(asset.get_horizontal_speed());
+        set_vertical_speed(asset.get_vertical_speed());
+    }
+
+    void CameraController2D::update_impl()
     {
         auto& input_controller = get_input_controller();
         std::shared_ptr<Transform2D> transform = get_transform();
@@ -36,16 +47,5 @@ namespace Planar::Engine::Component
         {
             transform->translate_x(horizontal_speed.second);
         }
-    }
-
-    PLANAR_DEFINE_COMPONENT_GET_SET(CameraController2D, Math::Size2Df,
-        horizontal_speed)
-    PLANAR_DEFINE_COMPONENT_GET_SET(CameraController2D, Math::Size2Df,
-        vertical_speed)
-
-    void CameraController2D::load_impl()
-    {
-        set_horizontal_speed(asset.get_horizontal_speed());
-        set_vertical_speed(asset.get_vertical_speed());
     }
 }

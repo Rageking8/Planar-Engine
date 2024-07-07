@@ -1,4 +1,7 @@
 #include "Planar/Engine/Component/Core/Component.hpp"
+#include "Planar/Engine/Component/Mixin/Active.hpp"
+
+#include <type_traits>
 
 namespace Planar::Engine::Component::Core
 {
@@ -30,6 +33,22 @@ namespace Planar::Engine::Component::Core
 
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
+    inline void Component<ComponentT, AssetT, Mixins...>::update()
+    {
+        if constexpr ((std::is_same_v<Mixin::Active<AssetT>,
+            Mixins<AssetT>> || ...))
+        {
+            if (!Mixin::Active<AssetT>::get_active())
+            {
+                return;
+            }
+        }
+
+        update_impl();
+    }
+
+    template <typename ComponentT, typename AssetT,
+        template <typename> typename... Mixins>
     inline void Component<ComponentT, AssetT, Mixins...>::load_asset()
     {
         asset.load(*static_cast<ComponentT*>(this));
@@ -41,5 +60,12 @@ namespace Planar::Engine::Component::Core
         get_asset() const
     {
         return asset;
+    }
+
+    template <typename ComponentT, typename AssetT,
+        template <typename> typename... Mixins>
+    inline void Component<ComponentT, AssetT, Mixins...>::update_impl()
+    {
+
     }
 }

@@ -29,11 +29,6 @@ namespace Planar::Engine::Component::Core
         return other == TYPE;
     }
 
-    void ComponentBase::update()
-    {
-
-    }
-
     std::string ComponentBase::get_guid() const
     {
         return guid;
