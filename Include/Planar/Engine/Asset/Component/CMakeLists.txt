@@ -7,4 +7,5 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     Transform2DAsset.hpp
 )
 
+add_subdirectory(Core)
 add_subdirectory(Mixin)
