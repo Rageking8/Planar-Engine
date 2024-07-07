@@ -245,14 +245,14 @@ namespace Planar::Engine::GameObject
     }
 
     void GameObject::iterate_depth_first(
-        const std::function<bool(Component::Core::ComponentBase*)>&
-        callback, bool skip_empty)
+        const std::function<bool(std::shared_ptr
+        <Component::Core::ComponentBase>)>& callback, bool skip_empty)
     {
         iterate_depth_first([&](GameObject* game_object)
             {
                 for (const auto& i : game_object->get_components())
                 {
-                    if (callback(i.get()))
+                    if (callback(i))
                     {
                         return true;
                     }

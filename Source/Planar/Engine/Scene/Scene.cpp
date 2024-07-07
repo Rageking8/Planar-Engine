@@ -64,7 +64,7 @@ namespace Planar::Engine::Scene
     void Scene::update()
     {
         root->iterate_depth_first([]
-            (Component::Core::ComponentBase* component)
+            (std::shared_ptr<Component::Core::ComponentBase> component)
             {
                 component->update();
 
