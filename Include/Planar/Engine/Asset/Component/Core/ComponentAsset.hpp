@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace Planar::Engine::Asset::Component
+namespace Planar::Engine::Asset::Component::Core
 {
     template <typename ComponentT,
         template <typename> typename... Mixins>
@@ -22,4 +22,4 @@ namespace Planar::Engine::Asset::Component
     };
 }
 
-#include "Planar/Engine/Asset/Component/ComponentAsset.tpp"
+#include "Planar/Engine/Asset/Component/Core/ComponentAsset.tpp"

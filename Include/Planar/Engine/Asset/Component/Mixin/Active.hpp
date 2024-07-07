@@ -6,7 +6,7 @@
 namespace Planar::Engine::Asset::Component::Mixin
 {
     template <typename ComponentT>
-    class Active : public Core::Mixin::Mixin<Asset>
+    class Active : public Engine::Core::Mixin::Mixin<Asset>
     {
     public:
         bool get_active() const;

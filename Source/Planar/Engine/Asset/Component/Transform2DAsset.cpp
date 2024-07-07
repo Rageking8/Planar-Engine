@@ -1,5 +1,5 @@
 #include "Planar/Engine/Asset/Component/Transform2DAsset.hpp"
-#include "Planar/Engine/Asset/Component/ComponentAssetMacros.hpp"
+#include "Planar/Engine/Asset/Component/Core/ComponentAssetMacros.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 
 namespace Planar::Engine::Asset::Component

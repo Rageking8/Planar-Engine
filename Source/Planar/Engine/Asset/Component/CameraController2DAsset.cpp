@@ -1,5 +1,5 @@
 #include "Planar/Engine/Asset/Component/CameraController2DAsset.hpp"
-#include "Planar/Engine/Asset/Component/ComponentAssetMacros.hpp"
+#include "Planar/Engine/Asset/Component/Core/ComponentAssetMacros.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
 
 namespace Planar::Engine::Asset::Component

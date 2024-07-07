@@ -1,8 +1,8 @@
-#include "Planar/Engine/Asset/Component/ComponentAsset.hpp"
+#include "Planar/Engine/Asset/Component/Core/ComponentAsset.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
-namespace Planar::Engine::Asset::Component
+namespace Planar::Engine::Asset::Component::Core
 {
     template <typename ComponentT,
         template <typename> typename... Mixins>
