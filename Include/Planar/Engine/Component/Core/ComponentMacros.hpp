@@ -33,3 +33,15 @@
                                                                  \
         return Parent::match(other);                             \
     }                                                            \
+
+#define PLANAR_DEFINE_COMPONENT_GET_SET(component, type, name) \
+    type component::get_##name() const                         \
+    {                                                          \
+        return name;                                           \
+    }                                                          \
+                                                               \
+    void component::set_##name(type new_##name)                \
+    {                                                          \
+        name = new_##name;                                     \
+        asset.set_##name(new_##name);                          \
+    }                                                          \
