@@ -33,6 +33,7 @@ namespace Planar::Editor::Core::Select
         if (!result)
         {
             select_type = SelectType::NONE;
+            game_object.reset();
         }
 
         return result;
