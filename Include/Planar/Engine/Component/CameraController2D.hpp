@@ -24,11 +24,8 @@ namespace Planar::Engine::Component
 
         virtual void update() override;
 
-        Math::Size2Df get_horizontal_speed() const;
-        void set_horizontal_speed(Math::Size2Df new_horizontal_speed);
-
-        Math::Size2Df get_vertical_speed() const;
-        void set_vertical_speed(Math::Size2Df new_vertical_speed);
+        PLANAR_DECLARE_GET_SET(Math::Size2Df, horizontal_speed)
+        PLANAR_DECLARE_GET_SET(Math::Size2Df, vertical_speed)
 
     private:
         Math::Size2Df horizontal_speed;

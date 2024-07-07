@@ -5,6 +5,7 @@
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -15,14 +16,9 @@ namespace Planar::Editor::UI::Element::Component
 
         virtual bool get_modified(bool reset = true) override;
 
-        Engine::Math::Pos2Df get_position() const;
-        void set_position(Engine::Math::Pos2Df new_position);
-
-        float get_rotation() const;
-        void set_rotation(float new_rotation);
-
-        Engine::Math::Size2Df get_scale() const;
-        void set_scale(Engine::Math::Size2Df new_scale);
+        PLANAR_DECLARE_GET_SET(Engine::Math::Pos2Df, position)
+        PLANAR_DECLARE_GET_SET(float, rotation)
+        PLANAR_DECLARE_GET_SET(Engine::Math::Size2Df, scale)
 
     private:
         Engine::UI::ImGui::Element::Drag::DragFloat2 position;

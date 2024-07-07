@@ -22,18 +22,14 @@ namespace Planar::Engine::Component
         Transform2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
-        Math::Pos2Df get_position() const;
-        void set_position(Math::Pos2Df new_position);
+        PLANAR_DECLARE_GET_SET(Math::Pos2Df, position)
 
         void translate(Math::Size2Df delta);
         void translate_x(float delta);
         void translate_y(float delta);
 
-        float get_rotation() const;
-        void set_rotation(float new_rotation);
-
-        Math::Size2Df get_scale() const;
-        void set_scale(Math::Size2Df new_scale);
+        PLANAR_DECLARE_GET_SET(float, rotation)
+        PLANAR_DECLARE_GET_SET(Math::Size2Df, scale)
 
     private:
         Math::Pos2Df position;

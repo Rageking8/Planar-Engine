@@ -4,6 +4,7 @@
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -15,13 +16,8 @@ namespace Planar::Editor::UI::Element::Component
 
         virtual bool get_modified(bool reset = true) override;
 
-        Engine::Math::Size2Df get_horizontal_speed() const;
-        void set_horizontal_speed(Engine::Math::Size2Df
-            new_horizontal_speed);
-
-        Engine::Math::Size2Df get_vertical_speed() const;
-        void set_vertical_speed(Engine::Math::Size2Df
-            new_vertical_speed);
+        PLANAR_DECLARE_GET_SET(Engine::Math::Size2Df, horizontal_speed)
+        PLANAR_DECLARE_GET_SET(Engine::Math::Size2Df, vertical_speed)
 
     private:
         Engine::UI::ImGui::Element::Drag::DragFloat2 horizontal_speed;

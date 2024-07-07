@@ -16,14 +16,9 @@ namespace Planar::Engine::Asset::Component
     public:
         Transform2DAsset();
 
-        Math::Pos2Df get_position() const;
-        void set_position(Math::Pos2Df new_position);
-
-        float get_rotation() const;
-        void set_rotation(float new_rotation);
-
-        Math::Size2Df get_scale() const;
-        void set_scale(Math::Size2Df new_scale);
+        PLANAR_DECLARE_GET_SET(Math::Pos2Df, position)
+        PLANAR_DECLARE_GET_SET(float, rotation)
+        PLANAR_DECLARE_GET_SET(Math::Size2Df, scale)
 
     private:
         virtual void load_impl(
