@@ -5,6 +5,7 @@
 #include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
+#include "Planar/Engine/Core/FileSystem/SelectDialogResult.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 
@@ -25,20 +26,25 @@ namespace Planar::Editor::Project
 
     bool Project::open_project()
     {
-        std::wstring directory =
+        Engine::Core::FileSystem::SelectDialogResult result =
             Engine::Core::FileSystem::select_folder_dialog();
 
-        if (directory.empty())
+        if (!result)
         {
-            Engine::Core::Log::TerminalLogger::get("Editor")->
-                error("Invalid directory");
+            if (result.has_error())
+            {
+                Engine::Core::Log::TerminalLogger::get("Editor")->
+                    error(result.get_error());
+            }
 
             return false;
         }
 
+        const std::filesystem::path path = result.get_path();
+
         unsigned project_asset_count =
             Engine::Core::FileSystem::file_count_with_extension(
-            directory, "planar");
+            path, "planar");
         if (project_asset_count == 0)
         {
             Engine::Core::Log::TerminalLogger::get("Editor")->
@@ -54,7 +60,7 @@ namespace Planar::Editor::Project
             return false;
         }
 
-        root_path = directory;
+        root_path = path;
         std::filesystem::path project_asset_path =
             Engine::Core::FileSystem::first_file_with_extension(
             root_path, "planar");
@@ -119,22 +125,24 @@ namespace Planar::Editor::Project
             return false;
         }
 
-        std::wstring directory;
+        Engine::Core::FileSystem::SelectDialogResult result;
         if (!dry_run)
         {
-            directory =
-                Engine::Core::FileSystem::select_folder_dialog();
+            result = Engine::Core::FileSystem::select_folder_dialog();
         }
 
-        if (!dry_run && directory.empty())
+        if (!(dry_run || result))
         {
-            Engine::Core::Log::TerminalLogger::get("Editor")->
-                error("Invalid directory");
+            if (result.has_error())
+            {
+                Engine::Core::Log::TerminalLogger::get("Editor")->
+                    error(result.get_error());
+            }
 
             return false;
         }
 
-        root_path = directory;
+        root_path = result.get_path();
         this->project_name = project_name;
 
         Core::Progress::task([&]

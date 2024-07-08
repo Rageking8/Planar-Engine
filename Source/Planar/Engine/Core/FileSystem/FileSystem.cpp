@@ -1,4 +1,5 @@
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
+#include "Planar/Engine/Core/FileSystem/SelectDialogResult.hpp"
 
 #include "ThirdParty/nativefiledialog-extended/nfd.hpp"
 
@@ -8,19 +9,22 @@
 
 namespace Planar::Engine::Core::FileSystem
 {
-    std::wstring select_folder_dialog()
+    SelectDialogResult select_folder_dialog()
     {
         NFD::UniquePath path;
 
         nfdresult_t result = NFD::PickFolder(path);
         if (result == NFD_OKAY)
         {
-            std::string path_string = path.get();
-            return { path_string.begin(), path_string.end() };
+            return { SelectDialogResult::Type::OKAY, path.get() };
+        }
+        else if (result == NFD_CANCEL)
+        {
+            return { SelectDialogResult::Type::CANCEL };
         }
         else
         {
-            return L"";
+            return { SelectDialogResult::Type::ERROR, NFD::GetError() };
         }
     }
 

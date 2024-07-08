@@ -7,6 +7,7 @@
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
+#include "Planar/Engine/Core/FileSystem/SelectDialogResult.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 #include <filesystem>
@@ -113,19 +114,21 @@ namespace Planar::Editor::UI::Window
     {
         pending_browse = false;
 
-        std::wstring directory =
+        Engine::Core::FileSystem::SelectDialogResult result =
             Engine::Core::FileSystem::select_folder_dialog();
 
-        if (!directory.empty())
+        if (!result)
         {
-            build_directory_input.set_text(
-                { directory.begin(), directory.end() });
+            if (result.has_error())
+            {
+                Engine::Core::Log::TerminalLogger::get("Editor")->
+                    error(result.get_error());
+            }
+
+            return;
         }
-        else
-        {
-            Engine::Core::Log::TerminalLogger::get("Editor")->
-                error("Invalid directory");
-        }
+
+        build_directory_input.set_text(result.get_path().string());
     }
 
     void BuildWindow::build()
