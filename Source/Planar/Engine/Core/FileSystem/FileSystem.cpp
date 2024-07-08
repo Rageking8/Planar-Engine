@@ -1,6 +1,6 @@
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
-#include "ShObjIdl.h"
+#include "ThirdParty/nativefiledialog-extended/nfd.hpp"
 
 #include <cctype>
 #include <fstream>
@@ -10,38 +10,18 @@ namespace Planar::Engine::Core::FileSystem
 {
     std::wstring select_folder_dialog()
     {
-        IFileDialog* pfd{};
-        wchar_t* path{};
-        bool fail = true;
+        NFD::UniquePath path;
 
-        if (SUCCEEDED(CoCreateInstance(CLSID_FileOpenDialog, NULL,
-            CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pfd))))
+        nfdresult_t result = NFD::PickFolder(path);
+        if (result == NFD_OKAY)
         {
-            DWORD dwOptions;
-            if (SUCCEEDED(pfd->GetOptions(&dwOptions)))
-            {
-                pfd->SetOptions(dwOptions | FOS_PICKFOLDERS);
-            }
-
-            if (SUCCEEDED(pfd->Show(nullptr)))
-            {
-                IShellItem* psi;
-                if (SUCCEEDED(pfd->GetResult(&psi)))
-                {
-                    if (SUCCEEDED(psi->GetDisplayName(
-                        SIGDN_DESKTOPABSOLUTEPARSING, &path)))
-                    {
-                        fail = false;
-                    }
-
-                    psi->Release();
-                }
-            }
-
-            pfd->Release();
+            std::string path_string = path.get();
+            return { path_string.begin(), path_string.end() };
         }
-
-        return fail ? L"" : path;
+        else
+        {
+            return L"";
+        }
     }
 
     void create_file(const std::filesystem::path& path,

@@ -20,6 +20,7 @@ set(PLANAR_ENGINE_LINK_LIBRARIES
     yaml-cpp
     stb
     reproc++
+    nfd
 )
 
 target_link_libraries(${PLANAR_ENGINE_STATIC_TARGET} PRIVATE
