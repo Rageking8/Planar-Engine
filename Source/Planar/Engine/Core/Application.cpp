@@ -6,6 +6,7 @@
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
+#include "ThirdParty/glm/gtc/matrix_transform.hpp"
 
 namespace Planar::Engine::Core
 {
@@ -79,6 +80,19 @@ namespace Planar::Engine::Core
             
             glfw_context.poll_events();
         }
+    }
+
+    Math::Size2Di Application::get_game_framebuffer_size() const
+    {
+        return glfw_context.get_framebuffer_size();
+    }
+
+    glm::mat4 Application::get_projection_mat() const
+    {
+        const Math::Size2Df size =
+            static_cast<Math::Size2Df>(get_game_framebuffer_size());
+
+        return glm::ortho(0.f, size.width, size.height, 0.f, -1.f, 1.f);
     }
 
     void Application::render_single_frame(

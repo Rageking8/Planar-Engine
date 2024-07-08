@@ -9,6 +9,8 @@
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
 
+#include "ThirdParty/glm/fwd.hpp"
+
 #include <string>
 #include <memory>
 #include <functional>
@@ -27,6 +29,10 @@ namespace Planar::Engine::Core
 
         virtual bool init();
         virtual void run();
+
+        virtual Math::Size2Di get_game_framebuffer_size() const;
+
+        glm::mat4 get_projection_mat() const;
 
         void render_single_frame(const std::function<void()>& render);
         void render_main_scene_single_frame();

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Editor/Project/Project.hpp"
@@ -20,6 +21,9 @@ namespace Planar::Editor::Core
         Editor();
 
         virtual bool init() override;
+
+        virtual Engine::Math::Size2Di get_game_framebuffer_size()
+            const override;
 
         void enter_editor();
 
@@ -50,12 +54,17 @@ namespace Planar::Editor::Core
         void set_editor_game_mode(
             EditorGameMode new_editor_game_mode);
 
+        void set_game_content_size(
+            Engine::Math::Size2Di new_game_content_size);
+
     private:
         Project::Project project;
         std::unique_ptr<Engine::Scene::Scene> current_scene;
         Save::SaveHandler save_handler;
         Select::SelectHandler select_handler;
         EditorGameMode editor_game_mode;
+
+        Engine::Math::Size2Di game_content_size;
 
         void reset_on_exit_play_mode();
     };

@@ -31,6 +31,11 @@ namespace Planar::Editor::Core
         return true;
     }
 
+    Engine::Math::Size2Di Editor::get_game_framebuffer_size() const
+    {
+        return game_content_size;
+    }
+
     void Editor::enter_editor()
     {
         std::unique_ptr<Scene::EditorScene> scene =
@@ -150,6 +155,12 @@ namespace Planar::Editor::Core
         {
             reset_on_exit_play_mode();
         }
+    }
+
+    void Editor::set_game_content_size(
+        Engine::Math::Size2Di new_game_content_size)
+    {
+        game_content_size = new_game_content_size;
     }
 
     void Editor::reset_on_exit_play_mode()
