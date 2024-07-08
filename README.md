@@ -45,6 +45,7 @@ Currently Windows is the only operating system supported.
     - [glm](https://github.com/g-truc/glm) - Computer graphics types and routines
     - [reproc](https://github.com/DaanDeMeyer/reproc) - Create and manage processes
     - [LZMA SDK](https://www.7-zip.org/sdk.html) - Compress and extract 7z archives
+    - [nativefiledialog-extended](https://github.com/btzy/nativefiledialog-extended) - Select file and folder dialog
 
 1. Planar Editor
     - Planar Engine - All core routines
