@@ -35,16 +35,24 @@ namespace Planar::Engine::Component::Core
         template <typename> typename... Mixins>
     inline void Component<ComponentT, AssetT, Mixins...>::update()
     {
-        if constexpr ((std::is_same_v<Mixin::Active<AssetT>,
-            Mixins<AssetT>> || ...))
+        if (skip_callback())
         {
-            if (!Mixin::Active<AssetT>::get_active())
-            {
-                return;
-            }
+            return;
         }
 
         update_impl();
+    }
+
+    template <typename ComponentT, typename AssetT,
+        template <typename> typename... Mixins>
+    inline void Component<ComponentT, AssetT, Mixins...>::render()
+    {
+        if (skip_callback())
+        {
+            return;
+        }
+
+        render_impl();
     }
 
     template <typename ComponentT, typename AssetT,
@@ -67,5 +75,29 @@ namespace Planar::Engine::Component::Core
     inline void Component<ComponentT, AssetT, Mixins...>::update_impl()
     {
 
+    }
+
+    template <typename ComponentT, typename AssetT,
+        template <typename> typename... Mixins>
+    inline void Component<ComponentT, AssetT, Mixins...>::render_impl()
+    {
+
+    }
+
+    template <typename ComponentT, typename AssetT,
+        template <typename> typename... Mixins>
+    inline bool Component<ComponentT, AssetT, Mixins...>::
+        skip_callback() const
+    {
+        if constexpr ((std::is_same_v<Mixin::Active<AssetT>,
+            Mixins<AssetT>> || ...))
+        {
+            if (!Mixin::Active<AssetT>::get_active())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

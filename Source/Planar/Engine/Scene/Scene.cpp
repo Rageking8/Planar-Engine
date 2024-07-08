@@ -92,7 +92,13 @@ namespace Planar::Engine::Scene
 
     void Scene::render()
     {
+        root->iterate_depth_first([&]
+            (std::shared_ptr<Component::Core::ComponentBase> component)
+            {
+                component->render();
 
+                return false;
+            });
     }
 
     Core::Application* Scene::get_application() const

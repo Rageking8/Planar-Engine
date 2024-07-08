@@ -89,6 +89,14 @@ namespace Planar::Editor::UI::Window
         framebuffer.bind();
         OpenGL::Render::color_clear({ 0.f, 0.f, 0.f, 1.f });
 
+        auto& current_scene = editor->get_current_scene();
+
+        if (current_scene && editor->get_editor_game_mode() ==
+            Core::EditorGameMode::PLAYING)
+        {
+            current_scene->render();
+        }
+
         framebuffer.unbind();
     }
 }
