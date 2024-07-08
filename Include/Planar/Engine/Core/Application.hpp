@@ -8,6 +8,8 @@
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Core/ObjectManager.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Shader/ShaderManager.hpp"
 
 #include "ThirdParty/glm/fwd.hpp"
 
@@ -44,6 +46,9 @@ namespace Planar::Engine::Core
 
         Input::InputController& get_input_controller();
 
+        Graphics::OpenGL::Core::ObjectManager& get_object_manager();
+        Graphics::OpenGL::Shader::ShaderManager& get_shader_manager();
+
     protected:
         virtual bool init_glfw();
         virtual bool init_glad();
@@ -57,6 +62,9 @@ namespace Planar::Engine::Core
         Graphics::SupportedGraphicsAPI graphics_api;
 
         Input::InputController input_controller;
+
+        Graphics::OpenGL::Core::ObjectManager object_manager;
+        Graphics::OpenGL::Shader::ShaderManager shader_manager;
 
         PLANAR_ADD_BASE_USING(Application)
 

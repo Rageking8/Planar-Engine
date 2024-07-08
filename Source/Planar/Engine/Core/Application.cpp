@@ -51,6 +51,8 @@ namespace Planar::Engine::Core
             );
         }
 
+        object_manager.init();
+
         return result;
     }
 
@@ -135,6 +137,18 @@ namespace Planar::Engine::Core
     Input::InputController& Application::get_input_controller()
     {
         return input_controller;
+    }
+
+    Graphics::OpenGL::Core::ObjectManager&
+        Application::get_object_manager()
+    {
+        return object_manager;
+    }
+
+    Graphics::OpenGL::Shader::ShaderManager&
+        Application::get_shader_manager()
+    {
+        return shader_manager;
     }
 
     bool Application::init_glfw()
