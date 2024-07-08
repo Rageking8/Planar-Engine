@@ -97,6 +97,9 @@ namespace Planar::Editor::UI::Window
 
         content_size = current_content_size;
 
+        editor->set_game_content_size(
+            static_cast<Engine::Math::Size2Di>(content_size));
+
         render_game();
 
         ImGui::image(framebuffer.get_color_texture_id(),
