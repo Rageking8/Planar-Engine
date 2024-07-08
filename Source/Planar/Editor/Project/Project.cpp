@@ -125,25 +125,25 @@ namespace Planar::Editor::Project
             return false;
         }
 
-        Engine::Core::FileSystem::SelectDialogResult result;
         if (!dry_run)
         {
-            result = Engine::Core::FileSystem::select_folder_dialog();
-        }
+            Engine::Core::FileSystem::SelectDialogResult result =
+                Engine::Core::FileSystem::select_folder_dialog();
 
-        if (!(dry_run || result))
-        {
-            if (result.has_error())
+            if (!result)
             {
-                Engine::Core::Log::TerminalLogger::get("Editor")->
-                    error(result.get_error());
+                if (result.has_error())
+                {
+                    Engine::Core::Log::TerminalLogger::get("Editor")->
+                        error(result.get_error());
+                }
+
+                return false;
             }
 
-            return false;
+            root_path = result.get_path();
+            this->project_name = project_name;
         }
-
-        root_path = result.get_path();
-        this->project_name = project_name;
 
         Core::Progress::task([&]
             {
