@@ -51,6 +51,8 @@ namespace Planar::Engine::Core
             );
         }
 
+        imgui_context.install_callback();
+
         object_manager.init();
 
         return result;

@@ -1,7 +1,11 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
-#include "Planar/Engine/Core/GLFW/GLFWContext.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
+
+struct GLFWwindow;
+
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Core::GLFW, GLFWContext)
 
 namespace Planar::Engine::UI::ImGui
 {
@@ -12,7 +16,9 @@ namespace Planar::Engine::UI::ImGui
         ~ImGuiContext();
 
         bool init(
-            const Engine::Core::GLFW::GLFWContext& glfw_context);
+            const Engine::Core::GLFW::GLFWContext& glfw_context,
+            bool defer_install_callback = true);
+        void install_callback() const;
         void terminate();
 
         void new_frame() const;
@@ -20,5 +26,7 @@ namespace Planar::Engine::UI::ImGui
 
     private:
         bool has_init;
+
+        GLFWwindow* defer_install_callback_window;
     };
 }
