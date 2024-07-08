@@ -69,6 +69,13 @@ FetchContent_Declare(
         SHA256=22E9EF20E4C72AAD85E32C71CBC9C086436C179456382AA75C0C24868456A671
 )
 
+FetchContent_Declare(
+    nativefiledialog-extended
+    URL https://github.com/btzy/nativefiledialog-extended/archive/refs/tags/v1.2.0.zip
+    URL_HASH
+        SHA256=27DC13320816392D0D9905C60645AA684784C7C2559D656B504021EDD40F07ED
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
@@ -80,3 +87,4 @@ add_subdirectory(glm)
 add_subdirectory(reproc)
 add_subdirectory(lzma-sdk)
 add_subdirectory(UPX)
+add_subdirectory(nativefiledialog-extended)
