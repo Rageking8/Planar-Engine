@@ -191,6 +191,11 @@ namespace Planar::Editor::Project
                 create_script_files(progress_handler);
             }, dry_run, tasks);
 
+        Core::Progress::task([&]
+            {
+                create_texture_files(progress_handler);
+            }, dry_run, tasks);
+
         if (create_gitignore)
         {
             Core::Progress::task("Writing .gitignore file", [&]
@@ -208,12 +213,12 @@ namespace Planar::Editor::Project
         const Core::Progress::ProgressHandler& progress_handler) const
     {
         progress_handler("Creating engine folder");
-        std::filesystem::path engine_path = root_path / "Engine";
+        const std::filesystem::path engine_path = root_path / "Engine";
         std::filesystem::create_directories(engine_path);
         progress_handler();
 
         progress_handler("Writing PlanarEngine.dll");
-        std::filesystem::path planar_engine_dll_path =
+        const std::filesystem::path planar_engine_dll_path =
             engine_path / "PlanarEngine.dll";
         Engine::Core::FileSystem::clear_file(planar_engine_dll_path);
         PLANAR_APPEND_ALL_CHUNKS_TO_FILE(planar_engine_dll_path,
@@ -221,7 +226,7 @@ namespace Planar::Editor::Project
         progress_handler();
 
         progress_handler("Writing PlanarScript.dll");
-        std::filesystem::path planar_script_dll_path =
+        const std::filesystem::path planar_script_dll_path =
             engine_path / "PlanarScript.dll";
         Engine::Core::FileSystem::clear_file(planar_script_dll_path);
         PLANAR_APPEND_ARRAY_TO_FILE(planar_script_dll_path,
@@ -239,8 +244,19 @@ namespace Planar::Editor::Project
         const Core::Progress::ProgressHandler& progress_handler) const
     {
         progress_handler("Creating scripts folder");
-        std::filesystem::path scripts_path = root_path / "Scripts";
+        const std::filesystem::path scripts_path =
+            root_path / "Scripts";
         std::filesystem::create_directories(scripts_path);
+        progress_handler();
+    }
+
+    void Project::create_texture_files(
+        const Core::Progress::ProgressHandler& progress_handler) const
+    {
+        progress_handler("Creating textures folder");
+        const std::filesystem::path textures_path =
+            root_path / "Textures";
+        std::filesystem::create_directories(textures_path);
         progress_handler();
     }
 }
