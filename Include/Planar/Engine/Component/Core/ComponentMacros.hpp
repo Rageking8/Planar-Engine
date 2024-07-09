@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Core/Utils/Macros/MacroOverload.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DefinitionMacros.hpp"
 #include "Planar/Engine/Component/Core/ComponentType.hpp"
 
 #define PLANAR_DEFINE_COMPONENT_TYPE_AND_NAME(type) \
@@ -35,13 +36,6 @@
     }                                                            \
 
 #define PLANAR_DEFINE_COMPONENT_GET_SET(component, type, name) \
-    type component::get_##name() const                         \
-    {                                                          \
-        return name;                                           \
-    }                                                          \
-                                                               \
-    void component::set_##name(type new_##name)                \
-    {                                                          \
-        name = new_##name;                                     \
+    PLANAR_DEFINE_GET_SET(component, type, name, ,             \
         asset.set_##name(new_##name);                          \
-    }                                                          \
+    )                                                          \
