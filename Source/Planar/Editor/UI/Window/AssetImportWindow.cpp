@@ -23,11 +23,6 @@ namespace Planar::Editor::UI::Window
             VIEWPORT_CENTER);
     }
 
-    void AssetImportWindow::init()
-    {
-
-    }
-
     void AssetImportWindow::update()
     {
         if (pending_browse)
