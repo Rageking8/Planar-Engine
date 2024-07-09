@@ -35,7 +35,7 @@ namespace Planar::Engine::Core
             glfw_context.set_main_window_framebuffer_size_callback(
                 [](GLFWwindow* window, int width, int height)
                 {
-
+                    glViewport(0, 0, width, height);
                 }
             );
 
