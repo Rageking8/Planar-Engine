@@ -2,6 +2,7 @@
 
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
+#include "Planar/Engine/Asset/AssetDatabase.hpp"
 #include "Planar/Engine/Core/GLFW/GLFWContext.hpp"
 #include "Planar/Engine/Core/Input/InputController.hpp"
 #include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
@@ -44,6 +45,8 @@ namespace Planar::Engine::Core
         void maximize_window() const;
         void set_window_name(const std::string& new_window_name);
 
+        Asset::AssetDatabase& get_asset_database();
+
         Input::InputController& get_input_controller();
 
         Graphics::OpenGL::Core::ObjectManager& get_object_manager();
@@ -60,6 +63,8 @@ namespace Planar::Engine::Core
         Math::Size2Di window_size;
         bool maximize;
         Graphics::SupportedGraphicsAPI graphics_api;
+
+        Asset::AssetDatabase asset_database;
 
         Input::InputController input_controller;
 
