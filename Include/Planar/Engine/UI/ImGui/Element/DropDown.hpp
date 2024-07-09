@@ -24,8 +24,8 @@ namespace Planar::Engine::UI::ImGui::Element
             LARGEST = ImGuiComboFlags_HeightLargest,
         };
 
-        DropDown(const std::vector<std::string>& options,
-            const std::string& label = "", float width = 0.f);
+        DropDown(const std::string& label = "", float width = 0.f,
+            const std::vector<std::string>& options = {});
 
         virtual void render() override;
 

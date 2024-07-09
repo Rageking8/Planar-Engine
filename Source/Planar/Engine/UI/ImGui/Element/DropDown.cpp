@@ -6,8 +6,8 @@
 
 namespace Planar::Engine::UI::ImGui::Element
 {
-    DropDown::DropDown(const std::vector<std::string>& options,
-        const std::string& label, float width) : index{},
+    DropDown::DropDown(const std::string& label, float width,
+        const std::vector<std::string>& options) : index{},
         height{ Height::SMALL }
     {
         this->label = label.empty() ? generate_unique_label() :
@@ -20,7 +20,8 @@ namespace Planar::Engine::UI::ImGui::Element
 
     void DropDown::render()
     {
-        const char* preview = options[index].c_str();
+        const char* preview = options.empty() ? "" :
+            options[index].c_str();
 
         ::ImGuiComboFlags flags =
             static_cast<ImGuiComboFlags>(height);
@@ -75,9 +76,8 @@ namespace Planar::Engine::UI::ImGui::Element
     void DropDown::set_options(
         const std::vector<std::string>& new_options)
     {
-        PLANAR_ASSERT_NOT_EMPTY(new_options);
-
         options = new_options;
+        index = 0;
     }
 
     void DropDown::set_height(Height new_height)
