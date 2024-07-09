@@ -47,7 +47,7 @@ namespace Planar::Engine::Component
         application->get_shader_manager().get
             <Graphics::OpenGL::Shader::SpriteShader>("Sprite")->use(
             transform->get_model_mat(), camera->get_view_mat(),
-            application->get_projection_mat());
+            camera->get_projection_mat());
 
         glActiveTexture(GL_TEXTURE0);
 

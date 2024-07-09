@@ -24,6 +24,7 @@ namespace Planar::Engine::Component
             bool generate_guid = true);
 
         glm::mat4 get_view_mat() const;
+        glm::mat4 get_projection_mat() const;
 
     private:
         virtual void load_impl() override;

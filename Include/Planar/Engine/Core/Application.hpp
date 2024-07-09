@@ -12,8 +12,6 @@
 #include "Planar/Engine/Graphics/OpenGL/Core/ObjectManager.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Shader/ShaderManager.hpp"
 
-#include "ThirdParty/glm/fwd.hpp"
-
 #include <string>
 #include <memory>
 #include <functional>
@@ -34,8 +32,6 @@ namespace Planar::Engine::Core
         virtual void run();
 
         virtual Math::Size2Di get_game_framebuffer_size() const;
-
-        glm::mat4 get_projection_mat() const;
 
         void render_single_frame(const std::function<void()>& render);
         void render_main_scene_single_frame();
