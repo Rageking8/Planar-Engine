@@ -28,6 +28,25 @@ namespace Planar::Engine::Core::FileSystem
         }
     }
 
+    SelectDialogResult select_file_dialog()
+    {
+        NFD::UniquePath path;
+
+        nfdresult_t result = NFD::OpenDialog(path);
+        if (result == NFD_OKAY)
+        {
+            return { SelectDialogResult::Type::OKAY, path.get() };
+        }
+        else if (result == NFD_CANCEL)
+        {
+            return { SelectDialogResult::Type::CANCEL };
+        }
+        else
+        {
+            return { SelectDialogResult::Type::ERROR, NFD::GetError() };
+        }
+    }
+
     void create_file(const std::filesystem::path& path,
         const std::string& contents)
     {

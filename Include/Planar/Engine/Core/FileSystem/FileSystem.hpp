@@ -16,6 +16,8 @@ namespace Planar::Engine::Core::FileSystem
 {
     PLANAR_API SelectDialogResult select_folder_dialog();
 
+    PLANAR_API SelectDialogResult select_file_dialog();
+
     PLANAR_API void create_file(const std::filesystem::path& path,
         const std::string& contents);
 
