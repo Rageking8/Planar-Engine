@@ -9,6 +9,7 @@
 #include "Planar/Editor/UI/Window/GameWindow.hpp"
 #include "Planar/Editor/UI/Window/SceneWindow.hpp"
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
+#include "Planar/Editor/UI/Window/AssetImportWindow.hpp"
 #include "Planar/Editor/UI/Element/PlayStopToggle.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
@@ -35,6 +36,7 @@ namespace Planar::Editor::Scene
         UI::Window::GameWindow game_window;
         UI::Window::SceneWindow scene_window;
         UI::Window::BuildWindow build_window;
+        UI::Window::AssetImportWindow asset_import_window;
 
         UI::Element::PlayStopToggle play_stop_toggle;
 

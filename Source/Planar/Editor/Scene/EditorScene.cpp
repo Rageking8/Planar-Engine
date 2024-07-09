@@ -27,7 +27,7 @@ namespace Planar::Editor::Scene
         inspector_window(editor), settings_window(editor),
         content_window(editor), console_window(editor),
         game_window(editor), scene_window(editor),
-        build_window(editor)
+        build_window(editor), asset_import_window(editor)
     {
 
     }
@@ -68,6 +68,7 @@ namespace Planar::Editor::Scene
         inspector_window.update();
         game_window.update();
         build_window.update();
+        asset_import_window.update();
     }
 
     void EditorScene::render()
@@ -86,6 +87,7 @@ namespace Planar::Editor::Scene
         game_window.render_window();
         scene_window.render_window();
         build_window.render_window();
+        asset_import_window.render_window();
     }
 
     void EditorScene::restore_default_layout() const
@@ -160,6 +162,13 @@ namespace Planar::Editor::Scene
                     add_component_menu_item<Camera2D>();
                     add_component_menu_item<CameraController2D>();
                     add_component_menu_item<SpriteRenderer>();
+                });
+
+            main_menu_bar.add_menu("Asset",
+                [&]()
+                {
+                    make_active_on_menu_item("Asset Import",
+                        asset_import_window, true);
                 });
 
             main_menu_bar.add_menu("Window",
