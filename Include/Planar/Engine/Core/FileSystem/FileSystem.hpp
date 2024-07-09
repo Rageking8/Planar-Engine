@@ -2,11 +2,13 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/Core/FileSystem/ListingSortType.hpp"
+#include "Planar/Engine/Core/FileSystem/SelectDialogFilter.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 #include <vector>
 #include <cstddef>
+#include <optional>
 #include <filesystem>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Core::FileSystem,
@@ -16,7 +18,8 @@ namespace Planar::Engine::Core::FileSystem
 {
     PLANAR_API SelectDialogResult select_folder_dialog();
 
-    PLANAR_API SelectDialogResult select_file_dialog();
+    PLANAR_API SelectDialogResult select_file_dialog(
+        std::optional<SelectDialogFilter> filter = {});
 
     PLANAR_API void create_file(const std::filesystem::path& path,
         const std::string& contents);

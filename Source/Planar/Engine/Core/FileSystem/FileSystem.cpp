@@ -28,11 +28,15 @@ namespace Planar::Engine::Core::FileSystem
         }
     }
 
-    SelectDialogResult select_file_dialog()
+    SelectDialogResult select_file_dialog(
+        std::optional<SelectDialogFilter> filter)
     {
         NFD::UniquePath path;
 
-        nfdresult_t result = NFD::OpenDialog(path);
+        nfdresult_t result = NFD::OpenDialog(path, filter ?
+            static_cast<const nfdu8filteritem_t*>(
+            filter->generate_filter()) : nullptr, filter ?
+            filter->get_size() : 0);
         if (result == NFD_OKAY)
         {
             return { SelectDialogResult::Type::OKAY, path.get() };
