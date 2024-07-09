@@ -5,7 +5,9 @@
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Core/FileSystem/SelectDialogResult.hpp"
+#include "Planar/Engine/Core/Sprite/Sprite.hpp"
 
+#include <memory>
 #include <filesystem>
 
 namespace Planar::Editor::UI::Window
@@ -101,7 +103,16 @@ namespace Planar::Editor::UI::Window
     {
         pending_import = false;
 
-        set_active(false);
+        if (asset_extension == ".png")
+        {
+            std::shared_ptr<Engine::Core::Sprite::Sprite> sprite =
+                std::make_shared<Engine::Core::Sprite::Sprite>();
+
+            sprite->create(asset_path_input.get_text());
+            sprite->save();
+
+            set_active(false);
+        }
     }
 
     void AssetImportWindow::update_import_options()
