@@ -6,6 +6,7 @@
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Core/FileSystem/SelectDialogResult.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
+#include "Planar/Engine/Asset/AssetDatabase.hpp"
 
 #include <memory>
 #include <filesystem>
@@ -110,6 +111,8 @@ namespace Planar::Editor::UI::Window
 
             sprite->create(asset_path_input.get_text());
             sprite->save();
+
+            editor->get_asset_database().add_owning_asset(sprite);
 
             set_active(false);
         }
