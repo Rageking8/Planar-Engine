@@ -23,5 +23,7 @@ namespace Planar::Engine::Component
 
     private:
         virtual void load_impl() override;
+
+        virtual void render_impl() override;
     };
 }
