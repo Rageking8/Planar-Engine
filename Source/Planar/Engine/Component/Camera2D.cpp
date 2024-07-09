@@ -42,7 +42,7 @@ namespace Planar::Engine::Component
             framebuffer_size.width / pixel_scale;
         const float bottom = pixel_scale == 0.f ?
             std::numeric_limits<float>::infinity() :
-            framebuffer_size.height / pixel_scale;
+            -framebuffer_size.height / pixel_scale;
 
         return glm::ortho(0.f, right, bottom, 0.f, -1.f, 1.f);
     }
