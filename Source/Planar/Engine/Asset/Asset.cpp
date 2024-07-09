@@ -1,4 +1,5 @@
 #include "Planar/Engine/Asset/Asset.hpp"
+#include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -12,6 +13,16 @@ namespace Planar::Engine::Asset
     Asset::~Asset()
     {
 
+    }
+
+    void Asset::load(const std::string& asset_string)
+    {
+        *asset = YAML::Load(asset_string);
+    }
+
+    void Asset::load(const std::filesystem::path& asset_path)
+    {
+        load(Core::FileSystem::read_file(asset_path));
     }
 
     void Asset::set_node(YAML::Node node)

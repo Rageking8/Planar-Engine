@@ -6,6 +6,7 @@
 #include <array>
 #include <string>
 #include <memory>
+#include <filesystem>
 
 PLANAR_FORWARD_DECLARE_CLASS(YAML, Node)
 
@@ -16,6 +17,9 @@ namespace Planar::Engine::Asset
     public:
         Asset();
         virtual ~Asset() = 0;
+
+        virtual void load(const std::string& asset_string);
+        virtual void load(const std::filesystem::path& asset_path);
 
         void set_node(YAML::Node node);
 
