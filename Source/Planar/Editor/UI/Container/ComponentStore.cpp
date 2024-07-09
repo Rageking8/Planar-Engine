@@ -14,7 +14,8 @@
 
 namespace Planar::Editor::UI::Container
 {
-    ComponentStore::ComponentStore()
+    ComponentStore::ComponentStore(Core::Editor* editor) :
+        editor{ editor }
     {
 
     }
