@@ -23,10 +23,14 @@ namespace Planar::Engine::Component
         Camera2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
+        PLANAR_DECLARE_GET_SET(float, pixel_scale)
+
         glm::mat4 get_view_mat() const;
         glm::mat4 get_projection_mat() const;
 
     private:
+        float pixel_scale;
+
         virtual void load_impl() override;
     };
 }

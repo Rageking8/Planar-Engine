@@ -16,6 +16,8 @@ namespace Planar::Engine::Asset::Component
     public:
         Camera2DAsset();
 
+        PLANAR_DECLARE_GET_SET(float, pixel_scale)
+
     private:
         virtual void load_impl(
             Engine::Component::Camera2D& camera) override;
