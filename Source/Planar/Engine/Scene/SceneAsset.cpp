@@ -31,13 +31,13 @@ namespace Planar::Engine::Scene
 
         Core::FileSystem::create_file(path / (scene_name +
             ".planarscene"), scene_asset);
-        *asset = YAML::Load(scene_asset);
+        Asset::load(scene_asset);
     }
 
     void SceneAsset::load(const std::filesystem::path& scene_path)
     {
         name = scene_path.stem().string();
-        *asset = YAML::Load(Core::FileSystem::read_file(scene_path));
+        Asset::load(scene_path);
         path = scene_path;
     }
 
@@ -45,7 +45,7 @@ namespace Planar::Engine::Scene
     {
         PLANAR_ASSERT_NOT_EMPTY(path);
 
-        *asset = YAML::Load(Core::FileSystem::read_file(path));
+        Asset::load(path);
     }
 
     void SceneAsset::save()
