@@ -3,6 +3,9 @@
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
+#include <limits>
+#include <iosfwd>
+
 PLANAR_LOAD_STD_STRING_ASSET(Engine, BasicPrelude)
 
 namespace Planar::Engine::Asset
@@ -138,5 +141,18 @@ namespace Planar::Engine::Asset
         emitter << node;
 
         return emitter.c_str();
+    }
+
+    std::string get_guid(const std::filesystem::path& asset_path)
+    {
+        std::ifstream asset(asset_path);
+        asset.ignore(std::numeric_limits<std::streamsize>::max(),
+            '\n');
+
+        std::string guid;
+        guid.reserve(40);
+        std::getline(asset, guid);
+
+        return guid.substr(6);
     }
 }
