@@ -7,34 +7,34 @@
 
 namespace Planar::Engine::Core::FileSystem
 {
-	class PLANAR_API SelectDialogResult
-	{
-	public:
-		enum class Type
-		{
-			NONE,
+    class PLANAR_API SelectDialogResult
+    {
+    public:
+        enum class Type
+        {
+            NONE,
 
-			OKAY,
+            OKAY,
 
-			CANCEL,
+            CANCEL,
 
-			ERROR,
-		};
+            ERROR,
+        };
 
-		SelectDialogResult(Type type = Type::NONE,
-			const std::string& path_or_error = {});
+        SelectDialogResult(Type type = Type::NONE,
+            const std::string& path_or_error = {});
 
-		explicit operator bool() const;
+        explicit operator bool() const;
 
-		Type get_type() const;
+        Type get_type() const;
 
-		std::filesystem::path get_path() const;
+        std::filesystem::path get_path() const;
 
-		bool has_error() const;
-		std::string get_error() const;
+        bool has_error() const;
+        std::string get_error() const;
 
-	private:
-		Type type;
-		std::string path_or_error;
-	};
+    private:
+        Type type;
+        std::string path_or_error;
+    };
 }
