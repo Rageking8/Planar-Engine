@@ -1,4 +1,5 @@
 target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
+    AssetImportWindow.hpp
     BuildWindow.hpp
     ConsoleWindow.hpp
     ContentWindow.hpp
