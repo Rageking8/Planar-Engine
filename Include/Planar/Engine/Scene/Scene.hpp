@@ -5,7 +5,6 @@
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
-#include <string>
 #include <memory>
 #include <filesystem>
 
@@ -17,17 +16,12 @@ namespace Planar::Engine::Scene
     class PLANAR_API Scene
     {
     public:
-        Scene(Core::Application* application = nullptr);
         Scene(Core::Application* application,
-            const std::string& scene_asset,
-            const std::string& scene_name,
-            const std::filesystem::path& asset_path = {});
+            const std::filesystem::path& scene_path = {});
         virtual ~Scene();
 
         void load(Core::Application* application,
-            const std::string& scene_asset,
-            const std::string& scene_name,
-            const std::filesystem::path& asset_path = {});
+            const std::filesystem::path& scene_path = {});
         void reload_from_path();
         void save();
 

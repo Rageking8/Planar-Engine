@@ -166,9 +166,7 @@ namespace Planar::Editor::UI::Window
         if (std::filesystem::is_regular_file(path) &&
             path.extension() == ".planarscene")
         {
-            editor->new_current_scene(
-                Engine::Core::FileSystem::read_file(path),
-                path.stem().string(), path);
+            editor->new_current_scene(path);
         }
     }
 }

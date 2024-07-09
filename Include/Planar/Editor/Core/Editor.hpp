@@ -37,9 +37,8 @@ namespace Planar::Editor::Core
         Project::Project& get_project();
 
         std::unique_ptr<Engine::Scene::Scene>& get_current_scene();
-        void new_current_scene(const std::string& scene_asset,
-            const std::string& scene_name,
-            const std::filesystem::path& asset_path);
+        void new_current_scene(
+            const std::filesystem::path& scene_path);
         void close_current_scene();
 
         void add_save_callback(const std::string& name,

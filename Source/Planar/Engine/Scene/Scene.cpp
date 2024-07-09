@@ -2,26 +2,16 @@
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/Core/ComponentBase.hpp"
 
-#include "ThirdParty/yaml-cpp/yaml.h"
-
 #include <stack>
 
 namespace Planar::Engine::Scene
 {
-    Scene::Scene(Core::Application* application) :
+    Scene::Scene(Core::Application* application,
+        const std::filesystem::path& scene_path) :
         application{ application },
         root(std::make_shared<GameObject::GameObject>(this))
     {
-
-    }
-
-    Scene::Scene(Core::Application* application,
-        const std::string& scene_asset,
-        const std::string& scene_name,
-        const std::filesystem::path& asset_path) :
-        Scene(application)
-    {
-        load(application, scene_asset, scene_name, asset_path);
+        load(application, scene_path);
     }
 
     Scene::~Scene()
@@ -30,11 +20,9 @@ namespace Planar::Engine::Scene
     }
 
     void Scene::load(Core::Application* application,
-        const std::string& scene_asset,
-        const std::string& scene_name,
-        const std::filesystem::path& asset_path)
+        const std::filesystem::path& scene_path)
     {
-        asset.load(scene_asset, scene_name, asset_path);
+        asset.load(scene_path);
 
         load_root();
     }

@@ -20,9 +20,7 @@ namespace Planar::Engine::Scene
             const std::filesystem::path& path,
             const std::string& scene_name);
 
-        void load(const std::string& scene_asset,
-            const std::string& scene_name,
-            const std::filesystem::path& asset_path = {});
+        void load(const std::filesystem::path& scene_path);
         void reload_from_path();
         void save();
 

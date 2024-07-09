@@ -34,13 +34,11 @@ namespace Planar::Engine::Scene
         *asset = YAML::Load(scene_asset);
     }
 
-    void SceneAsset::load(const std::string& scene_asset,
-        const std::string& scene_name,
-        const std::filesystem::path& asset_path)
+    void SceneAsset::load(const std::filesystem::path& scene_path)
     {
-        name = scene_name;
-        *asset = YAML::Load(scene_asset);
-        path = asset_path;
+        name = scene_path.stem().string();
+        *asset = YAML::Load(Core::FileSystem::read_file(scene_path));
+        path = scene_path;
     }
 
     void SceneAsset::reload_from_path()
