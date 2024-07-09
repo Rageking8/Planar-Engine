@@ -22,9 +22,12 @@ namespace Planar::Engine::Component
 
     }
 
+    PLANAR_DEFINE_COMPONENT_GET_SET(SpriteRenderer, std::string,
+        sprite)
+
     void SpriteRenderer::load_impl()
     {
-
+        set_sprite(asset.get_sprite());
     }
 
     void SpriteRenderer::render_impl()

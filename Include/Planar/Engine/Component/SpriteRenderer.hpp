@@ -7,6 +7,8 @@
 #include "Planar/Engine/Asset/Component/SpriteRendererAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include <string>
+
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
@@ -21,7 +23,11 @@ namespace Planar::Engine::Component
         SpriteRenderer(GameObject::GameObject* parent,
             bool generate_guid = true);
 
+        PLANAR_DECLARE_GET_SET(std::string, sprite)
+
     private:
+        std::string sprite;
+
         virtual void load_impl() override;
 
         virtual void render_impl() override;

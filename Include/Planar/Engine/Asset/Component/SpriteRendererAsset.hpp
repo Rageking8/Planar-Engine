@@ -5,6 +5,8 @@
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Asset/Component/Mixin/Active.hpp"
 
+#include <string>
+
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, SpriteRenderer)
 
 namespace Planar::Engine::Asset::Component
@@ -15,6 +17,8 @@ namespace Planar::Engine::Asset::Component
     {
     public:
         SpriteRendererAsset();
+
+        PLANAR_DECLARE_GET_SET(std::string, sprite)
 
     private:
         virtual void load_impl(
