@@ -11,10 +11,10 @@ namespace Planar::Engine::Graphics::OpenGL::Render
     void Quad::init()
     {
         buffer.create({
-            { 1.f, 1.f, 1.f, 1.f },
-            { -1.f, 1.f, 0.f, 1.f },
-            { 1.f, -1.f, 1.f, 0.f },
-            { -1.f, -1.f, 0.f, 0.f } },
+            { 0.5f, 0.5f, 1.f, 1.f },
+            { -0.5f, 0.5f, 0.f, 1.f },
+            { 0.5f, -0.5f, 1.f, 0.f },
+            { -0.5f, -0.5f, 0.f, 0.f } },
             Buffer::BufferUsage::STATIC_DRAW);
         vertex_array_object.create(buffer);
     }
