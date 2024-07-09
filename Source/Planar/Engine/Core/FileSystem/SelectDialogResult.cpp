@@ -27,6 +27,15 @@ namespace Planar::Engine::Core::FileSystem
         return path_or_error;
     }
 
+    std::string SelectDialogResult::get_filename(bool include_extension)
+        const
+    {
+        std::filesystem::path path = get_path();
+
+        return include_extension ? path.filename().string() :
+            path.stem().string();
+    }
+
     bool SelectDialogResult::has_error() const
     {
         return type == Type::ERROR;

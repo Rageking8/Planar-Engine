@@ -29,6 +29,7 @@ namespace Planar::Engine::Core::FileSystem
         Type get_type() const;
 
         std::filesystem::path get_path() const;
+        std::string get_filename(bool include_extension = true) const;
 
         bool has_error() const;
         std::string get_error() const;
