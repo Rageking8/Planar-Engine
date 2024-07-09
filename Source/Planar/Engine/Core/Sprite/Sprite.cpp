@@ -10,6 +10,7 @@ namespace Planar::Engine::Core::Sprite
 
     void Sprite::create(const std::filesystem::path& texture_path)
     {
+        name = texture_path.stem().string();
         guid = GUID::generate_guid(
             GUID::Representation::DEFAULT_COMPACT);
 
@@ -20,6 +21,11 @@ namespace Planar::Engine::Core::Sprite
     void Sprite::save() const
     {
         asset.save();
+    }
+
+    std::string Sprite::get_name() const
+    {
+        return name;
     }
 
     std::string Sprite::get_guid() const

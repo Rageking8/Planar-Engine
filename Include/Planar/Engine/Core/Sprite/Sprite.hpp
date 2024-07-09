@@ -18,10 +18,12 @@ namespace Planar::Engine::Core::Sprite
 
         void save() const;
 
+        std::string get_name() const;
         std::string get_guid() const;
         Graphics::OpenGL::Texture::Texture2D& get_texture();
 
     private:
+        std::string name;
         std::string guid;
         SpriteAsset asset;
         Graphics::OpenGL::Texture::Texture2D texture;
