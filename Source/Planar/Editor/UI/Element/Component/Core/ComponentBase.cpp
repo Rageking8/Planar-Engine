@@ -6,8 +6,6 @@
 #include "Planar/Engine/UI/ImGui/Core/Cursor/CursorScope.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
-#include <functional>
-
 namespace Planar::Editor::UI::Element::Component::Core
 {
     ComponentBase::ComponentBase(const std::string& text,
@@ -22,9 +20,18 @@ namespace Planar::Editor::UI::Element::Component::Core
 
     void ComponentBase::render()
     {
-        header.render({}, {}, PLANAR_CAPTURE_THIS(render_content_impl),
-            show_active_checkbox ? PLANAR_CAPTURE_THIS(
-            render_active_checkbox) : std::function<void()>{});
+        render({});
+    }
+
+    void ComponentBase::render(
+        const std::function<void(std::string)>& right_click_callback)
+    {
+        header.render({}, right_click_callback ?
+            PLANAR_CAPTURE_REF_ARG1(right_click_callback, header.get_id())
+            : std::function<void()>{}, PLANAR_CAPTURE_THIS(
+            render_content_impl), show_active_checkbox ?
+            PLANAR_CAPTURE_THIS(render_active_checkbox) :
+            std::function<void()>{});
     }
 
     void ComponentBase::set_values(

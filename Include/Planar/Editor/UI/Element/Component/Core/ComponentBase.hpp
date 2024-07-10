@@ -8,6 +8,7 @@
 
 #include <string>
 #include <memory>
+#include <functional>
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component::Core, ComponentBase)
@@ -22,6 +23,8 @@ namespace Planar::Editor::UI::Element::Component::Core
             bool show_active_checkbox = true);
 
         virtual void render() override;
+        virtual void render(const std::function<void(std::string)>&
+            right_click_callback);
 
         virtual bool get_modified(bool reset = true) = 0;
 
