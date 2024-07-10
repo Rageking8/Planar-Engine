@@ -8,6 +8,8 @@
 
 #include <string>
 
+struct ImVec2;
+
 namespace Planar::Engine::UI::ImGui
 {
     PLANAR_API void set_ini_filename(
@@ -69,4 +71,8 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API bool is_item_hovered();
 
     PLANAR_API bool is_left_mouse_double_clicked();
+
+    PLANAR_API ImVec2 calc_uv0(bool flip_y);
+
+    PLANAR_API ImVec2 calc_uv1(bool flip_y);
 }

@@ -160,8 +160,7 @@ namespace Planar::Engine::UI::ImGui
     void image(GLuint texture, Math::Size2Df size, bool flip_y)
     {
         ::ImGui::Image((void*)texture, { size.width, size.height },
-            flip_y ? ::ImVec2(0.f, 1.f) : ::ImVec2(0.f, 0.f),
-            flip_y ? ::ImVec2(1.f, 0.f) : ::ImVec2(1.f, 1.f));
+            calc_uv0(flip_y), calc_uv1(flip_y));
     }
 
     void newline(unsigned count)
@@ -192,5 +191,15 @@ namespace Planar::Engine::UI::ImGui
     bool is_left_mouse_double_clicked()
     {
         return ::ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left);
+    }
+
+    ImVec2 calc_uv0(bool flip_y)
+    {
+        return flip_y ? ImVec2(0.f, 1.f) : ImVec2(0.f, 0.f);
+    }
+
+    ImVec2 calc_uv1(bool flip_y)
+    {
+        return flip_y ? ImVec2(1.f, 0.f) : ImVec2(1.f, 1.f);
     }
 }
