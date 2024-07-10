@@ -37,14 +37,15 @@ namespace Planar::Engine::Component
             get_scene()->get_application()->
             get_game_framebuffer_size());
 
-        const float right = pixel_scale == 0.f ?
+        const float half_width = pixel_scale == 0.f ?
             std::numeric_limits<float>::infinity() :
-            framebuffer_size.width / pixel_scale;
-        const float bottom = pixel_scale == 0.f ?
+            framebuffer_size.width / pixel_scale * 0.5f;
+        const float half_height = pixel_scale == 0.f ?
             std::numeric_limits<float>::infinity() :
-            -framebuffer_size.height / pixel_scale;
+            framebuffer_size.height / pixel_scale * 0.5f;
 
-        return glm::ortho(0.f, right, bottom, 0.f, -1.f, 1.f);
+        return glm::ortho(-half_width, half_width, -half_height,
+            half_height, -1.f, 1.f);
     }
 
     void Camera2D::load_impl()
