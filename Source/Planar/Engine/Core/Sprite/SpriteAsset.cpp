@@ -12,6 +12,12 @@ namespace Planar::Engine::Core::Sprite
 
     }
 
+    void SpriteAsset::load(const std::filesystem::path& sprite_path)
+    {
+        Asset::load(sprite_path);
+        path = sprite_path;
+    }
+
     void SpriteAsset::create(Sprite& sprite,
         const std::filesystem::path& texture_path)
     {
@@ -29,5 +35,10 @@ namespace Planar::Engine::Core::Sprite
 
         FileSystem::create_file(path,
             Engine::Asset::to_string(*asset));
+    }
+
+    std::string SpriteAsset::get_guid() const
+    {
+        return get_value<std::string>("GUID");
     }
 }

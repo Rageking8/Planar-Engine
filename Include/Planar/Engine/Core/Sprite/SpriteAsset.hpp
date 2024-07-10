@@ -15,10 +15,14 @@ namespace Planar::Engine::Core::Sprite
     public:
         SpriteAsset();
 
+        virtual void load(const std::filesystem::path& sprite_path)
+            override;
         void create(Sprite& sprite,
             const std::filesystem::path& texture_path);
 
         void save() const;
+
+        std::string get_guid() const;
 
     private:
         std::filesystem::path path;
