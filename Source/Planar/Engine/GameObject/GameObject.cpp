@@ -195,25 +195,16 @@ namespace Planar::Engine::GameObject
 
     void GameObject::remove_child(const std::string& guid)
     {
-        int index = find_child(guid);
-
-        PLANAR_ASSERT(index != -1, "No child with `guid` found");
+        const int index = find_child(guid, true);
 
         asset.remove_child(static_cast<std::size_t>(index));
         children.erase(children.begin() + index);
     }
 
-    int GameObject::find_child(const std::string& guid)
+    int GameObject::find_child(const std::string& guid,
+        bool fatal_if_not_found)
     {
-        for (std::size_t i = 0; i < children.size(); ++i)
-        {
-            if (guid == children[i]->guid)
-            {
-                return static_cast<int>(i);
-            }
-        }
-
-        return -1;
+        return find_by_guid(children, guid, fatal_if_not_found);
     }
 
     void GameObject::clear_all_children()

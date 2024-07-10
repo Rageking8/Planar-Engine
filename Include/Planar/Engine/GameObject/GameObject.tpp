@@ -1,4 +1,5 @@
 #include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 
 namespace Planar::Engine::GameObject
 {
@@ -24,5 +25,26 @@ namespace Planar::Engine::GameObject
         }
 
         components.push_back(new_component);
+    }
+
+    template <typename T>
+    inline int GameObject::find_by_guid(
+        std::vector<std::shared_ptr<T>>& vector,
+        const std::string& guid, bool fatal_if_not_found)
+    {
+        for (std::size_t i = 0; i < vector.size(); ++i)
+        {
+            if (guid == vector[i]->get_guid())
+            {
+                return static_cast<int>(i);
+            }
+        }
+
+        if (fatal_if_not_found)
+        {
+            PLANAR_FATAL("`guid` not found in `vector`");
+        }
+
+        return -1;
     }
 }

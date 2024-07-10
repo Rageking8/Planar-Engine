@@ -54,7 +54,8 @@ namespace Planar::Engine::GameObject
 
         void add_child(std::string name = "");
         void remove_child(const std::string& guid);
-        int find_child(const std::string& guid);
+        int find_child(const std::string& guid,
+            bool fatal_if_not_found = false);
         void clear_all_children();
 
         void iterate_depth_first(
@@ -74,6 +75,10 @@ namespace Planar::Engine::GameObject
         std::vector<std::shared_ptr<Component::Core::ComponentBase>>
             components;
         std::vector<std::shared_ptr<GameObject>> children;
+
+        template <typename T>
+        int find_by_guid(std::vector<std::shared_ptr<T>>& vector,
+            const std::string& guid, bool fatal_if_not_found = false);
     };
 }
 
