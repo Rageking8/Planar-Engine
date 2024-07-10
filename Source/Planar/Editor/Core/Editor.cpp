@@ -38,6 +38,8 @@ namespace Planar::Editor::Core
 
     void Editor::enter_editor()
     {
+        load_assets();
+
         std::unique_ptr<Scene::EditorScene> scene =
             std::make_unique<Scene::EditorScene>(this);
 
@@ -160,6 +162,11 @@ namespace Planar::Editor::Core
         Engine::Math::Size2Di new_game_content_size)
     {
         game_content_size = new_game_content_size;
+    }
+
+    void Editor::load_assets()
+    {
+        asset_database.load_asset_recursive(project.get_root_path());
     }
 
     void Editor::reset_on_exit_play_mode()

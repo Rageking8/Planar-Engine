@@ -65,6 +65,8 @@ namespace Planar::Editor::Core
 
         Engine::Math::Size2Di game_content_size;
 
+        void load_assets();
+
         void reset_on_exit_play_mode();
     };
 }
