@@ -8,4 +8,11 @@ namespace Planar::Engine::Asset
     {
         owning_asset_map[asset->get_guid()] = asset;
     }
+
+    template <typename T>
+    inline std::shared_ptr<T> AssetDatabase::get_owning_asset(
+        const std::string& guid)
+    {
+        return std::static_pointer_cast<T>(owning_asset_map[guid]);
+    }
 }
