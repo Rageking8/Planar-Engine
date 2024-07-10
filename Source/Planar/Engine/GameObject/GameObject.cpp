@@ -152,6 +152,20 @@ namespace Planar::Engine::GameObject
             components[0]);
     }
 
+    int GameObject::find_component(const std::string& guid,
+        bool fatal_if_not_found)
+    {
+        return find_by_guid(components, guid, fatal_if_not_found);
+    }
+
+    void GameObject::remove_component(const std::string& guid)
+    {
+        const int index = find_component(guid, true);
+
+        asset.remove_component(static_cast<std::size_t>(index));
+        components.erase(components.begin() + index);
+    }
+
     std::vector<std::shared_ptr<GameObject>>& GameObject::get_children()
     {
         return children;

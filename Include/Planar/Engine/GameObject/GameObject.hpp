@@ -50,6 +50,10 @@ namespace Planar::Engine::GameObject
         void add_component(std::optional<YAML::Node> node = {},
             bool skip_asset = false);
 
+        int find_component(const std::string& guid,
+            bool fatal_if_not_found = false);
+        void remove_component(const std::string& guid);
+
         std::vector<std::shared_ptr<GameObject>>& get_children();
 
         void add_child(std::string name = "");
