@@ -47,7 +47,8 @@ namespace Planar::Engine::GameObject
         std::shared_ptr<Component::Transform2D> get_transform() const;
 
         template <typename ComponentT>
-        void add_component(std::optional<YAML::Node> node = {});
+        void add_component(std::optional<YAML::Node> node = {},
+            bool skip_asset = false);
 
         std::vector<std::shared_ptr<GameObject>>& get_children();
 

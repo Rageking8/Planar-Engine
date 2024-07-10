@@ -187,7 +187,7 @@ namespace Planar::Engine::GameObject
         std::shared_ptr<GameObject>& child = children.back();
         child->parent = is_root ? nullptr : this;
 
-        child->add_component<Component::Transform2D>();
+        child->add_component<Component::Transform2D>({}, true);
 
         child->asset.load(*child);
         asset.add_child(child->asset.get_asset());
