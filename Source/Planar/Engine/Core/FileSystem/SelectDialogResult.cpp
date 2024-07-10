@@ -15,6 +15,12 @@ namespace Planar::Engine::Core::FileSystem
         return type == Type::OKAY;
     }
 
+    bool SelectDialogResult::check(const std::string& extension) const
+    {
+        return type == Type::OKAY &&
+            get_path().extension().string() == extension;
+    }
+
     SelectDialogResult::Type SelectDialogResult::get_type() const
     {
         return type;

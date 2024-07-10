@@ -26,6 +26,8 @@ namespace Planar::Engine::Core::FileSystem
 
         explicit operator bool() const;
 
+        bool check(const std::string& extension) const;
+
         Type get_type() const;
 
         std::filesystem::path get_path() const;
