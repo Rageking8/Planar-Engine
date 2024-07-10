@@ -30,6 +30,6 @@ namespace Planar::Engine::GameObject
         void add_component(YAML::Node component);
 
     private:
-        YAML::Node get_target() const;
+        YAML::Node get_children() const;
     };
 }

@@ -42,12 +42,12 @@ namespace Planar::Engine::GameObject
 
     void GameObjectAsset::add_child(YAML::Node child)
     {
-        get_target().push_back(child);
+        get_children().push_back(child);
     }
 
     void GameObjectAsset::remove_child(std::size_t index)
     {
-        YAML::Node target = get_target();
+        YAML::Node target = get_children();
         target.remove(index);
 
         if (target.size() == 0)
@@ -61,7 +61,7 @@ namespace Planar::Engine::GameObject
         get("Components").push_back(component);
     }
 
-    YAML::Node GameObjectAsset::get_target() const
+    YAML::Node GameObjectAsset::get_children() const
     {
         return (is_null() || is_sequence()) ?
             *asset : get("Children");
