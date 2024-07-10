@@ -72,6 +72,32 @@ namespace Planar::Engine::Core::FileSystem
         return buffer.str();
     }
 
+    void iterate_files_recursive(const std::filesystem::path& root,
+        const std::function<void(const std::filesystem::path&)>&
+        callback, const std::unordered_set<std::string>& skip_folders)
+    {
+        for (auto i =
+            std::filesystem::recursive_directory_iterator(root);
+            i != std::filesystem::recursive_directory_iterator();
+            ++i)
+        {
+            if (i->is_directory() && skip_folders.contains(i->path().
+                filename().string()))
+            {
+                i.disable_recursion_pending();
+
+                continue;
+            }
+
+            if (!i->is_regular_file())
+            {
+                continue;
+            }
+
+            callback(i->path());
+        }
+    }
+
     void sort_path_vector(std::vector<std::filesystem::path>& path_vector)
     {
         std::sort(path_vector.begin(), path_vector.end(),

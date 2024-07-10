@@ -9,7 +9,9 @@
 #include <vector>
 #include <cstddef>
 #include <optional>
+#include <functional>
 #include <filesystem>
+#include <unordered_set>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Core::FileSystem,
     SelectDialogResult)
@@ -25,6 +27,11 @@ namespace Planar::Engine::Core::FileSystem
         const std::string& contents);
 
     PLANAR_API std::string read_file(const std::filesystem::path& path);
+
+    PLANAR_API void iterate_files_recursive(
+        const std::filesystem::path& root,
+        const std::function<void(const std::filesystem::path&)>& callback,
+        const std::unordered_set<std::string>& skip_folders = {});
 
     PLANAR_API void sort_path_vector(
         std::vector<std::filesystem::path>& path_vector);
