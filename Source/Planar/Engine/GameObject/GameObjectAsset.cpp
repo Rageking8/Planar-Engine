@@ -1,5 +1,6 @@
 #include "Planar/Engine/GameObject/GameObjectAsset.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Component/Core/ComponentBase.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
@@ -58,12 +59,20 @@ namespace Planar::Engine::GameObject
 
     void GameObjectAsset::add_component(YAML::Node component)
     {
-        get("Components").push_back(component);
+        get_components().push_back(component);
     }
 
     YAML::Node GameObjectAsset::get_children() const
     {
         return (is_null() || is_sequence()) ?
             *asset : get("Children");
+    }
+
+    YAML::Node GameObjectAsset::get_components() const
+    {
+        PLANAR_ASSERT((!is_null() && !is_sequence()),
+            "This asset is not allowed to have components");
+
+        return get("Components");
     }
 }
