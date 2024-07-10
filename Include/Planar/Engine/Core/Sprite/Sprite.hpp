@@ -14,6 +14,7 @@ namespace Planar::Engine::Core::Sprite
     public:
         Sprite();
 
+        void load(const std::filesystem::path& sprite_path);
         void create(const std::filesystem::path& texture_path);
 
         void save() const;
