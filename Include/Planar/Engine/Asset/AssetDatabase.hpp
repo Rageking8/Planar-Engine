@@ -4,6 +4,7 @@
 
 #include <string>
 #include <memory>
+#include <filesystem>
 #include <unordered_map>
 
 namespace Planar::Engine::Asset
@@ -12,6 +13,8 @@ namespace Planar::Engine::Asset
     {
     public:
         AssetDatabase();
+
+        void load_asset_recursive(const std::filesystem::path& root);
 
         template <typename T>
         void add_owning_asset(std::shared_ptr<T> asset);
