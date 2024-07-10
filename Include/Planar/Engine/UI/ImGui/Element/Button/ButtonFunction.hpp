@@ -13,5 +13,5 @@ namespace Planar::Engine::UI::ImGui::Element::Button
         Math::Size2Df size = {});
 
     PLANAR_API bool button(const std::string& name,
-        GLuint texture, Math::Size2Df size);
+        GLuint texture, Math::Size2Df size, bool flip_y = true);
 }
