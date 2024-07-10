@@ -48,12 +48,12 @@ namespace Planar::Engine::GameObject
 
     void GameObjectAsset::remove_child(std::size_t index)
     {
-        YAML::Node target = get_children();
-        target.remove(index);
+        YAML::Node children = get_children();
+        children.remove(index);
 
-        if (target.size() == 0)
+        if (children.size() == 0)
         {
-            target = YAML::Node();
+            children = YAML::Node();
         }
     }
 
