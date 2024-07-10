@@ -62,6 +62,15 @@ namespace Planar::Engine::GameObject
         get_components().push_back(component);
     }
 
+    void GameObjectAsset::remove_component(std::size_t index)
+    {
+        YAML::Node components = get_components();
+        components.remove(index);
+
+        PLANAR_ASSERT(components.size() > 0,
+            "There should always be at least 1 component");
+    }
+
     YAML::Node GameObjectAsset::get_children() const
     {
         return (is_null() || is_sequence()) ?
