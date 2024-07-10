@@ -12,7 +12,8 @@ namespace Planar::Editor::UI::Window
     InspectorWindow::InspectorWindow(Core::Editor* editor) :
         EditorWindow("Inspector", editor), name_input("Name",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
-        0.f, 20.f, 20.f }), component_store(editor)
+        0.f, 20.f, 20.f }), component_store(editor),
+        component_renderer(editor)
     {
         set_padding({ { 0.f, 20.f } });
     }
@@ -104,7 +105,8 @@ namespace Planar::Editor::UI::Window
 
             if (game_object)
             {
-                component_renderer.render(component_store, *game_object);
+                component_renderer.render(component_store,
+                    game_object, &context_menu);
             }
         }
     }

@@ -5,6 +5,7 @@
 #include "Planar/Editor/UI/Container/ComponentStore.hpp"
 #include "Planar/Editor/UI/Renderer/ComponentRenderer.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
+#include "Planar/Engine/UI/ImGui/Menu/ContextMenu.hpp"
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 PLANAR_EDITOR_FORWARD_DECLARE_ENUM_CLASS(Core::Select, SelectType)
@@ -28,6 +29,7 @@ namespace Planar::Editor::UI::Window
         Engine::UI::ImGui::Element::InputField name_input;
         Container::ComponentStore component_store;
         Renderer::ComponentRenderer component_renderer;
+        Engine::UI::ImGui::Menu::ContextMenu context_menu;
 
         void handle_select(Core::Select::SelectType select_type);
     };
