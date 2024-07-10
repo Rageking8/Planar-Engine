@@ -1,6 +1,7 @@
 #include "Planar/Engine/Component/SpriteRenderer.hpp"
 #include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Core/Application.hpp"
+#include "Planar/Engine/Core/Sprite/Sprite.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/Component/Camera2D.hpp"
@@ -32,6 +33,11 @@ namespace Planar::Engine::Component
 
     void SpriteRenderer::render_impl()
     {
+        if (sprite.empty())
+        {
+            return;
+        }
+
         std::shared_ptr<Camera2D> camera = get_active_main_camera();
 
         if (!camera)
@@ -50,6 +56,8 @@ namespace Planar::Engine::Component
             camera->get_projection_mat());
 
         glActiveTexture(GL_TEXTURE0);
+        application->get_asset_database().get_owning_asset
+            <Engine::Core::Sprite::Sprite>(sprite)->get_texture().bind();
 
         application->get_object_manager().get_quad().bind();
         Graphics::OpenGL::Render::draw_arrays(
