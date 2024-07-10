@@ -49,6 +49,11 @@ namespace Planar::Editor::UI::Element::Component::Core
         return true;
     }
 
+    void ComponentBase::set_editor(Editor::Core::Editor* new_editor)
+    {
+        editor = new_editor;
+    }
+
     void ComponentBase::set_header_text(
         const std::string& new_header_text)
     {

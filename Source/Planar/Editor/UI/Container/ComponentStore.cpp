@@ -92,7 +92,10 @@ namespace Planar::Editor::UI::Container
     template <typename ComponentT>
     ComponentStore::Item& ComponentStore::add_element()
     {
-        return store[ComponentT::ComponentType::TYPE].
+        Item& result = store[ComponentT::ComponentType::TYPE].
             emplace_back(true, std::make_unique<ComponentT>());
+        result.component->set_editor(editor);
+
+        return result;
     }
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Element.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
@@ -8,6 +9,7 @@
 #include <string>
 #include <memory>
 
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component::Core, ComponentBase)
 
 namespace Planar::Editor::UI::Element::Component::Core
@@ -30,11 +32,14 @@ namespace Planar::Editor::UI::Element::Component::Core
             std::shared_ptr<Engine::Component::Core::ComponentBase>
             component, bool force = false);
 
+        void set_editor(Editor::Core::Editor* new_editor);
+
         void set_header_text(const std::string& new_header_text);
         void set_header_id(const std::string& new_header_id);
         void set_show_active_checkbox(bool new_show_active_checkbox);
 
     protected:
+        Editor::Core::Editor* editor;
         Engine::UI::ImGui::Element::Checkbox active_checkbox;
 
     private:
