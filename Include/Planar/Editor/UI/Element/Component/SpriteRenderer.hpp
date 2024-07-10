@@ -2,6 +2,11 @@
 
 #include "Planar/Editor/UI/Element/Component/Core/Component.hpp"
 #include "Planar/Engine/Component/SpriteRenderer.hpp"
+#include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
+
+#include <string>
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -13,7 +18,14 @@ namespace Planar::Editor::UI::Element::Component
 
         virtual bool get_modified(bool reset = true) override;
 
+        PLANAR_DECLARE_GET_SET(std::string, sprite)
+
     private:
+        bool sprite_modified;
+        std::string sprite;
+        Engine::UI::ImGui::Element::InputField sprite_input;
+        Engine::UI::ImGui::Element::Button::Button sprite_select_button;
+
         virtual void render_content() override;
 
         virtual void set_values_impl(ComponentType* sprite_renderer)
