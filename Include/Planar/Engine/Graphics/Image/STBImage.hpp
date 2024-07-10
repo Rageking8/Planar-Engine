@@ -16,8 +16,10 @@ namespace Planar::Engine::Graphics::Image
 
         PLANAR_DELETE_COPY_FUNCTIONS(STBImage)
 
-        bool load(const std::filesystem::path& image_path);
-        bool load(const unsigned char* buffer, std::size_t length);
+        bool load(const std::filesystem::path& image_path,
+            bool flip_y = true);
+        bool load(const unsigned char* buffer, std::size_t length,
+            bool flip_y = true);
         void free();
 
         unsigned char* get_data() const;
