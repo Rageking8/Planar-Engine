@@ -1,5 +1,4 @@
 #include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
-#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
 namespace Planar::Editor::Core::Progress
 {
@@ -12,8 +11,10 @@ namespace Planar::Editor::Core::Progress
 
     void ProgressHandler::operator()(unsigned amount) const
     {
-        PLANAR_ASSERT(progress_callback,
-            "`progress_callback` cannot be empty");
+        if (!progress_callback)
+        {
+            return;
+        }
 
         progress_callback(amount, "");
     }
@@ -21,8 +22,10 @@ namespace Planar::Editor::Core::Progress
     void ProgressHandler::operator()(const std::string& text,
         unsigned amount) const
     {
-        PLANAR_ASSERT(progress_callback,
-            "`progress_callback` cannot be empty");
+        if (!progress_callback)
+        {
+            return;
+        }
 
         progress_callback(amount, text + "...");
     }
