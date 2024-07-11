@@ -195,12 +195,16 @@ namespace Planar::Engine::UI::ImGui::Window
         std::optional<Math::Pos2Df> new_position)
     {
         position = new_position;
+
+        reset_first_render();
     }
 
     void Window::set_size(
         std::optional<Math::Size2Df> new_size)
     {
         size = new_size;
+
+        reset_first_render();
     }
 
     void Window::set_min_size(std::optional<Math::Size2Df> new_min_size)
