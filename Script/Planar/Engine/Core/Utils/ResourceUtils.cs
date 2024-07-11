@@ -32,11 +32,9 @@ public static class ResourceUtils
 
         using (var resource = Assembly.GetEntryAssembly().
             GetManifestResourceStream(resourceName))
+        using (var file = new FileStream(filePath, FileMode.Create))
         {
-            using (var file = new FileStream(filePath, FileMode.Create))
-            {
-                resource.CopyTo(file);
-            }
+            resource.CopyTo(file);
         }
     }
 }
