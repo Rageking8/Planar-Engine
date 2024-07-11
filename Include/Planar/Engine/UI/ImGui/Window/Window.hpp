@@ -60,6 +60,8 @@ namespace Planar::Engine::UI::ImGui::Window
         void set_padding(std::optional<Math::Size2Df> new_padding);
         void set_allow_close(bool new_allow_close);
 
+        void make_invisible();
+
         void reset_first_render();
 
     private:

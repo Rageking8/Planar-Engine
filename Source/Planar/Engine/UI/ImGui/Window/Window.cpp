@@ -228,6 +228,11 @@ namespace Planar::Engine::UI::ImGui::Window
         allow_close = new_allow_close;
     }
 
+    void Window::make_invisible()
+    {
+        set_position({ { 1'000'000.f, 1'000'000.f } });
+    }
+
     void Window::reset_first_render()
     {
         first_render = true;
