@@ -25,6 +25,7 @@ namespace Planar::Engine::UI::ImGui::Menu
     private:
         Window::Window window;
         std::function<bool()> content;
+        float offset;
         unsigned wait_frames;
     };
 }

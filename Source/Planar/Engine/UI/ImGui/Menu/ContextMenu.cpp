@@ -10,7 +10,7 @@
 namespace Planar::Engine::UI::ImGui::Menu
 {
     ContextMenu::ContextMenu() : window("ContextMenu", {}, false),
-        wait_frames{}
+        offset{ 5.f }, wait_frames{}
     {
         using namespace Planar::Engine::Core::Utils::EnumClass;
 
@@ -33,7 +33,7 @@ namespace Planar::Engine::UI::ImGui::Menu
 
             Math::Pos2Df position{ ::ImGui::GetMousePos().x,
                 ::ImGui::GetMousePos().y };
-            window.set_position(position - 5.f);
+            window.set_position(position - offset);
             window.reset_first_render();
             window.set_active(true);
         }
