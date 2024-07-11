@@ -202,4 +202,9 @@ namespace Planar::Engine::UI::ImGui
     {
         return flip_y ? ImVec2(1.f, 0.f) : ImVec2(1.f, 1.f);
     }
+
+    Math::Pos2Df get_mouse_pos()
+    {
+        return { ::ImGui::GetMousePos().x, ::ImGui::GetMousePos().y };
+    }
 }

@@ -75,4 +75,6 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API ImVec2 calc_uv0(bool flip_y);
 
     PLANAR_API ImVec2 calc_uv1(bool flip_y);
+
+    PLANAR_API Math::Pos2Df get_mouse_pos();
 }
