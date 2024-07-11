@@ -70,6 +70,8 @@ namespace Planar::Editor::Project
 
         cs_project.load(project_name, root_path);
 
+        create_engine_files({});
+
         return true;
     }
 
