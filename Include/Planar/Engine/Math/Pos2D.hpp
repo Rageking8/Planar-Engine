@@ -15,7 +15,7 @@ namespace Planar::Engine::Math
         Pos2D(std::array<T, 2> array);
 
         bool operator==(const Pos2D&) const = default;
-        Pos2D& operator-(T value);
+        Pos2D operator-(T value) const;
 
         std::array<T, 2> get_array() const;
 

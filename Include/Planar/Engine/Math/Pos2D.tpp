@@ -28,12 +28,13 @@ namespace Planar::Engine::Math
     }
 
     template <Core::Utils::Concepts::Arithmetic T>
-    inline Pos2D<T>& Pos2D<T>::operator-(T value)
+    inline Pos2D<T> Pos2D<T>::operator-(T value) const
     {
-        x -= value;
-        y -= value;
+        Pos2D<T> result = *this;
+        result.x -= value;
+        result.y -= value;
 
-        return *this;
+        return result;
     }
 
     template <Core::Utils::Concepts::Arithmetic T>
