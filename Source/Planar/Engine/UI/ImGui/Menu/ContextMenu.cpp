@@ -1,7 +1,7 @@
 #include "Planar/Engine/UI/ImGui/Menu/ContextMenu.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/Math/Pos2D.hpp"
+#include "Planar/Engine/Math/Size2D.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
@@ -29,13 +29,16 @@ namespace Planar::Engine::UI::ImGui::Menu
 
         if (right_clicked)
         {
-            wait_frames = 2;
+            wait_frames = 4;
 
-            Math::Pos2Df position{ ::ImGui::GetMousePos().x,
-                ::ImGui::GetMousePos().y };
-            window.set_position(position - offset);
-            window.reset_first_render();
+            window.make_invisible();
+            temp_mouse_position = get_mouse_pos();
             window.set_active(true);
+        }
+
+        if (wait_frames >= 2)
+        {
+            window.make_invisible();
         }
 
         std::unique_ptr<Window::Window::Scope> result =
@@ -53,6 +56,19 @@ namespace Planar::Engine::UI::ImGui::Menu
             clear_content();
 
             return false;
+        }
+
+        const Math::Size2Df window_size = get_window_size();
+        if (wait_frames == 2 && (temp_mouse_position.x - offset +
+            window_size.width) > get_main_viewport_size().width)
+        {
+            window.set_position({ { temp_mouse_position.x -
+                window_size.width + offset, temp_mouse_position.y -
+                offset } });
+        }
+        else if (wait_frames == 2)
+        {
+            window.set_position(temp_mouse_position - offset);
         }
 
         window.set_active(wait_frames != 0 ||

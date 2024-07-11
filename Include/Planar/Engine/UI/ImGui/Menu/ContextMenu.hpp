@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Math/Pos2D.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 
 #include <optional>
@@ -25,6 +26,7 @@ namespace Planar::Engine::UI::ImGui::Menu
     private:
         Window::Window window;
         std::function<bool()> content;
+        Math::Pos2Df temp_mouse_position;
         float offset;
         unsigned wait_frames;
     };
