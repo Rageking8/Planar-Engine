@@ -43,17 +43,12 @@ namespace Planar::Engine::Scene
 
     void SceneAsset::reload_from_path()
     {
-        PLANAR_ASSERT_NOT_EMPTY(path);
-
         Asset::load(path);
     }
 
     void SceneAsset::save()
     {
-        PLANAR_ASSERT_NOT_EMPTY(path);
-
-        Core::FileSystem::create_file(path,
-            Engine::Asset::to_string(*asset));
+        write(path);
     }
 
     std::string SceneAsset::get_name() const

@@ -31,10 +31,7 @@ namespace Planar::Engine::Core::Sprite
 
     void SpriteAsset::save() const
     {
-        PLANAR_ASSERT_NOT_EMPTY(path);
-
-        FileSystem::create_file(path,
-            Engine::Asset::to_string(*asset));
+        write(path);
     }
 
     std::string SpriteAsset::get_guid() const
