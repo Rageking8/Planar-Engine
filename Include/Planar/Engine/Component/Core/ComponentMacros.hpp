@@ -36,6 +36,6 @@
     }                                                            \
 
 #define PLANAR_DEFINE_COMPONENT_GET_SET(component, type, name) \
-    PLANAR_DEFINE_GET_SET(component, type, name, ,             \
+    PLANAR_DEFINE_GET_SET_CONTENT(component, type, name, ,     \
         asset.set_##name(new_##name);                          \
     )                                                          \
