@@ -22,6 +22,11 @@ namespace Planar::Engine::Scene
     void Scene::load(Core::Application* application,
         const std::filesystem::path& scene_path)
     {
+        if (scene_path.empty())
+        {
+            return;
+        }
+
         asset.load(scene_path);
 
         load_root();
