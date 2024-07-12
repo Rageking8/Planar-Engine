@@ -21,7 +21,7 @@ namespace Planar::Engine::Asset
         virtual void load(const std::string& asset_string);
         virtual void load(const std::filesystem::path& asset_path);
 
-        void write(const std::filesystem::path& write_path) const;
+        virtual void write(const std::filesystem::path& write_path) const;
 
         void set_node(YAML::Node node);
 
