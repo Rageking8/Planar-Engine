@@ -3,7 +3,7 @@
 #include "Planar/Editor/UI/Element/Component/Core/Component.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
-#include "Planar/Engine/UI/ImGui/Element/Drag/DragFloat.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Drag/Drag.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 namespace Planar::Editor::UI::Element::Component
