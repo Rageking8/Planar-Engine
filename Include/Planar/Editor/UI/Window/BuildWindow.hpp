@@ -6,6 +6,7 @@
 #include "Planar/Engine/UI/ImGui/Element/DropDown.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
 #include "Planar/Engine/UI/ImGui/Element/IntSlider.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Drag/Drag.hpp"
 #include "Planar/Editor/UI/Element/ProgressDisplay.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
@@ -28,8 +29,15 @@ namespace Planar::Editor::UI::Window
     private:
         Engine::UI::ImGui::Element::InputField build_directory_input;
         Engine::UI::ImGui::Element::Button::Button browse_button;
+
         Engine::UI::ImGui::Element::DropDown target_drop_down;
         Engine::UI::ImGui::Element::Checkbox show_console_window_checkbox;
+
+        Engine::UI::ImGui::Element::InputField window_name_input;
+        Engine::UI::ImGui::Element::Drag::DragInt2 window_size_drag;
+        Engine::UI::ImGui::Element::Checkbox window_maximize_checkbox;
+        Engine::UI::ImGui::Element::DropDown graphics_api_drop_down;
+
         Engine::UI::ImGui::Element::Checkbox use_compression_checkbox;
         Engine::UI::ImGui::Element::IntSlider compression_level_slider;
         Engine::UI::ImGui::Element::Button::Button build_button;

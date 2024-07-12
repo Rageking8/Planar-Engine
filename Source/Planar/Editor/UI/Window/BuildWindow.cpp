@@ -3,6 +3,7 @@
 #include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Editor/Build/Build.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
@@ -20,6 +21,12 @@ namespace Planar::Editor::UI::Window
         browse_button("Browse"),
         target_drop_down("Target:", 200.f, { "Windows 64-bit" }),
         show_console_window_checkbox("Show console window"),
+        window_name_input("Window name"),
+        window_size_drag("Window size:",
+        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FIXED,
+        300.f, 140.f }),
+        window_maximize_checkbox("Maximize window"),
+        graphics_api_drop_down("Graphics API:", 200.f, { "OpenGL 4.6" }),
         use_compression_checkbox("Use UPX compression"),
         compression_level_slider(7, 1, 9, "Compression Level:",
         200.f),
@@ -38,8 +45,12 @@ namespace Planar::Editor::UI::Window
 
     void BuildWindow::init()
     {
-        build_directory_input.set_text((editor->get_project().
-            get_root_path() / "Build").string());
+        const Project::Project& project = editor->get_project();
+        build_directory_input.set_text((project.get_root_path() /
+            "Build").string());
+        window_name_input.set_text(editor->get_project().
+            get_project_name());
+        window_size_drag.set_value({ 1280, 720 });
     }
 
     void BuildWindow::update()
@@ -82,6 +93,13 @@ namespace Planar::Editor::UI::Window
 
         target_drop_down.render();
         show_console_window_checkbox.render();
+
+        ImGui::separator(separator_extra_height);
+
+        window_name_input.render();
+        window_size_drag.render();
+        window_maximize_checkbox.render();
+        graphics_api_drop_down.render();
 
         ImGui::separator(separator_extra_height);
 
