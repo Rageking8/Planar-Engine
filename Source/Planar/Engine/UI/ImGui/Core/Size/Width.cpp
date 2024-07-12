@@ -6,16 +6,17 @@
 
 namespace Planar::Engine::UI::ImGui::Core::Size
 {
-    Width::Width(WidthMode mode, float width, float fill_offset_left,
-        float fill_offset_right) : mode{ mode }, width{ width },
-        fill_offset_left{ fill_offset_left },
-        fill_offset_right{ fill_offset_right }
+    Width::Width(WidthMode mode, float width, float x_offset,
+        float fill_width_offset) : mode{ mode }, width{ width },
+        x_offset{ x_offset }, fill_width_offset{ fill_width_offset }
     {
 
     }
 
     void Width::set() const
     {
+        Cursor::move_x(x_offset);
+
         switch (mode)
         {
         case WidthMode::DEFAULT:
@@ -26,9 +27,8 @@ namespace Planar::Engine::UI::ImGui::Core::Size
             break;
 
         case WidthMode::FILL:
-            Cursor::move_x(fill_offset_left);
             ::ImGui::SetNextItemWidth(get_content_region_avail().
-                width - fill_offset_right);
+                width - fill_width_offset);
             break;
         }
     }
@@ -43,13 +43,13 @@ namespace Planar::Engine::UI::ImGui::Core::Size
         width = new_width;
     }
 
-    void Width::set_fill_offset_left(float new_fill_offset_left)
+    void Width::set_x_offset(float new_x_offset)
     {
-        fill_offset_left = new_fill_offset_left;
+        x_offset = new_x_offset;
     }
 
-    void Width::set_fill_offset_right(float new_fill_offset_right)
+    void Width::set_fill_width_offset(float new_fill_width_offset)
     {
-        fill_offset_right = new_fill_offset_right;
+        fill_width_offset = new_fill_width_offset;
     }
 }
