@@ -4,19 +4,23 @@ using System.Runtime.InteropServices;
 using Planar.Engine.Math;
 using Planar.Engine.Graphics;
 
+using static Planar.Engine.Core.Utils.ResourceUtils;
+
 namespace Planar.Engine.Core;
 
 public class Application : IDisposable
 {
     private IntPtr _handle;
+    private ApplicationAsset _applicationAsset;
 
-    public Application(string windowName = "Application",
-        Size2D<int>? windowSize = null, bool maximize = false,
-        SupportedGraphicsAPI graphicsAPI = SupportedGraphicsAPI.OPENGL_4_6)
+    public Application()
     {
-        Size2D<int> newWindowSize = windowSize ?? new(1280, 720);
-        _handle = Planar_Engine_Core_Application_construct(windowName,
-            newWindowSize, maximize, graphicsAPI);
+        _applicationAsset = new(ReadResource("Application"));
+        _handle = Planar_Engine_Core_Application_construct(
+            _applicationAsset.GetWindowName(),
+            _applicationAsset.GetWindowSize(),
+            _applicationAsset.GetMaximizeWindow(),
+            _applicationAsset.GetGraphicsAPI());
     }
 
     ~Application()
