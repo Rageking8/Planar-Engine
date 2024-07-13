@@ -14,4 +14,10 @@ namespace Planar::Engine::Core::Utils::EnumClass
     {
         return value;
     }
+
+    template <Concepts::EnumClass T>
+    inline int EnumClassBase<T>::get_int() const
+    {
+        return static_cast<int>(value);
+    }
 }

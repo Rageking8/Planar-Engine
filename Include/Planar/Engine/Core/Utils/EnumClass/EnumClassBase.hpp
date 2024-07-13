@@ -15,6 +15,8 @@ namespace Planar::Engine::Core::Utils::EnumClass
         constexpr operator T() const;
         constexpr explicit operator bool() const = delete;
 
+        int get_int() const;
+
     protected:
         T value;
     };
