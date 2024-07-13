@@ -8,6 +8,12 @@ namespace Planar.Engine.Core.Utils;
 
 public static class ResourceUtils
 {
+    public static Stream GetResourceStream(string resourceName)
+    {
+        return Assembly.GetEntryAssembly().
+            GetManifestResourceStream(resourceName);
+    }
+
     public static string WriteDllToTemp(string dllName)
     {
         string assemblyName = GetAssemblyName();
@@ -30,8 +36,7 @@ public static class ResourceUtils
             Directory.CreateDirectory(parentDir);
         }
 
-        using (var resource = Assembly.GetEntryAssembly().
-            GetManifestResourceStream(resourceName))
+        using (var resource = GetResourceStream(resourceName))
         using (var file = new FileStream(filePath, FileMode.Create))
         {
             resource.CopyTo(file);
