@@ -28,3 +28,7 @@ add_library(stb STATIC
     ${STB_HEADERS_LIST}
     ${STB_SOURCES_LIST}
 )
+
+set_property(TARGET stb PROPERTY
+    MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
+)

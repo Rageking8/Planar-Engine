@@ -15,6 +15,10 @@ copy_single_source(
     ${PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR}/yaml-cpp
 )
 
+set_property(TARGET yaml-cpp PROPERTY
+    MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
+)
+
 target_link_options(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     /NATVIS:${yaml-cpp_SOURCE_DIR}/src/contrib/yaml-cpp.natvis
 )

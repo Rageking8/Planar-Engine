@@ -33,6 +33,10 @@ add_library(imgui STATIC
     ${IMGUI_SOURCES_LIST}
 )
 
+set_property(TARGET imgui PROPERTY
+    MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
+)
+
 target_include_directories(imgui PRIVATE
     ${imgui_SOURCE_DIR}
     ${GLFW_SOURCE_DIR}/include

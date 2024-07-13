@@ -1,5 +1,9 @@
 add_executable(${PLANAR_EDITOR_TARGET})
 
+set_property(TARGET ${PLANAR_EDITOR_TARGET} PROPERTY
+    MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
+)
+
 target_link_libraries(${PLANAR_EDITOR_TARGET} PRIVATE
     ${PLANAR_ENGINE_${PLANAR_EDITOR_LINK_ENGINE}_TARGET}
 )
