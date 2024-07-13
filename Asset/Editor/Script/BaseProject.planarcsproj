@@ -22,6 +22,10 @@
         <MSBUildProjectExtensionsPath>nul</MSBUildProjectExtensionsPath>
     </PropertyGroup>
 
+    <ItemGroup>
+        <EmbeddedResource Include="Build/Application.planarapp" LogicalName="Application" />
+    </ItemGroup>
+
     <ItemGroup Label="Engine Resources">
         <EmbeddedResource Include="Engine/PlanarEngine.dll" />
     </ItemGroup>
