@@ -72,19 +72,4 @@ namespace Planar::Engine::Asset
     {
         return *asset;
     }
-
-    std::array<float, 2> Asset::get_float_2(const std::string& key1,
-        const std::string& key2, const std::string& key3) const
-    {
-        return { get_value<float>(key1, key2),
-            get_value<float>(key1, key3) };
-    }
-
-    void Asset::set_float_2(const std::string& key1,
-        const std::string& key2, const std::string& key3,
-        std::array<float, 2> array) const
-    {
-        set_value(key1, key2, array[0]);
-        set_value(key1, key3, array[1]);
-    }
 }
