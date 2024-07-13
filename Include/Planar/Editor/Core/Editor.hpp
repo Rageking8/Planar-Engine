@@ -7,6 +7,7 @@
 #include "Planar/Editor/Core/EditorGameMode.hpp"
 #include "Planar/Editor/Core/Save/SaveHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
+#include "Planar/Editor/Core/Input/InputHandler.hpp"
 
 #include <string>
 #include <memory>
@@ -61,6 +62,7 @@ namespace Planar::Editor::Core
         std::unique_ptr<Engine::Scene::Scene> current_scene;
         Save::SaveHandler save_handler;
         Select::SelectHandler select_handler;
+        Input::InputHandler input_handler;
         EditorGameMode editor_game_mode;
 
         Engine::Math::Size2Di game_content_size;
@@ -68,5 +70,7 @@ namespace Planar::Editor::Core
         void load_assets();
 
         void reset_on_exit_play_mode();
+
+        virtual void update_impl() override;
     };
 }

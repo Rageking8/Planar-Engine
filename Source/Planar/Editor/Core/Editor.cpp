@@ -9,7 +9,7 @@ namespace Planar::Editor::Core
 {
     Editor::Editor() :
         Application("Planar Editor", { 1280, 720 }, true),
-        editor_game_mode{ EditorGameMode::STOPPED }
+        input_handler(this), editor_game_mode{ EditorGameMode::STOPPED }
     {
 
     }
@@ -178,5 +178,10 @@ namespace Planar::Editor::Core
 
         current_scene->reload_from_path();
         select_handler.restore_game_object(current_scene->get_root());
+    }
+
+    void Editor::update_impl()
+    {
+        input_handler.update();
     }
 }
