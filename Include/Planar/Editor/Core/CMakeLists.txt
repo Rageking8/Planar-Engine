@@ -3,6 +3,7 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     EditorGameMode.hpp
 )
 
+add_subdirectory(Input)
 add_subdirectory(Progress)
 add_subdirectory(Save)
 add_subdirectory(Select)
