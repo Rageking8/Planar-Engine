@@ -71,6 +71,8 @@ namespace Planar::Engine::Core
 
         while (!glfw_context.main_window_should_close())
         {
+            update_impl();
+
             if (main_scene)
             {
                 main_scene->update();
@@ -183,5 +185,10 @@ namespace Planar::Engine::Core
     {
         return glfw_context.create_window(graphics_api,
             window_size, window_name, maximize);
+    }
+
+    void Application::update_impl()
+    {
+
     }
 }

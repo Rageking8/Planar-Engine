@@ -74,5 +74,7 @@ namespace Planar::Engine::Core
         UI::ImGui::ImGuiContext imgui_context;
 
         std::unique_ptr<Scene::Scene> main_scene;
+
+        virtual void update_impl();
     };
 }
