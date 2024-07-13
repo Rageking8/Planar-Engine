@@ -7,6 +7,7 @@
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
 #include "Planar/Engine/UI/ImGui/Element/IntSlider.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/Drag.hpp"
+#include "Planar/Engine/Core/ApplicationAsset.hpp"
 #include "Planar/Editor/UI/Element/ProgressDisplay.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
@@ -42,6 +43,8 @@ namespace Planar::Editor::UI::Window
         Engine::UI::ImGui::Element::IntSlider compression_level_slider;
         Engine::UI::ImGui::Element::Button::Button build_button;
         UI::Element::ProgressDisplay progress_display;
+
+        Engine::Core::ApplicationAsset application_asset;
 
         bool pending_browse;
         bool pending_build;

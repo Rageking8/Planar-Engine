@@ -153,7 +153,7 @@ namespace Planar::Editor::UI::Window
     {
         pending_build = false;
 
-        Project::Project& project = editor->get_project();
+        const Project::Project& project = editor->get_project();
         const std::filesystem::path& build_path =
             build_directory_input.get_text();
         const bool show_console_window =
@@ -162,6 +162,11 @@ namespace Planar::Editor::UI::Window
             get_value();
         const unsigned compression_level = use_compression ?
             compression_level_slider.get_value() : 0;
+
+        application_asset.set_window_name(window_name_input.get_text());
+        application_asset.set_window_size(window_size_drag.get_value());
+        application_asset.set_maximize_window(window_maximize_checkbox.
+            get_value());
 
         enter_build_mode(Build::build_dry_run(project, build_path,
             show_console_window, compression_level));
