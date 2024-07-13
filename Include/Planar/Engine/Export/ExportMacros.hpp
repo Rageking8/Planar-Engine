@@ -58,15 +58,15 @@
         return new type;                                       \
     }                                                          \
 
-#define PLANAR_EXPORT_DEFINE_DESTRUCT(namespace_prefix) \
-    PLANAR_EXPORT_DESTRUCT_PROTOTYPE(namespace_prefix)  \
-    {                                                   \
-        delete handle;                                  \
-    }                                                   \
+#define PLANAR_EXPORT_DEFINE_DESTRUCT(namespace_prefix, type) \
+    PLANAR_EXPORT_DESTRUCT_PROTOTYPE(namespace_prefix)        \
+    {                                                         \
+        delete static_cast<type*>(handle);                    \
+    }                                                         \
 
 #define PLANAR_EXPORT_DEFINE_CONSTRUCT_DESTRUCT(namespace_prefix, type) \
     PLANAR_EXPORT_DEFINE_CONSTRUCT(namespace_prefix, type)              \
-    PLANAR_EXPORT_DEFINE_DESTRUCT(namespace_prefix)                     \
+    PLANAR_EXPORT_DEFINE_DESTRUCT(namespace_prefix, type)               \
 
 #define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION(...)                     \
     PLANAR_DEFINE_MACRO_OVERLOAD(PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION \

@@ -10,7 +10,8 @@ PLANAR_EXPORT_FUNCTION_PROTOTYPE(Planar_Engine_Core_Application_construct,
         maximize, graphics_api);
 }
 
-PLANAR_EXPORT_DEFINE_DESTRUCT(Planar_Engine_Core_Application)
+PLANAR_EXPORT_DEFINE_DESTRUCT(Planar_Engine_Core_Application,
+    Planar::Engine::Core::Application)
 
 PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION(Planar_Engine_Core_Application, init,
     bool, Planar::Engine::Core::Application)
