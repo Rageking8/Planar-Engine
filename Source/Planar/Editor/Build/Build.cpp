@@ -3,7 +3,10 @@
 #include "Planar/Editor/Build/DotnetArguments.hpp"
 #include "Planar/Editor/Build/Compression/Compression.hpp"
 #include "Planar/Editor/Core/Progress/Progress.hpp"
+#include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
+#include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Engine/Core/Execute/Execute.hpp"
+#include "Planar/Engine/Core/ApplicationAsset.hpp"
 
 namespace
 {
@@ -11,6 +14,7 @@ namespace
         const Planar::Editor::Project::Project& project,
         std::filesystem::path build_path, bool show_console_window,
         unsigned compression_level,
+        const Planar::Engine::Core::ApplicationAsset& application_asset,
         const Planar::Editor::Core::Progress::ProgressHandler&
         progress_handler, bool remove_artifacts)
     {
@@ -20,6 +24,13 @@ namespace
             project.get_root_path() / "Cache";
         const std::filesystem::path dotnet_exe_path =
             cache_path / "DotnetSDK" / "dotnet.exe";
+
+        Planar::Editor::Core::Progress::task(
+            "Writing application asset", [&]
+            {
+                application_asset.write(build_path /
+                    "Application.planarapp");
+            }, progress_handler, dry_run, tasks);
 
         Planar::Editor::Build::DotnetArguments dotnet_arguments(
             Planar::Editor::Build::Platform::WINDOWS_X64,
@@ -83,19 +94,23 @@ namespace Planar::Editor::Build
 {
     unsigned build_dry_run(const Project::Project& project,
         std::filesystem::path build_path, bool show_console_window,
-        unsigned compression_level, bool remove_artifacts)
+        unsigned compression_level,
+        const Engine::Core::ApplicationAsset& application_asset,
+        bool remove_artifacts)
     {
         return ::build(true, project, build_path, show_console_window,
-            compression_level, {}, remove_artifacts);
+            compression_level, application_asset, {}, remove_artifacts);
     }
 
     void build(const Project::Project& project,
         std::filesystem::path build_path, bool show_console_window,
         unsigned compression_level,
+        const Engine::Core::ApplicationAsset& application_asset,
         const Core::Progress::ProgressHandler& progress_handler,
         bool remove_artifacts)
     {
         ::build(false, project, build_path, show_console_window,
-            compression_level, progress_handler, remove_artifacts);
+            compression_level, application_asset, progress_handler,
+            remove_artifacts);
     }
 }

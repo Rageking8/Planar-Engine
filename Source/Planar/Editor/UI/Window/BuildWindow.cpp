@@ -169,11 +169,11 @@ namespace Planar::Editor::UI::Window
             get_value());
 
         enter_build_mode(Build::build_dry_run(project, build_path,
-            show_console_window, compression_level));
+            show_console_window, compression_level, application_asset));
 
         Build::build(project, build_path, show_console_window,
-            compression_level, { PLANAR_CAPTURE_THIS_PARAM2(
-            build_progress_callback) });
+            compression_level, application_asset, {
+            PLANAR_CAPTURE_THIS_PARAM2(build_progress_callback) });
 
         build_mode = false;
     }
