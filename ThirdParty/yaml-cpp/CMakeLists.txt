@@ -22,3 +22,7 @@ target_link_options(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
 target_compile_definitions(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     YAML_CPP_STATIC_DEFINE
 )
+
+target_compile_definitions(${PLANAR_EDITOR_TARGET} PRIVATE
+    YAML_CPP_STATIC_DEFINE
+)
