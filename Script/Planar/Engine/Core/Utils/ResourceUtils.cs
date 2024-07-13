@@ -26,6 +26,15 @@ public static class ResourceUtils
         return dllPath;
     }
 
+    public static string ReadResource(string resourceName)
+    {
+        using (var resource = GetResourceStream(resourceName))
+        using (var reader = new StreamReader(resource))
+        {
+            return reader.ReadToEnd();
+        }
+    }
+
     public static void WriteResourceToFilePath(string resourceName,
         string filePath)
     {
