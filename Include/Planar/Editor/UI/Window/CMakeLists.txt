@@ -13,3 +13,5 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     SceneWindow.hpp
     SettingsWindow.hpp
 )
+
+add_subdirectory(Core)
