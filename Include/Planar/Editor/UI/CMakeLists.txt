@@ -1,5 +1,6 @@
 add_subdirectory(Container)
 add_subdirectory(Element)
 add_subdirectory(Init)
+add_subdirectory(Menu)
 add_subdirectory(Renderer)
 add_subdirectory(Window)
