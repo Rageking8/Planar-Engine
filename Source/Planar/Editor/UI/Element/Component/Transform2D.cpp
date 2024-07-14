@@ -17,12 +17,7 @@ namespace Planar::Editor::UI::Element::Component
 
     bool Transform2D::get_modified(bool reset)
     {
-        bool position_modified = position.get_modified(reset);
-        bool rotation_modified = rotation.get_modified(reset);
-        bool scale_modified = scale.get_modified(reset);
-
-        return position_modified || rotation_modified ||
-            scale_modified;
+        return modified_helper(reset, position, rotation, scale);
     }
 
     PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(Transform2D,

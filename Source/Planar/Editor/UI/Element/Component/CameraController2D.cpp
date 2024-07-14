@@ -17,14 +17,8 @@ namespace Planar::Editor::UI::Element::Component
 
     bool CameraController2D::get_modified(bool reset)
     {
-        bool active_modified = active_checkbox.get_modified(reset);
-        bool horizontal_speed_modified = horizontal_speed.
-            get_modified(reset);
-        bool vertical_speed_modified = vertical_speed.
-            get_modified(reset);
-
-        return active_modified || horizontal_speed_modified ||
-            vertical_speed_modified;
+        return modified_helper(reset, active_checkbox,
+            horizontal_speed, vertical_speed);
     }
 
     PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(CameraController2D,

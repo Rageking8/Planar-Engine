@@ -12,6 +12,23 @@ namespace Planar::Editor::UI::Element::Component::Core
     }
 
     template <typename ComponentT>
+    template <typename... Args>
+    inline bool Component<ComponentT>::modified_helper(
+        bool reset, Args&... args)
+    {
+        bool result = false;
+
+        ([&]
+            {
+                // Avoid short circuiting and evaluate all arguments
+                bool current = args.get_modified(reset);
+                result = result || current;
+            }(), ...);
+
+        return result;
+    }
+
+    template <typename ComponentT>
     inline void Component<ComponentT>::set_values_impl(
         std::shared_ptr<Engine::Component::Core::ComponentBase>&
         component)

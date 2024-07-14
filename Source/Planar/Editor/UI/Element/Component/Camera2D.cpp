@@ -12,10 +12,7 @@ namespace Planar::Editor::UI::Element::Component
 
     bool Camera2D::get_modified(bool reset)
     {
-        bool active_modified = active_checkbox.get_modified(reset);
-        bool pixel_scale_modified = pixel_scale.get_modified(reset);
-
-        return active_modified || pixel_scale_modified;
+        return modified_helper(reset, active_checkbox, pixel_scale);
     }
 
     PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_1(Camera2D,

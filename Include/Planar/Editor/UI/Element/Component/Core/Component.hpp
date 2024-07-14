@@ -17,6 +17,10 @@ namespace Planar::Editor::UI::Element::Component::Core
 
         Component(bool show_active_checkbox = true);
 
+    protected:
+        template <typename... Args>
+        bool modified_helper(bool reset, Args&... args);
+
     private:
         virtual void set_values_impl(
             std::shared_ptr<Engine::Component::Core::ComponentBase>&

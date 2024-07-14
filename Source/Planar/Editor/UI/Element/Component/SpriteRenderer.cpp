@@ -19,15 +19,11 @@ namespace Planar::Editor::UI::Element::Component
 
     bool SpriteRenderer::get_modified(bool reset)
     {
-        bool active_modified = active_checkbox.get_modified(reset);
         bool current_sprite_modified = sprite_modified;
-        bool flip_x_modified = flip_x_checkbox.get_modified(reset);
-        bool flip_y_modified = flip_y_checkbox.get_modified(reset);
-
         sprite_modified = false;
 
-        return active_modified || current_sprite_modified ||
-            flip_x_modified || flip_y_modified;
+        return modified_helper(reset, active_checkbox, flip_x_checkbox,
+            flip_y_checkbox) || current_sprite_modified;
     }
 
     void SpriteRenderer::render_content()
