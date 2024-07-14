@@ -28,3 +28,7 @@
 
 #define PLANAR_ASSERT_NOT_EMPTY(variable)                          \
     PLANAR_ASSERT(!variable.empty(), `variable` must not be empty) \
+
+#define PLANAR_ASSERT_CONTAINS(container, value) \
+    PLANAR_ASSERT(container.contains(value),     \
+        `container` must contain `value`)        \
