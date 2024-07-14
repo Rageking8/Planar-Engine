@@ -1,9 +1,11 @@
 #pragma once
 
-#include "Planar/Editor/Script/CSProject.hpp"
-#include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <filesystem>
+
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Script, CSProject)
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core::Progress, ProgressHandler)
 
 namespace Planar::Editor::Core::VisualStudio
 {

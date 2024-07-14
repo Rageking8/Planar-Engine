@@ -1,4 +1,5 @@
 #include "Planar/Editor/Core/Progress/Progress.hpp"
+#include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
 
 namespace Planar::Editor::Core::Progress
 {

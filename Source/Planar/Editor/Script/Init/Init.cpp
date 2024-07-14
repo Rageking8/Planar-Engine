@@ -1,5 +1,6 @@
 #include "Planar/Editor/Script/Init/Init.hpp"
 #include "Asset/Editor/dotnet_sdk.h"
+#include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Core/Archive/Archive.hpp"

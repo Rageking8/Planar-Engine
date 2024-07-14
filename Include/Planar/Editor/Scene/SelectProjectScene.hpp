@@ -8,6 +8,8 @@
 #include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
 #include "Planar/Editor/UI/Element/ProgressDisplay.hpp"
 
+#include <string>
+
 namespace Planar::Editor::Scene
 {
     class SelectProjectScene : public Scene

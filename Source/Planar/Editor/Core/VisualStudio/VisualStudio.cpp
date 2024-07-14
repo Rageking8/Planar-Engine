@@ -1,4 +1,6 @@
 #include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
+#include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
+#include "Planar/Editor/Script/CSProject.hpp"
 #include "Planar/Engine/Core/Execute/Execute.hpp"
 
 namespace Planar::Editor::Core::VisualStudio
