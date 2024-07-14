@@ -7,12 +7,12 @@ namespace Planar::Editor::UI::Window
     template <typename ComponentT>
     inline void InspectorWindow::add_component()
     {
-        Core::Select::SelectHandler& select_handler =
+        Editor::Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
-        const Core::Select::SelectType select_type =
+        const Editor::Core::Select::SelectType select_type =
             select_handler.get_select_type();
 
-        if (select_type != Core::Select::SelectType::GAME_OBJECT)
+        if (select_type != Editor::Core::Select::SelectType::GAME_OBJECT)
         {
             return;
         }

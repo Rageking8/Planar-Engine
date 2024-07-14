@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindow.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/ContextMenu.hpp"
@@ -13,10 +13,10 @@ PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Editor::UI::Window
 {
-    class HierarchyWindow : public EditorWindow
+    class HierarchyWindow : public Core::EditorWindow
     {
     public:
-        HierarchyWindow(Core::Editor* editor);
+        HierarchyWindow(Editor::Core::Editor* editor);
 
         virtual void render_window() override;
 

@@ -1,9 +1,9 @@
-#include "Planar/Editor/UI/Window/EditorWindowManager.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindowManager.hpp"
 
-namespace Planar::Editor::UI::Window
+namespace Planar::Editor::UI::Window::Core
 {
-    EditorWindowManager::EditorWindowManager(Core::Editor* editor) :
-        editor{ editor }
+    EditorWindowManager::EditorWindowManager(
+        Editor::Core::Editor* editor) : editor{ editor }
     {
 
     }

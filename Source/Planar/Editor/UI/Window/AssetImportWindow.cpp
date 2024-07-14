@@ -13,7 +13,7 @@
 
 namespace Planar::Editor::UI::Window
 {
-    AssetImportWindow::AssetImportWindow(Core::Editor* editor) :
+    AssetImportWindow::AssetImportWindow(Editor::Core::Editor* editor) :
         EditorWindow("Asset Import", editor, false),
         asset_path_input("Asset path"), browse_button("Browse"),
         import_type_dropdown("Import type:", 200.f),

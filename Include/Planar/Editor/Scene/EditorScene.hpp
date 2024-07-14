@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Planar/Editor/Scene/Scene.hpp"
-#include "Planar/Editor/UI/Window/EditorWindowManager.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindowManager.hpp"
 #include "Planar/Editor/UI/Element/PlayStopToggle.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
@@ -20,7 +20,7 @@ namespace Planar::Editor::Scene
         virtual void render() override;
 
     private:
-        UI::Window::EditorWindowManager window_manager;
+        UI::Window::Core::EditorWindowManager window_manager;
 
         UI::Element::PlayStopToggle play_stop_toggle;
 

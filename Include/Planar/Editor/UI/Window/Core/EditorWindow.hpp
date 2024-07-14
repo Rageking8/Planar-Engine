@@ -7,14 +7,14 @@
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
-namespace Planar::Editor::UI::Window
+namespace Planar::Editor::UI::Window::Core
 {
     class EditorWindow :
         public Engine::UI::ImGui::Window::Window
     {
     public:
         EditorWindow(const std::string& name,
-            Core::Editor* editor, bool active = true);
+            Editor::Core::Editor* editor, bool active = true);
 
         virtual void init();
         virtual void update();
@@ -22,6 +22,6 @@ namespace Planar::Editor::UI::Window
         virtual void render_window() = 0;
 
     protected:
-        Core::Editor* editor;
+        Editor::Core::Editor* editor;
     };
 }

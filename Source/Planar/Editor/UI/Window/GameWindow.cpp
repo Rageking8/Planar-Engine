@@ -7,7 +7,7 @@
 
 namespace Planar::Editor::UI::Window
 {
-    GameWindow::GameWindow(Core::Editor* editor) :
+    GameWindow::GameWindow(Editor::Core::Editor* editor) :
         EditorWindow("Game", editor)
     {
 
@@ -30,7 +30,7 @@ namespace Planar::Editor::UI::Window
         }
 
         if (editor->get_editor_game_mode() ==
-            Core::EditorGameMode::PLAYING)
+            Editor::Core::EditorGameMode::PLAYING)
         {
             current_scene->update();
         }
@@ -92,7 +92,7 @@ namespace Planar::Editor::UI::Window
         auto& current_scene = editor->get_current_scene();
 
         if (current_scene && editor->get_editor_game_mode() ==
-            Core::EditorGameMode::PLAYING)
+            Editor::Core::EditorGameMode::PLAYING)
         {
             current_scene->render();
         }

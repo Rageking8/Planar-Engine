@@ -120,7 +120,7 @@ namespace Planar::Editor::Scene
         if (main_menu_bar.start())
         {
             auto make_active_on_menu_item = [](const std::string& name,
-                std::shared_ptr<UI::Window::EditorWindow> window,
+                std::shared_ptr<UI::Window::Core::EditorWindow> window,
                 bool reset_first_render = false)
                 {
                     if (ImGui::Menu::menu_item(name))

@@ -9,7 +9,7 @@
 
 namespace Planar::Editor::UI::Window
 {
-    InspectorWindow::InspectorWindow(Core::Editor* editor) :
+    InspectorWindow::InspectorWindow(Editor::Core::Editor* editor) :
         EditorWindow("Inspector", editor), name_input("Name",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
         0.f, 20.f, 20.f }), component_store(editor),
@@ -26,24 +26,24 @@ namespace Planar::Editor::UI::Window
 
     void InspectorWindow::update()
     {
-        Core::Select::SelectHandler& select_handler =
+        Editor::Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
-        const Core::Select::SelectType select_type =
+        const Editor::Core::Select::SelectType select_type =
             select_handler.get_select_type();
         const bool editor_game_playing = editor->
-            get_editor_game_mode() == Core::EditorGameMode::PLAYING;
+            get_editor_game_mode() == Editor::Core::EditorGameMode::PLAYING;
 
         if (name_input.get_modified())
         {
             switch (select_type)
             {
-            case Core::Select::SelectType::NONE:
+            case Editor::Core::Select::SelectType::NONE:
                 break;
 
-            case Core::Select::SelectType::CONTENT:
+            case Editor::Core::Select::SelectType::CONTENT:
                 break;
 
-            case Core::Select::SelectType::GAME_OBJECT:
+            case Editor::Core::Select::SelectType::GAME_OBJECT:
                 std::shared_ptr<Engine::GameObject::GameObject>
                     game_object = select_handler.get_game_object();
                 
@@ -57,7 +57,7 @@ namespace Planar::Editor::UI::Window
             }
         }
 
-        if (select_type == Core::Select::SelectType::GAME_OBJECT)
+        if (select_type == Editor::Core::Select::SelectType::GAME_OBJECT)
         {
             std::shared_ptr<Engine::GameObject::GameObject>
                 game_object = select_handler.get_game_object();
@@ -86,17 +86,17 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        Core::Select::SelectHandler& select_handler =
+        Editor::Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
-        const Core::Select::SelectType select_type =
+        const Editor::Core::Select::SelectType select_type =
             select_handler.get_select_type();
 
-        if (select_type != Core::Select::SelectType::NONE)
+        if (select_type != Editor::Core::Select::SelectType::NONE)
         {
             name_input.render();
         }
 
-        if (select_type == Core::Select::SelectType::GAME_OBJECT)
+        if (select_type == Editor::Core::Select::SelectType::GAME_OBJECT)
         {
             ImGui::Core::Cursor::move_y(8.f);
 
@@ -112,22 +112,22 @@ namespace Planar::Editor::UI::Window
     }
 
     void InspectorWindow::handle_select(
-        Core::Select::SelectType select_type)
+        Editor::Core::Select::SelectType select_type)
     {
-        Core::Select::SelectHandler& select_handler =
+        Editor::Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
 
         switch (select_type)
         {
-        case Core::Select::SelectType::NONE:
+        case Editor::Core::Select::SelectType::NONE:
             name_input.clear_text();
             break;
 
-        case Core::Select::SelectType::CONTENT:
+        case Editor::Core::Select::SelectType::CONTENT:
             name_input.set_text(select_handler.get_name());
             break;
 
-        case Core::Select::SelectType::GAME_OBJECT:
+        case Editor::Core::Select::SelectType::GAME_OBJECT:
             std::shared_ptr<Engine::GameObject::GameObject>
                 game_object = select_handler.get_game_object();
 

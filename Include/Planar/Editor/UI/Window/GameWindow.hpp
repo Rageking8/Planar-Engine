@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindow.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
@@ -10,10 +10,10 @@ PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {
-    class GameWindow : public EditorWindow
+    class GameWindow : public Core::EditorWindow
     {
     public:
-        GameWindow(Core::Editor* editor);
+        GameWindow(Editor::Core::Editor* editor);
 
         virtual void init() override;
         virtual void update() override;

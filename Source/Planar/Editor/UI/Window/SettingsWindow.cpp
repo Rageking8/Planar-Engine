@@ -2,7 +2,7 @@
 
 namespace Planar::Editor::UI::Window
 {
-    SettingsWindow::SettingsWindow(Core::Editor* editor) :
+    SettingsWindow::SettingsWindow(Editor::Core::Editor* editor) :
         EditorWindow("Settings", editor),
         pending_restore_default_layout{},
         restore_default_layout_button("Restore Default Layout")

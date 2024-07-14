@@ -12,7 +12,7 @@
 
 namespace Planar::Editor::UI::Window
 {
-    ContentWindow::ContentWindow(Core::Editor* editor) :
+    ContentWindow::ContentWindow(Editor::Core::Editor* editor) :
         EditorWindow("Content", editor),
         folder_texture{}, file_texture{}, left_arrow_texture{}
     {

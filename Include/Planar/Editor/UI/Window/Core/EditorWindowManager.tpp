@@ -1,7 +1,7 @@
-#include "Planar/Editor/UI/Window/EditorWindowManager.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindowManager.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
-namespace Planar::Editor::UI::Window
+namespace Planar::Editor::UI::Window::Core
 {
     template <typename T>
         requires std::derived_from<T, EditorWindow>

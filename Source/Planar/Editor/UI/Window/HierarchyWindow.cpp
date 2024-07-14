@@ -6,7 +6,7 @@
 
 namespace Planar::Editor::UI::Window
 {
-    HierarchyWindow::HierarchyWindow(Core::Editor* editor) :
+    HierarchyWindow::HierarchyWindow(Editor::Core::Editor* editor) :
         EditorWindow("Hierarchy", editor), context_menu_active{}
     {
         set_padding({ { 0.f, 15.f } });

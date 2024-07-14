@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindow.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Editor/UI/Container/ComponentStore.hpp"
 #include "Planar/Editor/UI/Renderer/ComponentRenderer.hpp"
@@ -12,10 +12,10 @@ PLANAR_EDITOR_FORWARD_DECLARE_ENUM_CLASS(Core::Select, SelectType)
 
 namespace Planar::Editor::UI::Window
 {
-    class InspectorWindow : public EditorWindow
+    class InspectorWindow : public Core::EditorWindow
     {
     public:
-        InspectorWindow(Core::Editor* editor);
+        InspectorWindow(Editor::Core::Editor* editor);
 
         virtual void init() override;
         virtual void update() override;
@@ -31,7 +31,8 @@ namespace Planar::Editor::UI::Window
         Renderer::ComponentRenderer component_renderer;
         Engine::UI::ImGui::Menu::ContextMenu context_menu;
 
-        void handle_select(Core::Select::SelectType select_type);
+        void handle_select(
+            Editor::Core::Select::SelectType select_type);
     };
 }
 

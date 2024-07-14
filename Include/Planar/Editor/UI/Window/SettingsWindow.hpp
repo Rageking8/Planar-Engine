@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindow.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
 
@@ -8,10 +8,10 @@ PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {
-    class SettingsWindow : public EditorWindow
+    class SettingsWindow : public Core::EditorWindow
     {
     public:
-        SettingsWindow(Core::Editor* editor);
+        SettingsWindow(Editor::Core::Editor* editor);
 
         virtual void render_window() override;
 

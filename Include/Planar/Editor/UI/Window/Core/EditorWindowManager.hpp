@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindow.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
@@ -10,12 +10,12 @@
 
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
-namespace Planar::Editor::UI::Window
+namespace Planar::Editor::UI::Window::Core
 {
     class EditorWindowManager
     {
     public:
-        EditorWindowManager(Core::Editor* editor);
+        EditorWindowManager(Editor::Core::Editor* editor);
 
         template <typename T>
             requires std::derived_from<T, EditorWindow>
@@ -30,11 +30,11 @@ namespace Planar::Editor::UI::Window
         void render();
 
     private:
-        Core::Editor* editor;
+        Editor::Core::Editor* editor;
 
         std::unordered_map<std::string, std::shared_ptr<EditorWindow>>
             window_map;
     };
 }
 
-#include "Planar/Editor/UI/Window/EditorWindowManager.tpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindowManager.tpp"

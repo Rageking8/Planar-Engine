@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Planar/Editor/UI/Window/EditorWindow.hpp"
+#include "Planar/Editor/UI/Window/Core/EditorWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/UI/ImGui/Element/DropDown.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
@@ -12,10 +12,10 @@ PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Core, Editor)
 
 namespace Planar::Editor::UI::Window
 {
-    class AssetImportWindow : public EditorWindow
+    class AssetImportWindow : public Core::EditorWindow
     {
     public:
-        AssetImportWindow(Core::Editor* editor);
+        AssetImportWindow(Editor::Core::Editor* editor);
 
         virtual void update() override;
 
