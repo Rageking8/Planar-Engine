@@ -5,6 +5,7 @@
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include <string>
 #include <memory>
 #include <filesystem>
 
@@ -32,6 +33,8 @@ namespace Planar::Engine::Scene
         virtual void editor_update();
 
         virtual void render();
+
+        virtual std::string get_name() const;
 
         Core::Application* get_application() const;
         SceneAsset& get_asset();

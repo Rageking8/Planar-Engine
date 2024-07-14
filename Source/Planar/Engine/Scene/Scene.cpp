@@ -94,6 +94,11 @@ namespace Planar::Engine::Scene
             });
     }
 
+    std::string Scene::get_name() const
+    {
+        return asset.get_name();
+    }
+
     Core::Application* Scene::get_application() const
     {
         return application;

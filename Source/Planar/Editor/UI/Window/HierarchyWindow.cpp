@@ -33,8 +33,7 @@ namespace Planar::Editor::UI::Window
             std::unique_ptr<Engine::Scene::Scene>& current_scene =
                 editor->get_current_scene();
 
-            hierarchy_tree.set_text(current_scene->get_asset().
-                get_name());
+            hierarchy_tree.set_text(current_scene->get_name());
             hierarchy_tree.set_id(current_scene->get_asset().
                 get_guid());
             render_scene_game_object(current_scene->get_root());
