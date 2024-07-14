@@ -17,7 +17,7 @@ namespace Planar::Editor::UI::Window
     public:
         AssetImportWindow(Core::Editor* editor);
 
-        void update();
+        virtual void update() override;
 
         virtual void render_window() override;
 

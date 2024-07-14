@@ -8,4 +8,14 @@ namespace Planar::Editor::UI::Window
     {
 
     }
+
+    void EditorWindow::init()
+    {
+
+    }
+
+    void EditorWindow::update()
+    {
+
+    }
 }

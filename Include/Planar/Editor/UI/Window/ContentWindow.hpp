@@ -18,7 +18,7 @@ namespace Planar::Editor::UI::Window
     public:
         ContentWindow(Core::Editor* editor);
 
-        void init();
+        virtual void init() override;
 
         virtual void render_window() override;
 

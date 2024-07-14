@@ -16,6 +16,9 @@ namespace Planar::Editor::UI::Window
         EditorWindow(const std::string& name,
             Core::Editor* editor, bool active = true);
 
+        virtual void init();
+        virtual void update();
+
         virtual void render_window() = 0;
 
     protected:
