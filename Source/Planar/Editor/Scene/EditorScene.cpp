@@ -10,19 +10,9 @@
 #include "Planar/Editor/UI/Window/SceneWindow.hpp"
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
 #include "Planar/Editor/UI/Window/AssetImportWindow.hpp"
-#include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/UI/ImGui/Window/Window.hpp"
-#include "Planar/Engine/UI/ImGui/Menu/Menu.hpp"
-#include "Planar/Engine/UI/ImGui/Menu/MainMenuBar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Docking/Docking.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
-#include "Planar/Engine/Core/Shell/Shell.hpp"
-#include "Planar/Engine/Component/Transform2D.hpp"
-#include "Planar/Engine/Component/Camera2D.hpp"
-#include "Planar/Engine/Component/CameraController2D.hpp"
-#include "Planar/Engine/Component/SpriteRenderer.hpp"
 
-#include <string>
 #include <memory>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
@@ -39,7 +29,8 @@ PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
 namespace Planar::Editor::Scene
 {
     EditorScene::EditorScene(Core::Editor* editor) :
-        Scene(editor), window_manager(editor)
+        Scene(editor), window_manager(editor),
+        menu_bar(editor, window_manager)
     {
         PLANAR_CREATE_WINDOW(Hierarchy);
         PLANAR_CREATE_WINDOW(Inspector);
@@ -76,6 +67,8 @@ namespace Planar::Editor::Scene
             restore_default_layout();
         }
 
+        UI::Element::PlayStopToggle& play_stop_toggle =
+            menu_bar.get_play_stop_toggle();
         if (play_stop_toggle.get_modified())
         {
             editor->set_editor_game_mode(play_stop_toggle.get() ==
@@ -93,7 +86,7 @@ namespace Planar::Editor::Scene
 
         ImGui::Core::Docking::dock_space_over_viewport();
 
-        render_main_menu_bar();
+        menu_bar.render();
 
         window_manager.render();
     }
@@ -110,125 +103,5 @@ namespace Planar::Editor::Scene
         PLANAR_LOAD_EDITOR_ICON_TEXTURE(folder_texture, FolderIcon)
         PLANAR_LOAD_EDITOR_ICON_TEXTURE(left_arrow_texture,
             LeftArrowIcon)
-    }
-
-    void EditorScene::render_main_menu_bar()
-    {
-        using namespace Engine::UI;
-
-        ImGui::Menu::MainMenuBar main_menu_bar;
-        if (main_menu_bar.start())
-        {
-            auto make_active_on_menu_item = [](const std::string& name,
-                std::shared_ptr<UI::Window::Core::EditorWindow> window,
-                bool reset_first_render = false)
-                {
-                    if (ImGui::Menu::menu_item(name))
-                    {
-                        window->set_active(true);
-
-                        if (reset_first_render)
-                        {
-                            window->reset_first_render();
-                        }
-                    }
-                };
-
-            main_menu_bar.add_menu("File",
-                [&]()
-                {
-                    ImGui::Menu::menu_item("New Project");
-                    ImGui::Menu::menu_item("Open Project");
-                    
-                    ImGui::separator();
-
-                    if (ImGui::Menu::menu_item("Save", "Ctrl + S"))
-                    {
-                        editor->save_all();
-                    }
-                    ImGui::Menu::menu_item("Save As",
-                        "Ctrl + Shift + S");
-
-                    ImGui::separator();
-
-                    ImGui::Menu::menu_item("Exit");
-                });
-
-            main_menu_bar.add_menu("Build",
-                [&]()
-                {
-                    make_active_on_menu_item("Build Project",
-                        PLANAR_GET_WINDOW(Build), true);
-                });
-
-            main_menu_bar.add_menu("Component",
-                [&]()
-                {
-                    using namespace Engine::Component;
-
-                    add_component_menu_item<Transform2D>();
-                    add_component_menu_item<Camera2D>();
-                    add_component_menu_item<CameraController2D>();
-                    add_component_menu_item<SpriteRenderer>();
-                });
-
-            main_menu_bar.add_menu("Asset",
-                [&]()
-                {
-                    make_active_on_menu_item("Asset Import",
-                        PLANAR_GET_WINDOW(AssetImport), true);
-                });
-
-            main_menu_bar.add_menu("Window",
-                [&]()
-                {
-                    make_active_on_menu_item("Hierarchy",
-                        PLANAR_GET_WINDOW(Hierarchy));
-
-                    ImGui::separator();
-
-                    make_active_on_menu_item("Scene",
-                        PLANAR_GET_WINDOW(Scene));
-                    make_active_on_menu_item("Game",
-                        PLANAR_GET_WINDOW(Game));
-
-                    ImGui::separator();
-
-                    make_active_on_menu_item("Inspector",
-                        PLANAR_GET_WINDOW(Inspector));
-                    make_active_on_menu_item("Settings",
-                        PLANAR_GET_WINDOW(Settings));
-
-                    ImGui::separator();
-
-                    make_active_on_menu_item("Content",
-                        PLANAR_GET_WINDOW(Content));
-                    make_active_on_menu_item("Console",
-                        PLANAR_GET_WINDOW(Console));
-                });
-
-            main_menu_bar.add_menu("Help",
-                []()
-                {
-                    if (ImGui::Menu::menu_item("Website"))
-                    {
-                        Engine::Core::Shell::open_planar_website();
-                    }
-                });
-
-            play_stop_toggle.render();
-        }
-    }
-
-    template <typename ComponentT>
-    void EditorScene::add_component_menu_item()
-    {
-        const std::string label_prefix = "Add ";
-
-        if (Engine::UI::ImGui::Menu::menu_item(label_prefix +
-            ComponentT::NAME))
-        {
-            PLANAR_GET_WINDOW(Inspector)->add_component<ComponentT>();
-        }
     }
 }

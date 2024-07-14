@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Planar/Editor/Scene/Scene.hpp"
+#include "Planar/Editor/UI/Menu/EditorMenuBar.hpp"
 #include "Planar/Editor/UI/Window/Core/EditorWindowManager.hpp"
-#include "Planar/Editor/UI/Element/PlayStopToggle.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture2D.hpp"
 
@@ -21,8 +21,7 @@ namespace Planar::Editor::Scene
 
     private:
         UI::Window::Core::EditorWindowManager window_manager;
-
-        UI::Element::PlayStopToggle play_stop_toggle;
+        UI::Menu::EditorMenuBar menu_bar;
 
         Engine::Graphics::OpenGL::Texture::Texture2D file_texture;
         Engine::Graphics::OpenGL::Texture::Texture2D folder_texture;
@@ -31,10 +30,5 @@ namespace Planar::Editor::Scene
         void restore_default_layout() const;
 
         void load_icons();
-
-        void render_main_menu_bar();
-
-        template <typename ComponentT>
-        void add_component_menu_item();
     };
 }
