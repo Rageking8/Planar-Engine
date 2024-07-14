@@ -182,6 +182,9 @@ namespace Planar::Editor::Core
 
     void Editor::update_impl()
     {
-        input_handler.update();
+        if (main_scene->get_name() == "EditorScene")
+        {
+            input_handler.update();
+        }
     }
 }
