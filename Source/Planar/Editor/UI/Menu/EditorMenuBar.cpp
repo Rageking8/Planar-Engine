@@ -117,10 +117,11 @@ namespace Planar::Editor::UI::Menu
     }
 
     void EditorMenuBar::window_menu_item(const std::string& name,
-        const std::string& label, bool reset_first_render)
+        const std::string& label, bool reset_first_render,
+        const std::string& shortcut)
     {
         if (Engine::UI::ImGui::Menu::menu_item(
-            label.empty() ? name : label))
+            label.empty() ? name : label, shortcut))
         {
             std::shared_ptr<Window::Core::EditorWindow> window =
                 window_manager.get(name);
