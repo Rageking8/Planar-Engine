@@ -12,23 +12,40 @@
 #include "Planar/Engine/Graphics/OpenGL/Render/Render.hpp"
 
 #include "ThirdParty/glad/gl.h"
+#include "ThirdParty/glm/gtc/matrix_transform.hpp"
 
 #include <memory>
 
 namespace Planar::Engine::Component
 {
     SpriteRenderer::SpriteRenderer(GameObject::GameObject* parent,
-        bool generate_guid) : Component(parent, generate_guid)
+        bool generate_guid) : Component(parent, generate_guid),
+        flip_x{}, flip_y{}
     {
 
     }
 
     PLANAR_DEFINE_COMPONENT_GET_SET(SpriteRenderer, std::string,
         sprite)
+    PLANAR_DEFINE_COMPONENT_GET_SET(SpriteRenderer, bool, flip_x)
+    PLANAR_DEFINE_COMPONENT_GET_SET(SpriteRenderer, bool, flip_y)
+
+    glm::mat4 SpriteRenderer::calc_model_mat() const
+    {
+        std::shared_ptr<Transform2D> transform = get_transform();
+
+        glm::mat4 model = transform->get_model_mat();
+        model = glm::scale(model,
+            { flip_x ? -1.f : 1.f, flip_y ? -1.f : 1.f, 1.f });
+
+        return model;
+    }
 
     void SpriteRenderer::load_impl()
     {
         set_sprite(asset.get_sprite());
+        set_flip_x(asset.get_flip_x());
+        set_flip_y(asset.get_flip_y());
     }
 
     void SpriteRenderer::render_impl()
@@ -45,14 +62,12 @@ namespace Planar::Engine::Component
             return;
         }
 
-        std::shared_ptr<Transform2D> transform = get_transform();
-
         Engine::Core::Application* application = get_parent()->
             get_scene()->get_application();
 
         application->get_shader_manager().get
             <Graphics::OpenGL::Shader::SpriteShader>("Sprite")->use(
-            transform->get_model_mat(), camera->get_view_mat(),
+            calc_model_mat(), camera->get_view_mat(),
             camera->get_projection_mat());
 
         glActiveTexture(GL_TEXTURE0);

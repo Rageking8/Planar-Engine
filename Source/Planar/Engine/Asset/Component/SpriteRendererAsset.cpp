@@ -11,10 +11,16 @@ namespace Planar::Engine::Asset::Component
 
     PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_VALUE(SpriteRenderer,
         std::string, sprite, Sprite)
+    PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_VALUE(SpriteRenderer,
+        bool, flip_x, FlipX)
+    PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_VALUE(SpriteRenderer,
+        bool, flip_y, FlipY)
 
     void SpriteRendererAsset::load_impl(
         Engine::Component::SpriteRenderer& sprite_renderer)
     {
         set_sprite(sprite_renderer.get_sprite());
+        set_flip_x(sprite_renderer.get_flip_x());
+        set_flip_y(sprite_renderer.get_flip_y());
     }
 }

@@ -11,7 +11,8 @@
 namespace Planar::Editor::UI::Element::Component
 {
     SpriteRenderer::SpriteRenderer() : sprite_modified{},
-        sprite_select_button("Select")
+        sprite_select_button("Select"), flip_x_checkbox("Flip X"),
+        flip_y_checkbox("Flip Y")
     {
 
     }
@@ -20,10 +21,13 @@ namespace Planar::Editor::UI::Element::Component
     {
         bool active_modified = active_checkbox.get_modified(reset);
         bool current_sprite_modified = sprite_modified;
+        bool flip_x_modified = flip_x_checkbox.get_modified(reset);
+        bool flip_y_modified = flip_y_checkbox.get_modified(reset);
 
         sprite_modified = false;
 
-        return active_modified || current_sprite_modified;
+        return active_modified || current_sprite_modified ||
+            flip_x_modified || flip_y_modified;
     }
 
     void SpriteRenderer::render_content()
@@ -49,6 +53,11 @@ namespace Planar::Editor::UI::Element::Component
                 sprite_modified = true;
             }
         }
+
+        ImGui::Core::Cursor::move_y(10.f);
+        flip_x_checkbox.render();
+        ImGui::Core::Cursor::move_y(10.f);
+        flip_y_checkbox.render();
     }
 
     void SpriteRenderer::set_values_impl(ComponentType* sprite_renderer)
@@ -66,11 +75,16 @@ namespace Planar::Editor::UI::Element::Component
                 get_owning_asset<Engine::Core::Sprite::Sprite>(sprite)->
                 get_name() + ".planarsprite");
         }
+
+        flip_x_checkbox.set_value(sprite_renderer->get_flip_x());
+        flip_y_checkbox.set_value(sprite_renderer->get_flip_y());
     }
 
     void SpriteRenderer::write_values_impl(ComponentType* sprite_renderer)
     {
         sprite_renderer->set_active(active_checkbox.get_value());
         sprite_renderer->set_sprite(sprite);
+        sprite_renderer->set_flip_x(flip_x_checkbox.get_value());
+        sprite_renderer->set_flip_y(flip_y_checkbox.get_value());
     }
 }

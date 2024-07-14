@@ -7,6 +7,8 @@
 #include "Planar/Engine/Asset/Component/SpriteRendererAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include "ThirdParty/glm/fwd.hpp"
+
 #include <string>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
@@ -24,9 +26,15 @@ namespace Planar::Engine::Component
             bool generate_guid = true);
 
         PLANAR_DECLARE_GET_SET(std::string, sprite)
+        PLANAR_DECLARE_GET_SET(bool, flip_x)
+        PLANAR_DECLARE_GET_SET(bool, flip_y)
 
     private:
         std::string sprite;
+        bool flip_x;
+        bool flip_y;
+
+        glm::mat4 calc_model_mat() const;
 
         virtual void load_impl() override;
 

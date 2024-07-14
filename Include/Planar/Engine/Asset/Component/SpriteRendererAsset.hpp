@@ -19,6 +19,8 @@ namespace Planar::Engine::Asset::Component
         SpriteRendererAsset();
 
         PLANAR_DECLARE_GET_SET(std::string, sprite)
+        PLANAR_DECLARE_GET_SET(bool, flip_x)
+        PLANAR_DECLARE_GET_SET(bool, flip_y)
 
     private:
         virtual void load_impl(
