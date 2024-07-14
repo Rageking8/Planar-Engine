@@ -25,6 +25,8 @@ namespace Planar::Editor::UI::Window::Core
             requires std::derived_from<T, EditorWindow>
         std::shared_ptr<T> get(const std::string& name);
 
+        std::shared_ptr<EditorWindow> get(const std::string& name) const;
+
         void init();
         void update();
         void render();

@@ -1,4 +1,5 @@
 #include "Planar/Editor/UI/Window/Core/EditorWindowManager.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
 namespace Planar::Editor::UI::Window::Core
 {
@@ -6,6 +7,14 @@ namespace Planar::Editor::UI::Window::Core
         Editor::Core::Editor* editor) : editor{ editor }
     {
 
+    }
+
+    std::shared_ptr<EditorWindow> EditorWindowManager::get(
+        const std::string& name) const
+    {
+        PLANAR_ASSERT_CONTAINS(window_map, name);
+
+        return window_map.at(name);
     }
 
     void EditorWindowManager::init()
