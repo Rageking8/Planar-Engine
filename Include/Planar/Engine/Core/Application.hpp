@@ -69,13 +69,13 @@ namespace Planar::Engine::Core
         Graphics::OpenGL::Core::ObjectManager object_manager;
         Graphics::OpenGL::Shader::ShaderManager shader_manager;
 
+        std::unique_ptr<Scene::Scene> main_scene;
+
         PLANAR_ADD_BASE_USING(Application)
 
     private:
         GLFW::GLFWContext glfw_context;
         UI::ImGui::ImGuiContext imgui_context;
-
-        std::unique_ptr<Scene::Scene> main_scene;
 
         virtual void update_impl();
     };
