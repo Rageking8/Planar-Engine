@@ -1,6 +1,15 @@
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Asset/LoadAssetMacros.hpp"
+#include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
+#include "Planar/Editor/UI/Window/InspectorWindow.hpp"
+#include "Planar/Editor/UI/Window/SettingsWindow.hpp"
+#include "Planar/Editor/UI/Window/ContentWindow.hpp"
+#include "Planar/Editor/UI/Window/ConsoleWindow.hpp"
+#include "Planar/Editor/UI/Window/GameWindow.hpp"
+#include "Planar/Editor/UI/Window/SceneWindow.hpp"
+#include "Planar/Editor/UI/Window/BuildWindow.hpp"
+#include "Planar/Editor/UI/Window/AssetImportWindow.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Window/Window.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/Menu.hpp"
@@ -14,45 +23,55 @@
 #include "Planar/Engine/Component/SpriteRenderer.hpp"
 
 #include <string>
+#include <memory>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Layout, DefaultLayout)
 PLANAR_LOAD_EDITOR_ICON(FileIcon)
 PLANAR_LOAD_EDITOR_ICON(FolderIcon)
 PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
 
+#define PLANAR_CREATE_WINDOW(type)                         \
+    window_manager.create<UI::Window::type##Window>(#type) \
+
+#define PLANAR_GET_WINDOW(type)                         \
+    window_manager.get<UI::Window::type##Window>(#type) \
+
 namespace Planar::Editor::Scene
 {
     EditorScene::EditorScene(Core::Editor* editor) :
-        Scene(editor), hierarchy_window(editor),
-        inspector_window(editor), settings_window(editor),
-        content_window(editor), console_window(editor),
-        game_window(editor), scene_window(editor),
-        build_window(editor), asset_import_window(editor)
+        Scene(editor), window_manager(editor)
     {
-
+        PLANAR_CREATE_WINDOW(Hierarchy);
+        PLANAR_CREATE_WINDOW(Inspector);
+        PLANAR_CREATE_WINDOW(Settings);
+        PLANAR_CREATE_WINDOW(Content);
+        PLANAR_CREATE_WINDOW(Console);
+        PLANAR_CREATE_WINDOW(Game);
+        PLANAR_CREATE_WINDOW(Scene);
+        PLANAR_CREATE_WINDOW(Build);
+        PLANAR_CREATE_WINDOW(AssetImport);
     }
 
     void EditorScene::init()
     {
         load_icons();
 
-        inspector_window.init();
+        std::shared_ptr<UI::Window::ContentWindow>
+            content_window = PLANAR_GET_WINDOW(Content);
 
-        content_window.set_file_texture(file_texture);
-        content_window.set_folder_texture(folder_texture);
-        content_window.set_left_arrow_texture(left_arrow_texture);
-        content_window.init();
+        content_window->set_file_texture(file_texture);
+        content_window->set_folder_texture(folder_texture);
+        content_window->set_left_arrow_texture(left_arrow_texture);
 
-        game_window.init();
-
-        build_window.init();
+        window_manager.init();
 
         restore_default_layout();
     }
 
     void EditorScene::update()
     {
-        if (settings_window.get_pending_restore_default_layout())
+        if (PLANAR_GET_WINDOW(Settings)->
+            get_pending_restore_default_layout())
         {
             restore_default_layout();
         }
@@ -65,10 +84,7 @@ namespace Planar::Editor::Scene
                 Core::EditorGameMode::STOPPED);
         }
 
-        inspector_window.update();
-        game_window.update();
-        build_window.update();
-        asset_import_window.update();
+        window_manager.update();
     }
 
     void EditorScene::render()
@@ -79,15 +95,7 @@ namespace Planar::Editor::Scene
 
         render_main_menu_bar();
 
-        hierarchy_window.render_window();
-        inspector_window.render_window();
-        settings_window.render_window();
-        content_window.render_window();
-        console_window.render_window();
-        game_window.render_window();
-        scene_window.render_window();
-        build_window.render_window();
-        asset_import_window.render_window();
+        window_manager.render();
     }
 
     void EditorScene::restore_default_layout() const
@@ -112,16 +120,16 @@ namespace Planar::Editor::Scene
         if (main_menu_bar.start())
         {
             auto make_active_on_menu_item = [](const std::string& name,
-                ImGui::Window::Window& window,
+                std::shared_ptr<UI::Window::EditorWindow> window,
                 bool reset_first_render = false)
                 {
                     if (ImGui::Menu::menu_item(name))
                     {
-                        window.set_active(true);
+                        window->set_active(true);
 
                         if (reset_first_render)
                         {
-                            window.reset_first_render();
+                            window->reset_first_render();
                         }
                     }
                 };
@@ -150,7 +158,7 @@ namespace Planar::Editor::Scene
                 [&]()
                 {
                     make_active_on_menu_item("Build Project",
-                        build_window, true);
+                        PLANAR_GET_WINDOW(Build), true);
                 });
 
             main_menu_bar.add_menu("Component",
@@ -168,35 +176,35 @@ namespace Planar::Editor::Scene
                 [&]()
                 {
                     make_active_on_menu_item("Asset Import",
-                        asset_import_window, true);
+                        PLANAR_GET_WINDOW(AssetImport), true);
                 });
 
             main_menu_bar.add_menu("Window",
                 [&]()
                 {
                     make_active_on_menu_item("Hierarchy",
-                        hierarchy_window);
+                        PLANAR_GET_WINDOW(Hierarchy));
 
                     ImGui::separator();
 
                     make_active_on_menu_item("Scene",
-                        scene_window);
+                        PLANAR_GET_WINDOW(Scene));
                     make_active_on_menu_item("Game",
-                        game_window);
+                        PLANAR_GET_WINDOW(Game));
 
                     ImGui::separator();
 
                     make_active_on_menu_item("Inspector",
-                        inspector_window);
+                        PLANAR_GET_WINDOW(Inspector));
                     make_active_on_menu_item("Settings",
-                        settings_window);
+                        PLANAR_GET_WINDOW(Settings));
 
                     ImGui::separator();
 
                     make_active_on_menu_item("Content",
-                        content_window);
+                        PLANAR_GET_WINDOW(Content));
                     make_active_on_menu_item("Console",
-                        console_window);
+                        PLANAR_GET_WINDOW(Console));
                 });
 
             main_menu_bar.add_menu("Help",
@@ -220,7 +228,7 @@ namespace Planar::Editor::Scene
         if (Engine::UI::ImGui::Menu::menu_item(label_prefix +
             ComponentT::NAME))
         {
-            inspector_window.add_component<ComponentT>();
+            PLANAR_GET_WINDOW(Inspector)->add_component<ComponentT>();
         }
     }
 }
