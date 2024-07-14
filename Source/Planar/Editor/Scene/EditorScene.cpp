@@ -29,7 +29,7 @@ PLANAR_LOAD_EDITOR_ICON(LeftArrowIcon)
 namespace Planar::Editor::Scene
 {
     EditorScene::EditorScene(Core::Editor* editor) :
-        Scene(editor), window_manager(editor),
+        Scene(editor, "EditorScene"), window_manager(editor),
         menu_bar(editor, window_manager)
     {
         PLANAR_CREATE_WINDOW(Hierarchy);

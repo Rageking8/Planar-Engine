@@ -3,8 +3,8 @@
 
 namespace Planar::Editor::Scene
 {
-    Scene::Scene(Core::Editor* editor) :
-        Engine::Scene::Scene(editor), editor{ editor }
+    Scene::Scene(Core::Editor* editor, const std::string& name) :
+        Engine::Scene::Scene(editor), editor{ editor }, name{ name }
     {
 
     }
@@ -12,5 +12,10 @@ namespace Planar::Editor::Scene
     Scene::~Scene()
     {
 
+    }
+
+    std::string Scene::get_name() const
+    {
+        return name;
     }
 }
