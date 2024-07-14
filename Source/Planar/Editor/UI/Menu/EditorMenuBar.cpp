@@ -44,12 +44,13 @@ namespace Planar::Editor::UI::Menu
                     {
                         editor->save_all();
                     }
-                    ImGui::Menu::menu_item("Save As",
-                        "Ctrl + Shift + S");
 
                     ImGui::separator();
 
-                    ImGui::Menu::menu_item("Exit");
+                    if (ImGui::Menu::menu_item("Exit"))
+                    {
+                        editor->exit();
+                    }
                 });
 
             main_menu_bar.add_menu("Build",
