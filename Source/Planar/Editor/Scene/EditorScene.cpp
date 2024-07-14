@@ -91,6 +91,15 @@ namespace Planar::Editor::Scene
         window_manager.render();
     }
 
+    void EditorScene::open_build_window() const
+    {
+        std::shared_ptr<UI::Window::Core::EditorWindow>
+            build_window = window_manager.get("Build");
+
+        build_window->set_active(true);
+        build_window->reset_first_render();
+    }
+
     void EditorScene::restore_default_layout() const
     {
         Engine::UI::ImGui::load_ini_from_string(

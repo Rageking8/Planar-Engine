@@ -56,7 +56,8 @@ namespace Planar::Editor::UI::Menu
             main_menu_bar.add_menu("Build",
                 [&]()
                 {
-                    window_menu_item("Build", "Build Project", true);
+                    window_menu_item("Build", "Build Project", true,
+                        "Ctrl + B");
                 });
 
             main_menu_bar.add_menu("Component",

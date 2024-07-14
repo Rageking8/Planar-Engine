@@ -17,5 +17,6 @@ namespace Planar::Editor::Core::Input
         Editor* editor;
 
         bool save_shortcut_ready;
+        bool open_build_window_shortcut_ready;
     };
 }

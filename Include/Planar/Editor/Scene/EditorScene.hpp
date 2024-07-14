@@ -19,6 +19,8 @@ namespace Planar::Editor::Scene
         virtual void update() override;
         virtual void render() override;
 
+        void open_build_window() const;
+
     private:
         UI::Window::Core::EditorWindowManager window_manager;
         UI::Menu::EditorMenuBar menu_bar;
