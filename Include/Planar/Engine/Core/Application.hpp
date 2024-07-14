@@ -28,6 +28,8 @@ namespace Planar::Engine::Core
             Graphics::SupportedGraphicsAPI::OPENGL_4_6);
         virtual ~Application();
 
+        void exit();
+
         virtual bool init();
         virtual void run();
 

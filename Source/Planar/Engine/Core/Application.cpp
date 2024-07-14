@@ -24,6 +24,11 @@ namespace Planar::Engine::Core
 
     }
 
+    void Application::exit()
+    {
+        glfw_context.close_main_window();
+    }
+
     bool Application::init()
     {
         bool result = init_glfw() && create_window() &&
