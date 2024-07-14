@@ -3,6 +3,7 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Editor/UI/Init/Init.hpp"
+#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::Core
@@ -103,6 +104,14 @@ namespace Planar::Editor::Core
         current_scene.reset();
 
         select_handler.select_none(Select::SelectType::GAME_OBJECT);
+    }
+
+    Scene::EditorScene* Editor::get_editor_scene() const
+    {
+        PLANAR_ASSERT(main_scene->get_name() == "EditorScene",
+            "`main_scene` is not of type `EditorScene`");
+
+        return static_cast<Scene::EditorScene*>(main_scene.get());
     }
 
     void Editor::add_save_callback(const std::string& name,

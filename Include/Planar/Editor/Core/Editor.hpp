@@ -8,11 +8,14 @@
 #include "Planar/Editor/Core/Save/SaveHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
 #include "Planar/Editor/Core/Input/InputHandler.hpp"
+#include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
 #include <memory>
 #include <functional>
 #include <filesystem>
+
+PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Scene, EditorScene)
 
 namespace Planar::Editor::Core
 {
@@ -41,6 +44,8 @@ namespace Planar::Editor::Core
         void new_current_scene(
             const std::filesystem::path& scene_path);
         void close_current_scene();
+
+        Scene::EditorScene* get_editor_scene() const;
 
         void add_save_callback(const std::string& name,
             const std::function<void()>& save_callback);
