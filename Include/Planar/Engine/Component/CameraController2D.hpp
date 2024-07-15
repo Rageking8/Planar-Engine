@@ -8,6 +8,8 @@
 #include "Planar/Engine/Asset/Component/CameraController2DAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include <string>
+
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
@@ -22,10 +24,12 @@ namespace Planar::Engine::Component
         CameraController2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
+        PLANAR_DECLARE_GET_SET(std::string, mode)
         PLANAR_DECLARE_GET_SET(Math::Size2Df, horizontal_speed)
         PLANAR_DECLARE_GET_SET(Math::Size2Df, vertical_speed)
 
     private:
+        std::string mode;
         Math::Size2Df horizontal_speed;
         Math::Size2Df vertical_speed;
 

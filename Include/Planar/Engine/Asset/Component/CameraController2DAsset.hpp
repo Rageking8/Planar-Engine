@@ -6,6 +6,8 @@
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Asset/Component/Mixin/Active.hpp"
 
+#include <string>
+
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component, CameraController2D)
 
 namespace Planar::Engine::Asset::Component
@@ -17,6 +19,7 @@ namespace Planar::Engine::Asset::Component
     public:
         CameraController2DAsset();
 
+        PLANAR_DECLARE_GET_SET(std::string, mode)
         PLANAR_DECLARE_GET_SET(Math::Size2Df, horizontal_speed)
         PLANAR_DECLARE_GET_SET(Math::Size2Df, vertical_speed)
 

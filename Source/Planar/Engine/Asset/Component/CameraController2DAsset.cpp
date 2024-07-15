@@ -9,6 +9,8 @@ namespace Planar::Engine::Asset::Component
 
     }
 
+    PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_VALUE(CameraController2D,
+        std::string, mode, Mode)
     PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_FLOAT_2(CameraController2D,
         Math::Size2Df, horizontal_speed, HorizontalSpeed, Left, Right)
     PLANAR_DEFINE_COMPONENT_ASSET_GET_SET_FLOAT_2(CameraController2D,
@@ -17,6 +19,7 @@ namespace Planar::Engine::Asset::Component
     void CameraController2DAsset::load_impl(
         Engine::Component::CameraController2D& camera_controller)
     {
+        set_mode(camera_controller.get_mode());
         set_horizontal_speed(camera_controller.get_horizontal_speed());
         set_vertical_speed(camera_controller.get_vertical_speed());
     }
