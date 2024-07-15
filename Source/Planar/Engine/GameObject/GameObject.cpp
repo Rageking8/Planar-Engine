@@ -3,11 +3,7 @@
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 #include "Planar/Engine/Core/Utils/Stack/Stack.hpp"
-#include "Planar/Engine/Component/Transform2D.hpp"
-#include "Planar/Engine/Component/Camera2D.hpp"
-#include "Planar/Engine/Component/CameraController2D.hpp"
-#include "Planar/Engine/Component/SpriteRenderer.hpp"
-#include "Planar/Engine/Component/CharacterController2D.hpp"
+#include "Planar/Engine/Component/Core/AllComponent.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
