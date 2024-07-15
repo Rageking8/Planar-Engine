@@ -35,8 +35,10 @@ namespace Planar::Editor::UI::Menu
             main_menu_bar.add_menu("File",
                 [&]()
                 {
-                    ImGui::Menu::menu_item("New Project");
-                    ImGui::Menu::menu_item("Open Project");
+                    if (ImGui::Menu::menu_item("Select project"))
+                    {
+
+                    }
 
                     ImGui::separator();
 
