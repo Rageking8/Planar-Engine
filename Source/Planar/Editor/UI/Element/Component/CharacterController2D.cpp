@@ -20,12 +20,12 @@ namespace Planar::Editor::UI::Element::Component
     void CharacterController2D::set_values_impl(
         ComponentType* character_controller)
     {
-
+        active_checkbox.set_value(character_controller->get_active());
     }
 
     void CharacterController2D::write_values_impl(
         ComponentType* character_controller)
     {
-
+        character_controller->set_active(active_checkbox.get_value());
     }
 }
