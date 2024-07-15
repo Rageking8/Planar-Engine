@@ -27,5 +27,7 @@ namespace Planar::Engine::Component
         float speed;
 
         virtual void load_impl() override;
+
+        virtual void update_impl() override;
     };
 }
