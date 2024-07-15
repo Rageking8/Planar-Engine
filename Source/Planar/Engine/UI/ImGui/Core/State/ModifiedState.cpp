@@ -24,6 +24,11 @@ namespace Planar::Engine::UI::ImGui::Core::State
         modified |= value;
     }
 
+    void ModifiedState::set_modified()
+    {
+        modified = true;
+    }
+
     void ModifiedState::clear_modified()
     {
         modified = false;
