@@ -39,6 +39,9 @@ namespace Planar::Engine::Component::Core
         GameObject::GameObject* get_parent() const;
         void set_parent(GameObject::GameObject* new_parent);
 
+        template <typename ComponentT>
+        std::shared_ptr<ComponentT> get_component();
+
         std::shared_ptr<Transform2D> get_transform() const;
         std::shared_ptr<Camera2D> get_active_main_camera() const;
 
@@ -55,3 +58,5 @@ namespace Planar::Engine::Component::Core
         GameObject::GameObject* parent;
     };
 }
+
+#include "Planar/Engine/Component/Core/ComponentBase.tpp"
