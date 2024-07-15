@@ -1,6 +1,9 @@
 #include "Planar/Engine/Component/CharacterController2D.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
+#include "Planar/Engine/Component/SpriteRenderer.hpp"
 #include "Planar/Engine/Core/Input/InputController.hpp"
+
+#include <memory>
 
 namespace Planar::Engine::Component
 {
@@ -31,6 +34,9 @@ namespace Planar::Engine::Component
         auto& input_controller = get_input_controller();
         std::shared_ptr<Transform2D> transform = get_transform();
 
+        bool left = false;
+        bool right = false;
+
         if (input_controller.key_down('W'))
         {
             transform->translate_y(speed);
@@ -39,6 +45,7 @@ namespace Planar::Engine::Component
         if (input_controller.key_down('A'))
         {
             transform->translate_x(-speed);
+            left = true;
         }
 
         if (input_controller.key_down('S'))
@@ -49,6 +56,19 @@ namespace Planar::Engine::Component
         if (input_controller.key_down('D'))
         {
             transform->translate_x(speed);
+            right = true;
+        }
+
+        if (enable_x_flip)
+        {
+            std::shared_ptr<SpriteRenderer> sprite_renderer =
+                get_component<SpriteRenderer>();
+
+            if (sprite_renderer && (left ^ right))
+            {
+                sprite_renderer->set_flip_x((left && !inverse_x_flip) ||
+                    (right && inverse_x_flip));
+            }
         }
     }
 }
