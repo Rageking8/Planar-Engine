@@ -91,8 +91,7 @@ namespace Planar::Editor::UI::Window
 
         auto& current_scene = editor->get_current_scene();
 
-        if (current_scene && editor->get_editor_game_mode() ==
-            Editor::Core::EditorGameMode::PLAYING)
+        if (current_scene)
         {
             current_scene->render();
         }
