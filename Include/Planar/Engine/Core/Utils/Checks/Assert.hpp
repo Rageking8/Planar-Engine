@@ -32,3 +32,7 @@
 #define PLANAR_ASSERT_CONTAINS(container, value) \
     PLANAR_ASSERT(container.contains(value),     \
         `container` must contain `value`)        \
+
+#define PLANAR_ASSERT_RANGE(container, index) \
+    PLANAR_ASSERT(index < container.size(),   \
+        `index` not in range of `container`)  \
