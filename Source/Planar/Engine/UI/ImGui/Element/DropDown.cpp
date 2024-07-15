@@ -1,5 +1,6 @@
 #include "Planar/Engine/UI/ImGui/Element/DropDown.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
 #include <cstddef>
@@ -36,6 +37,11 @@ namespace Planar::Engine::UI::ImGui::Element
         {
             ::ImGui::SetNextItemWidth(width);
         }
+
+        Style::StyleVar style_var;
+        style_var.set_window_padding({ 24.f, 6.f });
+        style_var.set_frame_padding({ 12.f, 9.f });
+        style_var.set_item_spacing({ 24.f, 14.f });
 
         if (::ImGui::BeginCombo(label.c_str(), preview, flags))
         {
