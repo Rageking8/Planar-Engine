@@ -22,9 +22,13 @@ namespace Planar::Engine::Component
             bool generate_guid = true);
 
         PLANAR_DECLARE_GET_SET(float, speed)
+        PLANAR_DECLARE_GET_SET(bool, enable_x_flip)
+        PLANAR_DECLARE_GET_SET(bool, inverse_x_flip)
 
     private:
         float speed;
+        bool enable_x_flip;
+        bool inverse_x_flip;
 
         virtual void load_impl() override;
 

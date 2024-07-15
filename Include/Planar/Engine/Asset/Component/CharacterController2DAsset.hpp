@@ -17,6 +17,8 @@ namespace Planar::Engine::Asset::Component
         CharacterController2DAsset();
 
         PLANAR_DECLARE_GET_SET(float, speed)
+        PLANAR_DECLARE_GET_SET(bool, enable_x_flip)
+        PLANAR_DECLARE_GET_SET(bool, inverse_x_flip)
 
     private:
         virtual void load_impl(

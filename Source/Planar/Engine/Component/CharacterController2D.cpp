@@ -6,17 +6,24 @@ namespace Planar::Engine::Component
 {
     CharacterController2D::CharacterController2D(
         GameObject::GameObject* parent, bool generate_guid) :
-        Component(parent, generate_guid), speed{ 0.1f }
+        Component(parent, generate_guid), speed{ 0.1f },
+        enable_x_flip{ true }, inverse_x_flip{ false }
     {
 
     }
 
     PLANAR_DEFINE_COMPONENT_GET_SET(CharacterController2D,
         float, speed)
+    PLANAR_DEFINE_COMPONENT_GET_SET(CharacterController2D,
+        bool, enable_x_flip)
+    PLANAR_DEFINE_COMPONENT_GET_SET(CharacterController2D,
+        bool, inverse_x_flip)
 
     void CharacterController2D::load_impl()
     {
         set_speed(asset.get_speed());
+        set_enable_x_flip(asset.get_enable_x_flip());
+        set_inverse_x_flip(asset.get_inverse_x_flip());
     }
 
     void CharacterController2D::update_impl()
