@@ -1,11 +1,8 @@
 #pragma once
 
 #include "Planar/Editor/UI/Element/Component/Core/Component.hpp"
-#include "Planar/Engine/Math/Pos2D.hpp"
-#include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/Drag.hpp"
-#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -16,10 +13,6 @@ namespace Planar::Editor::UI::Element::Component
         Transform2D();
 
         virtual bool get_modified(bool reset = true) override;
-
-        PLANAR_DECLARE_GET_SET(Engine::Math::Pos2Df, position)
-        PLANAR_DECLARE_GET_SET(float, rotation)
-        PLANAR_DECLARE_GET_SET(Engine::Math::Size2Df, scale)
 
     private:
         Engine::UI::ImGui::Element::Drag::DragFloat2 position;

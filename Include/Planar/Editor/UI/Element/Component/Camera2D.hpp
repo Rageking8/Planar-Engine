@@ -14,8 +14,6 @@ namespace Planar::Editor::UI::Element::Component
 
         virtual bool get_modified(bool reset = true) override;
 
-        PLANAR_DECLARE_GET_SET(float, pixel_scale)
-
     private:
         Engine::UI::ImGui::Element::Drag::DragFloat1 pixel_scale;
 

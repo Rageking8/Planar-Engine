@@ -1,5 +1,4 @@
 #include "Planar/Editor/UI/Element/Component/Transform2D.hpp"
-#include "Planar/Editor/UI/Element/Component/Core/ComponentMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 namespace Planar::Editor::UI::Element::Component
@@ -20,13 +19,6 @@ namespace Planar::Editor::UI::Element::Component
         return modified_helper(reset, position, rotation, scale);
     }
 
-    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(Transform2D,
-        Engine::Math::Pos2Df, position)
-    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_1(Transform2D,
-        rotation)
-    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(Transform2D,
-        Engine::Math::Size2Df, scale)
-
     void Transform2D::render_content()
     {
         position.render();
@@ -38,15 +30,15 @@ namespace Planar::Editor::UI::Element::Component
 
     void Transform2D::set_values_impl(ComponentType* transform)
     {
-        set_position(transform->get_position());
-        set_rotation(transform->get_rotation());
-        set_scale(transform->get_scale());
+        position.set_value(transform->get_position().get_array());
+        rotation.set_x(transform->get_rotation());
+        scale.set_value(transform->get_scale().get_array());
     }
 
     void Transform2D::write_values_impl(ComponentType* transform)
     {
-        transform->set_position(get_position());
-        transform->set_rotation(get_rotation());
-        transform->set_scale(get_scale());
+        transform->set_position(position.get_value());
+        transform->set_rotation(rotation.get_x());
+        transform->set_scale(scale.get_value());
     }
 }

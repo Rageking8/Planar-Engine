@@ -1,5 +1,4 @@
 #include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
-#include "Planar/Editor/UI/Element/Component/Core/ComponentMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
@@ -25,11 +24,6 @@ namespace Planar::Editor::UI::Element::Component
             mode_drop_down, horizontal_speed, vertical_speed);
     }
 
-    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(CameraController2D,
-        Engine::Math::Size2Df, horizontal_speed)
-    PLANAR_DEFINE_ELEMENT_COMPONENT_GET_SET_DRAG_2(CameraController2D,
-        Engine::Math::Size2Df, vertical_speed)
-
     void CameraController2D::render_content()
     {
         mode_drop_down.render();
@@ -45,8 +39,10 @@ namespace Planar::Editor::UI::Element::Component
         active_checkbox.set_value(camera_controller->get_active());
         mode_drop_down.set_selected_text(camera_controller->
             get_mode(), true);
-        set_horizontal_speed(camera_controller->get_horizontal_speed());
-        set_vertical_speed(camera_controller->get_vertical_speed());
+        horizontal_speed.set_value(camera_controller->
+            get_horizontal_speed().get_array());
+        vertical_speed.set_value(camera_controller->
+            get_vertical_speed().get_array());
     }
 
     void CameraController2D::write_values_impl(
@@ -54,7 +50,8 @@ namespace Planar::Editor::UI::Element::Component
     {
         camera_controller->set_active(active_checkbox.get_value());
         camera_controller->set_mode(mode_drop_down.get_selected_text());
-        camera_controller->set_horizontal_speed(get_horizontal_speed());
-        camera_controller->set_vertical_speed(get_vertical_speed());
+        camera_controller->set_horizontal_speed(horizontal_speed.
+            get_value());
+        camera_controller->set_vertical_speed(vertical_speed.get_value());
     }
 }
