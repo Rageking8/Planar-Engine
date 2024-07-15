@@ -61,11 +61,7 @@ namespace Planar::Engine::GameObject
                 std::string type = i["Type"].Scalar();
 
                 PLANAR_LOAD_COMPONENT_BEGIN_IF
-                PLANAR_LOAD_COMPONENT_ELSE_IF(Transform2D)
-                PLANAR_LOAD_COMPONENT_ELSE_IF(Camera2D)
-                PLANAR_LOAD_COMPONENT_ELSE_IF(CameraController2D)
-                PLANAR_LOAD_COMPONENT_ELSE_IF(SpriteRenderer)
-                PLANAR_LOAD_COMPONENT_ELSE_IF(CharacterController2D)
+                PLANAR_ALL_COMPONENT(PLANAR_LOAD_COMPONENT_ELSE_IF)
                 else
                 {
                     PLANAR_FATAL("Unrecognized component type");

@@ -7,11 +7,15 @@
 #include "Planar/Engine/UI/ImGui/Menu/Menu.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/MainMenuBar.hpp"
 #include "Planar/Engine/Component/Core/AllComponent.hpp"
+#include "Planar/Engine/Component/Core/ComponentType.hpp"
 
 #include <memory>
 
 #define PLANAR_GET_WINDOW(type)                     \
     window_manager.get<Window::type##Window>(#type) \
+
+#define PLANAR_ADD_COMPONENT_MENU_ITEM(type)            \
+    add_component_menu_item<Engine::Component::type>(); \
 
 namespace Planar::Editor::UI::Menu
 {
@@ -62,13 +66,7 @@ namespace Planar::Editor::UI::Menu
             main_menu_bar.add_menu("Component",
                 [&]()
                 {
-                    using namespace Engine::Component;
-
-                    add_component_menu_item<Transform2D>();
-                    add_component_menu_item<Camera2D>();
-                    add_component_menu_item<CameraController2D>();
-                    add_component_menu_item<SpriteRenderer>();
-                    add_component_menu_item<CharacterController2D>();
+                    PLANAR_ALL_COMPONENT(PLANAR_ADD_COMPONENT_MENU_ITEM)
                 });
 
             main_menu_bar.add_menu("Asset",

@@ -77,11 +77,7 @@ namespace Planar::Editor::UI::Container
 
         switch (type)
         {
-        PLANAR_COMPONENT_CASE(Transform2D)
-        PLANAR_COMPONENT_CASE(Camera2D)
-        PLANAR_COMPONENT_CASE(CameraController2D)
-        PLANAR_COMPONENT_CASE(SpriteRenderer)
-        PLANAR_COMPONENT_CASE(CharacterController2D)
+        PLANAR_ALL_COMPONENT(PLANAR_COMPONENT_CASE)
         }
 
         PLANAR_FATAL("Unsupported `type`");
