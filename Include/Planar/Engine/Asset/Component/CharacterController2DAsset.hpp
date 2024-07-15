@@ -16,6 +16,8 @@ namespace Planar::Engine::Asset::Component
     public:
         CharacterController2DAsset();
 
+        PLANAR_DECLARE_GET_SET(float, speed)
+
     private:
         virtual void load_impl(
             Engine::Component::CharacterController2D& character_controller)

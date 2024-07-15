@@ -2,6 +2,7 @@
 
 #include "Planar/Editor/UI/Element/Component/Core/Component.hpp"
 #include "Planar/Engine/Component/CharacterController2D.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Drag/Drag.hpp"
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -14,6 +15,8 @@ namespace Planar::Editor::UI::Element::Component
         virtual bool get_modified(bool reset = true) override;
 
     private:
+        Engine::UI::ImGui::Element::Drag::DragFloat1 speed;
+
         virtual void render_content() override;
 
         virtual void set_values_impl(ComponentType* character_controller)

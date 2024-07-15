@@ -21,7 +21,11 @@ namespace Planar::Engine::Component
         CharacterController2D(GameObject::GameObject* parent,
             bool generate_guid = true);
 
+        PLANAR_DECLARE_GET_SET(float, speed)
+
     private:
+        float speed;
+
         virtual void load_impl() override;
     };
 }
