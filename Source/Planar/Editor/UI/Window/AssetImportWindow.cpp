@@ -1,6 +1,7 @@
 #include "Planar/Editor/UI/Window/AssetImportWindow.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
@@ -16,7 +17,8 @@ namespace Planar::Editor::UI::Window
     AssetImportWindow::AssetImportWindow(Editor::Core::Editor* editor) :
         EditorWindow("Asset Import", editor, false),
         asset_path_input("Asset path"), browse_button("Browse"),
-        import_type_dropdown("Import type:", 200.f),
+        import_type_dropdown("Import type:",
+        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FIXED, 200.f }),
         import_button("Import"), pending_browse{}, pending_import{}
     {
         set_size({ { 1440.f, 810.f } });

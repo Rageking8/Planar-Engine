@@ -1,6 +1,7 @@
 #include "Planar/Engine/UI/ImGui/Element/DropDown.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
 #include <cstddef>
@@ -8,16 +9,16 @@
 
 namespace Planar::Engine::UI::ImGui::Element
 {
-    DropDown::DropDown(const std::string& label, float width,
+    DropDown::DropDown(const std::string& label,
+        Core::Size::Width width, float x_pos,
         const std::vector<std::string>& options) : index{},
-        height{ Height::SMALL }
+        height{ Height::SMALL }, width{ width }, x_pos{ x_pos }
     {
         this->label = label.empty() ? generate_unique_label() :
             "##" + label;
         set_render_label(!label.empty());
 
         set_options(options);
-        set_width(width);
     }
 
     void DropDown::render()
@@ -34,10 +35,12 @@ namespace Planar::Engine::UI::ImGui::Element
             ImGui::same_line();
         }
 
-        if (width != 0.f)
+        if (x_pos != 0.f)
         {
-            ::ImGui::SetNextItemWidth(width);
+            Core::Cursor::set_x(x_pos);
         }
+
+        width.set();
 
         Style::StyleVar style_var;
         style_var.set_window_padding({ 24.f, 6.f });
@@ -115,13 +118,5 @@ namespace Planar::Engine::UI::ImGui::Element
     void DropDown::set_height(Height new_height)
     {
         height = new_height;
-    }
-
-    void DropDown::set_width(float new_width)
-    {
-        PLANAR_ASSERT(new_width >= 0.f,
-            "`new_width` must be greater than or equal to 0");
-
-        width = new_width;
     }
 }

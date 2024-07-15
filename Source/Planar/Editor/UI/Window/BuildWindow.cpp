@@ -1,6 +1,5 @@
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
-#include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Editor/Build/Build.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
@@ -20,14 +19,18 @@ namespace Planar::Editor::UI::Window
         EditorWindow("Build", editor, false),
         build_directory_input("Build directory"),
         browse_button("Browse"),
-        target_drop_down("Target:", 200.f, { "Windows 64-bit" }),
+        target_drop_down("Target:",
+        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FIXED, 200.f },
+        0.f, { "Windows 64-bit" }),
         show_console_window_checkbox("Show console window"),
         window_name_input("Window name"),
         window_size_drag("Window size:",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FIXED,
         300.f, 140.f }),
         window_maximize_checkbox("Maximize window"),
-        graphics_api_drop_down("Graphics API:", 200.f, { "OpenGL 4.6" }),
+        graphics_api_drop_down("Graphics API:",
+        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FIXED, 200.f },
+        0.f, { "OpenGL 4.6" }),
         use_compression_checkbox("Use UPX compression"),
         compression_level_slider(7, 1, 9, "Compression Level:",
         200.f),

@@ -2,6 +2,7 @@
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Element.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/State/ModifiedState.hpp"
 
 #include <string>
@@ -26,7 +27,8 @@ namespace Planar::Engine::UI::ImGui::Element
             LARGEST = ImGuiComboFlags_HeightLargest,
         };
 
-        DropDown(const std::string& label = "", float width = 0.f,
+        DropDown(const std::string& label = "",
+            Core::Size::Width width = {}, float x_pos = 0.f,
             const std::vector<std::string>& options = {});
 
         using ModifiedState::get_modified;
@@ -44,7 +46,6 @@ namespace Planar::Engine::UI::ImGui::Element
         void set_render_label(bool new_render_label);
         void set_options(const std::vector<std::string>& new_options);
         void set_height(Height new_height);
-        void set_width(float new_width);
 
     private:
         unsigned index;
@@ -52,6 +53,7 @@ namespace Planar::Engine::UI::ImGui::Element
         bool render_label;
         std::vector<std::string> options;
         Height height;
-        float width;
+        Core::Size::Width width;
+        float x_pos;
     };
 }
