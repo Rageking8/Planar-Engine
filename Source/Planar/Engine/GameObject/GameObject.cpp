@@ -7,6 +7,7 @@
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
 #include "Planar/Engine/Component/SpriteRenderer.hpp"
+#include "Planar/Engine/Component/CharacterController2D.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
 
@@ -68,6 +69,7 @@ namespace Planar::Engine::GameObject
                 PLANAR_LOAD_COMPONENT_ELSE_IF(Camera2D)
                 PLANAR_LOAD_COMPONENT_ELSE_IF(CameraController2D)
                 PLANAR_LOAD_COMPONENT_ELSE_IF(SpriteRenderer)
+                PLANAR_LOAD_COMPONENT_ELSE_IF(CharacterController2D)
                 else
                 {
                     PLANAR_FATAL("Unrecognized component type");

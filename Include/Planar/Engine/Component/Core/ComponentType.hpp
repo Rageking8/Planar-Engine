@@ -13,5 +13,7 @@ namespace Planar::Engine::Component::Core
         CameraController2D,
 
         SpriteRenderer,
+
+        CharacterController2D,
     };
 }

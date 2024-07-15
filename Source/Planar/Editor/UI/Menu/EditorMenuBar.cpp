@@ -10,6 +10,7 @@
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
 #include "Planar/Engine/Component/SpriteRenderer.hpp"
+#include "Planar/Engine/Component/CharacterController2D.hpp"
 
 #include <memory>
 
@@ -71,6 +72,7 @@ namespace Planar::Editor::UI::Menu
                     add_component_menu_item<Camera2D>();
                     add_component_menu_item<CameraController2D>();
                     add_component_menu_item<SpriteRenderer>();
+                    add_component_menu_item<CharacterController2D>();
                 });
 
             main_menu_bar.add_menu("Asset",
