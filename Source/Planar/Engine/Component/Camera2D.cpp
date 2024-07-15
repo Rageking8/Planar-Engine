@@ -1,12 +1,8 @@
 #include "Planar/Engine/Component/Camera2D.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/Core/Application.hpp"
-#include "Planar/Engine/Math/Size2D.hpp"
+#include "Planar/Engine/Math/MatrixTransform.hpp"
 
-#include "ThirdParty/glm/vec3.hpp"
-#include "ThirdParty/glm/gtc/matrix_transform.hpp"
-
-#include <limits>
 #include <memory>
 
 namespace Planar::Engine::Component
@@ -23,29 +19,14 @@ namespace Planar::Engine::Component
     glm::mat4 Camera2D::get_view_mat() const
     {
         std::shared_ptr<Transform2D> transform = get_transform();
-        const glm::vec3 position{ transform->get_position().x,
-            transform->get_position().y, 0.f };
 
-        return glm::lookAt(position, position +
-            glm::vec3(0.f, 0.f, -1.f), { 0.f, 1.f, 0.f });
+        return Math::calc_view_mat(transform->get_position());
     }
 
     glm::mat4 Camera2D::get_projection_mat() const
     {
-        const Math::Size2Df framebuffer_size =
-            static_cast<Math::Size2Df>(get_parent()->
-            get_scene()->get_application()->
-            get_game_framebuffer_size());
-
-        const float half_width = pixel_scale == 0.f ?
-            std::numeric_limits<float>::infinity() :
-            framebuffer_size.width / pixel_scale * 0.5f;
-        const float half_height = pixel_scale == 0.f ?
-            std::numeric_limits<float>::infinity() :
-            framebuffer_size.height / pixel_scale * 0.5f;
-
-        return glm::ortho(-half_width, half_width, -half_height,
-            half_height, -1.f, 1.f);
+        return Math::calc_projection_mat(get_parent()->get_scene()->
+            get_application()->get_game_framebuffer_size(), pixel_scale);
     }
 
     void Camera2D::load_impl()
