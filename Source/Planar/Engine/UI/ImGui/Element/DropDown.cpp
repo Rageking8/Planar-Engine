@@ -4,6 +4,7 @@
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
 #include <cstddef>
+#include <algorithm>
 
 namespace Planar::Engine::UI::ImGui::Element
 {
@@ -51,7 +52,7 @@ namespace Planar::Engine::UI::ImGui::Element
                     i == static_cast<std::size_t>(index);
                 if (::ImGui::Selectable(options[i].c_str(), selected))
                 {
-                    index = i;
+                    set_selected_index(i);
                 }
 
                 if (selected)
@@ -72,6 +73,31 @@ namespace Planar::Engine::UI::ImGui::Element
     std::string DropDown::get_selected_text() const
     {
         return options[index];
+    }
+
+    void DropDown::set_selected_index(unsigned new_index,
+        bool skip_modified)
+    {
+        PLANAR_ASSERT_RANGE(options, new_index);
+
+        if (!skip_modified && new_index != index)
+        {
+            set_modified();
+        }
+
+        index = new_index;
+    }
+
+    void DropDown::set_selected_text(const std::string& new_text,
+        bool skip_modified)
+    {
+        auto result = std::find(options.begin(), options.end(), new_text);
+
+        PLANAR_ASSERT(result != options.end(),
+            "`new_text` not found in `options`");
+
+        set_selected_index(std::distance(options.begin(), result),
+            skip_modified);
     }
 
     void DropDown::set_render_label(bool new_render_label)
