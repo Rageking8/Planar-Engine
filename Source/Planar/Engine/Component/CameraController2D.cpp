@@ -7,7 +7,7 @@ namespace Planar::Engine::Component
     CameraController2D::CameraController2D(
         GameObject::GameObject* parent, bool generate_guid) :
         Component(parent, generate_guid), mode{ "Free" },
-        horizontal_speed{ 10.f }, vertical_speed{ 10.f }
+        horizontal_speed{ 0.1f }, vertical_speed{ 0.1f }
     {
 
     }
