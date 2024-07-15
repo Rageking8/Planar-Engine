@@ -41,6 +41,9 @@ namespace Planar::Engine::GameObject
 
         std::string get_guid() const;
 
+        template <typename ComponentT>
+        std::shared_ptr<ComponentT> get_component();
+
         std::vector<std::shared_ptr<Component::Core::ComponentBase>>&
             get_components();
 

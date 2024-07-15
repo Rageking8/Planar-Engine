@@ -1,8 +1,24 @@
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
 
+#include <memory>
+
 namespace Planar::Engine::GameObject
 {
+    template <typename ComponentT>
+    inline std::shared_ptr<ComponentT> GameObject::get_component()
+    {
+        for (auto& component : components)
+        {
+            if (component->match(ComponentT::TYPE))
+            {
+                return std::static_pointer_cast<ComponentT>(component);
+            }
+        }
+
+        return nullptr;
+    }
+
     template <typename ComponentT>
     inline void GameObject::add_component(
         std::optional<YAML::Node> node, bool skip_asset)
