@@ -41,6 +41,9 @@ namespace Planar::Engine::Scene
         std::shared_ptr<GameObject::GameObject> get_root();
         std::shared_ptr<Component::Camera2D> get_active_main_camera();
 
+        std::shared_ptr<Component::Core::ComponentBase>
+            get_component_reference(const std::string& guid);
+
     private:
         Core::Application* application;
         SceneAsset asset;

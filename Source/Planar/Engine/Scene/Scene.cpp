@@ -130,6 +130,27 @@ namespace Planar::Engine::Scene
         return camera;
     }
 
+    std::shared_ptr<Component::Core::ComponentBase>
+        Scene::get_component_reference(const std::string& guid)
+    {
+        std::shared_ptr<Component::Core::ComponentBase> result;
+
+        root->iterate_depth_first([&]
+            (std::shared_ptr<Component::Core::ComponentBase> component)
+            {
+                if (guid == component->get_guid())
+                {
+                    result = component;
+
+                    return true;
+                }
+
+                return false;
+            });
+
+        return result;
+    }
+
     void Scene::load_root()
     {
         std::stack<std::vector<std::shared_ptr<GameObject::GameObject>>*>
