@@ -30,7 +30,7 @@ namespace Planar::Editor::UI::Element::Component
     {
         using namespace Engine::UI;
 
-        render_with_padding(sprite_input);
+        render_helper(sprite_input);
         ImGui::same_line();
         ImGui::Core::Cursor::move_x(24.f);
         sprite_select_button.render();
@@ -50,8 +50,7 @@ namespace Planar::Editor::UI::Element::Component
             }
         }
 
-        render_with_padding(flip_x_checkbox);
-        render_with_padding(flip_y_checkbox);
+        render_helper(flip_x_checkbox, flip_y_checkbox);
     }
 
     void SpriteRenderer::set_values_impl(ComponentType* sprite_renderer)

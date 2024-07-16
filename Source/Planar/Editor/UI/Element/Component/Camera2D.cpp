@@ -16,7 +16,7 @@ namespace Planar::Editor::UI::Element::Component
 
     void Camera2D::render_content()
     {
-        render_with_padding(pixel_scale);
+        render_helper(pixel_scale);
     }
 
     void Camera2D::set_values_impl(ComponentType* camera)

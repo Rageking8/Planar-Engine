@@ -21,6 +21,9 @@ namespace Planar::Editor::UI::Element::Component::Core
         template <typename... Args>
         bool modified_helper(bool reset, Args&... args);
 
+        template <typename... Args>
+        void render_helper(Args&... args);
+
     private:
         virtual void set_values_impl(
             std::shared_ptr<Engine::Component::Core::ComponentBase>&

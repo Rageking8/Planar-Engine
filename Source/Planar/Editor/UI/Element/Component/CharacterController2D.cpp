@@ -19,12 +19,11 @@ namespace Planar::Editor::UI::Element::Component
 
     void CharacterController2D::render_content()
     {
-        render_with_padding(speed);
-        render_with_padding(enable_x_flip);
+        render_helper(speed, enable_x_flip);
 
         if (enable_x_flip.get_value())
         {
-            render_with_padding(inverse_x_flip);
+            render_helper(inverse_x_flip);
         }
     }
 

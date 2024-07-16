@@ -20,9 +20,7 @@ namespace Planar::Editor::UI::Element::Component
 
     void Transform2D::render_content()
     {
-        render_with_padding(position);
-        render_with_padding(rotation);
-        render_with_padding(scale);
+        render_helper(position, rotation, scale);
     }
 
     void Transform2D::set_values_impl(ComponentType* transform)

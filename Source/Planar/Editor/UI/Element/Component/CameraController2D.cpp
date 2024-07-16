@@ -25,9 +25,7 @@ namespace Planar::Editor::UI::Element::Component
 
     void CameraController2D::render_content()
     {
-        render_with_padding(mode_drop_down);
-        render_with_padding(horizontal_speed);
-        render_with_padding(vertical_speed);
+        render_helper(mode_drop_down, horizontal_speed, vertical_speed);
     }
 
     void CameraController2D::set_values_impl(

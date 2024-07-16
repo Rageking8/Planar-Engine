@@ -29,6 +29,13 @@ namespace Planar::Editor::UI::Element::Component::Core
     }
 
     template <typename ComponentT>
+    template <typename... Args>
+    inline void Component<ComponentT>::render_helper(Args&... args)
+    {
+        (render_with_padding(args), ...);
+    }
+
+    template <typename ComponentT>
     inline void Component<ComponentT>::set_values_impl(
         std::shared_ptr<Engine::Component::Core::ComponentBase>&
         component)
