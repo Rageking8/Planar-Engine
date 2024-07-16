@@ -1,6 +1,5 @@
 #include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
-#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -26,11 +25,9 @@ namespace Planar::Editor::UI::Element::Component
 
     void CameraController2D::render_content()
     {
-        mode_drop_down.render();
-        Engine::UI::ImGui::Core::Cursor::move_y(10.f);
-        horizontal_speed.render();
-        Engine::UI::ImGui::Core::Cursor::move_y(10.f);
-        vertical_speed.render();
+        render_with_padding(mode_drop_down);
+        render_with_padding(horizontal_speed);
+        render_with_padding(vertical_speed);
     }
 
     void CameraController2D::set_values_impl(

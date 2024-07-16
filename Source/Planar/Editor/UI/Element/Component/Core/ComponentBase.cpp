@@ -13,7 +13,7 @@ namespace Planar::Editor::UI::Element::Component::Core
         Engine::UI::ImGui::generate_unique_label(), true),
         header({ 10.f, 7.5f }, 24.f, 0.f, 40.f, 10.f, true, true),
         show_active_checkbox{ show_active_checkbox },
-        top_padding{ 10.f }, bottom_padding{ 10.f }
+        vertical_padding{ 10.f }
     {
         set_header_text(text);
     }
@@ -79,13 +79,17 @@ namespace Planar::Editor::UI::Element::Component::Core
         show_active_checkbox = new_show_active_checkbox;
     }
 
+    void ComponentBase::render_with_padding(
+        Engine::UI::ImGui::Element::Element& element)
+    {
+        Engine::UI::ImGui::Core::Cursor::move_y(vertical_padding);
+        element.render();
+    }
+
     void ComponentBase::render_content_impl()
     {
-        Engine::UI::ImGui::Core::Cursor::move_y(top_padding);
-
         render_content();
-
-        Engine::UI::ImGui::Core::Cursor::move_y(bottom_padding);
+        Engine::UI::ImGui::Core::Cursor::move_y(vertical_padding);
     }
 
     void ComponentBase::render_active_checkbox()

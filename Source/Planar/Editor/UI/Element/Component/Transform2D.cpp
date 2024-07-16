@@ -1,5 +1,4 @@
 #include "Planar/Editor/UI/Element/Component/Transform2D.hpp"
-#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -21,11 +20,9 @@ namespace Planar::Editor::UI::Element::Component
 
     void Transform2D::render_content()
     {
-        position.render();
-        Engine::UI::ImGui::Core::Cursor::move_y(10.f);
-        rotation.render();
-        Engine::UI::ImGui::Core::Cursor::move_y(10.f);
-        scale.render();
+        render_with_padding(position);
+        render_with_padding(rotation);
+        render_with_padding(scale);
     }
 
     void Transform2D::set_values_impl(ComponentType* transform)

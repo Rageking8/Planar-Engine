@@ -45,11 +45,13 @@ namespace Planar::Editor::UI::Element::Component::Core
         Editor::Core::Editor* editor;
         Engine::UI::ImGui::Element::Checkbox active_checkbox;
 
+        void render_with_padding(
+            Engine::UI::ImGui::Element::Element& element);
+
     private:
         Engine::UI::ImGui::Element::Tree header;
         bool show_active_checkbox;
-        float top_padding;
-        float bottom_padding;
+        float vertical_padding;
 
         virtual void render_content() = 0;
         void render_content_impl();
