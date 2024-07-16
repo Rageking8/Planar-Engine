@@ -45,6 +45,9 @@ namespace Planar::Engine::UI::ImGui::Element
         void set_is_leaf(bool new_is_leaf);
         void set_is_framed(bool new_is_framed);
         void set_default_open(bool new_default_open);
+        void set_drag_source(const std::string& type,
+            const std::string* value);
+        void clear_drag_source();
 
     private:
         std::string text;
@@ -57,6 +60,8 @@ namespace Planar::Engine::UI::ImGui::Element
         bool is_leaf;
         bool is_framed;
         bool default_open;
+        std::string drag_source_type;
+        const std::string* drag_source_value;
 
         int generate_flags() const;
         Math::Pos2Df handle_pre_header(

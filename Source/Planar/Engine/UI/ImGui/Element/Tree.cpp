@@ -17,7 +17,7 @@ namespace Planar::Engine::UI::ImGui::Element
         pre_header_left_padding{ pre_header_left_padding },
         pre_header_right_padding{ pre_header_right_padding },
         is_framed{ is_framed }, default_open{ default_open },
-        text{ text }, id{ id }, is_leaf{}
+        text{ text }, id{ id }, is_leaf{}, drag_source_value{}
     {
 
     }
@@ -51,6 +51,11 @@ namespace Planar::Engine::UI::ImGui::Element
         bool right_clicked = is_item_hovered() &&
             ::ImGui::IsMouseReleased(ImGuiMouseButton_Right);
         same_line();
+
+        if (!drag_source_type.empty())
+        {
+            drag_drop_source(drag_source_type, drag_source_value);
+        }
 
         if (pre_header)
         {
@@ -165,6 +170,19 @@ namespace Planar::Engine::UI::ImGui::Element
     void Tree::set_default_open(bool new_default_open)
     {
         default_open = new_default_open;
+    }
+
+    void Tree::set_drag_source(const std::string& type,
+        const std::string* value)
+    {
+        drag_source_type = type;
+        drag_source_value = value;
+    }
+
+    void Tree::clear_drag_source()
+    {
+        drag_source_type.clear();
+        drag_source_value = nullptr;
     }
 
     int Tree::generate_flags() const
