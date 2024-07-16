@@ -22,6 +22,9 @@ namespace Planar::Engine::Asset::Component
         PLANAR_DECLARE_GET_SET(std::string, mode)
         PLANAR_DECLARE_GET_SET(Math::Size2Df, horizontal_speed)
         PLANAR_DECLARE_GET_SET(Math::Size2Df, vertical_speed)
+        PLANAR_DECLARE_GET_SET(std::string, tracked_transform)
+        PLANAR_DECLARE_GET_SET(float, horizontal_lerp)
+        PLANAR_DECLARE_GET_SET(float, vertical_lerp)
 
     private:
         virtual void load_impl(

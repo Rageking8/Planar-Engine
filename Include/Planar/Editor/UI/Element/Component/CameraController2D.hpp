@@ -1,9 +1,12 @@
 #pragma once
 
 #include "Planar/Editor/UI/Element/Component/Core/Component.hpp"
+#include "Planar/Editor/UI/Element/AssetReference.hpp"
 #include "Planar/Engine/Component/CameraController2D.hpp"
 #include "Planar/Engine/UI/ImGui/Element/DropDown.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Drag/Drag.hpp"
+
+#include <string>
 
 namespace Planar::Editor::UI::Element::Component
 {
@@ -19,6 +22,9 @@ namespace Planar::Editor::UI::Element::Component
         Engine::UI::ImGui::Element::DropDown mode_drop_down;
         Engine::UI::ImGui::Element::Drag::DragFloat2 horizontal_speed;
         Engine::UI::ImGui::Element::Drag::DragFloat2 vertical_speed;
+        AssetReference tracked_transform;
+        Engine::UI::ImGui::Element::Drag::DragFloat1 horizontal_lerp;
+        Engine::UI::ImGui::Element::Drag::DragFloat1 vertical_lerp;
 
         virtual void render_content() override;
 
@@ -26,5 +32,8 @@ namespace Planar::Editor::UI::Element::Component
             override;
         virtual void write_values_impl(ComponentType* camera_controller)
             override;
+
+        void update_tracked_transform_text(
+            std::string new_tracked_transform);
     };
 }
