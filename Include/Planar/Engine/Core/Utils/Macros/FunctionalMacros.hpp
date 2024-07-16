@@ -12,6 +12,12 @@
         callable(param1);                    \
     }                                        \
 
+#define PLANAR_CAPTURE_THIS_PARAM1_RET(callable) \
+    [this](auto param1)                          \
+    {                                            \
+        return callable(param1);                 \
+    }                                            \
+
 #define PLANAR_CAPTURE_THIS_PARAM2(callable) \
     [this](auto param1, auto param2)         \
     {                                        \
