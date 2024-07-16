@@ -1,11 +1,14 @@
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
+#include "ThirdParty/ImGui/imgui.h"
+
 namespace Planar::Engine::UI::ImGui::Element
 {
     InputField::InputField(const std::string& placeholder,
-        Core::Size::Width width) : label{ generate_unique_label() },
-        placeholder{ placeholder }, width{ width }
+        bool read_only, Core::Size::Width width) :
+        label{ generate_unique_label() }, placeholder{ placeholder },
+        width{ width }, read_only{ read_only }
     {
 
     }
@@ -14,7 +17,8 @@ namespace Planar::Engine::UI::ImGui::Element
     {
         width.set();
 
-        update_modified(input_text(label, placeholder, text));
+        update_modified(input_text(label, placeholder,
+            text, generate_flags()));
     }
 
     const std::string& InputField::get_text() const
@@ -30,5 +34,17 @@ namespace Planar::Engine::UI::ImGui::Element
     void InputField::clear_text()
     {
         text.clear();
+    }
+
+    int InputField::generate_flags() const
+    {
+        ImGuiInputTextFlags flags{};
+
+        if (read_only)
+        {
+            flags |= ImGuiInputTextFlags_ReadOnly;
+        }
+
+        return flags;
     }
 }
