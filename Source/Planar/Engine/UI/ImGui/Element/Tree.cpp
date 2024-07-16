@@ -46,7 +46,8 @@ namespace Planar::Engine::UI::ImGui::Element
 
         bool tree_open = ::ImGui::TreeNodeEx(("##" + text + id).
             c_str(), generate_flags());
-        bool left_clicked = ::ImGui::IsItemClicked();
+        bool left_clicked = is_item_hovered() &&
+            ::ImGui::IsMouseReleased(ImGuiMouseButton_Left);
         bool right_clicked = is_item_hovered() &&
             ::ImGui::IsMouseReleased(ImGuiMouseButton_Right);
         same_line();
