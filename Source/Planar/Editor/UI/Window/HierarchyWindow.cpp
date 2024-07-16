@@ -43,10 +43,14 @@ namespace Planar::Editor::UI::Window
     void HierarchyWindow::render_scene_game_object(
         std::shared_ptr<Engine::GameObject::GameObject> game_object)
     {
+        hierarchy_tree.clear_drag_source();
+
         if (!game_object->is_empty())
         {
             hierarchy_tree.set_text(game_object->get_name());
             hierarchy_tree.set_id(game_object->get_guid());
+            hierarchy_tree.set_drag_source("GameObject",
+                &game_object->get_guid());
         }
 
         hierarchy_tree.render(
