@@ -11,8 +11,10 @@ namespace Planar::Engine::UI::ImGui::Element
 {
     DropDown::DropDown(const std::string& label,
         Core::Size::Width width, float x_pos,
+        bool remove_bottom_padding,
         const std::vector<std::string>& options) : index{},
-        height{ Height::SMALL }, width{ width }, x_pos{ x_pos }
+        height{ Height::SMALL }, width{ width }, x_pos{ x_pos },
+        remove_bottom_padding{ remove_bottom_padding }
     {
         this->label = label.empty() ? generate_unique_label() :
             "##" + label;
@@ -65,6 +67,11 @@ namespace Planar::Engine::UI::ImGui::Element
             }
 
             ::ImGui::EndCombo();
+        }
+
+        if (remove_bottom_padding)
+        {
+            Core::Cursor::move_y(-14.f);
         }
     }
 

@@ -29,6 +29,7 @@ namespace Planar::Engine::UI::ImGui::Element
 
         DropDown(const std::string& label = "",
             Core::Size::Width width = {}, float x_pos = 0.f,
+            bool remove_bottom_padding = false,
             const std::vector<std::string>& options = {});
 
         using ModifiedState::get_modified;
@@ -55,5 +56,6 @@ namespace Planar::Engine::UI::ImGui::Element
         Height height;
         Core::Size::Width width;
         float x_pos;
+        bool remove_bottom_padding;
     };
 }
