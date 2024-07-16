@@ -14,7 +14,9 @@ namespace Planar::Engine::UI::ImGui::Element
     {
     public:
         InputField(const std::string& placeholder = "",
-            bool read_only = false, Core::Size::Width width = {});
+            const std::string& display_text = "",
+            Core::Size::Width width = {}, float x_pos = 0.f,
+            bool read_only = false);
 
         using ModifiedState::get_modified;
 
@@ -28,7 +30,9 @@ namespace Planar::Engine::UI::ImGui::Element
         std::string label;
         std::string placeholder;
         std::string text;
+        std::string display_text;
         Core::Size::Width width;
+        float x_pos;
         bool read_only;
 
         int generate_flags() const;

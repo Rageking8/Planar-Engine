@@ -1,4 +1,5 @@
 #include "Planar/Engine/UI/ImGui/Element/InputField.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
@@ -6,15 +7,24 @@
 namespace Planar::Engine::UI::ImGui::Element
 {
     InputField::InputField(const std::string& placeholder,
-        bool read_only, Core::Size::Width width) :
+        const std::string& display_text, Core::Size::Width width,
+        float x_pos, bool read_only) :
         label{ generate_unique_label() }, placeholder{ placeholder },
-        width{ width }, read_only{ read_only }
+        display_text{ display_text }, width{ width }, x_pos{ x_pos },
+        read_only{ read_only }
     {
 
     }
 
     void InputField::render()
     {
+        if (!display_text.empty())
+        {
+            ImGui::text(display_text, true);
+            same_line();
+            Core::Cursor::set_x(x_pos);
+        }
+
         width.set();
 
         update_modified(input_text(label, placeholder,

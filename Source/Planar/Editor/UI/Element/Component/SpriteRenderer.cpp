@@ -1,6 +1,7 @@
 #include "Planar/Editor/UI/Element/Component/SpriteRenderer.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
@@ -13,7 +14,9 @@
 namespace Planar::Editor::UI::Element::Component
 {
     SpriteRenderer::SpriteRenderer() : sprite_modified{},
-        sprite_input("Sprite", true), sprite_select_button("Select"),
+        sprite_input("Sprite", "Sprite",
+        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
+        0.f, 0.f, 95.f }, 100.f, true), sprite_select_button("Select"),
         flip_x_checkbox("Flip X"), flip_y_checkbox("Flip Y")
     {
 
@@ -42,7 +45,7 @@ namespace Planar::Editor::UI::Element::Component
         }
 
         ImGui::same_line();
-        ImGui::Core::Cursor::move_x(24.f);
+        ImGui::Core::Cursor::move_x(12.f);
         sprite_select_button.render();
         if (sprite_select_button.is_clicked())
         {

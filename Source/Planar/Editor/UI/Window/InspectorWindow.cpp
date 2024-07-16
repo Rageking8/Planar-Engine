@@ -4,13 +4,14 @@
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectType.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::UI::Window
 {
     InspectorWindow::InspectorWindow(Editor::Core::Editor* editor) :
-        EditorWindow("Inspector", editor), name_input("Name", false,
+        EditorWindow("Inspector", editor), name_input("Name", "",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
         0.f, 20.f, 20.f }), component_store(editor),
         component_renderer(editor)
