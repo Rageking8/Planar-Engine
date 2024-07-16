@@ -1,49 +1,36 @@
 #include "Planar/Editor/UI/Element/Component/SpriteRenderer.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Core/FileSystem/SelectDialogFilter.hpp"
 #include "Planar/Engine/Core/FileSystem/SelectDialogResult.hpp"
-
-#include <optional>
+#include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::UI::Element::Component
 {
-    SpriteRenderer::SpriteRenderer() : sprite_modified{},
-        sprite_input("Sprite", "Sprite",
-        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
-        0.f, 0.f, 95.f }, 100.f, true), sprite_select_button("Select"),
-        flip_x_checkbox("Flip X"), flip_y_checkbox("Flip Y")
+    SpriteRenderer::SpriteRenderer() :
+        sprite("Sprite", "SpriteAsset",
+        PLANAR_CAPTURE_THIS_PARAM1(update_sprite_text), 95.f),
+        sprite_select_button("Select"), flip_x_checkbox("Flip X"),
+        flip_y_checkbox("Flip Y")
     {
 
     }
 
     bool SpriteRenderer::get_modified(bool reset)
     {
-        bool current_sprite_modified = sprite_modified;
-        sprite_modified = false;
-
-        return modified_helper(reset, active_checkbox, flip_x_checkbox,
-            flip_y_checkbox) || current_sprite_modified;
+        return modified_helper(reset, sprite, active_checkbox,
+            flip_x_checkbox, flip_y_checkbox);
     }
 
     void SpriteRenderer::render_content()
     {
         using namespace Engine::UI;
 
-        render_helper(sprite_input);
-        std::optional<std::string> drop_result =
-            ImGui::drag_drop_target("SpriteAsset");
-        if (drop_result)
-        {
-            update_sprite(*drop_result);
-            sprite_modified = true;
-        }
-
+        render_helper(sprite);
         ImGui::same_line();
         ImGui::Core::Cursor::move_x(12.f);
         sprite_select_button.render();
@@ -57,9 +44,9 @@ namespace Planar::Editor::UI::Element::Component
 
             if (result.check(".planarsprite"))
             {
-                sprite = Engine::Asset::get_guid(result.get_path());
-                sprite_input.set_text(result.get_filename());
-                sprite_modified = true;
+                sprite.set_asset(Engine::Asset::get_guid(
+                    result.get_path()), true);
+                sprite.set_text(result.get_filename());
             }
         }
 
@@ -69,7 +56,7 @@ namespace Planar::Editor::UI::Element::Component
     void SpriteRenderer::set_values_impl(ComponentType* sprite_renderer)
     {
         active_checkbox.set_value(sprite_renderer->get_active());
-        update_sprite(sprite_renderer->get_sprite());
+        sprite.set_asset(sprite_renderer->get_sprite(), false, true);
         flip_x_checkbox.set_value(sprite_renderer->get_flip_x());
         flip_y_checkbox.set_value(sprite_renderer->get_flip_y());
     }
@@ -77,24 +64,15 @@ namespace Planar::Editor::UI::Element::Component
     void SpriteRenderer::write_values_impl(ComponentType* sprite_renderer)
     {
         sprite_renderer->set_active(active_checkbox.get_value());
-        sprite_renderer->set_sprite(sprite);
+        sprite_renderer->set_sprite(sprite.get_asset());
         sprite_renderer->set_flip_x(flip_x_checkbox.get_value());
         sprite_renderer->set_flip_y(flip_y_checkbox.get_value());
     }
 
-    void SpriteRenderer::update_sprite(const std::string& new_sprite)
+    void SpriteRenderer::update_sprite_text(std::string new_sprite)
     {
-        sprite = new_sprite;
-
-        if (sprite.empty())
-        {
-            sprite_input.clear_text();
-        }
-        else
-        {
-            sprite_input.set_text(editor->get_asset_database().
-                get_owning_asset<Engine::Core::Sprite::Sprite>(sprite)->
-                get_name() + ".planarsprite");
-        }
+        sprite.set_text(editor->get_asset_database().
+            get_owning_asset<Engine::Core::Sprite::Sprite>(new_sprite)->
+            get_name() + ".planarsprite");
     }
 }
