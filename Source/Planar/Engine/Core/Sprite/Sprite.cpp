@@ -40,7 +40,7 @@ namespace Planar::Engine::Core::Sprite
         return name;
     }
 
-    std::string Sprite::get_guid() const
+    const std::string& Sprite::get_guid() const
     {
         return guid;
     }

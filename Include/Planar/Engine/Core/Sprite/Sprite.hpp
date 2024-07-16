@@ -20,7 +20,7 @@ namespace Planar::Engine::Core::Sprite
         void save() const;
 
         std::string get_name() const;
-        std::string get_guid() const;
+        const std::string& get_guid() const;
         Graphics::OpenGL::Texture::Texture2D& get_texture();
 
     private:
