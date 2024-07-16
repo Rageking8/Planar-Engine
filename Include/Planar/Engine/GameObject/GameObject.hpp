@@ -65,6 +65,9 @@ namespace Planar::Engine::GameObject
             bool fatal_if_not_found = false);
         void clear_all_children();
 
+        std::shared_ptr<GameObject> find_game_object(
+            const std::string& guid);
+
         void iterate_depth_first(
             const std::function<bool(GameObject*)>& callback,
             bool skip_empty = true);

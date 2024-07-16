@@ -220,6 +220,30 @@ namespace Planar::Engine::GameObject
         children.clear();
     }
 
+    std::shared_ptr<GameObject> GameObject::find_game_object(
+        const std::string& guid)
+    {
+        std::shared_ptr<GameObject> result;
+
+        iterate_depth_first([&](GameObject* current)
+            {
+                int find_result = current->find_child(guid);
+
+                if (find_result != -1)
+                {
+                    std::shared_ptr<GameObject> child =
+                        current->get_children()[find_result];
+                    result = child;
+
+                    return true;
+                }
+
+                return false;
+            }, false);
+
+        return result;
+    }
+
     void GameObject::iterate_depth_first(
         const std::function<bool(GameObject*)>& callback,
         bool skip_empty)

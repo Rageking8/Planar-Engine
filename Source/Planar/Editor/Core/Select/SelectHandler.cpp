@@ -78,23 +78,13 @@ namespace Planar::Editor::Core::Select
             return;
         }
 
-        root->iterate_depth_first([&]
-            (Engine::GameObject::GameObject* current)
-            {
-                int find_result = current->find_child(
-                    game_object_restore_guid);
+        std::shared_ptr<Engine::GameObject::GameObject> result =
+            root->find_game_object(game_object_restore_guid);
 
-                if (find_result != -1)
-                {
-                    std::shared_ptr<Engine::GameObject::GameObject>
-                        child = current->get_children()[find_result];
-                    select_game_object(child, child->get_guid());
-
-                    return true;
-                }
-
-                return false;
-            }, false);
+        if (result)
+        {
+            select_game_object(result, result->get_guid());
+        }
     }
 
     void SelectHandler::invoke_select_callback()
