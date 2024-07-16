@@ -1,4 +1,6 @@
 #include "Planar/Editor/UI/Element/Component/CameraController2D.hpp"
+#include "Planar/Editor/Core/Editor.hpp"
+#include "Planar/Engine/Component/Transform2D.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
@@ -15,7 +17,8 @@ namespace Planar::Editor::UI::Element::Component
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
         0.f, 0.f, 20.f }, 160.f, true),
         tracked_transform("Transform", "GameObject",
-        PLANAR_CAPTURE_THIS_PARAM1(update_tracked_transform_text), {},
+        PLANAR_CAPTURE_THIS_PARAM1(update_tracked_transform_text),
+        PLANAR_CAPTURE_THIS_PARAM1_RET(map_tracked_transform),
         20.f, 160.f),
         horizontal_lerp("Horizontal Lerp",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
@@ -30,7 +33,8 @@ namespace Planar::Editor::UI::Element::Component
     bool CameraController2D::get_modified(bool reset)
     {
         return modified_helper(reset, active_checkbox,
-            mode_drop_down, horizontal_speed, vertical_speed);
+            mode_drop_down, horizontal_speed, vertical_speed,
+            tracked_transform, horizontal_lerp, vertical_lerp);
     }
 
     void CameraController2D::render_content()
@@ -78,9 +82,18 @@ namespace Planar::Editor::UI::Element::Component
         camera_controller->set_vertical_lerp(vertical_lerp.get_x());
     }
 
+    std::string CameraController2D::map_tracked_transform(
+        std::string asset)
+    {
+        return editor->get_current_scene()->get_root()->
+            find_game_object(asset)->get_transform()->get_guid();
+    }
+
     void CameraController2D::update_tracked_transform_text(
         std::string new_tracked_transform)
     {
-
+        tracked_transform.set_text(editor->get_current_scene()->
+            get_component_reference(new_tracked_transform)->
+            get_parent()->get_name());
     }
 }

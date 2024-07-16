@@ -33,6 +33,7 @@ namespace Planar::Editor::UI::Element::Component
         virtual void write_values_impl(ComponentType* camera_controller)
             override;
 
+        std::string map_tracked_transform(std::string asset);
         void update_tracked_transform_text(
             std::string new_tracked_transform);
     };
