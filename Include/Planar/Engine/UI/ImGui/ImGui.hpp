@@ -7,6 +7,7 @@
 #include "ThirdParty/glad/gl.h"
 
 #include <string>
+#include <optional>
 
 struct ImVec2;
 
@@ -77,4 +78,10 @@ namespace Planar::Engine::UI::ImGui
     PLANAR_API ImVec2 calc_uv1(bool flip_y);
 
     PLANAR_API Math::Pos2Df get_mouse_pos();
+
+    PLANAR_API void drag_drop_source(const std::string& type,
+        const std::string* value);
+
+    PLANAR_API std::optional<std::string> drag_drop_target(
+        const std::string& type);
 }

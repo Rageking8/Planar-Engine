@@ -207,4 +207,40 @@ namespace Planar::Engine::UI::ImGui
     {
         return { ::ImGui::GetMousePos().x, ::ImGui::GetMousePos().y };
     }
+
+    void drag_drop_source(const std::string& type,
+        const std::string* value)
+    {
+        if (!::ImGui::BeginDragDropSource(
+            ImGuiDragDropFlags_SourceNoPreviewTooltip))
+        {
+            return;
+        }
+
+        ::ImGui::SetDragDropPayload(type.c_str(), value,
+            sizeof(std::string));
+        ::ImGui::EndDragDropSource();
+    }
+
+    std::optional<std::string> drag_drop_target(const std::string& type)
+    {
+        if (!::ImGui::BeginDragDropTarget())
+        {
+            return std::nullopt;
+        }
+
+        const ImGuiPayload* payload =
+            ::ImGui::AcceptDragDropPayload(type.c_str());
+
+        std::optional<std::string> result;
+
+        if (payload)
+        {
+            result = *static_cast<std::string*>(payload->Data);
+        }
+
+        ::ImGui::EndDragDropTarget();
+
+        return result;
+    }
 }
