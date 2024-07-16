@@ -123,7 +123,7 @@ namespace Planar::Engine::GameObject
         asset.set_name(new_name);
     }
 
-    std::string GameObject::get_guid() const
+    const std::string& GameObject::get_guid() const
     {
         return guid;
     }

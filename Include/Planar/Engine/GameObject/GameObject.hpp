@@ -39,7 +39,7 @@ namespace Planar::Engine::GameObject
         std::string get_name() const;
         void set_name(const std::string& new_name);
 
-        std::string get_guid() const;
+        const std::string& get_guid() const;
 
         template <typename ComponentT>
         std::shared_ptr<ComponentT> get_component();
