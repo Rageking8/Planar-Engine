@@ -7,7 +7,7 @@ namespace Planar::Editor::UI::Element::Component
     CameraController2D::CameraController2D() :
         mode_drop_down("Mode",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
-        0.f, 0.f, 20.f }, 160.f, false, { "Free" }),
+        0.f, 0.f, 20.f }, 160.f, true, { "Free" }),
         horizontal_speed("Horizontal Speed",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
         0.f, 0.f, 20.f }, 160.f, true),
@@ -27,7 +27,7 @@ namespace Planar::Editor::UI::Element::Component
     void CameraController2D::render_content()
     {
         mode_drop_down.render();
-        Engine::UI::ImGui::Core::Cursor::move_y(-4.f);
+        Engine::UI::ImGui::Core::Cursor::move_y(10.f);
         horizontal_speed.render();
         Engine::UI::ImGui::Core::Cursor::move_y(10.f);
         vertical_speed.render();
