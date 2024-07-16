@@ -26,6 +26,9 @@ namespace Planar::Engine::UI::ImGui::Element
         void set_text(const std::string& new_text);
         void clear_text();
 
+    protected:
+        using ModifiedState::set_modified;
+
     private:
         std::string label;
         std::string placeholder;
