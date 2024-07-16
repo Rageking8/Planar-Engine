@@ -15,7 +15,7 @@ namespace Planar::Editor::UI::Element::Component
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
         0.f, 0.f, 20.f }, 160.f, true),
         tracked_transform("Transform", "GameObject",
-        PLANAR_CAPTURE_THIS_PARAM1(update_tracked_transform_text),
+        PLANAR_CAPTURE_THIS_PARAM1(update_tracked_transform_text), {},
         20.f, 160.f),
         horizontal_lerp("Horizontal Lerp",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,

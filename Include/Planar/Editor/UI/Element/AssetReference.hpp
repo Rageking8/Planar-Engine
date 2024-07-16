@@ -13,7 +13,9 @@ namespace Planar::Editor::UI::Element
     public:
         AssetReference(const std::string& name, const std::string& type,
             const std::function<void(std::string)>& update_text_callback,
-            float right_offset = 20.f, float x_pos = 100.f);
+            const std::function<std::string(std::string)>&
+            map_asset_callback = {}, float right_offset = 20.f,
+            float x_pos = 100.f);
 
         virtual void render() override;
 
@@ -25,5 +27,6 @@ namespace Planar::Editor::UI::Element
         std::string type;
         std::string asset;
         std::function<void(std::string)> update_text_callback;
+        std::function<std::string(std::string)> map_asset_callback;
     };
 }

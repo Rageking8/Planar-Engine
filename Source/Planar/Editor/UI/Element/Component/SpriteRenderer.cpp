@@ -13,7 +13,7 @@ namespace Planar::Editor::UI::Element::Component
 {
     SpriteRenderer::SpriteRenderer() :
         sprite("Sprite", "SpriteAsset",
-        PLANAR_CAPTURE_THIS_PARAM1(update_sprite_text), 95.f),
+        PLANAR_CAPTURE_THIS_PARAM1(update_sprite_text), {}, 95.f),
         sprite_select_button("Select"), flip_x_checkbox("Flip X"),
         flip_y_checkbox("Flip Y")
     {
