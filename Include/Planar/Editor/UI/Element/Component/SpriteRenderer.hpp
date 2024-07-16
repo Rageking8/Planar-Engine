@@ -32,5 +32,7 @@ namespace Planar::Editor::UI::Element::Component
             override;
         virtual void write_values_impl(ComponentType* sprite_renderer)
             override;
+
+        void update_sprite(const std::string& new_sprite);
     };
 }

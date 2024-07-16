@@ -8,6 +8,8 @@
 #include "Planar/Engine/Core/FileSystem/SelectDialogFilter.hpp"
 #include "Planar/Engine/Core/FileSystem/SelectDialogResult.hpp"
 
+#include <optional>
+
 namespace Planar::Editor::UI::Element::Component
 {
     SpriteRenderer::SpriteRenderer() : sprite_modified{},
@@ -31,6 +33,14 @@ namespace Planar::Editor::UI::Element::Component
         using namespace Engine::UI;
 
         render_helper(sprite_input);
+        std::optional<std::string> drop_result =
+            ImGui::drag_drop_target("SpriteAsset");
+        if (drop_result)
+        {
+            update_sprite(*drop_result);
+            sprite_modified = true;
+        }
+
         ImGui::same_line();
         ImGui::Core::Cursor::move_x(24.f);
         sprite_select_button.render();
@@ -56,7 +66,22 @@ namespace Planar::Editor::UI::Element::Component
     void SpriteRenderer::set_values_impl(ComponentType* sprite_renderer)
     {
         active_checkbox.set_value(sprite_renderer->get_active());
-        sprite = sprite_renderer->get_sprite();
+        update_sprite(sprite_renderer->get_sprite());
+        flip_x_checkbox.set_value(sprite_renderer->get_flip_x());
+        flip_y_checkbox.set_value(sprite_renderer->get_flip_y());
+    }
+
+    void SpriteRenderer::write_values_impl(ComponentType* sprite_renderer)
+    {
+        sprite_renderer->set_active(active_checkbox.get_value());
+        sprite_renderer->set_sprite(sprite);
+        sprite_renderer->set_flip_x(flip_x_checkbox.get_value());
+        sprite_renderer->set_flip_y(flip_y_checkbox.get_value());
+    }
+
+    void SpriteRenderer::update_sprite(const std::string& new_sprite)
+    {
+        sprite = new_sprite;
 
         if (sprite.empty())
         {
@@ -68,16 +93,5 @@ namespace Planar::Editor::UI::Element::Component
                 get_owning_asset<Engine::Core::Sprite::Sprite>(sprite)->
                 get_name() + ".planarsprite");
         }
-
-        flip_x_checkbox.set_value(sprite_renderer->get_flip_x());
-        flip_y_checkbox.set_value(sprite_renderer->get_flip_y());
-    }
-
-    void SpriteRenderer::write_values_impl(ComponentType* sprite_renderer)
-    {
-        sprite_renderer->set_active(active_checkbox.get_value());
-        sprite_renderer->set_sprite(sprite);
-        sprite_renderer->set_flip_x(flip_x_checkbox.get_value());
-        sprite_renderer->set_flip_y(flip_y_checkbox.get_value());
     }
 }

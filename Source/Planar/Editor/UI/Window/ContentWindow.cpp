@@ -5,7 +5,10 @@
 #include "Planar/Engine/UI/ImGui/Style/StyleColor.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/WindowMenuBar.hpp"
+#include "Planar/Engine/Core/Sprite/Sprite.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
+#include "Planar/Engine/Asset/AssetFunction.hpp"
+#include "Planar/Engine/Asset/AssetDatabase.hpp"
 
 #include <vector>
 #include <memory>
@@ -97,6 +100,14 @@ namespace Planar::Editor::UI::Window
                 else if (button.is_clicked())
                 {
                     content_single_click(name);
+                }
+
+                if (is_regular_file && i.extension() == ".planarsprite")
+                {
+                    ImGui::drag_drop_source("SpriteAsset", &editor->
+                        get_asset_database().
+                        get_owning_asset<Engine::Core::Sprite::Sprite>(
+                        Engine::Asset::get_guid(i))->get_guid());
                 }
 
                 text_renderer.render_center_truncate(name, button_size,
