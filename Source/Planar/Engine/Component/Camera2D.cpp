@@ -3,6 +3,8 @@
 #include "Planar/Engine/Core/Application.hpp"
 #include "Planar/Engine/Math/MatrixTransform.hpp"
 
+#include "ThirdParty/glm/mat4x4.hpp"
+
 #include <memory>
 
 namespace Planar::Engine::Component
