@@ -33,6 +33,7 @@ namespace Planar::Editor::UI::Window
             Editor::Core::EditorGameMode::PLAYING)
         {
             current_scene->update();
+            current_scene->late_update();
         }
         else
         {

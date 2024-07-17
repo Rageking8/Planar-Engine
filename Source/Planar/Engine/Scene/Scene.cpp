@@ -70,6 +70,17 @@ namespace Planar::Engine::Scene
             });
     }
 
+    void Scene::late_update()
+    {
+        root->iterate_depth_first([&]
+            (std::shared_ptr<Component::Core::ComponentBase> component)
+            {
+                component->late_update();
+
+                return false;
+            });
+    }
+
     void Scene::editor_update()
     {
         found_main_camera = false;
