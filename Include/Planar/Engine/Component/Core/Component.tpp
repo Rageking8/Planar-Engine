@@ -45,6 +45,18 @@ namespace Planar::Engine::Component::Core
 
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
+    inline void Component<ComponentT, AssetT, Mixins...>::late_update()
+    {
+        if (skip_callback())
+        {
+            return;
+        }
+
+        late_update_impl();
+    }
+
+    template <typename ComponentT, typename AssetT,
+        template <typename> typename... Mixins>
     inline void Component<ComponentT, AssetT, Mixins...>::render()
     {
         if (skip_callback())
@@ -73,6 +85,13 @@ namespace Planar::Engine::Component::Core
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
     inline void Component<ComponentT, AssetT, Mixins...>::update_impl()
+    {
+
+    }
+
+    template <typename ComponentT, typename AssetT,
+        template <typename> typename... Mixins>
+    inline void Component<ComponentT, AssetT, Mixins...>::late_update_impl()
     {
 
     }
