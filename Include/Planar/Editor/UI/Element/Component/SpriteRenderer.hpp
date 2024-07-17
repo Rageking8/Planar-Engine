@@ -4,6 +4,7 @@
 #include "Planar/Editor/UI/Element/AssetReference.hpp"
 #include "Planar/Engine/Component/SpriteRenderer.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Checkbox.hpp"
+#include "Planar/Engine/UI/ImGui/Element/Drag/Drag.hpp"
 #include "Planar/Engine/UI/ImGui/Element/Button/Button.hpp"
 
 #include <string>
@@ -23,6 +24,7 @@ namespace Planar::Editor::UI::Element::Component
         Engine::UI::ImGui::Element::Button::Button sprite_select_button;
         Engine::UI::ImGui::Element::Checkbox flip_x_checkbox;
         Engine::UI::ImGui::Element::Checkbox flip_y_checkbox;
+        Engine::UI::ImGui::Element::Drag::DragFloat2 tile_factor;
 
         virtual void render_content() override;
 

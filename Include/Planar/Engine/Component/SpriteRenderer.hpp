@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Component/Core/Component.hpp"
 #include "Planar/Engine/Component/Core/ComponentMacros.hpp"
 #include "Planar/Engine/Component/Mixin/Active.hpp"
@@ -28,11 +29,13 @@ namespace Planar::Engine::Component
         PLANAR_DECLARE_GET_SET(std::string, sprite)
         PLANAR_DECLARE_GET_SET(bool, flip_x)
         PLANAR_DECLARE_GET_SET(bool, flip_y)
+        PLANAR_DECLARE_GET_SET(Math::Size2Df, tile_factor)
 
     private:
         std::string sprite;
         bool flip_x;
         bool flip_y;
+        Math::Size2Df tile_factor;
 
         glm::mat4 calc_model_mat() const;
 

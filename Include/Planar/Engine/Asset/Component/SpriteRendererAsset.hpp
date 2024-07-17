@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Asset/Component/Core/ComponentAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Asset/Component/Mixin/Active.hpp"
@@ -21,6 +22,7 @@ namespace Planar::Engine::Asset::Component
         PLANAR_DECLARE_GET_SET(std::string, sprite)
         PLANAR_DECLARE_GET_SET(bool, flip_x)
         PLANAR_DECLARE_GET_SET(bool, flip_y)
+        PLANAR_DECLARE_GET_SET(Math::Size2Df, tile_factor)
 
     private:
         virtual void load_impl(

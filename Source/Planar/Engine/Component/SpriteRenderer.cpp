@@ -20,7 +20,7 @@ namespace Planar::Engine::Component
 {
     SpriteRenderer::SpriteRenderer(GameObject::GameObject* parent,
         bool generate_guid) : Component(parent, generate_guid),
-        flip_x{}, flip_y{}
+        flip_x{}, flip_y{}, tile_factor{ 1.f }
     {
 
     }
@@ -29,6 +29,8 @@ namespace Planar::Engine::Component
         sprite)
     PLANAR_DEFINE_COMPONENT_GET_SET(SpriteRenderer, bool, flip_x)
     PLANAR_DEFINE_COMPONENT_GET_SET(SpriteRenderer, bool, flip_y)
+    PLANAR_DEFINE_COMPONENT_GET_SET(SpriteRenderer, Math::Size2Df,
+        tile_factor)
 
     glm::mat4 SpriteRenderer::calc_model_mat() const
     {
@@ -46,6 +48,7 @@ namespace Planar::Engine::Component
         set_sprite(asset.get_sprite());
         set_flip_x(asset.get_flip_x());
         set_flip_y(asset.get_flip_y());
+        set_tile_factor(asset.get_tile_factor());
     }
 
     void SpriteRenderer::render_impl()

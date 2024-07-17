@@ -1,6 +1,7 @@
 #include "Planar/Editor/UI/Element/Component/SpriteRenderer.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
@@ -15,7 +16,9 @@ namespace Planar::Editor::UI::Element::Component
         sprite("Sprite", "SpriteAsset",
         PLANAR_CAPTURE_THIS_PARAM1(update_sprite_text), {}, 95.f),
         sprite_select_button("Select"), flip_x_checkbox("Flip X"),
-        flip_y_checkbox("Flip Y")
+        flip_y_checkbox("Flip Y"), tile_factor("Tile Factor",
+        { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
+        0.f, 0.f, 20.f }, 120.f, true)
     {
 
     }
@@ -23,7 +26,7 @@ namespace Planar::Editor::UI::Element::Component
     bool SpriteRenderer::get_modified(bool reset)
     {
         return modified_helper(reset, sprite, active_checkbox,
-            flip_x_checkbox, flip_y_checkbox);
+            flip_x_checkbox, flip_y_checkbox, tile_factor);
     }
 
     void SpriteRenderer::render_content()
@@ -50,7 +53,7 @@ namespace Planar::Editor::UI::Element::Component
             }
         }
 
-        render_helper(flip_x_checkbox, flip_y_checkbox);
+        render_helper(flip_x_checkbox, flip_y_checkbox, tile_factor);
     }
 
     void SpriteRenderer::set_values_impl(ComponentType* sprite_renderer)
@@ -59,6 +62,8 @@ namespace Planar::Editor::UI::Element::Component
         sprite.set_asset(sprite_renderer->get_sprite(), false, true);
         flip_x_checkbox.set_value(sprite_renderer->get_flip_x());
         flip_y_checkbox.set_value(sprite_renderer->get_flip_y());
+        tile_factor.set_value(sprite_renderer->get_tile_factor().
+            get_array());
     }
 
     void SpriteRenderer::write_values_impl(ComponentType* sprite_renderer)
@@ -67,6 +72,7 @@ namespace Planar::Editor::UI::Element::Component
         sprite_renderer->set_sprite(sprite.get_asset());
         sprite_renderer->set_flip_x(flip_x_checkbox.get_value());
         sprite_renderer->set_flip_y(flip_y_checkbox.get_value());
+        sprite_renderer->set_tile_factor(tile_factor.get_value());
     }
 
     void SpriteRenderer::update_sprite_text(std::string new_sprite)
