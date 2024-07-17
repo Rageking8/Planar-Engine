@@ -48,7 +48,7 @@ namespace Planar::Engine::Component::Core
 
         template <typename ComponentT>
         std::shared_ptr<ComponentT> get_component_reference(
-            const std::string& guid);
+            const std::string& guid) const;
 
         virtual void load_asset() = 0;
 

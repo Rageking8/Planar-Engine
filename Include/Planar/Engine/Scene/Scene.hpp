@@ -43,11 +43,11 @@ namespace Planar::Engine::Scene
         std::shared_ptr<Component::Camera2D> get_active_main_camera();
 
         std::shared_ptr<Component::Core::ComponentBase>
-            get_component_reference(const std::string& guid);
+            get_component_reference(const std::string& guid) const;
 
         template <typename ComponentT>
         std::shared_ptr<ComponentT> get_component_reference(
-            const std::string& guid);
+            const std::string& guid) const;
 
     private:
         Core::Application* application;

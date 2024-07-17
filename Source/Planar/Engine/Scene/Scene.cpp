@@ -142,7 +142,7 @@ namespace Planar::Engine::Scene
     }
 
     std::shared_ptr<Component::Core::ComponentBase>
-        Scene::get_component_reference(const std::string& guid)
+        Scene::get_component_reference(const std::string& guid) const
     {
         std::shared_ptr<Component::Core::ComponentBase> result;
 

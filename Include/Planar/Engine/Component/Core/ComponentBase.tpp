@@ -15,6 +15,7 @@ namespace Planar::Engine::Component::Core
     template <typename ComponentT>
     inline std::shared_ptr<ComponentT>
         ComponentBase::get_component_reference(const std::string& guid)
+        const
     {
         return get_parent()->get_scene()->
             get_component_reference<ComponentT>(guid);
