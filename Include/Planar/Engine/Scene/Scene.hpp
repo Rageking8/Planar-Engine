@@ -45,6 +45,10 @@ namespace Planar::Engine::Scene
         std::shared_ptr<Component::Core::ComponentBase>
             get_component_reference(const std::string& guid);
 
+        template <typename ComponentT>
+        std::shared_ptr<ComponentT> get_component_reference(
+            const std::string& guid);
+
     private:
         Core::Application* application;
         SceneAsset asset;
@@ -60,3 +64,5 @@ namespace Planar::Engine::Scene
             std::shared_ptr<Component::Core::ComponentBase> component);
     };
 }
+
+#include "Planar/Engine/Scene/Scene.tpp"

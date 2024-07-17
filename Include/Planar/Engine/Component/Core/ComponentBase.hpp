@@ -46,6 +46,10 @@ namespace Planar::Engine::Component::Core
         std::shared_ptr<Transform2D> get_transform() const;
         std::shared_ptr<Camera2D> get_active_main_camera() const;
 
+        template <typename ComponentT>
+        std::shared_ptr<ComponentT> get_component_reference(
+            const std::string& guid);
+
         virtual void load_asset() = 0;
 
         virtual const Asset::Asset& get_asset() const = 0;
