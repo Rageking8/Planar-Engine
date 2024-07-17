@@ -1,6 +1,10 @@
 #include "Planar/Engine/Component/CameraController2D.hpp"
 #include "Planar/Engine/Core/Input/InputController.hpp"
 #include "Planar/Engine/Component/Transform2D.hpp"
+#include "Planar/Engine/Math/Pos2D.hpp"
+
+#include <cmath>
+#include <memory>
 
 namespace Planar::Engine::Component
 {
@@ -63,9 +67,27 @@ namespace Planar::Engine::Component
                 transform->translate_x(horizontal_speed.second);
             }
         }
-        else if (mode == "Track")
-        {
+    }
 
+    void CameraController2D::late_update_impl()
+    {
+        if (mode != "Track" || tracked_transform.empty())
+        {
+            return;
+        }
+
+        std::shared_ptr<Transform2D> transform = get_transform();
+        std::shared_ptr<Transform2D> tracked =
+            get_component_reference<Transform2D>(tracked_transform);
+
+        if (tracked)
+        {
+            const Math::Pos2Df position = transform->get_position();
+            const Math::Pos2Df target = tracked->get_position();
+
+            transform->set_position({
+                std::lerp(position.x, target.x, horizontal_lerp),
+                std::lerp(position.y, target.y, vertical_lerp) });
         }
     }
 }

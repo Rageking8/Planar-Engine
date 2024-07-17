@@ -42,5 +42,6 @@ namespace Planar::Engine::Component
         virtual void load_impl() override;
 
         virtual void update_impl() override;
+        virtual void late_update_impl() override;
     };
 }
