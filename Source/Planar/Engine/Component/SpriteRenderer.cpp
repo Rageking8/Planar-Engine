@@ -71,7 +71,8 @@ namespace Planar::Engine::Component
         application->get_shader_manager().get
             <Graphics::OpenGL::Shader::SpriteShader>("Sprite")->use(
             calc_model_mat(), camera->get_view_mat(),
-            camera->get_projection_mat());
+            camera->get_projection_mat(),
+            { tile_factor.first, tile_factor.second });
 
         glActiveTexture(GL_TEXTURE0);
         application->get_asset_database().get_owning_asset
