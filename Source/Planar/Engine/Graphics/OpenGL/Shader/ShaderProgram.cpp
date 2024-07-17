@@ -1,5 +1,8 @@
 #include "Planar/Engine/Graphics/OpenGL/Shader/ShaderProgram.hpp"
 
+#include "ThirdParty/glm/vec2.hpp"
+#include "ThirdParty/glm/mat4x4.hpp"
+
 namespace Planar::Engine::Graphics::OpenGL::Shader
 {
     ShaderProgram::ShaderProgram() : Resource(free_impl)
@@ -28,7 +31,14 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
         glUseProgram(id);
     }
 
-    void ShaderProgram::set_mat4(GLint location, const glm::mat4& value)
+    void ShaderProgram::set_vec2(
+        GLint location, const glm::vec2& value) const
+    {
+        glUniform2f(location, value.x, value.y);
+    }
+
+    void ShaderProgram::set_mat4(
+        GLint location, const glm::mat4& value) const
     {
         glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
     }

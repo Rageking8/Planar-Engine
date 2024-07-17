@@ -5,7 +5,7 @@
 #include "Planar/Engine/Graphics/OpenGL/Shader/Shader.hpp"
 
 #include "ThirdParty/glad/gl.h"
-#include "ThirdParty/glm/glm.hpp"
+#include "ThirdParty/glm/fwd.hpp"
 
 namespace Planar::Engine::Graphics::OpenGL::Shader
 {
@@ -19,7 +19,8 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
             const FragmentShader& fragment_shader);
         void use() const;
 
-        void set_mat4(GLint location, const glm::mat4& value);
+        void set_vec2(GLint location, const glm::vec2& value) const;
+        void set_mat4(GLint location, const glm::mat4& value) const;
 
     private:
         static void free_impl(GLuint id);
