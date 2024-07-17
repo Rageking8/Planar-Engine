@@ -1,5 +1,6 @@
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
+#include "Planar/Engine/Graphics/OpenGL/Texture/TextureWrap.hpp"
 
 namespace Planar::Engine::Core::Sprite
 {
@@ -17,7 +18,7 @@ namespace Planar::Engine::Core::Sprite
 
         std::filesystem::path texture_path = sprite_path;
         texture_path.replace_extension("png");
-        texture.load(texture_path);
+        load_texture(texture_path);
     }
 
     void Sprite::create(const std::filesystem::path& texture_path)
@@ -27,7 +28,7 @@ namespace Planar::Engine::Core::Sprite
             GUID::Representation::DEFAULT_COMPACT);
 
         asset.create(*this, texture_path);
-        texture.load(texture_path);
+        load_texture(texture_path);
     }
 
     void Sprite::save() const
@@ -48,5 +49,12 @@ namespace Planar::Engine::Core::Sprite
     Graphics::OpenGL::Texture::Texture2D& Sprite::get_texture()
     {
         return texture;
+    }
+
+    void Sprite::load_texture(const std::filesystem::path& texture_path)
+    {
+        texture.load(texture_path);
+        texture.set_wrap_s(Graphics::OpenGL::Texture::TextureWrap::REPEAT);
+        texture.set_wrap_t(Graphics::OpenGL::Texture::TextureWrap::REPEAT);
     }
 }

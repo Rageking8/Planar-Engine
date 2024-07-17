@@ -28,5 +28,7 @@ namespace Planar::Engine::Core::Sprite
         std::string guid;
         SpriteAsset asset;
         Graphics::OpenGL::Texture::Texture2D texture;
+
+        void load_texture(const std::filesystem::path& texture_path);
     };
 }
