@@ -13,6 +13,6 @@ namespace Planar::Engine::Graphics::OpenGL::Shader
         SpriteShader();
 
         void use(const glm::mat4& model, const glm::mat4& view,
-            const glm::mat4& projection);
+            const glm::mat4& projection, const glm::vec2& tile_factor);
     };
 }
