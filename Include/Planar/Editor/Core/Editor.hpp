@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Planar/Engine/Math/Size2D.hpp"
-#include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Core/Application.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Editor/Core/EditorGameMode.hpp"
 #include "Planar/Editor/Core/Save/SaveHandler.hpp"
@@ -15,6 +15,7 @@
 #include <functional>
 #include <filesystem>
 
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Scene, Scene)
 PLANAR_EDITOR_FORWARD_DECLARE_CLASS(Scene, EditorScene)
 
 namespace Planar::Editor::Core
@@ -23,6 +24,7 @@ namespace Planar::Editor::Core
     {
     public:
         Editor();
+        virtual ~Editor();
 
         virtual bool init() override;
 
@@ -71,6 +73,8 @@ namespace Planar::Editor::Core
         EditorGameMode editor_game_mode;
 
         Engine::Math::Size2Di game_content_size;
+
+        std::unique_ptr<Engine::Scene::Scene> editor_main_scene;
 
         void load_assets();
 

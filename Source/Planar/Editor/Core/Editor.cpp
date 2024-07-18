@@ -3,6 +3,7 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Editor/UI/Init/Init.hpp"
+#include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
@@ -11,6 +12,11 @@ namespace Planar::Editor::Core
     Editor::Editor() :
         Application("Planar Editor", { 1280, 720 }, true),
         input_handler(this), editor_game_mode{ EditorGameMode::STOPPED }
+    {
+
+    }
+
+    Editor::~Editor()
     {
 
     }
@@ -24,10 +30,10 @@ namespace Planar::Editor::Core
 
         UI::Init::init();
 
-        std::unique_ptr<Scene::SelectProjectScene> scene =
+        editor_main_scene =
             std::make_unique<Scene::SelectProjectScene>(this);
 
-        load_scene(std::move(scene));
+        load_scene(editor_main_scene.get());
 
         return true;
     }
@@ -41,10 +47,9 @@ namespace Planar::Editor::Core
     {
         load_assets();
 
-        std::unique_ptr<Scene::EditorScene> scene =
-            std::make_unique<Scene::EditorScene>(this);
+        editor_main_scene = std::make_unique<Scene::EditorScene>(this);
 
-        load_scene(std::move(scene));
+        load_scene(editor_main_scene.get());
 
         update_window_name(project.get_project_name());
     }
@@ -111,7 +116,7 @@ namespace Planar::Editor::Core
         PLANAR_ASSERT(main_scene->get_name() == "EditorScene",
             "`main_scene` is not of type `EditorScene`");
 
-        return static_cast<Scene::EditorScene*>(main_scene.get());
+        return static_cast<Scene::EditorScene*>(main_scene);
     }
 
     void Editor::add_save_callback(const std::string& name,

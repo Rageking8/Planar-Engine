@@ -3,6 +3,7 @@
 #include "Planar/Engine/Core/Constants/Version.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
+#include "Planar/Engine/Scene/Scene.hpp"
 
 #include "ThirdParty/glad/gl.h"
 #include "ThirdParty/GLFW/glfw3.h"
@@ -13,7 +14,8 @@ namespace Planar::Engine::Core
         Math::Size2Di window_size, bool maximize,
         Graphics::SupportedGraphicsAPI graphics_api) :
         window_name{ window_name }, window_size{ window_size },
-        maximize{ maximize }, graphics_api{ graphics_api }
+        maximize{ maximize }, graphics_api{ graphics_api },
+        main_scene{}
     {
         Log::TerminalLogger::get("Engine")->log(
             "Planar Engine " + Constants::VERSION);
@@ -120,9 +122,9 @@ namespace Planar::Engine::Core
         render_single_frame(PLANAR_CAPTURE_THIS(main_scene->render));
     }
 
-    void Application::load_scene(std::unique_ptr<Scene::Scene> scene)
+    void Application::load_scene(Scene::Scene* scene)
     {
-        main_scene = std::move(scene);
+        main_scene = scene;
         main_scene->init();
     }
 

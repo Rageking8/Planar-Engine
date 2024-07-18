@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Asset/AssetDatabase.hpp"
 #include "Planar/Engine/Core/GLFW/GLFWContext.hpp"
 #include "Planar/Engine/Core/Input/InputController.hpp"
 #include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
+#include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
@@ -13,8 +13,9 @@
 #include "Planar/Engine/Graphics/OpenGL/Shader/ShaderManager.hpp"
 
 #include <string>
-#include <memory>
 #include <functional>
+
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Scene, Scene)
 
 namespace Planar::Engine::Core
 {
@@ -38,7 +39,7 @@ namespace Planar::Engine::Core
         void render_single_frame(const std::function<void()>& render);
         void render_main_scene_single_frame();
 
-        void load_scene(std::unique_ptr<Scene::Scene> scene);
+        void load_scene(Scene::Scene* scene);
 
         void maximize_window() const;
         void set_window_name(const std::string& new_window_name);
@@ -69,7 +70,7 @@ namespace Planar::Engine::Core
         Graphics::OpenGL::Core::ObjectManager object_manager;
         Graphics::OpenGL::Shader::ShaderManager shader_manager;
 
-        std::unique_ptr<Scene::Scene> main_scene;
+        Scene::Scene* main_scene;
 
         PLANAR_ADD_BASE_USING(Application)
 
