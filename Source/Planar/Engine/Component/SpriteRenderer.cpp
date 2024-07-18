@@ -75,7 +75,7 @@ namespace Planar::Engine::Component
             { tile_factor.first, tile_factor.second });
 
         glActiveTexture(GL_TEXTURE0);
-        application->get_asset_database().get_owning_asset
+        application->get_asset_database()->get_owning_asset
             <Engine::Core::Sprite::Sprite>(sprite)->get_texture().bind();
 
         application->get_object_manager().get_quad().bind();

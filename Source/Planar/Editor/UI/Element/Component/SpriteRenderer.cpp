@@ -77,7 +77,7 @@ namespace Planar::Editor::UI::Element::Component
 
     void SpriteRenderer::update_sprite_text(std::string new_sprite)
     {
-        sprite.set_text(editor->get_asset_database().
+        sprite.set_text(editor->get_asset_database()->
             get_owning_asset<Engine::Core::Sprite::Sprite>(new_sprite)->
             get_name() + ".planarsprite");
     }

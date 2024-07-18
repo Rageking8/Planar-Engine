@@ -114,7 +114,7 @@ namespace Planar::Editor::UI::Window
             sprite->create(asset_path_input.get_text());
             sprite->save();
 
-            editor->get_asset_database().add_owning_asset(sprite);
+            editor->get_asset_database()->add_owning_asset(sprite);
 
             set_active(false);
         }

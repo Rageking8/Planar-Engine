@@ -44,7 +44,7 @@ namespace Planar::Engine::Core
         void maximize_window() const;
         void set_window_name(const std::string& new_window_name);
 
-        Asset::AssetDatabase& get_asset_database();
+        Asset::AssetDatabase* get_asset_database();
 
         Input::InputController& get_input_controller();
 

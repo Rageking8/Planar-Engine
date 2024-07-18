@@ -105,7 +105,7 @@ namespace Planar::Editor::UI::Window
                 if (is_regular_file && i.extension() == ".planarsprite")
                 {
                     ImGui::drag_drop_source("SpriteAsset", &editor->
-                        get_asset_database().
+                        get_asset_database()->
                         get_owning_asset<Engine::Core::Sprite::Sprite>(
                         Engine::Asset::get_guid(i))->get_guid());
                 }

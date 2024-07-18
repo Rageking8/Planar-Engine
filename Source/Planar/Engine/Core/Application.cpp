@@ -140,9 +140,9 @@ namespace Planar::Engine::Core
         glfw_context.set_main_window_name(new_window_name);
     }
 
-    Asset::AssetDatabase& Application::get_asset_database()
+    Asset::AssetDatabase* Application::get_asset_database()
     {
-        return asset_database;
+        return &asset_database;
     }
 
     Input::InputController& Application::get_input_controller()
