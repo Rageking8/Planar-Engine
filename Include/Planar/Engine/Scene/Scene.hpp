@@ -17,12 +17,19 @@ namespace Planar::Engine::Scene
     class PLANAR_API Scene
     {
     public:
+        Scene(Core::Application* application);
         Scene(Core::Application* application,
-            const std::filesystem::path& scene_path = {});
+            const std::string& scene_name,
+            const std::string& asset_string);
+        Scene(Core::Application* application,
+            const std::filesystem::path& scene_path);
         virtual ~Scene();
 
         void load(Core::Application* application,
-            const std::filesystem::path& scene_path = {});
+            const std::string& scene_name,
+            const std::string& asset_string);
+        void load(Core::Application* application,
+            const std::filesystem::path& scene_path);
         void reload_from_path();
         void save();
 

@@ -6,10 +6,24 @@
 
 namespace Planar::Engine::Scene
 {
+    Scene::Scene(Core::Application* application) :
+        application{ application },
+        root(std::make_shared<GameObject::GameObject>(this)),
+        found_main_camera{}
+    {
+
+    }
+
+    Scene::Scene(Core::Application* application,
+        const std::string& scene_name, const std::string& asset_string) :
+        Scene(application)
+    {
+        load(application, scene_name, asset_string);
+    }
+
     Scene::Scene(Core::Application* application,
         const std::filesystem::path& scene_path) :
-        application{ application },
-        root(std::make_shared<GameObject::GameObject>(this))
+        Scene(application)
     {
         load(application, scene_path);
     }
@@ -17,6 +31,13 @@ namespace Planar::Engine::Scene
     Scene::~Scene()
     {
 
+    }
+
+    void Scene::load(Core::Application* application,
+        const std::string& scene_name, const std::string& asset_string)
+    {
+        asset.load(scene_name, asset_string);
+        load_root();
     }
 
     void Scene::load(Core::Application* application,
