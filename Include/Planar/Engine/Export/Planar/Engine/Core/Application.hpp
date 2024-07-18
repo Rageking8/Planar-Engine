@@ -14,3 +14,7 @@ PLANAR_EXPORT_DECLARE_HANDLE_FUNCTION(Planar_Engine_Core_Application_init,
     bool)
 PLANAR_EXPORT_DECLARE_HANDLE_FUNCTION(Planar_Engine_Core_Application_run,
     void)
+PLANAR_EXPORT_DECLARE_HANDLE_FUNCTION(
+    Planar_Engine_Core_Application_load_scene, void, void* scene)
+PLANAR_EXPORT_DECLARE_HANDLE_FUNCTION(
+    Planar_Engine_Core_Application_get_asset_database, void*)
