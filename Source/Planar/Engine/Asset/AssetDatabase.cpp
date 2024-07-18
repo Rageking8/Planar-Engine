@@ -9,6 +9,17 @@ namespace Planar::Engine::Asset
 
     }
 
+    void AssetDatabase::load_sprite(const std::string& name,
+        const std::string& asset, const unsigned char* sprite,
+        std::size_t length)
+    {
+        std::shared_ptr<Core::Sprite::Sprite> new_sprite =
+            std::make_shared<Core::Sprite::Sprite>();
+        new_sprite->load(name, asset, sprite, length);
+
+        add_owning_asset(new_sprite);
+    }
+
     void AssetDatabase::load_asset_recursive(
         const std::filesystem::path& root)
     {

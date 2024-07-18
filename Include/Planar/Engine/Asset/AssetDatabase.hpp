@@ -4,6 +4,7 @@
 
 #include <string>
 #include <memory>
+#include <cstddef>
 #include <filesystem>
 #include <unordered_map>
 
@@ -14,6 +15,9 @@ namespace Planar::Engine::Asset
     public:
         AssetDatabase();
 
+        void load_sprite(const std::string& name,
+            const std::string& asset, const unsigned char* sprite,
+            std::size_t length);
         void load_asset_recursive(const std::filesystem::path& root);
 
         template <typename T>
