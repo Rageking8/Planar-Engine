@@ -1,7 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Planar.Engine;
 using Planar.Engine.Math;
+using Planar.Engine.Asset;
 using Planar.Engine.Graphics;
 
 using static Planar.Engine.Core.Utils.ResourceUtils;
@@ -48,6 +50,22 @@ public class Application : IDisposable
         Planar_Engine_Core_Application_run(Handle);
     }
 
+    public Scene.Scene CreateScene(string resourceName)
+    {
+        return new(this, resourceName);
+    }
+
+    public void LoadScene(Scene.Scene scene)
+    {
+        Planar_Engine_Core_Application_load_scene(Handle, scene.Handle);
+    }
+
+    public AssetDatabase GetAssetDatabase()
+    {
+        return new(Planar_Engine_Core_Application_get_asset_database(
+            Handle));
+    }
+
     [DllImport(ImportConstants.PlanarEngineDLL)]
     private static extern IntPtr Planar_Engine_Core_Application_construct(
         string window_name, Size2D<int> window_size,
@@ -66,4 +84,12 @@ public class Application : IDisposable
     [DllImport(ImportConstants.PlanarEngineDLL)]
     private extern static void Planar_Engine_Core_Application_run(
         IntPtr handle);
+
+    [DllImport(ImportConstants.PlanarEngineDLL)]
+    private extern static void Planar_Engine_Core_Application_load_scene(
+        IntPtr handle, IntPtr scene);
+
+    [DllImport(ImportConstants.PlanarEngineDLL)]
+    private extern static IntPtr
+        Planar_Engine_Core_Application_get_asset_database(IntPtr handle);
 }
