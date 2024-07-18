@@ -83,6 +83,7 @@ namespace Planar::Engine::Core
             if (main_scene)
             {
                 main_scene->update();
+                main_scene->late_update();
             }
 
             render_single_frame([&]
