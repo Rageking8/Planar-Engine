@@ -34,6 +34,13 @@ namespace Planar::Engine::Scene
         Asset::load(scene_asset);
     }
 
+    void SceneAsset::load(const std::string& scene_name,
+        const std::string& asset_string)
+    {
+        name = scene_name;
+        Asset::load(asset_string);
+    }
+
     void SceneAsset::load(const std::filesystem::path& scene_path)
     {
         name = scene_path.stem().string();

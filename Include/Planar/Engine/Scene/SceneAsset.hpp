@@ -20,6 +20,8 @@ namespace Planar::Engine::Scene
             const std::filesystem::path& path,
             const std::string& scene_name);
 
+        void load(const std::string& scene_name,
+            const std::string& asset_string);
         virtual void load(const std::filesystem::path& scene_path)
             override;
         void reload_from_path();
