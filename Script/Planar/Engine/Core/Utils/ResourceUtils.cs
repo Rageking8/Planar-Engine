@@ -1,6 +1,8 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
 
 using static Planar.Engine.Core.Utils.AssemblyUtils;
 
@@ -12,6 +14,13 @@ public static class ResourceUtils
     {
         return Assembly.GetEntryAssembly().
             GetManifestResourceStream(resourceName);
+    }
+
+    public static List<string> GetResourceNamesByExtension(
+        string extension)
+    {
+        return Assembly.GetEntryAssembly().GetManifestResourceNames().
+            Where(name => name.EndsWith(extension)).ToList();
     }
 
     public static string WriteDllToTemp(string dllName)
@@ -32,6 +41,17 @@ public static class ResourceUtils
         using (var reader = new StreamReader(resource))
         {
             return reader.ReadToEnd();
+        }
+    }
+
+    public static byte[] ReadResourceBytes(string resourceName)
+    {
+        using (var resource = GetResourceStream(resourceName))
+        {
+            byte[] bytes = new byte[resource.Length];
+            resource.Read(bytes, 0, bytes.Length);
+
+            return bytes;
         }
     }
 
