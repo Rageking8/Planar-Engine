@@ -2,12 +2,9 @@
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Core/Constants/Version.hpp"
 #include "Planar/Engine/Core/GUID/GUID.hpp"
-#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
 #include "ThirdParty/yaml-cpp/yaml.h"
-
-#include <memory>
 
 namespace Planar::Engine::Scene
 {
