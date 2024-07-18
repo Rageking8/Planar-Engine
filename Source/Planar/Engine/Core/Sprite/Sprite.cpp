@@ -9,6 +9,19 @@ namespace Planar::Engine::Core::Sprite
 
     }
 
+    void Sprite::load(const std::string& new_name,
+        const std::string& new_asset, const unsigned char* new_sprite,
+        std::size_t length)
+    {
+        asset.Asset::Asset::load(new_asset);
+
+        name = new_name;
+        guid = asset.get_guid();
+
+        texture.load(new_sprite, length);
+        set_wrap();
+    }
+
     void Sprite::load(const std::filesystem::path& sprite_path)
     {
         asset.load(sprite_path);
@@ -54,6 +67,11 @@ namespace Planar::Engine::Core::Sprite
     void Sprite::load_texture(const std::filesystem::path& texture_path)
     {
         texture.load(texture_path);
+        set_wrap();
+    }
+
+    void Sprite::set_wrap()
+    {
         texture.set_wrap_s(Graphics::OpenGL::Texture::TextureWrap::REPEAT);
         texture.set_wrap_t(Graphics::OpenGL::Texture::TextureWrap::REPEAT);
     }
