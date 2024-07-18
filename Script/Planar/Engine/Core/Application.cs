@@ -10,13 +10,14 @@ namespace Planar.Engine.Core;
 
 public class Application : IDisposable
 {
-    private IntPtr _handle;
+    public IntPtr Handle { get; private set; }
+
     private ApplicationAsset _applicationAsset;
 
     public Application()
     {
         _applicationAsset = new(ReadResource("Application"));
-        _handle = Planar_Engine_Core_Application_construct(
+        Handle = Planar_Engine_Core_Application_construct(
             _applicationAsset.GetWindowName(),
             _applicationAsset.GetWindowSize(),
             _applicationAsset.GetMaximizeWindow(),
@@ -30,21 +31,21 @@ public class Application : IDisposable
 
     public void Dispose()
     {
-        if (_handle != IntPtr.Zero)
+        if (Handle != IntPtr.Zero)
         {
-            Planar_Engine_Core_Application_destruct(_handle);
-            _handle = IntPtr.Zero;
+            Planar_Engine_Core_Application_destruct(Handle);
+            Handle = IntPtr.Zero;
         }
     }
 
     public bool Init()
     {
-        return Planar_Engine_Core_Application_init(_handle);
+        return Planar_Engine_Core_Application_init(Handle);
     }
 
     public void Run()
     {
-        Planar_Engine_Core_Application_run(_handle);
+        Planar_Engine_Core_Application_run(Handle);
     }
 
     [DllImport(ImportConstants.PlanarEngineDLL)]
