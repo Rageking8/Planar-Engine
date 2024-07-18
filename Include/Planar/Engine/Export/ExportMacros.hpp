@@ -103,3 +103,54 @@
     {                                                                  \
         return static_cast<type*>(handle)->name(arg1);                 \
     }                                                                  \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION7(namespace_prefix, name,  \
+    arg_type1, arg1, arg_type2, arg2, type)                            \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
+        void, arg_type1, arg_type2)                                    \
+    {                                                                  \
+        static_cast<type*>(handle)->name(arg1, arg2);                  \
+    }                                                                  \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION8(namespace_prefix, name,  \
+    return_type, arg_type1, arg1, arg_type2, arg2, type)               \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
+        return_type, arg_type1, arg_type2)                             \
+    {                                                                  \
+        return static_cast<type*>(handle)->name(arg1, arg2);           \
+    }                                                                  \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION9(namespace_prefix, name,  \
+    arg_type1, arg1, arg_type2, arg2, arg_type3, arg3, type)           \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
+        void, arg_type1, arg_type2, arg_type3)                         \
+    {                                                                  \
+        static_cast<type*>(handle)->name(arg1, arg2, arg3);            \
+    }                                                                  \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION10(namespace_prefix, name, \
+    return_type, arg_type1, arg1, arg_type2, arg2, arg_type3, arg3,    \
+    type)                                                              \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name, \
+        return_type, arg_type1, arg_type2, arg_type3)                  \
+    {                                                                  \
+        return static_cast<type*>(handle)->name(arg1, arg2, arg3);     \
+    }                                                                  \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION11(namespace_prefix, name,  \
+    arg_type1, arg1, arg_type2, arg2, arg_type3, arg3, arg_type4, arg4, \
+    type)                                                               \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name,  \
+        void, arg_type1, arg_type2, arg_type3, arg_type4)               \
+    {                                                                   \
+        static_cast<type*>(handle)->name(arg1, arg2, arg3, arg4);       \
+    }                                                                   \
+
+#define PLANAR_EXPORT_DEFINE_HANDLE_FUNCTION12(namespace_prefix, name,   \
+    return_type, arg_type1, arg1, arg_type2, arg2, arg_type3, arg3,      \
+    arg_type4, arg4, type)                                               \
+    PLANAR_EXPORT_HANDLE_FUNCTION_PROTOTYPE(namespace_prefix##_##name,   \
+        return_type, arg_type1, arg_type2, arg_type3, arg_type4)         \
+    {                                                                    \
+        return static_cast<type*>(handle)->name(arg1, arg2, arg3, arg4); \
+    }                                                                    \
