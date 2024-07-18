@@ -1,9 +1,12 @@
 #include "Planar/Editor/UI/Window/GameWindow.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Core/EditorGameMode.hpp"
+#include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Render/Render.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Core/ViewportScope.hpp"
+
+#include "ThirdParty/glad/gl.h"
 
 namespace Planar::Editor::UI::Window
 {

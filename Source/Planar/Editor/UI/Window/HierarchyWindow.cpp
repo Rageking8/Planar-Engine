@@ -1,5 +1,6 @@
 #include "Planar/Editor/UI/Window/HierarchyWindow.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
+#include "Planar/Engine/Scene/Scene.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/Menu.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"

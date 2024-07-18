@@ -1,6 +1,7 @@
 #include "Planar/Editor/UI/Window/InspectorWindow.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
+#include "Planar/Engine/GameObject/GameObject.hpp"
 
 namespace Planar::Editor::UI::Window
 {
