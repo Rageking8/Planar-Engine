@@ -18,7 +18,7 @@ namespace Planar::Engine::Core::Sprite
         name = new_name;
         guid = asset.get_guid();
 
-        texture.load(new_sprite, length);
+        texture.load(new_sprite, length, new_name);
         set_wrap();
     }
 

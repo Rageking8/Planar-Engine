@@ -10,6 +10,7 @@
 
 #include "ThirdParty/glad/gl.h"
 
+#include <string>
 #include <cstddef>
 #include <filesystem>
 
@@ -28,6 +29,7 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
             Core::ObjectHandlingMode object_handling_mode =
             Core::ObjectHandlingMode::DSA);
         bool load(const unsigned char* buffer, std::size_t length,
+            const std::string& name = "",
             Core::ObjectHandlingMode object_handling_mode =
             Core::ObjectHandlingMode::DSA);
 

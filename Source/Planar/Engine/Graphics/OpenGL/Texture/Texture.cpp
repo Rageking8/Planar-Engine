@@ -1,5 +1,8 @@
 #include "Planar/Engine/Graphics/OpenGL/Texture/Texture.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Fatal.hpp"
+#include "Planar/Engine/Core/Log/TerminalLogger.hpp"
+
+#include "ThirdParty/stb/stb_image.h"
 
 namespace Planar::Engine::Graphics::OpenGL::Texture
 {
@@ -36,11 +39,16 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
     }
 
     bool Texture::load(const unsigned char* buffer, std::size_t length,
-        Core::ObjectHandlingMode object_handling_mode)
+        const std::string& name, Core::ObjectHandlingMode
+        object_handling_mode)
     {
         Image::STBImage stb_image;
         if (!stb_image.load(buffer, length))
         {
+            Engine::Core::Log::TerminalLogger::get("Texture")->
+                error("Loading '" + name + "' failed with " +
+                stbi_failure_reason());
+
             return false;
         }
 
