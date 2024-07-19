@@ -18,14 +18,14 @@ namespace Planar::Engine::Scene
         const std::string& scene_name, const std::string& asset_string) :
         Scene(application)
     {
-        load(application, scene_name, asset_string);
+        load(scene_name, asset_string);
     }
 
     Scene::Scene(Core::Application* application,
         const std::filesystem::path& scene_path) :
         Scene(application)
     {
-        load(application, scene_path);
+        load(scene_path);
     }
 
     Scene::~Scene()
@@ -33,15 +33,14 @@ namespace Planar::Engine::Scene
 
     }
 
-    void Scene::load(Core::Application* application,
-        const std::string& scene_name, const std::string& asset_string)
+    void Scene::load(const std::string& scene_name,
+        const std::string& asset_string)
     {
         asset.load(scene_name, asset_string);
         load_root();
     }
 
-    void Scene::load(Core::Application* application,
-        const std::filesystem::path& scene_path)
+    void Scene::load(const std::filesystem::path& scene_path)
     {
         if (scene_path.empty())
         {
