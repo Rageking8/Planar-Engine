@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -7,8 +8,8 @@ using Planar.Engine;
 using Planar.Engine.Asset;
 using Planar.Engine.Core.Log;
 
-using static Planar.Engine.Core.Native.NativeFunction;
 using static Planar.Engine.Core.Utils.ResourceUtils;
+using static Planar.Engine.Core.Native.NativeFunction;
 
 namespace Planar.Engine.Core;
 
@@ -29,6 +30,14 @@ public class Entry
             Console.ReadLine();
 
             return;
+        }
+
+        string[] allAssets = Assembly.GetEntryAssembly().
+            GetManifestResourceNames();
+        for (int i = 0; i < allAssets.Length; ++i)
+        {
+            TerminalLogger.Log("Asset", "Found asset '" +
+                allAssets[i] + "'");
         }
 
         List<string> sceneAssets =
