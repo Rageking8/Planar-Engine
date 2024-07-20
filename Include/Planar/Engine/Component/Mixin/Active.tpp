@@ -3,6 +3,13 @@
 namespace Planar::Engine::Component::Mixin
 {
     template <typename AssetT>
+    inline Active<AssetT>::Active(AssetT* asset) :
+        Engine::Core::Mixin::Mixin<AssetT>(asset), active{ true }
+    {
+
+    }
+
+    template <typename AssetT>
     inline void Active<AssetT>::load()
     {
         set_active(this->asset->get_active());

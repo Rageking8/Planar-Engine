@@ -8,7 +8,7 @@ namespace Planar::Engine::Component::Mixin
     class Active : public Engine::Core::Mixin::Mixin<AssetT>
     {
     public:
-        using Engine::Core::Mixin::Mixin<AssetT>::Mixin;
+        Active(AssetT* asset);
 
         void load();
 
