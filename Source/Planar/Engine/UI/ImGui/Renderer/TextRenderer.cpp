@@ -59,7 +59,7 @@ namespace Planar::Engine::UI::ImGui::Renderer
         {
             Core::Cursor::move_x((width * 0.5f) + frame_padding_x -
                 (split_result.first[i].second * 0.5f));
-            Core::Cursor::move_y(i * line_delta);
+            Core::Cursor::move_y(static_cast<float>(i) * line_delta);
             ImGui::text(split_result.first[i].first);
         }
     }

@@ -22,7 +22,7 @@ namespace Planar::Engine::UI::ImGui::Element
         void set_value(bool new_value);
 
     private:
-        bool value;
         std::string label;
+        bool value;
     };
 }

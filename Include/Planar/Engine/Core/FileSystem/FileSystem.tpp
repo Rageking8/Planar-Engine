@@ -16,6 +16,7 @@ namespace Planar::Engine::Core::FileSystem
         std::ofstream output_stream;
         output_stream.open(path, std::ios::binary | std::ios::app);
 
-        output_stream.write((char*)array, size);
+        output_stream.write((char*)array,
+            static_cast<std::streamsize>(size));
     }
 }

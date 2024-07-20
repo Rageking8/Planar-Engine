@@ -57,7 +57,7 @@ namespace Planar::Engine::UI::ImGui::Element
                     i == static_cast<std::size_t>(index);
                 if (::ImGui::Selectable(options[i].c_str(), selected))
                 {
-                    set_selected_index(i);
+                    set_selected_index(static_cast<unsigned>(i));
                 }
 
                 if (selected)
@@ -106,8 +106,8 @@ namespace Planar::Engine::UI::ImGui::Element
         PLANAR_ASSERT(result != options.end(),
             "`new_text` not found in `options`");
 
-        set_selected_index(std::distance(options.begin(), result),
-            skip_modified);
+        set_selected_index(static_cast<unsigned>(std::distance(
+            options.begin(), result)), skip_modified);
     }
 
     void DropDown::set_render_label(bool new_render_label)

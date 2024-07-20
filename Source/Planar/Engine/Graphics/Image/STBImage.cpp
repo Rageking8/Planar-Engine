@@ -28,8 +28,8 @@ namespace Planar::Engine::Graphics::Image
         std::size_t length, bool flip_y)
     {
         stbi_set_flip_vertically_on_load(flip_y);
-        data = stbi_load_from_memory(buffer, length, &width,
-            &height, nullptr, 4);
+        data = stbi_load_from_memory(buffer, static_cast<int>(length),
+            &width, &height, nullptr, 4);
 
         return data;
     }

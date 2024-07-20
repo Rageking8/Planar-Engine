@@ -17,14 +17,14 @@ namespace Planar::Editor::Script
         path = new_path;
     }
 
-    void CSProject::create(const std::string& name,
-        const std::filesystem::path& path)
+    void CSProject::create(const std::string& new_name,
+        const std::filesystem::path& new_path)
     {
-        Engine::Core::FileSystem::create_file(path /
-            (name + ".csproj"),
+        Engine::Core::FileSystem::create_file(new_path /
+            (new_name + ".csproj"),
             Asset::Editor::Script::BaseProject);
 
-        load(name, path);
+        load(new_name, new_path);
     }
 
     std::string CSProject::get_name() const

@@ -17,7 +17,7 @@ namespace Planar::Engine::Core::GLFW
 
     bool GLFWContext::init()
     {
-        has_init = glfwInit();
+        has_init = (glfwInit() == GLFW_TRUE);
 
         if (has_init)
         {
@@ -134,7 +134,7 @@ namespace Planar::Engine::Core::GLFW
 
     bool GLFWContext::main_window_should_close() const
     {
-        return glfwWindowShouldClose(main_window);
+        return glfwWindowShouldClose(main_window) == GLFW_TRUE;
     }
 
     void GLFWContext::main_window_swap_buffers() const

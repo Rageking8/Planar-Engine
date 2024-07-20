@@ -12,8 +12,8 @@ namespace Planar::Editor::Script
 
         void load(const std::string& new_name,
             const std::filesystem::path& new_path);
-        void create(const std::string& name,
-            const std::filesystem::path& path);
+        void create(const std::string& new_name,
+            const std::filesystem::path& new_path);
 
         std::string get_name() const;
         std::filesystem::path get_path() const;
