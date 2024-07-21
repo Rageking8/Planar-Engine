@@ -1,5 +1,8 @@
 set(CURRENT_ASSET_DIR ${PLANAR_ROOT_ASSET_DIR}/Editor/Build)
 
+set(PLANAR_CURRENT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+set(PLANAR_CURRENT_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+
 if(NOT EXISTS ${CURRENT_ASSET_DIR}/upx.cpp)
     pack_binary_to_unsigned_char_array(${PLANAR_EDITOR_TARGET}
         ${PLANAR_ROOT_ASSET_DIR}/upx.exe
@@ -9,3 +12,6 @@ else()
         ${CURRENT_ASSET_DIR}/upx.cpp
     )
 endif()
+
+unset(PLANAR_CURRENT_SOURCE_DIR)
+unset(PLANAR_CURRENT_BINARY_DIR)

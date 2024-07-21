@@ -63,13 +63,13 @@ endfunction()
 # `pack_binary_to_unsigned_char_array` breaks current directory
 # values
 macro(pack_binary_to_unsigned_char_array_macro)
-    file(RELATIVE_PATH relative ${CMAKE_SOURCE_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR})
+    file(RELATIVE_PATH relative ${PLANAR_SOURCE_DIR}
+        ${PLANAR_CURRENT_SOURCE_DIR})
     string(REPLACE "/" "::" namespace ${relative})
 
     foreach (binary_file ${ARGN})
         get_filename_component(binary_name ${binary_file} NAME_WLE)
-        set(output_file ${CMAKE_CURRENT_BINARY_DIR}/${binary_name})
+        set(output_file ${PLANAR_CURRENT_BINARY_DIR}/${binary_name})
 
         if(${PLANAR_CMAKE_FUNCTION_LOG})
             message(STATUS "Packing ${binary_name}")
@@ -124,7 +124,9 @@ namespace Planar::${namespace}
 "
             )
 
-            target_sources(${target} PRIVATE ${current_output_file})
+            if(NOT DEFINED skip_target_sources)
+                target_sources(${target} PRIVATE ${current_output_file})
+            endif()
         endwhile()
 
         if(${chunk_size} GREATER 0)
@@ -135,7 +137,9 @@ namespace Planar::${namespace}
                 "#define PLANAR_ASSET_INCLUDE_${binary_name} ${chunk_id}"
             )
 
-            target_sources(${target} PRIVATE ${asset_include_name})
+            if(NOT DEFINED skip_target_sources)
+                target_sources(${target} PRIVATE ${asset_include_name})
+            endif()
         endif()
     endforeach()
 endmacro()

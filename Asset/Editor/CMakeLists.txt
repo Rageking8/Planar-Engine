@@ -1,5 +1,8 @@
 set(CURRENT_ASSET_DIR ${PLANAR_ROOT_ASSET_DIR}/Editor)
 
+set(PLANAR_CURRENT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+set(PLANAR_CURRENT_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+
 if(NOT EXISTS ${CURRENT_ASSET_DIR}/dotnet_sdk1.cpp)
     pack_binary_to_unsigned_char_array_chunk(${PLANAR_EDITOR_TARGET}
         10000000 ${PLANAR_ROOT_ASSET_DIR}/dotnet_sdk.7z
@@ -15,15 +18,8 @@ else()
     endwhile()
 endif()
 
-if(EXISTS ${PLANAR_ROOT_ASSET_DIR}/PlanarEngine.dll)
-    pack_binary_to_unsigned_char_array_chunk(${PLANAR_EDITOR_TARGET}
-        10000000 ${PLANAR_ROOT_ASSET_DIR}/PlanarEngine.dll
-    )
-else()
-    message(WARNING "Asset/PlanarEngine.dll not found, "
-        "build PlanarEditor and reconfigure CMake"
-    )
-endif()
+unset(PLANAR_CURRENT_SOURCE_DIR)
+unset(PLANAR_CURRENT_BINARY_DIR)
 
 add_subdirectory(Build)
 add_subdirectory(Fonts)

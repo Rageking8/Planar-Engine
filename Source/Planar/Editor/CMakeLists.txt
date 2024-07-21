@@ -41,10 +41,25 @@ if(${PLANAR_EDITOR_LINK_ENGINE} STREQUAL SHARED)
     )
 endif()
 
-add_custom_command(TARGET ${PLANAR_EDITOR_TARGET} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy
-    ${CMAKE_BINARY_DIR}/Script/PlanarScript.dll
-    ${CMAKE_BINARY_DIR}/Asset
+set(PLANAR_ENGINE_PACK_SOURCE
+    ${PLANAR_ROOT_ASSET_DIR}/Editor/PlanarEngine.cpp
+)
+
+if(NOT EXISTS ${PLANAR_ENGINE_PACK_SOURCE})
+    file(WRITE ${PLANAR_ENGINE_PACK_SOURCE} "")
+endif()
+
+set(PLANAR_SCRIPT_PACK_SOURCE
+    ${PLANAR_ROOT_ASSET_DIR}/Editor/Script/PlanarScript.cpp
+)
+
+if(NOT EXISTS ${PLANAR_SCRIPT_PACK_SOURCE})
+    file(WRITE ${PLANAR_SCRIPT_PACK_SOURCE} "")
+endif()
+
+target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
+    ${PLANAR_ENGINE_PACK_SOURCE}
+    ${PLANAR_SCRIPT_PACK_SOURCE}
 )
 
 add_subdirectory(Build)

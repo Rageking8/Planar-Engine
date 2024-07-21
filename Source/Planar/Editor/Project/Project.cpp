@@ -1,5 +1,4 @@
 #include "Planar/Editor/Project/Project.hpp"
-#include "Asset/Editor/PlanarEngine.h"
 #include "Planar/Editor/Script/Init/Init.hpp"
 #include "Planar/Editor/Core/Progress/Progress.hpp"
 #include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
@@ -12,10 +11,8 @@
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Ignore)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Project, Scene)
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Script, GeneratedEntry)
-PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Script,
-    PlanarScript)
-PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_ALL_CHUNKS(
-    Editor, PlanarEngine)
+PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Script, PlanarScript)
+PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor, PlanarEngine)
 
 namespace Planar::Editor::Project
 {
@@ -223,7 +220,7 @@ namespace Planar::Editor::Project
         const std::filesystem::path planar_engine_dll_path =
             engine_path / "PlanarEngine.dll";
         Engine::Core::FileSystem::clear_file(planar_engine_dll_path);
-        PLANAR_APPEND_ALL_CHUNKS_TO_FILE(planar_engine_dll_path,
+        PLANAR_APPEND_ARRAY_TO_FILE(planar_engine_dll_path,
             Editor, PlanarEngine)
         progress_handler();
 
