@@ -20,7 +20,7 @@ namespace Planar::Engine::Graphics::OpenGL::Texture
             Core::ObjectHandlingMode::DSA) override;
         virtual void create_raw(GLsizei width, GLsizei height,
             Core::ObjectHandlingMode object_handling_mode =
-            Core::ObjectHandlingMode::DSA);
+            Core::ObjectHandlingMode::DSA) override;
 
         virtual void set_min_filter(TextureMinFilter new_min_filter,
             Core::ObjectHandlingMode object_handling_mode =
