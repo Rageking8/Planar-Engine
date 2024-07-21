@@ -32,8 +32,7 @@ public class Entry
             return;
         }
 
-        string[] allAssets = Assembly.GetEntryAssembly().
-            GetManifestResourceNames();
+        string[] allAssets = GetResourceNames();
         for (int i = 0; i < allAssets.Length; ++i)
         {
             TerminalLogger.Log("Asset", "Found asset '" +

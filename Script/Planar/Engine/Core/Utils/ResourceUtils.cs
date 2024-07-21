@@ -16,11 +16,16 @@ public static class ResourceUtils
             GetManifestResourceStream(resourceName);
     }
 
+    public static string[] GetResourceNames()
+    {
+        return Assembly.GetEntryAssembly().GetManifestResourceNames();
+    }
+
     public static List<string> GetResourceNamesByExtension(
         string extension)
     {
-        return Assembly.GetEntryAssembly().GetManifestResourceNames().
-            Where(name => name.EndsWith(extension)).ToList();
+        return GetResourceNames().Where(name =>
+            name.EndsWith(extension)).ToList();
     }
 
     public static string WriteDllToTemp(string dllName)
