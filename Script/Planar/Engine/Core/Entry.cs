@@ -32,12 +32,8 @@ public class Entry
             return;
         }
 
-        string[] allAssets = GetResourceNames();
-        for (int i = 0; i < allAssets.Length; ++i)
-        {
-            TerminalLogger.Log("Asset", "Found asset '" +
-                allAssets[i] + "'");
-        }
+        AssetDatabase assetDatabase = application.GetAssetDatabase();
+        assetDatabase.LogAllAssets();
 
         List<string> sceneAssets =
             GetResourceNamesByExtension(".planarscene");
@@ -48,8 +44,6 @@ public class Entry
             GetResourceNamesByExtension(".planarsprite");
         HashSet<string> pngAssets =
             new(GetResourceNamesByExtension(".png"));
-
-        AssetDatabase assetDatabase = application.GetAssetDatabase();
 
         foreach (string sprite in spriteAssets)
         {

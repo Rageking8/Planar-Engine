@@ -2,6 +2,9 @@ using System;
 using System.Runtime.InteropServices;
 
 using Planar.Engine.Core;
+using Planar.Engine.Core.Log;
+
+using static Planar.Engine.Core.Utils.ResourceUtils;
 
 namespace Planar.Engine.Asset;
 
@@ -18,6 +21,14 @@ public class AssetDatabase
     {
         Planar_Engine_Asset_AssetDatabase_load_sprite(_handle,
             name, asset, sprite, (nuint)sprite.Length);
+    }
+
+    public void LogAllAssets()
+    {
+        foreach (string asset in GetResourceNames())
+        {
+            TerminalLogger.Log("Asset", "Found asset '" + asset + "'");
+        }
     }
 
     [DllImport(ImportConstants.PlanarEngineDLL)]
