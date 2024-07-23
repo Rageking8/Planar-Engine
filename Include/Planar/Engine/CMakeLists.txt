@@ -1,4 +1,5 @@
 add_subdirectory(Asset)
+add_subdirectory(Audio)
 add_subdirectory(Component)
 add_subdirectory(Core)
 add_subdirectory(Export)
