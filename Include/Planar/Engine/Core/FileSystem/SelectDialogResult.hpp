@@ -5,6 +5,8 @@
 #include <string>
 #include <filesystem>
 
+#undef ERROR
+
 namespace Planar::Engine::Core::FileSystem
 {
     class PLANAR_API SelectDialogResult
