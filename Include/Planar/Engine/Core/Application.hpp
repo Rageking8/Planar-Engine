@@ -2,6 +2,7 @@
 
 #include "Planar/Engine/Math/Size2D.hpp"
 #include "Planar/Engine/Asset/AssetDatabase.hpp"
+#include "Planar/Engine/Audio/AudioManager.hpp"
 #include "Planar/Engine/Core/GLFW/GLFWContext.hpp"
 #include "Planar/Engine/Core/Input/InputController.hpp"
 #include "Planar/Engine/Core/Utils/Macros/TypeHelperMacros.hpp"
@@ -50,6 +51,7 @@ namespace Planar::Engine::Core
 
         Graphics::OpenGL::Core::ObjectManager& get_object_manager();
         Graphics::OpenGL::Shader::ShaderManager& get_shader_manager();
+        Audio::AudioManager& get_audio_manager();
 
     protected:
         virtual bool init_glfw();
@@ -69,6 +71,7 @@ namespace Planar::Engine::Core
 
         Graphics::OpenGL::Core::ObjectManager object_manager;
         Graphics::OpenGL::Shader::ShaderManager shader_manager;
+        Audio::AudioManager audio_manager;
 
         Scene::Scene* main_scene;
 

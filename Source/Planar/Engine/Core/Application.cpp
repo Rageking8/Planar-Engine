@@ -162,6 +162,11 @@ namespace Planar::Engine::Core
         return shader_manager;
     }
 
+    Audio::AudioManager& Application::get_audio_manager()
+    {
+        return audio_manager;
+    }
+
     bool Application::init_glfw()
     {
         return glfw_context.init();
