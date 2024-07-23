@@ -26,19 +26,15 @@ namespace Planar::Engine::Asset
         Core::FileSystem::iterate_files_recursive(root,
             [&](const std::filesystem::path& path)
             {
-                if (path.extension() == ".planarsprite")
+                if (path.extension() == ".planarsprite" &&
+                    std::filesystem::exists(Core::FileSystem::
+                    replace_extension(path, "png")))
                 {
-                    std::filesystem::path texture_path = path;
-                    texture_path.replace_extension("png");
+                    std::shared_ptr<Core::Sprite::Sprite> sprite =
+                        std::make_shared<Core::Sprite::Sprite>();
+                    sprite->load(path);
 
-                    if (std::filesystem::exists(texture_path))
-                    {
-                        std::shared_ptr<Core::Sprite::Sprite> sprite =
-                            std::make_shared<Core::Sprite::Sprite>();
-                        sprite->load(path);
-
-                        add_owning_asset(sprite);
-                    }
+                    add_owning_asset(sprite);
                 }
             }, { "Build", "Cache", "Engine" });
     }

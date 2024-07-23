@@ -49,6 +49,9 @@ namespace Planar::Engine::Core::FileSystem
         const std::filesystem::path& path,
         const std::string& extension);
 
+    PLANAR_API std::filesystem::path replace_extension(
+        std::filesystem::path path, const std::string& new_extension);
+
     PLANAR_API void clear_file(const std::filesystem::path& path);
 
     template <typename T, std::size_t N>

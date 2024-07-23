@@ -194,6 +194,12 @@ namespace Planar::Engine::Core::FileSystem
         return {};
     }
 
+    std::filesystem::path replace_extension(std::filesystem::path path,
+        const std::string& new_extension)
+    {
+        return path.replace_extension(new_extension);
+    }
+
     void clear_file(const std::filesystem::path& path)
     {
         create_file(path, "");
