@@ -195,6 +195,11 @@ namespace Planar::Editor::Project
                 create_texture_files(progress_handler);
             }, dry_run, tasks);
 
+        Core::Progress::task([&]
+            {
+                create_audio_files(progress_handler);
+            }, dry_run, tasks);
+
         if (create_gitignore)
         {
             Core::Progress::task("Writing .gitignore file", [&]
@@ -256,6 +261,16 @@ namespace Planar::Editor::Project
         const std::filesystem::path textures_path =
             root_path / "Textures";
         std::filesystem::create_directories(textures_path);
+        progress_handler();
+    }
+
+    void Project::create_audio_files(
+        const Core::Progress::ProgressHandler& progress_handler) const
+    {
+        progress_handler("Creating audio folder");
+        const std::filesystem::path audio_path =
+            root_path / "Audio";
+        std::filesystem::create_directories(audio_path);
         progress_handler();
     }
 }

@@ -46,5 +46,7 @@ namespace Planar::Editor::Project
             progress_handler) const;
         void create_texture_files(const Core::Progress::ProgressHandler&
             progress_handler) const;
+        void create_audio_files(const Core::Progress::ProgressHandler&
+            progress_handler) const;
     };
 }
