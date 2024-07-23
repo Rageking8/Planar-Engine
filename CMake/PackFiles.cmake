@@ -1,3 +1,5 @@
+include(${PLANAR_SOURCE_DIR}/CMake/MessageUtils.cmake)
+
 # Convert all `ARGN` from text to a `std::string` and place it
 # in a new C++ file each with dll export, before adding to
 # `target` as source
