@@ -29,6 +29,7 @@ set(PLANAR_ENGINE_LINK_LIBRARIES
     stb
     reproc++
     nfd
+    soloud
 )
 
 target_link_libraries(${PLANAR_ENGINE_STATIC_TARGET} PRIVATE
