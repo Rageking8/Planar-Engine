@@ -1,4 +1,4 @@
-message(STATUS "Fetching stb")
+planar_message(STATUS "Fetching stb")
 
 FetchContent_MakeAvailable(stb)
 

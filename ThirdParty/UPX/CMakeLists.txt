@@ -1,4 +1,4 @@
-message(STATUS "Fetching UPX")
+planar_message(STATUS "Fetching UPX")
 
 FetchContent_MakeAvailable(upx)
 

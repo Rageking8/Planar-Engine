@@ -1,4 +1,4 @@
-message(STATUS "Fetching reproc")
+planar_message(STATUS "Fetching reproc")
 
 set(REPROC++ ON CACHE BOOL "" FORCE)
 

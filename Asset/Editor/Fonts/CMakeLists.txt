@@ -1,4 +1,4 @@
-message(STATUS "Downloading Roboto")
+planar_message(STATUS "Downloading Roboto")
 
 file(DOWNLOAD
     https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5WZLCzYlKw.ttf

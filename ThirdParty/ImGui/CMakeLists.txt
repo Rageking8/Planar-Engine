@@ -1,4 +1,4 @@
-message(STATUS "Fetching ImGui")
+planar_message(STATUS "Fetching ImGui")
 
 FetchContent_MakeAvailable(imgui)
 

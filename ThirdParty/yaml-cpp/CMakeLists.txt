@@ -1,4 +1,4 @@
-message(STATUS "Fetching yaml-cpp")
+planar_message(STATUS "Fetching yaml-cpp")
 
 set(CMAKE_WARN_DEPRECATED OFF CACHE BOOL "" FORCE)
 

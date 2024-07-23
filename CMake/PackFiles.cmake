@@ -21,7 +21,7 @@ function(pack_text_to_string target)
         set(output_file ${CMAKE_CURRENT_BINARY_DIR}/${source_name}.cpp)
 
         if(${PLANAR_CMAKE_FUNCTION_LOG})
-            message(STATUS "Packing ${source_name}")
+            planar_message(STATUS "Packing ${source_name}")
         endif()
 
         file(READ ${source_file} file_data)
@@ -72,7 +72,7 @@ macro(pack_binary_to_unsigned_char_array_macro)
         set(output_file ${PLANAR_CURRENT_BINARY_DIR}/${binary_name})
 
         if(${PLANAR_CMAKE_FUNCTION_LOG})
-            message(STATUS "Packing ${binary_name}")
+            planar_message(STATUS "Packing ${binary_name}")
         endif()
 
         file(READ ${binary_file} file_data HEX)
@@ -97,7 +97,7 @@ macro(pack_binary_to_unsigned_char_array_macro)
             endif()
 
             if(${PLANAR_CMAKE_FUNCTION_LOG} AND ${chunk_size} GREATER 0)
-                message(STATUS "    Chunking ${current_array_name}")
+                planar_message(STATUS "    Chunking ${current_array_name}")
             endif()
 
             if(${length_left} LESS ${chunk_size} OR

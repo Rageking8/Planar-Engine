@@ -1,4 +1,4 @@
-message(STATUS "Fetching LZMA SDK")
+planar_message(STATUS "Fetching LZMA SDK")
 
 FetchContent_MakeAvailable(lzma-sdk)
 

@@ -1,4 +1,4 @@
-message(STATUS "Fetching SoLoud")
+planar_message(STATUS "Fetching SoLoud")
 
 set(SOLOUD_BACKEND_SDL2 OFF CACHE BOOL "" FORCE)
 set(SOLOUD_BACKEND_WASAPI ON CACHE BOOL "" FORCE)

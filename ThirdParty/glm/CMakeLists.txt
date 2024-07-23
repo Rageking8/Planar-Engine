@@ -1,4 +1,4 @@
-message(STATUS "Fetching glm")
+planar_message(STATUS "Fetching glm")
 
 FetchContent_MakeAvailable(glm)
 
