@@ -76,6 +76,13 @@ FetchContent_Declare(
         SHA256=27DC13320816392D0D9905C60645AA684784C7C2559D656B504021EDD40F07ED
 )
 
+FetchContent_Declare(
+    soloud
+    URL https://github.com/jarikomppa/soloud/archive/799c535efcf47bb2b440f809b21b4d72e2a8b4b0.zip
+    URL_HASH
+        SHA256=8C53CE9EFB250024BA977384ADEEC500A39D702A338F8B3328A73B1342259731
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
@@ -88,3 +95,4 @@ add_subdirectory(reproc)
 add_subdirectory(lzma-sdk)
 add_subdirectory(UPX)
 add_subdirectory(nativefiledialog-extended)
+add_subdirectory(SoLoud)
