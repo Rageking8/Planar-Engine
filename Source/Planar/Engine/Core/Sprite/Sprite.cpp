@@ -22,16 +22,14 @@ namespace Planar::Engine::Core::Sprite
         set_wrap();
     }
 
-    void Sprite::load(const std::filesystem::path& sprite_path)
+    void Sprite::load(std::filesystem::path sprite_path)
     {
         asset.load(sprite_path);
 
         name = sprite_path.stem().string();
         guid = asset.get_guid();
 
-        std::filesystem::path texture_path = sprite_path;
-        texture_path.replace_extension("png");
-        load_texture(texture_path);
+        load_texture(sprite_path.replace_extension("png"));
     }
 
     void Sprite::create(const std::filesystem::path& texture_path)
