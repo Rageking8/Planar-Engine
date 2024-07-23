@@ -35,6 +35,11 @@ namespace Planar::Engine::Asset
             const std::string& key2) const;
         YAML::Node get_asset() const;
 
+        virtual std::string get_name() const;
+        virtual std::string get_guid() const;
+
+        std::string get_string(const std::string& key) const;
+
         template <typename T>
         T get_value(const std::string& key) const;
 

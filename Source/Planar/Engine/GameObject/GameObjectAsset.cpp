@@ -26,19 +26,9 @@ namespace Planar::Engine::GameObject
         get("Children") = YAML::Node();
     }
 
-    std::string GameObjectAsset::get_name() const
-    {
-        return get_value<std::string>("Name");
-    }
-
     void GameObjectAsset::set_name(const std::string& new_name)
     {
         set_value("Name", new_name);
-    }
-
-    std::string GameObjectAsset::get_guid() const
-    {
-        return get_value<std::string>("GUID");
     }
 
     void GameObjectAsset::add_child(YAML::Node child)

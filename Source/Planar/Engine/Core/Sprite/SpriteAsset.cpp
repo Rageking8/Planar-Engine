@@ -1,9 +1,6 @@
 #include "Planar/Engine/Core/Sprite/SpriteAsset.hpp"
 #include "Planar/Engine/Core/Constants/Version.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
-#include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
-#include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
-#include "Planar/Engine/Asset/AssetFunction.hpp"
 
 namespace Planar::Engine::Core::Sprite
 {
@@ -32,10 +29,5 @@ namespace Planar::Engine::Core::Sprite
     void SpriteAsset::save() const
     {
         write(path);
-    }
-
-    std::string SpriteAsset::get_guid() const
-    {
-        return get_value<std::string>("GUID");
     }
 }

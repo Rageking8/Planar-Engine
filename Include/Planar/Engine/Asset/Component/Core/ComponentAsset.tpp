@@ -28,12 +28,4 @@ namespace Planar::Engine::Asset::Component::Core
 
         load_impl(component);
     }
-
-    template <typename ComponentT,
-        template <typename> typename... Mixins>
-    inline std::string ComponentAsset<ComponentT, Mixins...>::
-        get_guid() const
-    {
-        return get_value<std::string>("GUID");
-    }
 }

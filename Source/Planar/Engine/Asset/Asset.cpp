@@ -72,4 +72,19 @@ namespace Planar::Engine::Asset
     {
         return *asset;
     }
+
+    std::string Asset::get_name() const
+    {
+        return get_string("Name");
+    }
+
+    std::string Asset::get_guid() const
+    {
+        return get_string("GUID");
+    }
+
+    std::string Asset::get_string(const std::string& key) const
+    {
+        return get_value<std::string>(key);
+    }
 }

@@ -60,11 +60,6 @@ namespace Planar::Engine::Scene
         return name;
     }
 
-    std::string SceneAsset::get_guid() const
-    {
-        return get_value<std::string>("GUID");
-    }
-
     YAML::Node SceneAsset::get_hierarchy()
     {
         return get("Hierarchy");

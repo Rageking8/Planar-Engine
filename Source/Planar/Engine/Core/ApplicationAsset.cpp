@@ -13,7 +13,7 @@ namespace Planar::Engine::Core
     {
         Asset::load(asset_string);
 
-        window_name = get_value<std::string>("WindowName");
+        window_name = get_string("WindowName");
         window_size = get_value_2<int>("WindowSize", "Width", "Height");
         maximize_window = get_value<bool>("MaximizeWindow");
         graphics_api = static_cast<Graphics::SupportedGraphicsAPIBacking>(

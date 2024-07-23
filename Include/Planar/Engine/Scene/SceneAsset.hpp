@@ -27,8 +27,7 @@ namespace Planar::Engine::Scene
         void reload_from_path();
         void save();
 
-        std::string get_name() const;
-        std::string get_guid() const;
+        virtual std::string get_name() const override;
         YAML::Node get_hierarchy();
 
     private:

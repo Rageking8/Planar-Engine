@@ -22,8 +22,6 @@ namespace Planar::Engine::Core::Sprite
 
         void save() const;
 
-        std::string get_guid() const;
-
     private:
         std::filesystem::path path;
     };

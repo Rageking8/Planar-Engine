@@ -15,8 +15,6 @@ namespace Planar::Engine::Asset::Component::Core
 
         void load(ComponentT& component);
 
-        std::string get_guid() const;
-
     private:
         virtual void load_impl(ComponentT& component) = 0;
     };
