@@ -4,6 +4,15 @@
 
 #include <stack>
 
+#define PLANAR_SCENE_COMPONENT_CALLBACK_DISPATCH(name)              \
+    root->iterate_depth_first([&]                                   \
+        (std::shared_ptr<Component::Core::ComponentBase> component) \
+        {                                                           \
+            component->name();                                      \
+                                                                    \
+            return false;                                           \
+        });                                                         \
+
 namespace Planar::Engine::Scene
 {
     Scene::Scene(Core::Application* application) :
@@ -92,13 +101,7 @@ namespace Planar::Engine::Scene
 
     void Scene::late_update()
     {
-        root->iterate_depth_first([&]
-            (std::shared_ptr<Component::Core::ComponentBase> component)
-            {
-                component->late_update();
-
-                return false;
-            });
+        PLANAR_SCENE_COMPONENT_CALLBACK_DISPATCH(late_update)
     }
 
     void Scene::editor_update()
@@ -116,13 +119,7 @@ namespace Planar::Engine::Scene
 
     void Scene::render()
     {
-        root->iterate_depth_first([&]
-            (std::shared_ptr<Component::Core::ComponentBase> component)
-            {
-                component->render();
-
-                return false;
-            });
+        PLANAR_SCENE_COMPONENT_CALLBACK_DISPATCH(render)
     }
 
     std::string Scene::get_name() const
