@@ -7,6 +7,8 @@
 #include "Planar/Engine/Asset/Component/AudioSourceAsset.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include <string>
+
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(GameObject, GameObject)
 
 namespace Planar::Engine::Component
@@ -20,7 +22,13 @@ namespace Planar::Engine::Component
         AudioSource(GameObject::GameObject* parent,
             bool generate_guid = true);
 
+        PLANAR_DECLARE_GET_SET(std::string, audio)
+        PLANAR_DECLARE_GET_SET(bool, loop)
+
     private:
+        std::string audio;
+        bool loop;
+
         virtual void load_impl() override;
     };
 }
