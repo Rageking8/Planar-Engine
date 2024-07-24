@@ -3,6 +3,27 @@
 
 #include <type_traits>
 
+#define PLANAR_DEFINE_COMPONENT_CALLBACK(name)                   \
+    template <typename ComponentT, typename AssetT,              \
+        template <typename> typename... Mixins>                  \
+    inline void Component<ComponentT, AssetT, Mixins...>::name() \
+    {                                                            \
+        if (skip_callback())                                     \
+        {                                                        \
+            return;                                              \
+        }                                                        \
+                                                                 \
+        name##_impl();                                           \
+    }                                                            \
+
+#define PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL(name)               \
+    template <typename ComponentT, typename AssetT,                     \
+        template <typename> typename... Mixins>                         \
+    inline void Component<ComponentT, AssetT, Mixins...>::name##_impl() \
+    {                                                                   \
+                                                                        \
+    }                                                                   \
+
 namespace Planar::Engine::Component::Core
 {
     template <typename ComponentT, typename AssetT,
@@ -31,41 +52,9 @@ namespace Planar::Engine::Component::Core
         load_impl();
     }
 
-    template <typename ComponentT, typename AssetT,
-        template <typename> typename... Mixins>
-    inline void Component<ComponentT, AssetT, Mixins...>::update()
-    {
-        if (skip_callback())
-        {
-            return;
-        }
-
-        update_impl();
-    }
-
-    template <typename ComponentT, typename AssetT,
-        template <typename> typename... Mixins>
-    inline void Component<ComponentT, AssetT, Mixins...>::late_update()
-    {
-        if (skip_callback())
-        {
-            return;
-        }
-
-        late_update_impl();
-    }
-
-    template <typename ComponentT, typename AssetT,
-        template <typename> typename... Mixins>
-    inline void Component<ComponentT, AssetT, Mixins...>::render()
-    {
-        if (skip_callback())
-        {
-            return;
-        }
-
-        render_impl();
-    }
+    PLANAR_DEFINE_COMPONENT_CALLBACK(update)
+    PLANAR_DEFINE_COMPONENT_CALLBACK(late_update)
+    PLANAR_DEFINE_COMPONENT_CALLBACK(render)
 
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
@@ -82,26 +71,9 @@ namespace Planar::Engine::Component::Core
         return asset;
     }
 
-    template <typename ComponentT, typename AssetT,
-        template <typename> typename... Mixins>
-    inline void Component<ComponentT, AssetT, Mixins...>::update_impl()
-    {
-
-    }
-
-    template <typename ComponentT, typename AssetT,
-        template <typename> typename... Mixins>
-    inline void Component<ComponentT, AssetT, Mixins...>::late_update_impl()
-    {
-
-    }
-
-    template <typename ComponentT, typename AssetT,
-        template <typename> typename... Mixins>
-    inline void Component<ComponentT, AssetT, Mixins...>::render_impl()
-    {
-
-    }
+    PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL(update)
+    PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL(late_update)
+    PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL(render)
 
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
@@ -120,3 +92,6 @@ namespace Planar::Engine::Component::Core
         return false;
     }
 }
+
+#undef PLANAR_DEFINE_COMPONENT_CALLBACK
+#undef PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL
