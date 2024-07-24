@@ -5,6 +5,7 @@
 #include "Planar/Engine/UI/ImGui/Style/StyleColor.hpp"
 #include "Planar/Engine/UI/ImGui/Wrapper/Group.hpp"
 #include "Planar/Engine/UI/ImGui/Menu/WindowMenuBar.hpp"
+#include "Planar/Engine/Audio/Audio.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
@@ -12,6 +13,12 @@
 
 #include <vector>
 #include <memory>
+
+#define PLANAR_ASSET_DRAG_DROP_SOURCE(name, ns)      \
+    ImGui::drag_drop_source(#name "Asset", &editor-> \
+        get_asset_database()->                       \
+        get_owning_asset<Engine::ns::name>(          \
+        Engine::Asset::get_guid(i))->get_guid());    \
 
 namespace Planar::Editor::UI::Window
 {
@@ -104,10 +111,11 @@ namespace Planar::Editor::UI::Window
 
                 if (is_regular_file && i.extension() == ".planarsprite")
                 {
-                    ImGui::drag_drop_source("SpriteAsset", &editor->
-                        get_asset_database()->
-                        get_owning_asset<Engine::Core::Sprite::Sprite>(
-                        Engine::Asset::get_guid(i))->get_guid());
+                    PLANAR_ASSET_DRAG_DROP_SOURCE(Sprite, Core::Sprite)
+                }
+                else if (is_regular_file && i.extension() == ".planaraudio")
+                {
+                    PLANAR_ASSET_DRAG_DROP_SOURCE(Audio, Audio)
                 }
 
                 text_renderer.render_center_truncate(name, button_size,
