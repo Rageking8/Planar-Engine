@@ -3,6 +3,18 @@
 namespace Planar::Engine::Asset
 {
     template <typename T>
+    inline void AssetDatabase::create_owning_asset(
+        const std::filesystem::path& asset_path)
+    {
+        std::shared_ptr<T> asset = std::make_shared<T>();
+
+        asset->create(asset_path);
+        asset->save();
+
+        add_owning_asset(asset);
+    }
+
+    template <typename T>
     inline void AssetDatabase::add_owning_asset(
         std::shared_ptr<T> asset)
     {

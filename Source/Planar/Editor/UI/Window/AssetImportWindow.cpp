@@ -106,15 +106,15 @@ namespace Planar::Editor::UI::Window
     {
         pending_import = false;
 
+        Engine::Asset::AssetDatabase* asset_database =
+            editor->get_asset_database();
+        const std::filesystem::path asset_path = asset_path_input.
+            get_text();
+
         if (asset_extension == ".png")
         {
-            std::shared_ptr<Engine::Core::Sprite::Sprite> sprite =
-                std::make_shared<Engine::Core::Sprite::Sprite>();
-
-            sprite->create(asset_path_input.get_text());
-            sprite->save();
-
-            editor->get_asset_database()->add_owning_asset(sprite);
+            asset_database->create_owning_asset<
+                Engine::Core::Sprite::Sprite>(asset_path);
 
             set_active(false);
         }
