@@ -1,9 +1,0 @@
-body {
-    margin: 20px 35px 30px 35px;
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #0d1117;
-    }
-}

@@ -1,0 +1,6 @@
+[book]
+authors = ["Rageking8"]
+language = "en"
+multilingual = false
+src = "source"
+title = "Planar Engine"
