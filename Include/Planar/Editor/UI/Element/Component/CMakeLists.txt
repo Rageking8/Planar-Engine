@@ -1,4 +1,5 @@
 target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
+    AudioSource.hpp
     CameraController2D.hpp
     Camera2D.hpp
     CharacterController2D.hpp
