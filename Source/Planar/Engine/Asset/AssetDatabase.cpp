@@ -1,4 +1,5 @@
 #include "Planar/Engine/Asset/AssetDatabase.hpp"
+#include "Planar/Engine/Audio/Audio.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 
@@ -31,6 +32,12 @@ namespace Planar::Engine::Asset
                     replace_extension(path, "png")))
                 {
                     load_owning_asset<Core::Sprite::Sprite>(path);
+                }
+                else if (path.extension() == ".planaraudio" &&
+                    std::filesystem::exists(Core::FileSystem::
+                    replace_extension(path, "mp3")))
+                {
+                    load_owning_asset<Audio::Audio>(path);
                 }
             }, { "Build", "Cache", "Engine" });
     }

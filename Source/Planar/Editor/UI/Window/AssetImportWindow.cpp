@@ -7,6 +7,7 @@
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/Core/FileSystem/SelectDialogResult.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
+#include "Planar/Engine/Audio/Audio.hpp"
 #include "Planar/Engine/Asset/AssetDatabase.hpp"
 
 #include <memory>
@@ -118,6 +119,13 @@ namespace Planar::Editor::UI::Window
 
             set_active(false);
         }
+        else if (asset_extension == ".mp3")
+        {
+            asset_database->create_owning_asset<
+                Engine::Audio::Audio>(asset_path);
+
+            set_active(false);
+        }
     }
 
     void AssetImportWindow::update_import_options()
@@ -134,6 +142,10 @@ namespace Planar::Editor::UI::Window
         if (new_asset_extension == ".png")
         {
             import_type_dropdown.set_options({ "Sprite" });
+        }
+        else if (new_asset_extension == ".mp3")
+        {
+            import_type_dropdown.set_options({ "Audio" });
         }
         else
         {
