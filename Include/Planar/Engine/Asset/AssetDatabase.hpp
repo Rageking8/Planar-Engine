@@ -21,6 +21,9 @@ namespace Planar::Engine::Asset
         void load_asset_recursive(const std::filesystem::path& root);
 
         template <typename T>
+        void load_owning_asset(const std::filesystem::path& asset_path);
+
+        template <typename T>
         void create_owning_asset(const std::filesystem::path& asset_path);
 
         template <typename T>

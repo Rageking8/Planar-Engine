@@ -30,11 +30,7 @@ namespace Planar::Engine::Asset
                     std::filesystem::exists(Core::FileSystem::
                     replace_extension(path, "png")))
                 {
-                    std::shared_ptr<Core::Sprite::Sprite> sprite =
-                        std::make_shared<Core::Sprite::Sprite>();
-                    sprite->load(path);
-
-                    add_owning_asset(sprite);
+                    load_owning_asset<Core::Sprite::Sprite>(path);
                 }
             }, { "Build", "Cache", "Engine" });
     }
