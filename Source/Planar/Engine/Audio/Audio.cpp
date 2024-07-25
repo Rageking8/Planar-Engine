@@ -51,6 +51,11 @@ namespace Planar::Engine::Audio
         return guid;
     }
 
+    SoLoud::Wav& Audio::get_sound() const
+    {
+        return *sound;
+    }
+
     void Audio::load_audio(const std::filesystem::path& audio_path)
     {
         sound->load(audio_path.string().c_str());

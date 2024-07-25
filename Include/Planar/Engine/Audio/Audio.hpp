@@ -25,6 +25,7 @@ namespace Planar::Engine::Audio
 
         std::string get_name() const;
         const std::string& get_guid() const;
+        SoLoud::Wav& get_sound() const;
 
     private:
         std::string name;
