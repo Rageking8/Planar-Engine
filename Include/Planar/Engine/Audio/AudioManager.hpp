@@ -6,6 +6,8 @@
 #include <memory>
 
 PLANAR_FORWARD_DECLARE_CLASS(SoLoud, Soloud)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Audio, Audio)
+PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Audio, AudioHandle)
 
 namespace Planar::Engine::Audio
 {
@@ -14,6 +16,8 @@ namespace Planar::Engine::Audio
     public:
         AudioManager();
         ~AudioManager();
+
+        AudioHandle play(Audio& audio) const;
 
     private:
         std::unique_ptr<SoLoud::Soloud> soloud;
