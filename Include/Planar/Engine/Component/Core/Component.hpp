@@ -21,6 +21,7 @@ namespace Planar::Engine::Component::Core
         virtual void update() override final;
         virtual void late_update() override final;
         virtual void render() override final;
+        virtual void application_quit() override final;
 
         virtual void load_asset() override;
 
@@ -35,6 +36,7 @@ namespace Planar::Engine::Component::Core
         virtual void update_impl();
         virtual void late_update_impl();
         virtual void render_impl();
+        virtual void application_quit_impl();
 
         bool skip_callback() const;
     };

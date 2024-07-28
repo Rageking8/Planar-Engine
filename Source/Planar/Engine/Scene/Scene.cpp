@@ -84,6 +84,11 @@ namespace Planar::Engine::Scene
 
     }
 
+    void Scene::application_quit()
+    {
+        PLANAR_SCENE_COMPONENT_CALLBACK_DISPATCH(application_quit)
+    }
+
     void Scene::update()
     {
         found_main_camera = false;

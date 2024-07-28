@@ -33,6 +33,7 @@ namespace Planar::Engine::Scene
 
         virtual void init();
         virtual void start();
+        virtual void application_quit();
 
         virtual void update();
         virtual void late_update();

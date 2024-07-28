@@ -55,6 +55,7 @@ namespace Planar::Engine::Component::Core
     PLANAR_DEFINE_COMPONENT_CALLBACK(update)
     PLANAR_DEFINE_COMPONENT_CALLBACK(late_update)
     PLANAR_DEFINE_COMPONENT_CALLBACK(render)
+    PLANAR_DEFINE_COMPONENT_CALLBACK(application_quit)
 
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
@@ -74,6 +75,7 @@ namespace Planar::Engine::Component::Core
     PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL(update)
     PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL(late_update)
     PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL(render)
+    PLANAR_DEFINE_COMPONENT_EMPTY_CALLBACK_IMPL(application_quit)
 
     template <typename ComponentT, typename AssetT,
         template <typename> typename... Mixins>
