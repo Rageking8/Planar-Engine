@@ -194,6 +194,7 @@ namespace Planar::Editor::Core
             return;
         }
 
+        current_scene->application_quit();
         current_scene->reload_from_path();
         select_handler.restore_game_object(current_scene->get_root());
     }

@@ -56,6 +56,15 @@ namespace Planar::Engine::Core
                         action, mods);
                 }
             );
+
+            GLFW::add_callback_pointer("App", this);
+            glfw_context.set_main_window_close_callback(
+                [](GLFWwindow* window)
+                {
+                    GLFW::get_callback_pointer<Application>("App")->
+                        quit();
+                }
+            );
         }
 
         imgui_context.install_callback();
