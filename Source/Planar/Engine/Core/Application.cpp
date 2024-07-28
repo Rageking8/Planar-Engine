@@ -29,6 +29,7 @@ namespace Planar::Engine::Core
     void Application::exit()
     {
         glfw_context.close_main_window();
+        quit();
     }
 
     bool Application::init()
@@ -65,6 +66,14 @@ namespace Planar::Engine::Core
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         return result;
+    }
+
+    void Application::quit()
+    {
+        if (main_scene)
+        {
+            main_scene->application_quit();
+        }
     }
 
     void Application::run()

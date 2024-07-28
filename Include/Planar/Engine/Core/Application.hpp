@@ -33,6 +33,7 @@ namespace Planar::Engine::Core
         void exit();
 
         virtual bool init();
+        virtual void quit();
         virtual void run();
 
         virtual Math::Size2Di get_game_framebuffer_size() const;
