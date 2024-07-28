@@ -13,7 +13,7 @@ namespace Planar::Engine::Audio
 
     Audio::~Audio()
     {
-
+        sound->mSoloud = nullptr;
     }
 
     void Audio::load(std::filesystem::path audio_path)
