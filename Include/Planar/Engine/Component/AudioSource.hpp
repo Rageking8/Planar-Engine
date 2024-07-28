@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planar/Engine/Export/ExportMacros.hpp"
+#include "Planar/Engine/Audio/AudioHandle.hpp"
 #include "Planar/Engine/Component/Core/Component.hpp"
 #include "Planar/Engine/Component/Core/ComponentMacros.hpp"
 #include "Planar/Engine/Component/Mixin/Active.hpp"
@@ -29,6 +30,11 @@ namespace Planar::Engine::Component
         std::string audio;
         bool loop;
 
+        Audio::AudioHandle handle;
+
         virtual void load_impl() override;
+
+        virtual void update_impl() override;
+        virtual void application_quit_impl() override;
     };
 }
