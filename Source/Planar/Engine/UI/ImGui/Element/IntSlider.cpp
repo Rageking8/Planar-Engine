@@ -53,7 +53,7 @@ namespace Planar::Engine::UI::ImGui::Element
     {
         PLANAR_ASSERT(new_min_value <= max_value,
             "`new_min_value` must be less than or equal to `max_value`");
-        
+
         min_value = new_min_value;
     }
 
@@ -61,7 +61,7 @@ namespace Planar::Engine::UI::ImGui::Element
     {
         PLANAR_ASSERT(new_max_value >= min_value,
             "`new_max_value` must be more than or equal to `min_value`");
-        
+
         max_value = new_max_value;
     }
 

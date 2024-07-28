@@ -151,7 +151,7 @@ namespace Planar::Engine::Core::FileSystem
                 folder_vector.end());
             listing.insert(listing.end(), file_vector.begin(),
                 file_vector.end());
-            
+
             break;
         }
 

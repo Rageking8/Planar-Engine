@@ -90,7 +90,7 @@ namespace Planar::Engine::UI::ImGui::Window
                 ::ImGui::SetNextWindowPos(
                     { position.value().x, position.value().y });
             }
-            
+
             if (size)
             {
                 ::ImGui::SetNextWindowSize(

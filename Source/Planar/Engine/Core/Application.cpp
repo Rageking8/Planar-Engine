@@ -88,7 +88,7 @@ namespace Planar::Engine::Core
     void Application::run()
     {
         glfwSwapInterval(1);
-        
+
         if (main_scene)
         {
             main_scene->start();
@@ -111,7 +111,7 @@ namespace Planar::Engine::Core
                         main_scene->render();
                     }
                 });
-            
+
             glfw_context.poll_events();
         }
     }

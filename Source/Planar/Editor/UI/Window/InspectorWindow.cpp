@@ -47,7 +47,7 @@ namespace Planar::Editor::UI::Window
             case Editor::Core::Select::SelectType::GAME_OBJECT:
                 std::shared_ptr<Engine::GameObject::GameObject>
                     game_object = select_handler.get_game_object();
-                
+
                 if (game_object)
                 {
                     select_handler.get_game_object()->set_name(

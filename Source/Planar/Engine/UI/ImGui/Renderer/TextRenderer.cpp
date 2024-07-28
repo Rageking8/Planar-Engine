@@ -83,7 +83,7 @@ namespace Planar::Engine::UI::ImGui::Renderer
                 if (result.first.size() >= lines)
                 {
                     result.second = true;
-                    
+
                     return result;
                 }
 
