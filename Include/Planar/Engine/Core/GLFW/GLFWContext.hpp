@@ -34,6 +34,7 @@ namespace Planar::Engine::Core::GLFW
             void(*callback)(GLFWwindow*, int, int));
         void set_main_window_key_callback(
             void(*callback)(GLFWwindow*, int, int, int, int));
+        void set_main_window_close_callback(void(*callback)(GLFWwindow*));
 
         void close_main_window() const;
         bool main_window_should_close() const;

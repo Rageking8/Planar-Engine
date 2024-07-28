@@ -127,6 +127,12 @@ namespace Planar::Engine::Core::GLFW
         glfwSetKeyCallback(main_window, callback);
     }
 
+    void GLFWContext::set_main_window_close_callback(
+        void(*callback)(GLFWwindow*))
+    {
+        glfwSetWindowCloseCallback(main_window, callback);
+    }
+
     void GLFWContext::close_main_window() const
     {
         glfwSetWindowShouldClose(main_window, GLFW_TRUE);
