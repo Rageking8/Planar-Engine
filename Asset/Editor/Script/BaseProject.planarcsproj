@@ -26,6 +26,7 @@
         <EmbeddedResource Include="Build/Application.planarapp" LogicalName="Application" />
         <EmbeddedResource Include="Scenes/*.planarscene" />
         <EmbeddedResource Include="Textures/**/*.*" />
+        <EmbeddedResource Include="Audio/**/*.*" />
     </ItemGroup>
 
     <ItemGroup Label="Engine Resources">
