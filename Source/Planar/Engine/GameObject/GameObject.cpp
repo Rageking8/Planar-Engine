@@ -49,6 +49,7 @@ namespace Planar::Engine::GameObject
         if (!is_root)
         {
             name = asset.get_name();
+            active = asset.get_active();
             guid = asset.get_guid();
 
             for (auto i : node["Components"])
@@ -126,6 +127,7 @@ namespace Planar::Engine::GameObject
     void GameObject::set_active(bool new_active)
     {
         active = new_active;
+        asset.set_active(new_active);
     }
 
     Scene::Scene* GameObject::get_scene() const

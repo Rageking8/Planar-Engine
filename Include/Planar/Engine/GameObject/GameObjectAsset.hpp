@@ -21,6 +21,9 @@ namespace Planar::Engine::GameObject
 
         void set_name(const std::string& new_name);
 
+        bool get_active() const;
+        void set_active(bool new_active);
+
         void add_child(YAML::Node child);
         void remove_child(std::size_t index);
 

@@ -17,6 +17,7 @@ namespace Planar::Engine::GameObject
         clear();
         set_name(game_object.get_name());
         set_value("GUID", game_object.get_guid());
+        set_active(game_object.active_self());
 
         for (const auto& component : game_object.get_components())
         {
@@ -29,6 +30,16 @@ namespace Planar::Engine::GameObject
     void GameObjectAsset::set_name(const std::string& new_name)
     {
         set_value("Name", new_name);
+    }
+
+    bool GameObjectAsset::get_active() const
+    {
+        return get_value<bool>("Active");
+    }
+
+    void GameObjectAsset::set_active(bool new_active)
+    {
+        set_value("Active", new_active);
     }
 
     void GameObjectAsset::add_child(YAML::Node child)
