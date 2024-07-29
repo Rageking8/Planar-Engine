@@ -23,6 +23,12 @@ public class AssetDatabase
             name, asset, sprite, (nuint)sprite.Length);
     }
 
+    public void LoadAudio(string name, string asset, byte[] audio)
+    {
+        Planar_Engine_Asset_AssetDatabase_load_audio(_handle,
+            name, asset, audio, (nuint)audio.Length);
+    }
+
     public void LogAllAssets()
     {
         foreach (string asset in GetResourceNames())
@@ -35,4 +41,9 @@ public class AssetDatabase
     private static extern void
         Planar_Engine_Asset_AssetDatabase_load_sprite(IntPtr handle,
         string name, string asset, byte[] sprite, nuint length);
+
+    [DllImport(ImportConstants.PlanarEngineDLL)]
+    private static extern void
+        Planar_Engine_Asset_AssetDatabase_load_audio(IntPtr handle,
+        string name, string asset, byte[] audio, nuint length);
 }
