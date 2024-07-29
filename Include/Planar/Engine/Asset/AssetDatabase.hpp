@@ -18,6 +18,9 @@ namespace Planar::Engine::Asset
         void load_sprite(const std::string& name,
             const std::string& asset, const unsigned char* sprite,
             std::size_t length);
+        void load_audio(const std::string& name,
+            const std::string& asset, const unsigned char* audio,
+            std::size_t length);
         void load_asset_recursive(const std::filesystem::path& root);
 
         template <typename T>

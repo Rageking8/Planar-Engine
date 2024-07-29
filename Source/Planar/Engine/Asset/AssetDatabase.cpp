@@ -21,6 +21,17 @@ namespace Planar::Engine::Asset
         add_owning_asset(new_sprite);
     }
 
+    void AssetDatabase::load_audio(const std::string& name,
+        const std::string& asset, const unsigned char* audio,
+        std::size_t length)
+    {
+        std::shared_ptr<Audio::Audio> new_audio =
+            std::make_shared<Audio::Audio>();
+        new_audio->load(name, asset, audio, length);
+
+        add_owning_asset(new_audio);
+    }
+
     void AssetDatabase::load_asset_recursive(
         const std::filesystem::path& root)
     {
