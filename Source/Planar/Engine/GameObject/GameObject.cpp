@@ -21,8 +21,8 @@
 namespace Planar::Engine::GameObject
 {
     GameObject::GameObject(Scene::Scene* scene,
-        const std::string& name) : scene{ scene }, parent{},
-        name{ name }
+        const std::string& name) : active{ true },
+        scene{ scene }, parent{}, name{ name }
     {
         if (!name.empty())
         {
@@ -100,6 +100,32 @@ namespace Planar::Engine::GameObject
     bool GameObject::is_empty() const
     {
         return name.empty() && guid.empty();
+    }
+
+    bool GameObject::active_self() const
+    {
+        return active;
+    }
+
+    bool GameObject::active_in_hierarchy() const
+    {
+        const GameObject* game_object = this;
+        while (game_object)
+        {
+            if (!game_object->active_self())
+            {
+                return false;
+            }
+
+            game_object = game_object->parent;
+        }
+
+        return true;
+    }
+
+    void GameObject::set_active(bool new_active)
+    {
+        active = new_active;
     }
 
     Scene::Scene* GameObject::get_scene() const

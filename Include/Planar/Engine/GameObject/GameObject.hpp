@@ -32,6 +32,11 @@ namespace Planar::Engine::GameObject
         bool is_root() const;
         bool is_empty() const;
 
+        bool active_self() const;
+        bool active_in_hierarchy() const;
+
+        void set_active(bool new_active);
+
         Scene::Scene* get_scene() const;
 
         GameObject* get_parent() const;
@@ -77,6 +82,7 @@ namespace Planar::Engine::GameObject
             callback, bool skip_empty = true);
 
     private:
+        bool active;
         Scene::Scene* scene;
         GameObject* parent;
         std::string name;
