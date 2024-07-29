@@ -4,6 +4,7 @@
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectType.hpp"
 #include "Planar/Engine/GameObject/GameObject.hpp"
+#include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
@@ -11,7 +12,8 @@
 namespace Planar::Editor::UI::Window
 {
     InspectorWindow::InspectorWindow(Editor::Core::Editor* editor) :
-        EditorWindow("Inspector", editor), name_input("Name", "",
+        EditorWindow("Inspector", editor),
+        active_checkbox("", true), name_input("Name", "",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
         0.f, 20.f, 20.f }), component_store(editor),
         component_renderer(editor)
@@ -31,34 +33,36 @@ namespace Planar::Editor::UI::Window
             editor->get_select_handler();
         const Editor::Core::Select::SelectType select_type =
             select_handler.get_select_type();
+        const bool select_type_game_object = select_type ==
+            Editor::Core::Select::SelectType::GAME_OBJECT;
         const bool editor_game_playing = editor->
             get_editor_game_mode() == Editor::Core::EditorGameMode::PLAYING;
 
-        if (name_input.get_modified())
+        if (active_checkbox.get_modified() && select_type_game_object)
         {
-            switch (select_type)
+            std::shared_ptr<Engine::GameObject::GameObject>
+                game_object = select_handler.get_game_object();
+
+            if (game_object)
             {
-            case Editor::Core::Select::SelectType::NONE:
-                break;
-
-            case Editor::Core::Select::SelectType::CONTENT:
-                break;
-
-            case Editor::Core::Select::SelectType::GAME_OBJECT:
-                std::shared_ptr<Engine::GameObject::GameObject>
-                    game_object = select_handler.get_game_object();
-
-                if (game_object)
-                {
-                    select_handler.get_game_object()->set_name(
-                        name_input.get_text());
-                    editor->set_dirty();
-                }
-                break;
+                game_object->set_active(active_checkbox.get_value());
+                editor->set_dirty();
             }
         }
 
-        if (select_type == Editor::Core::Select::SelectType::GAME_OBJECT)
+        if (name_input.get_modified() && select_type_game_object)
+        {
+            std::shared_ptr<Engine::GameObject::GameObject>
+                game_object = select_handler.get_game_object();
+
+            if (game_object)
+            {
+                game_object->set_name(name_input.get_text());
+                editor->set_dirty();
+            }
+        }
+
+        if (select_type_game_object)
         {
             std::shared_ptr<Engine::GameObject::GameObject>
                 game_object = select_handler.get_game_object();
@@ -91,13 +95,23 @@ namespace Planar::Editor::UI::Window
             editor->get_select_handler();
         const Editor::Core::Select::SelectType select_type =
             select_handler.get_select_type();
+        const bool select_type_game_object = select_type ==
+            Editor::Core::Select::SelectType::GAME_OBJECT;
+
+        if (select_type_game_object)
+        {
+            ImGui::Core::Cursor::move_x(20.f);
+            active_checkbox.render();
+            ImGui::same_line();
+            ImGui::Core::Cursor::move_x(-32.f);
+        }
 
         if (select_type != Editor::Core::Select::SelectType::NONE)
         {
             name_input.render();
         }
 
-        if (select_type == Editor::Core::Select::SelectType::GAME_OBJECT)
+        if (select_type_game_object)
         {
             ImGui::Core::Cursor::move_y(8.f);
 
@@ -134,6 +148,7 @@ namespace Planar::Editor::UI::Window
 
             if (game_object)
             {
+                active_checkbox.set_value(game_object->active_self());
                 name_input.set_text(game_object->get_name());
                 component_store.update_items(*game_object);
             }
