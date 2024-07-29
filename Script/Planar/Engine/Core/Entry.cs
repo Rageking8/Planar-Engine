@@ -58,6 +58,24 @@ public class Entry
             }
         }
 
+        List<string> audioAssets =
+            GetResourceNamesByExtension(".planaraudio");
+        HashSet<string> mp3Assets =
+            new(GetResourceNamesByExtension(".mp3"));
+
+        foreach (string audio in audioAssets)
+        {
+            string current = Path.ChangeExtension(audio, ".mp3");
+
+            if (mp3Assets.Contains(current))
+            {
+                string name = current[..^4];
+                name = name[(name.LastIndexOf('.') + 1)..];
+                assetDatabase.LoadAudio(name, ReadResource(audio),
+                    ReadResourceBytes(current));
+            }
+        }
+
         application.Run();
     }
 }
