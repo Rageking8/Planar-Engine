@@ -18,6 +18,9 @@ namespace Planar::Engine::Audio
         Audio();
         ~Audio();
 
+        void load(const std::string& new_name,
+            const std::string& new_asset, const unsigned char* new_audio,
+            std::size_t length);
         void load(std::filesystem::path audio_path);
         void create(const std::filesystem::path& audio_path);
 

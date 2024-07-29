@@ -16,6 +16,18 @@ namespace Planar::Engine::Audio
         sound->mSoloud = nullptr;
     }
 
+    void Audio::load(const std::string& new_name,
+        const std::string& new_asset, const unsigned char* new_audio,
+        std::size_t length)
+    {
+        asset.Asset::Asset::load(new_asset);
+
+        name = new_name;
+        guid = asset.get_guid();
+
+        sound->loadMem(new_audio, static_cast<unsigned>(length), true);
+    }
+
     void Audio::load(std::filesystem::path audio_path)
     {
         asset.load(audio_path);
