@@ -12,7 +12,7 @@ namespace Planar::Engine::UI::ImGui::Element
         private Core::State::ModifiedState
     {
     public:
-        Checkbox(const std::string& label, bool value = false);
+        Checkbox(const std::string& label = "", bool value = false);
 
         using ModifiedState::get_modified;
 
