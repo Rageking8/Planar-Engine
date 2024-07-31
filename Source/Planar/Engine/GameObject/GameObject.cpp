@@ -267,7 +267,7 @@ namespace Planar::Engine::GameObject
                 }
 
                 return false;
-            }, false);
+            }, false, false);
 
         return result;
     }

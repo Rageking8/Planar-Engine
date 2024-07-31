@@ -179,7 +179,7 @@ namespace Planar::Engine::Scene
                 }
 
                 return false;
-            });
+            }, true, false);
 
         return result;
     }
