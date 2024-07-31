@@ -75,11 +75,11 @@ namespace Planar::Engine::GameObject
 
         void iterate_depth_first(
             const std::function<bool(GameObject*)>& callback,
-            bool skip_empty = true);
+            bool skip_empty = true, bool skip_inactive = true);
         void iterate_depth_first(
             const std::function<bool(
             std::shared_ptr<Component::Core::ComponentBase>)>&
-            callback, bool skip_empty = true);
+            callback, bool skip_empty = true, bool skip_inactive = true);
 
     private:
         bool active;

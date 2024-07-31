@@ -274,7 +274,7 @@ namespace Planar::Engine::GameObject
 
     void GameObject::iterate_depth_first(
         const std::function<bool(GameObject*)>& callback,
-        bool skip_empty)
+        bool skip_empty, bool skip_inactive)
     {
         std::stack<GameObject*> game_object_stack;
         game_object_stack.push(this);
@@ -282,6 +282,11 @@ namespace Planar::Engine::GameObject
         while (!game_object_stack.empty())
         {
             auto* current = Core::Utils::Stack::pop(game_object_stack);
+
+            if (skip_inactive && !current->active_self())
+            {
+                continue;
+            }
 
             if (!(skip_empty && current->is_empty()))
             {
@@ -298,7 +303,8 @@ namespace Planar::Engine::GameObject
 
     void GameObject::iterate_depth_first(
         const std::function<bool(std::shared_ptr
-        <Component::Core::ComponentBase>)>& callback, bool skip_empty)
+        <Component::Core::ComponentBase>)>& callback, bool skip_empty,
+        bool skip_inactive)
     {
         iterate_depth_first([&](GameObject* game_object)
             {
@@ -311,6 +317,6 @@ namespace Planar::Engine::GameObject
                 }
 
                 return false;
-            }, skip_empty);
+            }, skip_empty, skip_inactive);
     }
 }
