@@ -176,6 +176,17 @@ namespace Planar::Editor::Core
         }
     }
 
+    std::filesystem::path Editor::get_current_content_path() const
+    {
+        return current_content_path;
+    }
+
+    void Editor::set_current_content_path(
+        const std::filesystem::path& new_current_content_path)
+    {
+        current_content_path = new_current_content_path;
+    }
+
     void Editor::set_game_content_size(
         Engine::Math::Size2Di new_game_content_size)
     {

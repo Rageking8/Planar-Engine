@@ -33,8 +33,6 @@ namespace Planar::Editor::UI::Window
             new_left_arrow_texture);
 
     private:
-        std::filesystem::path current_path;
-
         Engine::Graphics::OpenGL::Texture::Texture2D* folder_texture;
         Engine::Graphics::OpenGL::Texture::Texture2D* file_texture;
         Engine::Graphics::OpenGL::Texture::Texture2D* left_arrow_texture;

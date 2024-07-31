@@ -61,6 +61,10 @@ namespace Planar::Editor::Core
         void set_editor_game_mode(
             EditorGameMode new_editor_game_mode);
 
+        std::filesystem::path get_current_content_path() const;
+        void set_current_content_path(
+            const std::filesystem::path& new_current_content_path);
+
         void set_game_content_size(
             Engine::Math::Size2Di new_game_content_size);
 
@@ -71,6 +75,7 @@ namespace Planar::Editor::Core
         Select::SelectHandler select_handler;
         Input::InputHandler input_handler;
         EditorGameMode editor_game_mode;
+        std::filesystem::path current_content_path;
 
         Engine::Math::Size2Di game_content_size;
 

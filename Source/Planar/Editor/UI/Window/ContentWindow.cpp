@@ -36,7 +36,8 @@ namespace Planar::Editor::UI::Window
 
     void ContentWindow::init()
     {
-        current_path = editor->get_project().get_root_path();
+        editor->set_current_content_path(editor->get_project().
+            get_root_path());
 
         back_button.set_size(15.f);
         back_button.set("Back", left_arrow_texture->get_id());
@@ -68,7 +69,7 @@ namespace Planar::Editor::UI::Window
 
         std::vector<std::filesystem::path> listing =
             Planar::Engine::Core::FileSystem::get_listing(
-            current_path);
+            editor->get_current_content_path());
 
         for (const auto& i : listing)
         {
@@ -99,7 +100,7 @@ namespace Planar::Editor::UI::Window
                 {
                     if (is_directory)
                     {
-                        current_path = i;
+                        editor->set_current_content_path(i);
                     }
 
                     content_double_click(i);
@@ -164,11 +165,15 @@ namespace Planar::Editor::UI::Window
             back_button.render();
             if (back_button.is_clicked())
             {
+                const std::filesystem::path current_path =
+                    editor->get_current_content_path();
+
                 if (current_path.has_parent_path() &&
                     !std::filesystem::equivalent(current_path,
                     editor->get_project().get_root_path()))
                 {
-                    current_path = current_path.parent_path();
+                    editor->set_current_content_path(current_path.
+                        parent_path());
                 }
             }
         }
