@@ -153,7 +153,8 @@ namespace Planar::Engine::Scene
             std::static_pointer_cast<Component::Camera2D>(
             active_main_camera.lock());
 
-        if (!camera || !camera->get_active())
+        if (!camera || !camera->get_active() ||
+            !camera->get_parent()->active_in_hierarchy())
         {
             active_main_camera.reset();
 
@@ -204,7 +205,8 @@ namespace Planar::Engine::Scene
         auto camera =
             std::static_pointer_cast<Component::Camera2D>(component);
 
-        if (camera->get_active())
+        if (camera->get_parent()->active_in_hierarchy() &&
+            camera->get_active())
         {
             active_main_camera = camera;
             found_main_camera = true;
