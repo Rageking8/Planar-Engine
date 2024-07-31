@@ -56,6 +56,9 @@ namespace Planar::Editor::Scene
 
         window_manager.init();
 
+        window_manager.get("Console")->set_active(false);
+        window_manager.get("Scene")->set_active(false);
+
         restore_default_layout();
     }
 
