@@ -31,6 +31,11 @@ namespace Planar::Engine::UI::ImGui::Element
             text, generate_flags()));
     }
 
+    bool InputField::empty() const
+    {
+        return text.empty();
+    }
+
     const std::string& InputField::get_text() const
     {
         return text;
