@@ -81,8 +81,6 @@ namespace Planar::Editor::Core
 
         std::unique_ptr<Engine::Scene::Scene> editor_main_scene;
 
-        void load_assets();
-
         void reset_on_exit_play_mode();
 
         virtual void update_impl() override;
