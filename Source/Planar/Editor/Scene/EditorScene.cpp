@@ -10,6 +10,7 @@
 #include "Planar/Editor/UI/Window/SceneWindow.hpp"
 #include "Planar/Editor/UI/Window/BuildWindow.hpp"
 #include "Planar/Editor/UI/Window/AssetImportWindow.hpp"
+#include "Planar/Editor/UI/Window/CreateScriptWindow.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Docking/Docking.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 
@@ -41,6 +42,7 @@ namespace Planar::Editor::Scene
         PLANAR_CREATE_WINDOW(Scene);
         PLANAR_CREATE_WINDOW(Build);
         PLANAR_CREATE_WINDOW(AssetImport);
+        PLANAR_CREATE_WINDOW(CreateScript);
     }
 
     void EditorScene::init()

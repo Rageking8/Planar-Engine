@@ -69,6 +69,13 @@ namespace Planar::Editor::UI::Menu
                     PLANAR_ALL_COMPONENT(PLANAR_ADD_COMPONENT_MENU_ITEM)
                 });
 
+            main_menu_bar.add_menu("Script",
+                [&]()
+                {
+                    window_menu_item("CreateScript", "Create Script",
+                        true);
+                });
+
             main_menu_bar.add_menu("Asset",
                 [&]()
                 {

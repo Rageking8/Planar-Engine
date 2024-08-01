@@ -3,6 +3,7 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
     BuildWindow.hpp
     ConsoleWindow.hpp
     ContentWindow.hpp
+    CreateScriptWindow.hpp
     GameWindow.hpp
     HierarchyWindow.hpp
     InspectorWindow.hpp
