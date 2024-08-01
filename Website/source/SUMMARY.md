@@ -1,7 +1,6 @@
-# Summary
+- [Planar Engine](planar-engine.md)
+- [Getting Started](getting-started.md)
 
-[Planar Engine](planar-engine.md)
+- [Guides](guides/README.md)
 
-# Documentation
-
-- [Repository README](docs/repo-readme.md)
+- [Documentation](docs/README.md)
