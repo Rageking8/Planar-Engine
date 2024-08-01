@@ -23,6 +23,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <TrimmerRootAssembly Include="$(MSBuildProjectName)" />
+    </ItemGroup>
+
+    <ItemGroup>
         <EmbeddedResource Include="Build/Application.planarapp" LogicalName="Application" />
         <EmbeddedResource Include="Scenes/*.planarscene" />
         <EmbeddedResource Include="Textures/**/*.*" />
