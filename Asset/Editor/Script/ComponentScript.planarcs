@@ -1,0 +1,6 @@
+using Planar.Engine.Component.Core;
+
+public class <NAME> : Component
+{
+
+}
