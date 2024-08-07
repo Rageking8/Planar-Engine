@@ -3,6 +3,7 @@
 
 - [Guides](guides/README.md)
     - [Opening Main Scene](guides/opening-main-scene.md)
+    - [Importing Sprites](guides/importing-sprites.md)
 
 - [Documentation](docs/README.md)
     - [Components](docs/components/README.md)
