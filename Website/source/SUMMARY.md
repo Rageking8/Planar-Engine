@@ -2,6 +2,7 @@
 - [Getting Started](getting-started.md)
 
 - [Guides](guides/README.md)
+    - [Opening Main Scene](guides/opening-main-scene.md)
 
 - [Documentation](docs/README.md)
     - [Components](docs/components/README.md)
