@@ -185,6 +185,11 @@ namespace Planar::Engine::Core
         return audio_manager;
     }
 
+    Script::ScriptDatabase& Application::get_script_database()
+    {
+        return script_database;
+    }
+
     bool Application::init_glfw()
     {
         return glfw_context.init();

@@ -9,6 +9,7 @@
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 #include "Planar/Engine/Export/ExportMacros.hpp"
 #include "Planar/Engine/UI/ImGui/ImGuiContext.hpp"
+#include "Planar/Engine/Script/ScriptDatabase.hpp"
 #include "Planar/Engine/Graphics/SupportedGraphicsAPI.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Core/ObjectManager.hpp"
 #include "Planar/Engine/Graphics/OpenGL/Shader/ShaderManager.hpp"
@@ -53,6 +54,7 @@ namespace Planar::Engine::Core
         Graphics::OpenGL::Core::ObjectManager& get_object_manager();
         Graphics::OpenGL::Shader::ShaderManager& get_shader_manager();
         Audio::AudioManager& get_audio_manager();
+        Script::ScriptDatabase& get_script_database();
 
     protected:
         virtual bool init_glfw();
@@ -73,6 +75,7 @@ namespace Planar::Engine::Core
         Graphics::OpenGL::Core::ObjectManager object_manager;
         Graphics::OpenGL::Shader::ShaderManager shader_manager;
         Audio::AudioManager audio_manager;
+        Script::ScriptDatabase script_database;
 
         Scene::Scene* main_scene;
 
