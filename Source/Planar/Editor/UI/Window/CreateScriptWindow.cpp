@@ -1,13 +1,10 @@
 #include "Planar/Editor/UI/Window/CreateScriptWindow.hpp"
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
-#include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
-
-#include <string>
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Script, ComponentScript)
 
@@ -71,18 +68,11 @@ namespace Planar::Editor::UI::Window
     {
         pending_create = false;
 
-        if (script_name_input.empty())
+        if (editor->get_script_database().create(editor->
+            get_current_content_path(), script_name_input.get_text(),
+            Asset::Editor::Script::ComponentScript))
         {
-            return;
+            set_active(false);
         }
-
-        const std::string name = script_name_input.get_text();
-        std::string script = Asset::Editor::Script::ComponentScript;
-
-        Engine::Core::FileSystem::create_file(editor->
-            get_current_content_path() / (name + ".cs"),
-            script.replace(script.find("<NAME>"), 6, name));
-
-        set_active(false);
     }
 }
