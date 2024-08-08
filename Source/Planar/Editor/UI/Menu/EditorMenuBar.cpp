@@ -9,6 +9,7 @@
 #include "Planar/Engine/Component/Core/AllComponent.hpp"
 #include "Planar/Engine/Component/Core/ComponentType.hpp"
 
+#include <set>
 #include <memory>
 
 #define PLANAR_GET_WINDOW(type)                     \
@@ -67,6 +68,22 @@ namespace Planar::Editor::UI::Menu
                 [&]()
                 {
                     PLANAR_ALL_COMPONENT(PLANAR_ADD_COMPONENT_MENU_ITEM)
+
+                    const std::set<std::string>& script_names = editor->
+                        get_script_database().get_script_names();
+
+                    if (!script_names.empty())
+                    {
+                        ImGui::separator();
+                    }
+
+                    for (const auto& i : script_names)
+                    {
+                        if (ImGui::Menu::menu_item("Add " + i))
+                        {
+
+                        }
+                    }
                 });
 
             main_menu_bar.add_menu("Script",
