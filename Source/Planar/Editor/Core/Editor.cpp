@@ -46,6 +46,7 @@ namespace Planar::Editor::Core
     void Editor::enter_editor()
     {
         asset_database.load_asset_recursive(project.get_root_path());
+        script_database.load_scripts_recursive(project.get_root_path());
 
         editor_main_scene = std::make_unique<Scene::EditorScene>(this);
 
