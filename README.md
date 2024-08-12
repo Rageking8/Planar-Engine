@@ -44,7 +44,6 @@ Currently Windows is the only operating system supported.
     - [stb](https://github.com/nothings/stb) - Image loader
     - [glm](https://github.com/g-truc/glm) - Computer graphics types and routines
     - [reproc](https://github.com/DaanDeMeyer/reproc) - Create and manage processes
-    - [LZMA SDK](https://www.7-zip.org/sdk.html) - Compress and extract 7z archives
     - [nativefiledialog-extended](https://github.com/btzy/nativefiledialog-extended) - Select file and folder dialog
     - [SoLoud](https://github.com/jarikomppa/soloud) - Audio
 
@@ -52,6 +51,7 @@ Currently Windows is the only operating system supported.
     - Planar Engine - All core routines
     - [.NET SDK](https://dotnet.microsoft.com/en-us/download) - Build and publish C# projects
     - [UPX](https://github.com/upx/upx) - Compress EXE and DLL
+    - [LZMA SDK](https://www.7-zip.org/sdk.html) - Compress and extract 7z archives
 
 1. Website
     - [mdBook](https://github.com/rust-lang/mdBook) - Website and documentation
