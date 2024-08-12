@@ -7,6 +7,7 @@
     macro(SpriteRenderer)           \
     macro(CharacterController2D)    \
     macro(AudioSource)              \
+    macro(Script)                   \
 
 namespace Planar::Engine::Component::Core
 {
