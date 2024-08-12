@@ -33,6 +33,8 @@ namespace Planar::Editor::UI::Window
 
         Engine::UI::ImGui::Element::DropDown target_drop_down;
         Engine::UI::ImGui::Element::Checkbox show_console_window_checkbox;
+        Engine::UI::ImGui::Element::Checkbox
+            advanced_size_optimizations_checkbox;
 
         Engine::UI::ImGui::Element::InputField window_name_input;
         Engine::UI::ImGui::Element::Drag::DragInt2 window_size_drag;
@@ -41,6 +43,7 @@ namespace Planar::Editor::UI::Window
 
         Engine::UI::ImGui::Element::Checkbox use_compression_checkbox;
         Engine::UI::ImGui::Element::IntSlider compression_level_slider;
+
         Engine::UI::ImGui::Element::Button::Button build_button;
         UI::Element::ProgressDisplay progress_display;
 

@@ -13,7 +13,7 @@ namespace
     unsigned build(bool dry_run,
         const Planar::Editor::Project::Project& project,
         std::filesystem::path build_path, bool show_console_window,
-        unsigned compression_level,
+        unsigned compression_level, bool advanced_size_optimizations,
         const Planar::Engine::Core::ApplicationAsset& application_asset,
         const Planar::Editor::Core::Progress::ProgressHandler&
         progress_handler, bool remove_artifacts)
@@ -43,8 +43,15 @@ namespace
                 {
                     dotnet_arguments.add_property("OutputType", "Exe");
                 }
+
                 dotnet_arguments.add_property("SuppressOutputFolders",
                     "False");
+
+                if (advanced_size_optimizations)
+                {
+                    dotnet_arguments.add_property(
+                        "AdvancedSizeOptimizations", "True");
+                }
 
                 dotnet_arguments.set_artifacts_path(build_path);
                 dotnet_arguments.set_output_path(build_path);
@@ -94,23 +101,24 @@ namespace Planar::Editor::Build
 {
     unsigned build_dry_run(const Project::Project& project,
         std::filesystem::path build_path, bool show_console_window,
-        unsigned compression_level,
+        unsigned compression_level, bool advanced_size_optimizations,
         const Engine::Core::ApplicationAsset& application_asset,
         bool remove_artifacts)
     {
         return ::build(true, project, build_path, show_console_window,
-            compression_level, application_asset, {}, remove_artifacts);
+            compression_level, advanced_size_optimizations,
+            application_asset, {}, remove_artifacts);
     }
 
     void build(const Project::Project& project,
         std::filesystem::path build_path, bool show_console_window,
-        unsigned compression_level,
+        unsigned compression_level, bool advanced_size_optimizations,
         const Engine::Core::ApplicationAsset& application_asset,
         const Core::Progress::ProgressHandler& progress_handler,
         bool remove_artifacts)
     {
         ::build(false, project, build_path, show_console_window,
-            compression_level, application_asset, progress_handler,
-            remove_artifacts);
+            compression_level, advanced_size_optimizations,
+            application_asset, progress_handler, remove_artifacts);
     }
 }

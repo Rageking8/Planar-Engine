@@ -9,6 +9,8 @@
         <!-- Toggles suppression of output folders. When
         building, this property is set to `False`. -->
         <SuppressOutputFolders>True</SuppressOutputFolders>
+
+        <AdvancedSizeOptimizations>False</AdvancedSizeOptimizations>
     </PropertyGroup>
 
     <!-- Used to suppress `bin` and `obj` folder generation
@@ -20,6 +22,15 @@
         <BaseOutputPath>nul</BaseOutputPath>
         <BaseIntermediateOutputPath>nul</BaseIntermediateOutputPath>
         <MSBUildProjectExtensionsPath>nul</MSBUildProjectExtensionsPath>
+    </PropertyGroup>
+
+    <!-- These options could potentially cause issues but may reduce
+    the build size further -->
+    <PropertyGroup Condition="'$(AdvancedSizeOptimizations)' == 'True'">
+        <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
+        <StackTraceSupport>false</StackTraceSupport>
+        <UseSystemResourceKeys>true</UseSystemResourceKeys>
+        <InvariantGlobalization>true</InvariantGlobalization>
     </PropertyGroup>
 
     <ItemGroup>

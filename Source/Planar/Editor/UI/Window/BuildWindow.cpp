@@ -23,6 +23,7 @@ namespace Planar::Editor::UI::Window
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FIXED, 200.f },
         0.f, false, { "Windows 64-bit" }),
         show_console_window_checkbox("Show console window"),
+        advanced_size_optimizations_checkbox("Advanced size optimizations"),
         window_name_input("Window name"),
         window_size_drag("Window size:",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FIXED,
@@ -97,6 +98,7 @@ namespace Planar::Editor::UI::Window
 
         target_drop_down.render();
         show_console_window_checkbox.render();
+        advanced_size_optimizations_checkbox.render();
 
         ImGui::separator(separator_extra_height);
 
@@ -162,6 +164,8 @@ namespace Planar::Editor::UI::Window
             build_directory_input.get_text();
         const bool show_console_window =
             show_console_window_checkbox.get_value();
+        const bool enable_advanced_size_optimizations =
+            advanced_size_optimizations_checkbox.get_value();
         const bool use_compression = use_compression_checkbox.
             get_value();
         const unsigned compression_level = use_compression ?
@@ -173,11 +177,13 @@ namespace Planar::Editor::UI::Window
             get_value());
 
         enter_build_mode(Build::build_dry_run(project, build_path,
-            show_console_window, compression_level, application_asset));
+            show_console_window, compression_level,
+            enable_advanced_size_optimizations, application_asset));
 
         Build::build(project, build_path, show_console_window,
-            compression_level, application_asset, {
-            PLANAR_CAPTURE_THIS_PARAM2(build_progress_callback) });
+            compression_level, enable_advanced_size_optimizations,
+            application_asset, { PLANAR_CAPTURE_THIS_PARAM2(
+            build_progress_callback) });
 
         build_mode = false;
     }
