@@ -3,7 +3,6 @@ target_sources(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     ApplicationAsset.cpp
 )
 
-add_subdirectory(Archive)
 add_subdirectory(Execute)
 add_subdirectory(FileSystem)
 add_subdirectory(GLFW)

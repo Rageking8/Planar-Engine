@@ -1,9 +1,9 @@
 #include "Planar/Editor/Script/Init/Init.hpp"
 #include "Asset/Editor/dotnet_sdk.h"
+#include "Planar/Editor/Core/Archive/Archive.hpp"
 #include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
-#include "Planar/Engine/Core/Archive/Archive.hpp"
 
 PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET_ALL_CHUNKS(Editor, dotnet_sdk)
 
@@ -42,8 +42,7 @@ namespace Planar::Editor::Script::Init
     void extract_dotnet_sdk_7z(const std::filesystem::path& path,
         bool delete_zip)
     {
-        Engine::Core::Archive::extract_7z(path.parent_path(),
-            path);
+        Core::Archive::extract_7z(path.parent_path(), path);
 
         if (delete_zip)
         {
