@@ -21,6 +21,7 @@ endif()
 unset(PLANAR_CURRENT_SOURCE_DIR)
 unset(PLANAR_CURRENT_BINARY_DIR)
 
+add_subdirectory(Archive)
 add_subdirectory(Build)
 add_subdirectory(Fonts)
 add_subdirectory(Icons)
