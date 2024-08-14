@@ -96,6 +96,13 @@ namespace Planar::Engine::UI::ImGui
         return { content_region_avail.x, content_region_avail.y };
     }
 
+    Math::Pos2Df get_cursor_screen_pos()
+    {
+        ImVec2 cursor_screen_pos = ::ImGui::GetCursorScreenPos();
+
+        return { cursor_screen_pos.x, cursor_screen_pos.y };
+    }
+
     Math::Size2Df get_item_spacing()
     {
         ImVec2 item_spacing = ::ImGui::GetStyle().ItemSpacing;

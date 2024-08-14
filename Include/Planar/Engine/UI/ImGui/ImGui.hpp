@@ -43,6 +43,8 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API Math::Size2Df get_content_region_avail();
 
+    PLANAR_API Math::Pos2Df get_cursor_screen_pos();
+
     PLANAR_API Math::Size2Df get_item_spacing();
 
     PLANAR_API Math::Pos2Df get_item_rect_max();
