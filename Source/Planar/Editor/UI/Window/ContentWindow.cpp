@@ -56,8 +56,8 @@ namespace Planar::Editor::UI::Window
 
         render_menu_bar();
 
-        float window_max = ImGui::get_window_position().x +
-            ImGui::get_window_content_region_max().width - 18.f;
+        float window_max = ImGui::get_cursor_screen_pos().x +
+            ImGui::get_content_region_avail().width - 18.f;
         const float button_size = 100.f;
 
         ImGui::Style::StyleColor style_color;

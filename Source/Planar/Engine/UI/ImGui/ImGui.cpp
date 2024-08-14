@@ -80,15 +80,6 @@ namespace Planar::Engine::UI::ImGui
         return { window_position.x, window_position.y };
     }
 
-    Math::Size2Df get_window_content_region_max()
-    {
-        ImVec2 window_content_region_max =
-            ::ImGui::GetWindowContentRegionMax();
-
-        return { window_content_region_max.x,
-            window_content_region_max.y };
-    }
-
     Math::Size2Df get_content_region_avail()
     {
         ImVec2 content_region_avail = ::ImGui::GetContentRegionAvail();

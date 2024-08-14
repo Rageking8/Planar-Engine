@@ -39,8 +39,6 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API Math::Pos2Df get_window_position();
 
-    PLANAR_API Math::Size2Df get_window_content_region_max();
-
     PLANAR_API Math::Size2Df get_content_region_avail();
 
     PLANAR_API Math::Pos2Df get_cursor_screen_pos();
