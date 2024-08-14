@@ -6,6 +6,6 @@ namespace Planar::Engine::UI::ImGui::Core::Docking
 {
     void dock_space_over_viewport()
     {
-        ::ImGui::DockSpaceOverViewport(::ImGui::GetMainViewport());
+        ::ImGui::DockSpaceOverViewport(0, ::ImGui::GetMainViewport());
     }
 }

@@ -15,9 +15,9 @@ FetchContent_Declare(
 
 FetchContent_Declare(
     imgui
-    URL https://github.com/ocornut/imgui/archive/refs/tags/v1.90.6-docking.zip
+    URL https://github.com/ocornut/imgui/archive/refs/tags/v1.91.0-docking.zip
     URL_HASH
-        SHA256=AD0BC8172F2B6405A32FAFAFADDE8A38C7B7EEA8AC490CADE10160BFDCAC7241
+        SHA256=657B225D99FD34CE10A3BD0DA2A72359362AE709A774811AA22EE30085660240
 )
 
 FetchContent_Declare(
