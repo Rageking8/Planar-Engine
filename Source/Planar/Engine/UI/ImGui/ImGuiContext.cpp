@@ -27,9 +27,8 @@ namespace Planar::Engine::UI::ImGui
         ::IMGUI_CHECKVERSION();
         ::ImGui::CreateContext();
 
-        Planar::Engine::UI::ImGui::set_ini_filename();
-        Planar::Engine::UI::ImGui::set_config_flags(
-            ImGuiConfigFlags_NavEnableKeyboard |
+        set_ini_filename();
+        set_config_flags(ImGuiConfigFlags_NavEnableKeyboard |
             ImGuiConfigFlags_NavEnableGamepad |
             ImGuiConfigFlags_DockingEnable);
 
