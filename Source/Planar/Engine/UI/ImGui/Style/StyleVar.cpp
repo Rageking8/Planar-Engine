@@ -34,6 +34,11 @@ namespace Planar::Engine::UI::ImGui::Style
         push_style_var(ImGuiStyleVar_WindowMinSize, min_window_size);
     }
 
+    void StyleVar::set_tab_bar_overline_size(float overline_size)
+    {
+        push_style_var(ImGuiStyleVar_TabBarOverlineSize, overline_size);
+    }
+
     void StyleVar::pop()
     {
         ::ImGui::PopStyleVar(push_count);

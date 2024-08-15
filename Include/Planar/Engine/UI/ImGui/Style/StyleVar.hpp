@@ -16,6 +16,7 @@ namespace Planar::Engine::UI::ImGui::Style
         void set_frame_padding(Math::Size2Df padding);
         void set_window_padding(Math::Size2Df padding);
         void set_min_window_size(Math::Size2Df min_window_size);
+        void set_tab_bar_overline_size(float overline_size);
 
         virtual void pop() override;
 
