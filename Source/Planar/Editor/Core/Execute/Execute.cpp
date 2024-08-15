@@ -1,8 +1,8 @@
-#include "Planar/Engine/Core/Execute/Execute.hpp"
+#include "Planar/Editor/Core/Execute/Execute.hpp"
 
 #include "ThirdParty/reproc/reproc.hpp"
 
-namespace Planar::Engine::Core::Execute
+namespace Planar::Editor::Core::Execute
 {
     int run_program(std::filesystem::path program_path,
         std::vector<std::string> arguments,
@@ -16,8 +16,7 @@ namespace Planar::Engine::Core::Execute
         reproc::options options;
         std::string working_directory_string =
             working_directory.string();
-        options.working_directory =
-            working_directory_string.c_str();
+        options.working_directory = working_directory_string.c_str();
 
         reproc::process process;
         process.start(arguments, options);

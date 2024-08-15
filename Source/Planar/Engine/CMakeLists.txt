@@ -27,7 +27,6 @@ set(PLANAR_ENGINE_LINK_LIBRARIES
     imgui
     yaml-cpp
     stb
-    reproc++
     nfd
     soloud
 )

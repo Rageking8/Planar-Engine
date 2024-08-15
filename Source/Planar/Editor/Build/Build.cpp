@@ -4,8 +4,8 @@
 #include "Planar/Editor/Build/Compression/Compression.hpp"
 #include "Planar/Editor/Core/Progress/Progress.hpp"
 #include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
+#include "Planar/Editor/Core/Execute/Execute.hpp"
 #include "Planar/Editor/Project/Project.hpp"
-#include "Planar/Engine/Core/Execute/Execute.hpp"
 #include "Planar/Engine/Core/ApplicationAsset.hpp"
 
 namespace
@@ -60,7 +60,7 @@ namespace
         Planar::Editor::Core::Progress::task(
             "Building project", [&]
             {
-                Planar::Engine::Core::Execute::run_program(
+                Planar::Editor::Core::Execute::run_program(
                     dotnet_exe_path, dotnet_arguments.
                     generate_publish_vector());
             }, progress_handler, dry_run, tasks);

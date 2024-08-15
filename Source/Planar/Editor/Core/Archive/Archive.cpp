@@ -1,7 +1,7 @@
 #include "Planar/Editor/Core/Archive/Archive.hpp"
+#include "Planar/Editor/Core/Execute/Execute.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
-#include "Planar/Engine/Core/Execute/Execute.hpp"
 
 PLANAR_LOAD_UNSIGNED_CHAR_ARRAY_ASSET(Editor::Archive, _7zr)
 
@@ -18,7 +18,7 @@ namespace Planar::Editor::Core::Archive
                 Editor::Archive, _7zr);
         }
 
-        Engine::Core::Execute::run_program(program_path, { "x",
+        Execute::run_program(program_path, { "x",
             std::filesystem::absolute(input_path).string() },
             program_path.parent_path());
     }

@@ -1,7 +1,7 @@
 #include "Planar/Editor/Build/Compression/Compression.hpp"
+#include "Planar/Editor/Core/Execute/Execute.hpp"
 #include "Planar/Engine/Asset/LoadAssetMacros.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
-#include "Planar/Engine/Core/Execute/Execute.hpp"
 
 #include <string>
 
@@ -21,7 +21,7 @@ namespace Planar::Editor::Build::Compression
                 Editor::Build, upx);
         }
 
-        Engine::Core::Execute::run_program(program_path,
+        Core::Execute::run_program(program_path,
             { ("-" + std::to_string(compression_level)),
             std::filesystem::absolute(input_path).string() });
     }

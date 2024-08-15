@@ -1,7 +1,7 @@
 #include "Planar/Editor/Core/VisualStudio/VisualStudio.hpp"
 #include "Planar/Editor/Core/Progress/ProgressHandler.hpp"
+#include "Planar/Editor/Core/Execute/Execute.hpp"
 #include "Planar/Editor/Script/CSProject.hpp"
-#include "Planar/Engine/Core/Execute/Execute.hpp"
 
 namespace Planar::Editor::Core::VisualStudio
 {
@@ -11,14 +11,13 @@ namespace Planar::Editor::Core::VisualStudio
         const Progress::ProgressHandler& progress_handler)
     {
         progress_handler("Creating new solution file");
-        Engine::Core::Execute::run_program(dotnet_exe_path,
-            { "new", "sln", "--name", cs_project.get_name() }, path);
+        Execute::run_program(dotnet_exe_path, { "new", "sln",
+            "--name", cs_project.get_name() }, path);
         progress_handler();
 
         progress_handler("Adding C# project to solution file");
-        Engine::Core::Execute::run_program(dotnet_exe_path,
-            { "sln", "add", cs_project.get_absolute_path_string() },
-            path);
+        Execute::run_program(dotnet_exe_path, { "sln", "add",
+            cs_project.get_absolute_path_string() }, path);
         progress_handler();
     }
 }
