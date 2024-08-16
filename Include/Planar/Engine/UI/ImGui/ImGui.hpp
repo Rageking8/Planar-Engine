@@ -49,6 +49,8 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API std::string generate_unique_label();
 
+    PLANAR_API void dummy(Math::Size2Df size = {});
+
     PLANAR_API void text(const std::string& text,
         bool align_text_to_frame_padding = false);
 

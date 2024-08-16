@@ -114,6 +114,11 @@ namespace Planar::Engine::UI::ImGui
             Engine::Core::GUID::Representation::DEFAULT_COMPACT);
     }
 
+    void dummy(Math::Size2Df size)
+    {
+        ::ImGui::Dummy({ size.width, size.height });
+    }
+
     void text(const std::string& text, bool align_text_to_frame_padding)
     {
         if (align_text_to_frame_padding)
