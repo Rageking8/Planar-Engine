@@ -88,9 +88,4 @@ namespace Planar::Engine::UI::ImGui::Menu
     {
         content = {};
     }
-
-    void ContextMenu::add_separator()
-    {
-        separator(2.5f);
-    }
 }

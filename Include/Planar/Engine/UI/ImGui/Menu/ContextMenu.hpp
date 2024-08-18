@@ -21,8 +21,6 @@ namespace Planar::Engine::UI::ImGui::Menu
         void set_content(const std::function<bool()>& new_content);
         void clear_content();
 
-        void add_separator();
-
     private:
         Window::Window window;
         std::function<bool()> content;
