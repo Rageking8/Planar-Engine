@@ -1,6 +1,7 @@
 #include "Planar/Engine/UI/ImGui/Element/Tree.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/CursorScope.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
@@ -210,7 +211,8 @@ namespace Planar::Engine::UI::ImGui::Element
         {
             Core::Cursor::CursorScope cursor_scope;
 
-            Core::Cursor::move_x(pre_header_left_padding);
+            Core::Cursor::move_x(Core::Cursor::MoveMode::DUMMY,
+                pre_header_left_padding);
 
             pre_header();
 

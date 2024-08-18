@@ -5,6 +5,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/Core/Log/TerminalLogger.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
@@ -82,7 +83,8 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        ImGui::Core::Cursor::set_y(60.f);
+        ImGui::Core::Cursor::move_y(
+            ImGui::Core::Cursor::MoveMode::DUMMY, 12.f, false);
 
         build_directory_input.render();
         ImGui::same_line();
@@ -92,22 +94,20 @@ namespace Planar::Editor::UI::Window
             pending_browse = true;
         }
 
-        const float separator_extra_height = 12.f;
-
-        ImGui::separator(separator_extra_height);
+        ImGui::separator(0.f);
 
         target_drop_down.render();
         show_console_window_checkbox.render();
         advanced_size_optimizations_checkbox.render();
 
-        ImGui::separator(separator_extra_height);
+        ImGui::separator(0.f);
 
         window_name_input.render();
         window_size_drag.render();
         window_maximize_checkbox.render();
         graphics_api_drop_down.render();
 
-        ImGui::separator(separator_extra_height);
+        ImGui::separator(0.f);
 
         use_compression_checkbox.render();
         if (use_compression_checkbox.get_value())
@@ -115,12 +115,13 @@ namespace Planar::Editor::UI::Window
             compression_level_slider.render();
         }
 
-        ImGui::separator(separator_extra_height);
+        ImGui::separator(0.f);
 
         if (!build_mode)
         {
-            ImGui::Core::Cursor::set_y_bottom_window(
-                -separator_extra_height);
+            ImGui::Core::Cursor::move_x(
+                ImGui::Core::Cursor::MoveMode::SET_CURSOR, -24.f, false);
+            ImGui::Core::Cursor::set_y_bottom_window(-12.f);
             build_button.render();
             if (build_button.is_clicked())
             {

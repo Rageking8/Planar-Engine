@@ -3,6 +3,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/Asset/AssetFunction.hpp"
 #include "Planar/Engine/Core/Sprite/Sprite.hpp"
 #include "Planar/Engine/Core/FileSystem/FileSystem.hpp"
@@ -35,7 +36,8 @@ namespace Planar::Editor::UI::Element::Component
 
         render_helper(sprite);
         ImGui::same_line();
-        ImGui::Core::Cursor::move_x(12.f);
+        ImGui::Core::Cursor::move_x(
+            ImGui::Core::Cursor::MoveMode::DUMMY, 12.f);
         sprite_select_button.render();
         if (sprite_select_button.is_clicked())
         {

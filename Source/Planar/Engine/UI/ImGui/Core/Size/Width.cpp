@@ -1,6 +1,7 @@
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
 
@@ -15,7 +16,10 @@ namespace Planar::Engine::UI::ImGui::Core::Size
 
     void Width::set() const
     {
-        Cursor::move_x(x_offset);
+        if (x_offset)
+        {
+            Cursor::move_x(Cursor::MoveMode::DUMMY, x_offset);
+        }
 
         switch (mode)
         {

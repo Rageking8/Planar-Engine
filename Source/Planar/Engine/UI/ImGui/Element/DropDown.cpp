@@ -2,6 +2,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/Core/Utils/Checks/Assert.hpp"
 
 #include <cstddef>
@@ -71,7 +72,8 @@ namespace Planar::Engine::UI::ImGui::Element
 
         if (remove_bottom_padding)
         {
-            Core::Cursor::move_y(-14.f);
+            Core::Cursor::move_y(Core::Cursor::MoveMode::SET_CURSOR,
+                -11.f, false);
         }
     }
 

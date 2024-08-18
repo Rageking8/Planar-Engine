@@ -21,7 +21,7 @@ namespace Planar::Editor::UI::Element
 
         const auto set_and_render_progress_bar = [&]
             {
-                ImGui::Core::Cursor::set_x(0.f);
+                ImGui::Core::Cursor::set_x(0.f, false);
                 progress_bar.set_width(ImGui::get_window_size().
                     width);
                 progress_bar.render();

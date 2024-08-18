@@ -1,5 +1,6 @@
 #include "Planar/Engine/UI/ImGui/Renderer/TextRenderer.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 #include "ThirdParty/ImGui/imgui.h"
@@ -57,9 +58,11 @@ namespace Planar::Engine::UI::ImGui::Renderer
 
         for (unsigned i = 0; i < split_result.first.size(); ++i)
         {
-            Core::Cursor::move_x((width * 0.5f) + frame_padding_x -
-                (split_result.first[i].second * 0.5f));
-            Core::Cursor::move_y(static_cast<float>(i) * line_delta);
+            Core::Cursor::move_x(Core::Cursor::MoveMode::DUMMY,
+                (width * 0.5f) + frame_padding_x -
+                (split_result.first[i].second * 0.5f) - 24.f);
+            Core::Cursor::move_y(Core::Cursor::MoveMode::SET_CURSOR,
+                static_cast<float>(i) * line_delta, false);
             ImGui::text(split_result.first[i].first);
         }
     }
@@ -116,11 +119,11 @@ namespace Planar::Engine::UI::ImGui::Renderer
         const float text_width = ::ImGui::CalcTextSize(text.c_str()).x;
         const bool vertical = height != -1.f;
 
-        Core::Cursor::set_x((width - text_width) * 0.5f);
+        Core::Cursor::set_x((width - text_width) * 0.5f, false);
 
         if (vertical)
         {
-            Core::Cursor::set_y(height * 0.5f);
+            Core::Cursor::set_y(height * 0.5f, false);
         }
 
         ImGui::text(text, vertical);

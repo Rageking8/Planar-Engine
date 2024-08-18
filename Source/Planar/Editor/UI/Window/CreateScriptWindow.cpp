@@ -4,6 +4,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 
 PLANAR_LOAD_STD_STRING_ASSET(Editor::Script, ComponentScript)
@@ -43,20 +44,20 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        ImGui::Core::Cursor::set_y(60.f);
+        ImGui::Core::Cursor::move_y(
+            ImGui::Core::Cursor::MoveMode::DUMMY, 12.f, false);
 
         script_name_input.render();
 
-        const float separator_extra_height = 12.f;
-
-        ImGui::separator(separator_extra_height);
+        ImGui::separator(0.f);
 
         script_type_dropdown.render();
 
-        ImGui::separator(separator_extra_height);
+        ImGui::separator(0.f);
 
-        ImGui::Core::Cursor::set_y_bottom_window(
-            -separator_extra_height);
+        ImGui::Core::Cursor::move_x(
+            ImGui::Core::Cursor::MoveMode::SET_CURSOR, -24.f, false);
+        ImGui::Core::Cursor::set_y_bottom_window(-12.f);
         create_button.render();
         if (create_button.is_clicked())
         {

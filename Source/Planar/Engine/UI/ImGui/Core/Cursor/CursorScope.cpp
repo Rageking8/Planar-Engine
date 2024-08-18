@@ -1,5 +1,6 @@
 #include "Planar/Engine/UI/ImGui/Core/Cursor/CursorScope.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 
 namespace Planar::Engine::UI::ImGui::Core::Cursor
@@ -15,7 +16,8 @@ namespace Planar::Engine::UI::ImGui::Core::Cursor
             break;
 
         case Mode::RELATIVE:
-            move({ x_delta, y_delta });
+            move(MoveMode::SET_CURSOR, { x_delta, y_delta },
+                false);
             restore_x = -x_delta;
             restore_y = -y_delta;
             break;
@@ -32,7 +34,8 @@ namespace Planar::Engine::UI::ImGui::Core::Cursor
 
         case Mode::RELATIVE:
             same_line();
-            move({ restore_x, restore_y });
+            move(MoveMode::SET_CURSOR, { restore_x, restore_y },
+                false);
             break;
         }
     }

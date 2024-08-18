@@ -3,6 +3,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Style/StyleVar.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/CursorScope.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
@@ -82,14 +83,18 @@ namespace Planar::Editor::UI::Element::Component::Core
     void ComponentBase::render_with_padding(
         Engine::UI::ImGui::Element::Element& element)
     {
-        Engine::UI::ImGui::Core::Cursor::move_y(vertical_padding);
+        Engine::UI::ImGui::Core::Cursor::move_y(
+            Engine::UI::ImGui::Core::Cursor::MoveMode::DUMMY,
+            vertical_padding, false);
         element.render();
     }
 
     void ComponentBase::render_content_impl()
     {
         render_content();
-        Engine::UI::ImGui::Core::Cursor::move_y(vertical_padding);
+        Engine::UI::ImGui::Core::Cursor::move_y(
+            Engine::UI::ImGui::Core::Cursor::MoveMode::DUMMY,
+            vertical_padding, false);
     }
 
     void ComponentBase::render_active_checkbox()

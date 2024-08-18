@@ -7,6 +7,7 @@
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Size/Width.hpp"
 #include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
+#include "Planar/Engine/UI/ImGui/Core/Cursor/MoveMode.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
 namespace Planar::Editor::UI::Window
@@ -15,7 +16,7 @@ namespace Planar::Editor::UI::Window
         EditorWindow("Inspector", editor),
         active_checkbox("", true), name_input("Name", "",
         { Engine::UI::ImGui::Core::Size::Width::WidthMode::FILL,
-        0.f, 20.f, 20.f }), component_store(editor),
+        0.f, -4.f, 20.f }), component_store(editor),
         component_renderer(editor)
     {
         set_padding({ { 0.f, 20.f } });
@@ -100,10 +101,12 @@ namespace Planar::Editor::UI::Window
 
         if (select_type_game_object)
         {
-            ImGui::Core::Cursor::move_x(20.f);
+            ImGui::Core::Cursor::move_x(
+                ImGui::Core::Cursor::MoveMode::DUMMY, -4.f);
             active_checkbox.render();
             ImGui::same_line();
-            ImGui::Core::Cursor::move_x(-32.f);
+            ImGui::Core::Cursor::move_x(
+                ImGui::Core::Cursor::MoveMode::DUMMY, -56.f);
         }
 
         if (select_type != Editor::Core::Select::SelectType::NONE)
@@ -113,7 +116,8 @@ namespace Planar::Editor::UI::Window
 
         if (select_type_game_object)
         {
-            ImGui::Core::Cursor::move_y(8.f);
+            ImGui::Core::Cursor::move_y(
+                ImGui::Core::Cursor::MoveMode::SET_CURSOR, 8.f, false);
 
             std::shared_ptr<Engine::GameObject::GameObject>
                 game_object = select_handler.get_game_object();
