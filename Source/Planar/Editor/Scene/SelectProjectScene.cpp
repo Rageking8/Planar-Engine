@@ -1,7 +1,6 @@
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Editor/Project/Project.hpp"
 #include "Planar/Engine/UI/ImGui/ImGui.hpp"
-#include "Planar/Engine/UI/ImGui/Core/Cursor/Cursor.hpp"
 #include "Planar/Engine/UI/ImGui/Window/WindowFlags.hpp"
 #include "Planar/Engine/Core/Utils/Macros/FunctionalMacros.hpp"
 
@@ -56,7 +55,8 @@ namespace Planar::Editor::Scene
 
         auto main_window_scope = main_window.render();
 
-        ImGui::Core::Cursor::set_y(24.f);
+        ImGui::newline();
+
         ImGui::text("Select Project");
 
         ImGui::newline();
