@@ -69,7 +69,7 @@ namespace Planar::Engine::UI::ImGui
 
     PLANAR_API void same_line();
 
-    PLANAR_API void separator(float extra_height = 0.f);
+    PLANAR_API void separator(float extra_height = -1.f);
 
     PLANAR_API bool is_item_hovered();
 

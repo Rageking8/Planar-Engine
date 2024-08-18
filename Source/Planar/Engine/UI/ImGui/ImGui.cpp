@@ -181,9 +181,17 @@ namespace Planar::Engine::UI::ImGui
 
     void separator(float extra_height)
     {
-        Core::Cursor::move_y(extra_height);
+        if (extra_height != -1.f)
+        {
+            ImGui::dummy({ 0.f, extra_height });
+        }
+
         ::ImGui::Separator();
-        Core::Cursor::move_y(extra_height);
+
+        if (extra_height != -1.f)
+        {
+            ImGui::dummy({ 0.f, extra_height });
+        }
     }
 
     bool is_item_hovered()
