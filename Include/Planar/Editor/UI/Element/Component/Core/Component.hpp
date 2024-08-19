@@ -3,6 +3,7 @@
 #include "Planar/Editor/UI/Element/Component/Core/ComponentBase.hpp"
 #include "Planar/Engine/Core/Utils/Macros/DeclarationMacros.hpp"
 
+#include <string>
 #include <memory>
 
 PLANAR_ENGINE_FORWARD_DECLARE_CLASS(Component::Core, ComponentBase)
@@ -15,7 +16,8 @@ namespace Planar::Editor::UI::Element::Component::Core
     public:
         using ComponentType = ComponentT;
 
-        Component(bool show_active_checkbox = true);
+        Component(bool show_active_checkbox = true,
+            const std::string& name = "");
 
     protected:
         template <typename... Args>
