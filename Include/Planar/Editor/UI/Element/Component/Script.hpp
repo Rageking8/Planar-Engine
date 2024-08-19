@@ -3,6 +3,8 @@
 #include "Planar/Editor/UI/Element/Component/Core/Component.hpp"
 #include "Planar/Engine/Component/Script.hpp"
 
+#include <string>
+
 namespace Planar::Editor::UI::Element::Component
 {
     class Script : public Core::Component<Engine::Component::Script>
@@ -17,5 +19,8 @@ namespace Planar::Editor::UI::Element::Component
 
         virtual void set_values_impl(ComponentType* script) override;
         virtual void write_values_impl(ComponentType* script) override;
+
+        std::string generate_header_text(const std::string& script)
+            const;
     };
 }
