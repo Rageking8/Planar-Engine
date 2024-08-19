@@ -54,9 +54,9 @@ namespace Planar::Engine::GameObject
 
         std::shared_ptr<Component::Transform2D> get_transform() const;
 
-        template <typename ComponentT>
+        template <typename ComponentT, typename... Args>
         void add_component(std::optional<YAML::Node> node = {},
-            bool skip_asset = false);
+            bool skip_asset = false, Args&... args);
 
         int find_component(const std::string& guid,
             bool fatal_if_not_found = false);

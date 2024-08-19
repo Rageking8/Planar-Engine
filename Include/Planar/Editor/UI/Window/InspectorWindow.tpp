@@ -5,8 +5,8 @@
 
 namespace Planar::Editor::UI::Window
 {
-    template <typename ComponentT>
-    inline void InspectorWindow::add_component()
+    template <typename ComponentT, typename... Args>
+    inline void InspectorWindow::add_component(Args&... args)
     {
         Editor::Core::Select::SelectHandler& select_handler =
             editor->get_select_handler();
@@ -26,7 +26,7 @@ namespace Planar::Editor::UI::Window
             return;
         }
 
-        game_object->add_component<ComponentT>();
+        game_object->add_component<ComponentT>({}, false, args...);
         component_store.update_items(*game_object);
         editor->set_dirty();
     }

@@ -23,8 +23,8 @@ namespace Planar::Editor::UI::Window
 
         virtual void render_window() override;
 
-        template <typename ComponentT>
-        void add_component();
+        template <typename ComponentT, typename... Args>
+        void add_component(Args&... args);
 
     private:
         Engine::UI::ImGui::Element::Checkbox active_checkbox;

@@ -19,12 +19,13 @@ namespace Planar::Engine::GameObject
         return nullptr;
     }
 
-    template <typename ComponentT>
+    template <typename ComponentT, typename... Args>
     inline void GameObject::add_component(
-        std::optional<YAML::Node> node, bool skip_asset)
+        std::optional<YAML::Node> node, bool skip_asset,
+        Args&... args)
     {
         std::shared_ptr<ComponentT> new_component =
-            std::make_shared<ComponentT>(this, !node);
+            std::make_shared<ComponentT>(this, !node, args...);
 
         if (node)
         {

@@ -79,10 +79,8 @@ namespace Planar::Editor::UI::Menu
 
                     for (const auto& i : script_names)
                     {
-                        if (ImGui::Menu::menu_item("Add " + i))
-                        {
-
-                        }
+                        add_component_menu_item<
+                            Engine::Component::Script>(i, i);
                     }
                 });
 
@@ -158,15 +156,17 @@ namespace Planar::Editor::UI::Menu
         }
     }
 
-    template <typename ComponentT>
-    void EditorMenuBar::add_component_menu_item()
+    template <typename ComponentT, typename... Args>
+    void EditorMenuBar::add_component_menu_item(
+        const std::string& name, Args&... args)
     {
         const std::string label_prefix = "Add ";
 
         if (Engine::UI::ImGui::Menu::menu_item(label_prefix +
-            ComponentT::NAME))
+            (name.empty() ? ComponentT::NAME : name)))
         {
-            PLANAR_GET_WINDOW(Inspector)->add_component<ComponentT>();
+            PLANAR_GET_WINDOW(Inspector)->
+                add_component<ComponentT>(args...);
         }
     }
 }

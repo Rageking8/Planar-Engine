@@ -31,7 +31,8 @@ namespace Planar::Editor::UI::Menu
             bool reset_first_render = false,
             const std::string& shortcut = "");
 
-        template <typename ComponentT>
-        void add_component_menu_item();
+        template <typename ComponentT, typename... Args>
+        void add_component_menu_item(const std::string& name = "",
+            Args&... args);
     };
 }
