@@ -15,7 +15,7 @@ namespace Planar::Editor::UI::Renderer
     }
 
     void ComponentRenderer::render(
-        Container::ComponentStore& component_store,
+        Container::ComponentStore* component_store,
         std::shared_ptr<Engine::GameObject::GameObject> game_object,
         Engine::UI::ImGui::Menu::ContextMenu* context_menu)
     {
@@ -24,20 +24,21 @@ namespace Planar::Editor::UI::Renderer
             context_menu_active = context_menu->render({}, { false });
         }
 
-        component_store.reset_all_item_flag();
+        component_store->reset_all_item_flag();
 
         for (auto& component : game_object->get_components())
         {
-            component_store.get_item(component->get_type()).
+            component_store->get_item(component->get_type()).
                 component->render([=, this](std::string guid)
                     {
-                        render_context_menu(game_object, context_menu,
-                            guid);
+                        render_context_menu(component_store,
+                            game_object, context_menu, guid);
                     });
         }
     }
 
     void ComponentRenderer::render_context_menu(
+        Container::ComponentStore* component_store,
         std::shared_ptr<Engine::GameObject::GameObject> game_object,
         Engine::UI::ImGui::Menu::ContextMenu* context_menu,
         std::string guid)

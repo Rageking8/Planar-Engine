@@ -18,7 +18,7 @@ namespace Planar::Editor::UI::Renderer
     public:
         ComponentRenderer(Core::Editor* editor);
 
-        void render(Container::ComponentStore& component_store,
+        void render(Container::ComponentStore* component_store,
             std::shared_ptr<Engine::GameObject::GameObject> game_object,
             Engine::UI::ImGui::Menu::ContextMenu* context_menu);
 
@@ -27,6 +27,7 @@ namespace Planar::Editor::UI::Renderer
         bool context_menu_active;
 
         void render_context_menu(
+            Container::ComponentStore* component_store,
             std::shared_ptr<Engine::GameObject::GameObject> game_object,
             Engine::UI::ImGui::Menu::ContextMenu* context_menu,
             std::string guid);

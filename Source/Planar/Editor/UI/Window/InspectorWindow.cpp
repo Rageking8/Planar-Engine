@@ -124,7 +124,7 @@ namespace Planar::Editor::UI::Window
 
             if (game_object)
             {
-                component_renderer.render(component_store,
+                component_renderer.render(&component_store,
                     game_object, &context_menu);
             }
         }
