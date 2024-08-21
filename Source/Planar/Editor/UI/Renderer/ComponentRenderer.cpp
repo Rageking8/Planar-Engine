@@ -56,6 +56,7 @@ namespace Planar::Editor::UI::Renderer
                 {
                     game_object->remove_component(guid);
 
+                    component_store->update_items(*game_object);
                     editor->set_dirty();
 
                     return true;
