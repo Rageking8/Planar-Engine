@@ -24,6 +24,7 @@ namespace Planar::Editor::Core
     {
     public:
         Editor();
+        Editor(int argc, char* argv[]);
         virtual ~Editor();
 
         virtual bool init() override;

@@ -16,6 +16,11 @@ namespace Planar::Editor::Core
 
     }
 
+    Editor::Editor(int argc, char* argv[]) : Editor()
+    {
+
+    }
+
     Editor::~Editor()
     {
 
