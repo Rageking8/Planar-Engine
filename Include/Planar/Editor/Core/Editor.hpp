@@ -27,6 +27,10 @@ namespace Planar::Editor::Core
         Editor(int argc, char* argv[]);
         virtual ~Editor();
 
+        // Initialize and run the editor. The return
+        // value will be propagated to `main`.
+        int start();
+
         virtual bool init() override;
 
         virtual Engine::Math::Size2Di get_game_framebuffer_size()

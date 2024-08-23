@@ -26,6 +26,18 @@ namespace Planar::Editor::Core
 
     }
 
+    int Editor::start()
+    {
+        if (!init())
+        {
+            return -1;
+        }
+
+        run();
+
+        return 0;
+    }
+
     bool Editor::init()
     {
         if (!Base::init())
