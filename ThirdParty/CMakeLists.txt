@@ -83,6 +83,13 @@ FetchContent_Declare(
         SHA256=8C53CE9EFB250024BA977384ADEEC500A39D702A338F8B3328A73B1342259731
 )
 
+FetchContent_Declare(
+    argparse
+    URL https://github.com/p-ranav/argparse/archive/refs/tags/v3.1.zip
+    URL_HASH
+        SHA256=3E5A59AB7688DCD1F918BC92051A10564113D4F36C3BBED3EF596C25E519A062
+)
+
 add_subdirectory(glad)
 add_subdirectory(GLFW)
 add_subdirectory(ImGui)
@@ -96,3 +103,4 @@ add_subdirectory(lzma-sdk)
 add_subdirectory(UPX)
 add_subdirectory(nativefiledialog-extended)
 add_subdirectory(SoLoud)
+add_subdirectory(argparse)
