@@ -4,6 +4,7 @@ target_sources(${PLANAR_EDITOR_TARGET} PRIVATE
 )
 
 add_subdirectory(Archive)
+add_subdirectory(Console)
 add_subdirectory(Execute)
 add_subdirectory(Input)
 add_subdirectory(Progress)
