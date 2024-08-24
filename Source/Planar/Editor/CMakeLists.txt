@@ -33,7 +33,12 @@ endif()
 
 if(WIN32)
     target_link_options(${PLANAR_EDITOR_TARGET} PRIVATE
-        /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup)
+        /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup
+    )
+
+    target_compile_definitions(${PLANAR_EDITOR_TARGET} PRIVATE
+        WIN32_LEAN_AND_MEAN
+    )
 endif()
 
 if(${PLANAR_EDITOR_LINK_ENGINE} STREQUAL SHARED)

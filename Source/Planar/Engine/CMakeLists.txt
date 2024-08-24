@@ -17,6 +17,12 @@ target_compile_definitions(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
     PLANAR_EXPORT_SOURCE
 )
 
+if(WIN32)
+    target_compile_definitions(${PLANAR_ENGINE_OBJECT_TARGET} PRIVATE
+        WIN32_LEAN_AND_MEAN
+    )
+endif()
+
 add_library(${PLANAR_ENGINE_SHARED_TARGET} SHARED
     $<TARGET_OBJECTS:${PLANAR_ENGINE_OBJECT_TARGET}>
 )
