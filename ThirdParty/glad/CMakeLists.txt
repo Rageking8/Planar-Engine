@@ -1,5 +1,3 @@
-include(FileUtils)
-
 add_library(glad STATIC
     gl.h
     gl.c
