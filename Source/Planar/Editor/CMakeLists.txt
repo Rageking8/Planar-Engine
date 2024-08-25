@@ -7,6 +7,7 @@ set_property(TARGET ${PLANAR_EDITOR_TARGET} PROPERTY
 target_link_libraries(${PLANAR_EDITOR_TARGET} PRIVATE
     ${PLANAR_ENGINE_${PLANAR_EDITOR_LINK_ENGINE}_TARGET}
     reproc++
+    argparse
 )
 
 add_dependencies(${PLANAR_EDITOR_TARGET}
