@@ -10,10 +10,7 @@ copy_single_source(
     ${yaml-cpp_SOURCE_DIR}/include/yaml-cpp/
     ${PLANAR_EXTERNAL_INCLUDE_DIR}/yaml-cpp
 )
-copy_single_source(
-    ${yaml-cpp_SOURCE_DIR}/include/yaml-cpp/
-    ${PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR}/yaml-cpp
-)
+copy_third_party_include(yaml-cpp include/yaml-cpp/)
 
 set_property(TARGET yaml-cpp PROPERTY
     MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>

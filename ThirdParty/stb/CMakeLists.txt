@@ -2,10 +2,7 @@ planar_message(STATUS "Fetching stb")
 
 FetchContent_MakeAvailable(stb)
 
-copy_single_source(
-    ${stb_SOURCE_DIR}/stb_image.h
-    ${PLANAR_EXTERNAL_THIRD_PARTY_INCLUDE_DIR}/stb
-)
+copy_third_party_include(stb stb_image.h)
 
 set(STB_HEADERS_LIST
     stb_image.h
