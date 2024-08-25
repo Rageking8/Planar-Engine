@@ -54,6 +54,7 @@ Currently Windows is the only operating system supported.
     - [UPX](https://github.com/upx/upx) - Compress EXE and DLL
     - [LZMA SDK](https://www.7-zip.org/sdk.html) - Compress and extract 7z archives
     - [reproc](https://github.com/DaanDeMeyer/reproc) - Create and manage processes
+    - [argparse](https://github.com/p-ranav/argparse) - Parse command line arguments
 
 1. Website
     - [mdBook](https://github.com/rust-lang/mdBook) - Website and documentation
