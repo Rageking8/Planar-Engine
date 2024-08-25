@@ -8,6 +8,7 @@
 #include "Planar/Editor/Core/Save/SaveHandler.hpp"
 #include "Planar/Editor/Core/Select/SelectHandler.hpp"
 #include "Planar/Editor/Core/Input/InputHandler.hpp"
+#include "Planar/Editor/Core/Console/CommandLineProcessor.hpp"
 #include "Planar/Editor/Core/Utils/Macros/DeclarationMacros.hpp"
 
 #include <string>
@@ -27,8 +28,9 @@ namespace Planar::Editor::Core
         Editor(int argc, char* argv[]);
         virtual ~Editor();
 
-        // Initialize and run the editor. The return
-        // value will be propagated to `main`.
+        // Process command line arguments before initializing
+        // and running the editor. The return value will be
+        // propagated to `main`.
         int start();
 
         virtual bool init() override;
@@ -74,6 +76,7 @@ namespace Planar::Editor::Core
             Engine::Math::Size2Di new_game_content_size);
 
     private:
+        Console::CommandLineProcessor command_line_processor;
         Project::Project project;
         std::unique_ptr<Engine::Scene::Scene> current_scene;
         Save::SaveHandler save_handler;

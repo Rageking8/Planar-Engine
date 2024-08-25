@@ -1,5 +1,6 @@
 #include "Planar/Editor/Core/Editor.hpp"
 #include "Planar/Editor/Core/Select/SelectType.hpp"
+#include "Planar/Editor/Core/Console/ProcessResult.hpp"
 #include "Planar/Editor/Scene/SelectProjectScene.hpp"
 #include "Planar/Editor/Scene/EditorScene.hpp"
 #include "Planar/Editor/UI/Init/Init.hpp"
@@ -18,7 +19,7 @@ namespace Planar::Editor::Core
 
     Editor::Editor(int argc, char* argv[]) : Editor()
     {
-
+        command_line_processor.set(argc, argv);
     }
 
     Editor::~Editor()
@@ -28,6 +29,14 @@ namespace Planar::Editor::Core
 
     int Editor::start()
     {
+        Console::ProcessResult process_result =
+            command_line_processor.process();
+        if (process_result.get_action() ==
+            Console::ProcessResult::Action::RETURN)
+        {
+            return process_result.get_return_value();
+        }
+
         if (!init())
         {
             return -1;
