@@ -2,6 +2,8 @@
 
 A 2D Game Engine.
 
+![Editor user interface in a demo project](https://github.com/user-attachments/assets/60107d2d-ddb8-434a-a34d-c14152b16bfd)
+
 ## Contents
 
 1. [Build](#build)
