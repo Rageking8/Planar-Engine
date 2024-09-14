@@ -67,3 +67,6 @@ node_modules/
 
 # mdBook build
 book
+
+# mdBook executable
+mdbook.exe
