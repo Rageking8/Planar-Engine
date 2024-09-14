@@ -1,9 +1,10 @@
 [book]
+title = "Planar Engine"
 authors = ["Rageking8"]
+description = "Website and documentation for Planar Engine"
+src = "source"
 language = "en"
 multilingual = false
-src = "source"
-title = "Planar Engine"
 
 [output.html]
 no-section-label = true
