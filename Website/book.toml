@@ -6,6 +6,9 @@ src = "source"
 language = "en"
 multilingual = false
 
+[build]
+use-default-preprocessors = false
+
 [output.html]
 no-section-label = true
 additional-css = ["theme/pagetoc.css"]
