@@ -39,22 +39,22 @@ Currently Windows is the only operating system supported.
 ## Dependencies
 
 1. Planar Engine
-    - [glad](https://github.com/Dav1dde/glad) - OpenGL loader
-    - [GLFW](https://github.com/glfw/glfw) - Window, Input, OpenGL context
-    - [Dear ImGui](https://github.com/ocornut/imgui) - Editor UI
-    - [yaml-cpp](https://github.com/jbeder/yaml-cpp) - Assets
-    - [stb](https://github.com/nothings/stb) - Image loader
-    - [glm](https://github.com/g-truc/glm) - Computer graphics types and routines
-    - [nativefiledialog-extended](https://github.com/btzy/nativefiledialog-extended) - Select file and folder dialog
-    - [SoLoud](https://github.com/jarikomppa/soloud) - Audio
+    - [Dav1dde/glad](https://github.com/Dav1dde/glad) - OpenGL loader
+    - [glfw/glfw](https://github.com/glfw/glfw) - Window, Input, OpenGL context
+    - [ocornut/imgui](https://github.com/ocornut/imgui) - Editor UI
+    - [jbeder/yaml-cpp](https://github.com/jbeder/yaml-cpp) - Assets
+    - [nothings/stb](https://github.com/nothings/stb) - Image loader
+    - [g-truc/glm](https://github.com/g-truc/glm) - Computer graphics types and routines
+    - [btzy/nativefiledialog-extended](https://github.com/btzy/nativefiledialog-extended) - Select file and folder dialog
+    - [jarikomppa/soloud](https://github.com/jarikomppa/soloud) - Audio
 
 1. Planar Editor
     - Planar Engine - All core routines
     - [.NET SDK](https://dotnet.microsoft.com/en-us/download) - Build and publish C# projects
-    - [UPX](https://github.com/upx/upx) - Compress EXE and DLL
+    - [upx/upx](https://github.com/upx/upx) - Compress EXE and DLL
     - [LZMA SDK](https://www.7-zip.org/sdk.html) - Compress and extract 7z archives
-    - [reproc](https://github.com/DaanDeMeyer/reproc) - Create and manage processes
-    - [argparse](https://github.com/p-ranav/argparse) - Parse command line arguments
+    - [DaanDeMeyer/reproc](https://github.com/DaanDeMeyer/reproc) - Create and manage processes
+    - [p-ranav/argparse](https://github.com/p-ranav/argparse) - Parse command line arguments
 
 1. Website
-    - [mdBook](https://github.com/rust-lang/mdBook) - Website and documentation
+    - [rust-lang/mdBook](https://github.com/rust-lang/mdBook) - Website and documentation
