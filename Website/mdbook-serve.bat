@@ -2,7 +2,7 @@
 
 where /q mdbook
 if errorlevel 1 (
-    echo mdbook.exe not found
+    echo [31mmdbook.exe not found[0m
     echo:
     pause
     exit /b 1
