@@ -9,3 +9,11 @@ if errorlevel 1 (
 )
 
 mdbook serve -o
+
+if errorlevel 1 (
+    echo:
+    echo [31mmdbook serve failed[0m
+    echo:
+    pause
+    exit /b 1
+)
