@@ -2,4 +2,8 @@
 
 A 2D Game Engine.
 
-[Planar Engine](https://github.com/Rageking8/Planar-Engine)
+## Sections
+
+- [Getting Started](getting-started.md)
+- [Guides](guides/readme.md)
+- [Documentation](docs/readme.md)
